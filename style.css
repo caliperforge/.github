@@ -1,37 +1,95 @@
 /* ==========================================================================
-   CaliperForge — landing site stylesheet
-   Owner: Engineering Lead
-   Locked: 2026-05-29 (T-009 Phase 0 landing site)
+   CaliperForge — landing site stylesheet v3
+   Owner: Design Lead (T-009 v3 redesign — supersedes Design Lead v2)
+   Locked: 2026-05-29
    Pages: index.html, ai-disclosure.html
 
-   Design rationale (short):
-   - Light "paper" background + deep-blue accent. Reads workshop/precision,
-     not crypto-default-dark. Adjacent to Nethermind's sharp-blue and
-     Wonderland's restrained palette without copying either.
-   - System font stack. Zero network calls, zero font-loading FOUC, zero
-     ongoing cost. Falls back gracefully on every platform.
-   - One column, ~640px max-width. Print-on-paper readable. Mobile first.
-   - No animations, no transitions, no JS. Phase 0 is "land and read."
+   Why v3 exists (CEO direct quote on v2):
+     "why can't it look like a modern landing page with nice css
+      and not this dump from the 90s."
+
+   v2 was technically correct (color-scheme locked, tagline wrap solved,
+   contact grid structured, mark integrated) but TONALLY wrong:
+     - paper background read as old-magazine, not 2026 product
+     - system stack only = no display identity in type
+     - zero motion = page didn't breathe
+     - sections separated by hairlines = print column, not landing
+     - mark sat next to text as pasted, not integrated
+
+   v3 lifts the 2026 crypto-eng register: dark hero, light below, display
+   font for type identity, subtle CSS-only motion, radial glow accent
+   behind the mark. Benchmarks pulled: Vercel, Linear, Privy, Alchemy,
+   Thirdweb, Foundry, Anthropic. Full reasoning in
+   design/landing_v3_reasoning.md.
+
+   The v2 protections carry forward:
+     - color-scheme lock (no UA dark-mode auto-flip on the whole page)
+     - tagline cannot break mid-word (balance + clamp + nowrap)
+     - explicit per-element background/color (no UA inheritance leaks)
+     - NO @media (prefers-color-scheme: dark) block on the whole page
    ========================================================================== */
 
 :root {
-    --color-paper: #fafaf7;          /* warm off-white, easy on eye */
-    --color-ink: #1a1a1a;            /* near-black body text */
-    --color-muted: #555;              /* secondary text */
-    --color-rule: #d8d6cf;           /* hairline rules, light borders */
-    --color-accent: #1d3557;         /* deep workshop blue, single accent */
-    --color-accent-hover: #2b4a73;   /* slightly lifted on hover */
+    /* Page color-scheme lock. The page MIXES dark (hero) and light (rest),
+       but the OVERALL document tells the UA "I am light" so Safari Reader,
+       Chrome auto-dark, and Dark Reader stand down on form controls and
+       scrollbars. The dark hero is opted in by explicit CSS, not by a UA
+       auto-flip. */
+    color-scheme: light;
 
-    --font-serif-stack: "Iowan Old Style", "Charter", "Georgia", "Cambria",
-                        "Times New Roman", Times, serif;
-    --font-sans-stack: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                       Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue",
-                       Arial, sans-serif;
-    --font-mono-stack: ui-monospace, "SF Mono", Menlo, Consolas,
-                       "Liberation Mono", monospace;
+    /* ---- Color system ------------------------------------------------- */
 
-    --measure: 38rem;     /* ~608px reading column */
-    --gutter: 1.5rem;
+    /* Hero (dark) */
+    --hero-bg-top:       #0a0e1a;   /* deep navy-charcoal */
+    --hero-bg-bottom:    #13192c;   /* slightly lighter for depth */
+    --hero-glow:         rgba(59, 130, 246, 0.28);   /* workshop-blue glow */
+    --hero-glow-soft:    rgba(59, 130, 246, 0.06);
+    --hero-text:         #e8edf5;   /* near-white on dark */
+    --hero-text-muted:   #94a3b8;   /* slate-400 */
+    --hero-text-faint:   #64748b;   /* slate-500 */
+    --hero-border:       rgba(255, 255, 255, 0.08);
+    --hero-border-hi:    rgba(255, 255, 255, 0.14);
+
+    /* Light section */
+    --bg:                #fafafa;   /* off-white */
+    --bg-card:           #ffffff;
+    --bg-card-hover:     #fcfcfd;
+    --ink:               #0f172a;   /* slate-900 */
+    --ink-soft:          #475569;   /* slate-600 */
+    --ink-faint:         #94a3b8;   /* slate-400 */
+    --border:            rgba(15, 23, 42, 0.08);
+    --border-hi:         rgba(15, 23, 42, 0.14);
+
+    /* Brand accent — workshop blue, modern crypto-eng register */
+    --accent:            #3b82f6;   /* blue-500 */
+    --accent-hover:      #60a5fa;   /* blue-400, brighter on hover */
+    --accent-deep:       #1d3557;   /* mark fill, used in mark integration */
+    --accent-quiet:      rgba(59, 130, 246, 0.08);
+
+    /* ---- Type system -------------------------------------------------- */
+
+    /* Geist Sans for display + body, Geist Mono for labels.
+       Loaded via Google Fonts in <head> with preconnect.
+       Falls back to high-quality system stack if font load fails. */
+    --font-sans:  "Geist", "Inter", -apple-system, BlinkMacSystemFont,
+                  "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono:  "Geist Mono", "JetBrains Mono", ui-monospace,
+                  "SF Mono", Menlo, Consolas, monospace;
+
+    /* ---- Layout ------------------------------------------------------- */
+    --container:    72rem;        /* 1152px — modern landing wide */
+    --measure:      42rem;        /* 672px — body reading column */
+    --gutter:       1.5rem;
+    --radius:       12px;         /* modern card radius */
+    --radius-sm:    8px;
+    --radius-lg:    16px;
+
+    /* Motion tokens */
+    --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out:  cubic-bezier(0.65, 0, 0.35, 1);
+    --dur-fast:     180ms;
+    --dur-base:     360ms;
+    --dur-slow:     600ms;
 }
 
 /* ----- reset & base ---------------------------------------------------- */
@@ -45,220 +103,946 @@
 html {
     font-size: 16px;
     -webkit-text-size-adjust: 100%;
+    background: var(--bg);
+    color: var(--ink);
+    scroll-behavior: smooth;
 }
 
 body {
     margin: 0;
     padding: 0;
-    background: var(--color-paper);
-    color: var(--color-ink);
-    font-family: var(--font-sans-stack);
-    font-size: 1.0625rem;       /* 17px — comfortable reading */
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
     line-height: 1.6;
+    font-feature-settings: "ss01", "cv11";   /* Geist stylistic refinements */
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* ----- layout shell ---------------------------------------------------- */
+/* Belt + suspenders against UA leaks on structural elements.
+   Light-register elements explicitly carry the bg + ink. The hero
+   re-declares its own scheme below. */
+main, section, footer, article, aside, nav {
+    background: transparent;
+    color: var(--ink);
+}
+
+/* ----- hero (dark, full viewport on mobile, capped on desktop) -------- */
+
+.hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;             /* small viewport, modern mobile */
+    background:
+        radial-gradient(ellipse 60% 50% at 50% 35%, var(--hero-glow), transparent 70%),
+        radial-gradient(ellipse 80% 60% at 50% 50%, var(--hero-glow-soft), transparent 80%),
+        linear-gradient(180deg, var(--hero-bg-top) 0%, var(--hero-bg-bottom) 100%);
+    color: var(--hero-text);
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Subtle noise / grid overlay — gives the dark surface texture so it
+   doesn't read as a flat color block. Pure CSS, no asset. */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 80%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Soft top-light edge — makes the hero feel "lit from above" not flat. */
+.hero::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--hero-border-hi), transparent);
+    z-index: 1;
+}
+
+.hero-nav {
+    position: relative;
+    z-index: 2;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 1.5rem var(--gutter);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.hero-nav .brandrow {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    text-decoration: none;
+}
+
+.hero-nav .brandrow .mark-sm {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: #fafaf7;
+    padding: 2px;
+    display: block;
+}
+
+.hero-nav .wordmark {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--hero-text);
+}
+
+.hero-nav .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--hero-text-muted);
+}
+
+.hero-nav .nav-links a {
+    color: var(--hero-text-muted);
+    text-decoration: none;
+    transition: color var(--dur-fast) var(--ease-out);
+}
+
+.hero-nav .nav-links a:hover {
+    color: var(--hero-text);
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 4rem var(--gutter) 6rem;
+    min-height: calc(100vh - 76px);
+    min-height: calc(100svh - 76px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-mark {
+    width: 80px;
+    height: 80px;
+    border-radius: 18px;
+    background: #fafaf7;
+    padding: 8px;
+    display: block;
+    margin-bottom: 2rem;
+    box-shadow:
+        0 0 0 1px var(--hero-border-hi),
+        0 20px 60px -20px rgba(59, 130, 246, 0.5),
+        0 8px 30px -10px rgba(0, 0, 0, 0.5);
+    animation:
+        fade-up var(--dur-slow) var(--ease-out) both,
+        float 6s ease-in-out 600ms infinite;
+}
+
+.hero-kicker {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--hero-text-muted);
+    margin: 0 0 1.5rem 0;
+    padding: 0.375rem 0.875rem;
+    border: 1px solid var(--hero-border);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    animation: fade-up var(--dur-slow) var(--ease-out) 100ms both;
+}
+
+.hero h1 {
+    font-family: var(--font-sans);
+    font-size: clamp(2.25rem, 5.6vw + 0.5rem, 4.5rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    color: var(--hero-text);
+    margin: 0 0 1.5rem 0;
+    max-width: 22ch;
+    text-wrap: balance;
+    hyphens: manual;
+    word-break: normal;
+    overflow-wrap: normal;
+    animation: fade-up var(--dur-slow) var(--ease-out) 200ms both;
+}
+
+.hero h1 .nowrap {
+    white-space: nowrap;
+}
+
+.hero h1 .grad {
+    background: linear-gradient(180deg, var(--hero-text) 0%, #b8c5d6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.hero-lede {
+    font-family: var(--font-sans);
+    font-size: clamp(1.0625rem, 1.4vw + 0.5rem, 1.25rem);
+    line-height: 1.55;
+    color: var(--hero-text-muted);
+    margin: 0 0 2.5rem 0;
+    max-width: 38rem;
+    text-wrap: pretty;
+    animation: fade-up var(--dur-slow) var(--ease-out) 300ms both;
+}
+
+.hero-operator {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--hero-text-faint);
+    letter-spacing: 0.02em;
+    margin: 0;
+    animation: fade-up var(--dur-slow) var(--ease-out) 500ms both;
+}
+
+.hero-operator strong {
+    color: var(--hero-text-muted);
+    font-weight: 500;
+}
+
+.hero-cta-row {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 3rem;
+    animation: fade-up var(--dur-slow) var(--ease-out) 400ms both;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    text-decoration: none;
+    transition:
+        background var(--dur-fast) var(--ease-out),
+        border-color var(--dur-fast) var(--ease-out),
+        color var(--dur-fast) var(--ease-out),
+        transform var(--dur-fast) var(--ease-out),
+        box-shadow var(--dur-fast) var(--ease-out);
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.btn-primary {
+    background: var(--hero-text);
+    color: var(--hero-bg-top);
+    border-color: var(--hero-text);
+}
+
+.btn-primary:hover {
+    background: #ffffff;
+    border-color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 30px -10px rgba(255, 255, 255, 0.3);
+}
+
+.btn-ghost {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--hero-text);
+    border-color: var(--hero-border);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--hero-border-hi);
+    transform: translateY(-1px);
+}
+
+.btn .arrow {
+    transition: transform var(--dur-fast) var(--ease-out);
+    display: inline-block;
+}
+
+.btn:hover .arrow {
+    transform: translateX(3px);
+}
+
+/* ----- light page below the hero -------------------------------------- */
 
 .page {
-    max-width: var(--measure);
+    max-width: var(--container);
     margin: 0 auto;
-    padding: 4rem var(--gutter) 6rem var(--gutter);
+    padding: 6rem var(--gutter) 5rem;
 }
 
-/* ----- typography ------------------------------------------------------ */
-
-h1, h2, h3 {
-    font-family: var(--font-sans-stack);
-    color: var(--color-ink);
-    line-height: 1.2;
-    margin: 0;
+.section {
+    margin-bottom: 5rem;
 }
 
-h1 {
-    font-size: 2.25rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+.section:last-of-type {
+    margin-bottom: 0;
 }
 
-h2 {
-    font-size: 1.25rem;
+.eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 0.75rem 0;
+}
+
+.section h2 {
+    font-family: var(--font-sans);
+    font-size: clamp(1.75rem, 2.4vw + 0.5rem, 2.5rem);
     font-weight: 600;
-    letter-spacing: -0.005em;
-    margin-top: 3rem;
-    margin-bottom: 0.75rem;
-}
-
-h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-p {
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: var(--ink);
     margin: 0 0 1rem 0;
+    text-wrap: balance;
 }
 
-.tagline {
-    font-size: 1.125rem;
-    color: var(--color-accent);
-    font-weight: 600;
-    margin-top: 0.5rem;
-    margin-bottom: 1.5rem;
-    letter-spacing: -0.005em;
-}
-
-.lede {
+.section-lede {
     font-size: 1.0625rem;
-    color: var(--color-ink);
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0 0 2.5rem 0;
+    max-width: var(--measure);
+    text-wrap: pretty;
+}
+
+.prose p {
+    color: var(--ink);
+    max-width: var(--measure);
+    margin: 0 0 1.25rem 0;
+    text-wrap: pretty;
+}
+
+.prose p:last-child {
+    margin-bottom: 0;
+}
+
+/* ----- chain cards (light) ------------------------------------------- */
+
+.chains {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 1rem;
+}
+
+.chains li {
+    position: relative;
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition:
+        border-color var(--dur-fast) var(--ease-out),
+        background var(--dur-fast) var(--ease-out),
+        transform var(--dur-fast) var(--ease-out),
+        box-shadow var(--dur-fast) var(--ease-out);
+    overflow: hidden;
+}
+
+.chains li::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.chains li:hover {
+    border-color: var(--border-hi);
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.04),
+        0 12px 32px -16px rgba(59, 130, 246, 0.18);
+}
+
+.chains li:hover::before {
+    opacity: 1;
+}
+
+.chains .name {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+}
+
+.chains .meta {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-quiet);
+    padding: 0.1875rem 0.5rem;
+    border-radius: 4px;
     margin-bottom: 1rem;
 }
 
-.muted {
-    color: var(--color-muted);
+.chains .scope {
+    display: block;
     font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
 }
 
-/* ----- masthead -------------------------------------------------------- */
-
-.masthead {
-    border-bottom: 1px solid var(--color-rule);
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
+.coverage-note {
+    margin-top: 2rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: var(--measure);
 }
 
-.brandmark {
-    font-size: 0.8125rem;
-    letter-spacing: 0.12em;
+/* ----- contact grid (designed, not pasted) ---------------------------- */
+
+.contact {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    max-width: var(--measure);
+}
+
+.contact li {
+    display: grid;
+    grid-template-columns: 10rem 1fr;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    margin: 0;
+    transition: background var(--dur-fast) var(--ease-out);
+}
+
+.contact li:last-child {
+    border-bottom: none;
+}
+
+.contact li:hover {
+    background: var(--bg-card-hover);
+}
+
+.contact .label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--color-muted);
-    margin-bottom: 0.5rem;
+    color: var(--accent);
 }
 
-/* ----- chain list ------------------------------------------------------ */
-
-ul {
-    padding-left: 1.25rem;
-    margin: 0 0 1rem 0;
-}
-
-li {
-    margin-bottom: 0.5rem;
-}
-
-ul.chains {
-    list-style: none;
-    padding-left: 0;
-}
-
-ul.chains li {
-    margin-bottom: 0.875rem;
-}
-
-ul.chains strong {
-    color: var(--color-ink);
-    font-weight: 600;
-}
-
-/* ----- contact rows ---------------------------------------------------- */
-
-.contact-list {
-    list-style: none;
-    padding-left: 0;
-    margin: 0 0 1rem 0;
-}
-
-.contact-list li {
-    display: flex;
-    margin-bottom: 0.5rem;
+.contact .value {
+    font-family: var(--font-sans);
     font-size: 0.9375rem;
+    color: var(--ink);
+    word-break: break-word;
 }
 
-.contact-list .label {
-    flex: 0 0 7.5rem;
-    color: var(--color-muted);
-    font-family: var(--font-mono-stack);
-    font-size: 0.875rem;
+.contact .value.muted {
+    color: var(--ink-faint);
+    font-style: normal;
 }
 
-.contact-list .value {
-    flex: 1;
+.contact .value a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-hi);
+    transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
 }
 
-/* ----- links ----------------------------------------------------------- */
+.contact .value a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* ----- generic in-prose links ----------------------------------------- */
 
 a {
-    color: var(--color-accent);
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.15em;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
 }
 
 a:hover {
-    color: var(--color-accent-hover);
-    text-decoration-thickness: 2px;
+    color: var(--accent-hover);
 }
 
-/* ----- footer ---------------------------------------------------------- */
+/* ----- generic in-prose lists (ai-disclosure body) -------------------- */
+
+.prose ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+    max-width: var(--measure);
+}
+
+.prose ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.875rem;
+    color: var(--ink);
+    line-height: 1.6;
+}
+
+.prose ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 1px;
+    background: var(--accent);
+    transform: rotate(45deg);
+    transform-origin: center;
+}
+
+/* ----- ai-disclosure dark header --------------------------------------- */
+
+.subhero {
+    position: relative;
+    background:
+        radial-gradient(ellipse 50% 70% at 50% 0%, var(--hero-glow-soft), transparent 70%),
+        linear-gradient(180deg, var(--hero-bg-top), var(--hero-bg-bottom));
+    color: var(--hero-text);
+    padding: 5rem var(--gutter) 4rem;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.subhero::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--hero-border-hi), transparent);
+}
+
+.subhero-inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    text-align: left;
+    position: relative;
+    z-index: 1;
+}
+
+.subhero .brandrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    text-decoration: none;
+    margin-bottom: 2.5rem;
+    color: var(--hero-text);
+}
+
+.subhero .brandrow .mark-sm {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: #fafaf7;
+    padding: 2px;
+    display: block;
+}
+
+.subhero .wordmark {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.subhero .kicker {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent-hover);
+    margin: 0 0 1rem 0;
+}
+
+.subhero h1 {
+    font-family: var(--font-sans);
+    font-size: clamp(2rem, 4vw + 0.5rem, 3rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--hero-text);
+    margin: 0 0 1rem 0;
+    max-width: 24ch;
+    text-wrap: balance;
+}
+
+.subhero .lede {
+    font-size: 1.125rem;
+    line-height: 1.55;
+    color: var(--hero-text-muted);
+    margin: 0;
+    max-width: 36rem;
+    text-wrap: pretty;
+}
+
+/* ----- footer (light) -------------------------------------------------- */
 
 .site-footer {
-    margin-top: 4rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--color-rule);
+    background: var(--hero-bg-top);
+    color: var(--hero-text-muted);
+    padding: 3.5rem var(--gutter) 2.5rem;
+    margin-top: 6rem;
+    border-top: 1px solid var(--hero-border);
+    position: relative;
+    isolation: isolate;
+}
+
+.site-footer::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -1px;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--hero-border-hi), transparent);
+}
+
+.site-footer-inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 2rem;
+}
+
+.site-footer .brandrow {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    text-decoration: none;
+    margin-bottom: 0.75rem;
+}
+
+.site-footer .brandrow .mark-sm {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: #fafaf7;
+    padding: 2px;
+    display: block;
+}
+
+.site-footer .wordmark {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--hero-text);
+}
+
+.site-footer .tagline {
+    font-family: var(--font-sans);
     font-size: 0.875rem;
-    color: var(--color-muted);
+    color: var(--hero-text-muted);
+    margin: 0 0 1rem 0;
+    line-height: 1.55;
 }
 
-.site-footer a {
-    color: var(--color-muted);
+.site-footer .meta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--hero-text-faint);
+    letter-spacing: 0.02em;
+    margin: 0;
 }
 
-.site-footer p {
-    margin: 0 0 0.25rem 0;
+.site-footer .meta a {
+    color: var(--hero-text-faint);
+    border-bottom-color: var(--hero-border);
 }
 
-/* ----- mobile tweaks --------------------------------------------------- */
+.site-footer .meta a:hover {
+    color: var(--hero-text);
+    border-bottom-color: var(--hero-border-hi);
+}
+
+.site-footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+}
+
+.site-footer-links a {
+    color: var(--hero-text-muted);
+    border-bottom: none;
+    transition: color var(--dur-fast) var(--ease-out);
+}
+
+.site-footer-links a:hover {
+    color: var(--hero-text);
+}
+
+/* ----- animations ------------------------------------------------------ */
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+@keyframes section-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Section reveal on scroll — CSS-only via view-timeline where supported,
+   graceful no-op elsewhere. No JS, no IntersectionObserver. */
+@supports (animation-timeline: view()) {
+    .section {
+        animation: section-reveal linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 60%;
+    }
+}
+
+/* Respect reduced motion globally — disable all animation. */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .hero-mark {
+        animation: none;
+    }
+}
+
+/* ----- responsive ------------------------------------------------------ */
+
+@media (max-width: 768px) {
+    .hero-nav {
+        padding: 1rem var(--gutter);
+    }
+
+    .hero-nav .nav-links {
+        gap: 1rem;
+        font-size: 0.8125rem;
+    }
+
+    .hero-inner {
+        padding: 3rem var(--gutter) 4.5rem;
+    }
+
+    .hero-mark {
+        width: 64px;
+        height: 64px;
+        border-radius: 14px;
+        margin-bottom: 1.5rem;
+    }
+
+    .page {
+        padding: 4rem var(--gutter) 3.5rem;
+    }
+
+    .section {
+        margin-bottom: 3.5rem;
+    }
+
+    .contact li {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+        padding: 1rem 1.25rem;
+    }
+
+    .subhero {
+        padding: 4rem var(--gutter) 3rem;
+    }
+
+    .subhero .brandrow {
+        margin-bottom: 2rem;
+    }
+
+    .site-footer {
+        padding: 3rem var(--gutter) 2rem;
+    }
+
+    .site-footer-inner {
+        grid-template-columns: 1fr;
+    }
+}
 
 @media (max-width: 480px) {
-    .page {
-        padding: 2.5rem 1.25rem 4rem 1.25rem;
+    .hero-nav .nav-links {
+        display: none;
     }
 
-    h1 {
-        font-size: 1.75rem;
+    .hero-inner {
+        padding: 2rem 1.25rem 4rem;
     }
 
-    .tagline {
-        font-size: 1rem;
+    .hero-mark {
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
     }
 
-    .contact-list li {
+    .hero-cta-row {
         flex-direction: column;
-        margin-bottom: 0.75rem;
+        width: 100%;
+        max-width: 18rem;
     }
 
-    .contact-list .label {
-        flex-basis: auto;
-        margin-bottom: 0.125rem;
+    .btn {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .chains {
+        grid-template-columns: 1fr;
     }
 }
 
 /* ----- print ----------------------------------------------------------- */
 
 @media print {
-    body {
-        background: #fff;
-        color: #000;
+    :root {
+        --bg: #ffffff;
+        --ink: #000000;
+        --ink-soft: #222222;
+        --ink-faint: #555555;
+        --accent: #000000;
+        --border: #cccccc;
+    }
+
+    .hero,
+    .subhero,
+    .site-footer {
+        background: #ffffff !important;
+        color: #000000 !important;
+    }
+
+    .hero h1,
+    .hero-kicker,
+    .hero-lede,
+    .hero-operator,
+    .subhero h1,
+    .subhero .lede,
+    .subhero .kicker,
+    .subhero .wordmark,
+    .site-footer .wordmark,
+    .site-footer .tagline,
+    .site-footer .meta {
+        color: #000000 !important;
+    }
+
+    .hero-mark,
+    .subhero .brandrow .mark-sm,
+    .site-footer .brandrow .mark-sm,
+    .hero-nav .brandrow .mark-sm {
+        background: #ffffff;
+        box-shadow: 0 0 0 1px #000000;
     }
 
     a {
-        color: #000;
-        text-decoration: underline;
+        color: #000000;
+        border-bottom: 1px solid #000000;
     }
 
-    .site-footer {
-        border-top: 1px solid #000;
+    .hero-cta-row,
+    .hero-nav .nav-links {
+        display: none;
     }
 }
+
+/* NO @media (prefers-color-scheme: dark) block exists. Intentional, same
+   lock as v2. The HERO is dark by explicit CSS (not by UA auto-flip), and
+   the rest of the page is light by explicit CSS. If a future fully-dark
+   variant is wanted, it ships as a separate stylesheet behind a toggle,
+   not a UA media query. */

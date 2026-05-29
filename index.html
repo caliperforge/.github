@@ -3,63 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
     <title>CaliperForge — Precision contributions, every chain.</title>
     <meta name="description" content="CaliperForge is a crypto-protocol contribution agency. We ship smart contracts, developer tooling, and ecosystem PRs across Base, Optimism Superchain, and Solana. Operator: Michael Moffett.">
 
-    <!-- Open Graph / minimal social card. No image asset Phase 0. -->
+    <!-- Open Graph -->
     <meta property="og:title" content="CaliperForge — Precision contributions, every chain.">
     <meta property="og:description" content="Crypto-protocol contribution agency. Smart contracts, tooling, ecosystem PRs across Base, Optimism, and Solana.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://caliperforge.com">
 
+    <!-- Theme color for mobile browser chrome (matches dark hero) -->
+    <meta name="theme-color" content="#0a0e1a">
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <!-- Type: Geist Sans + Geist Mono via Google Fonts. Preconnect for speed. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<main class="page">
+<!-- ============= HERO (dark, full viewport) ============================ -->
+<section class="hero">
 
-    <header class="masthead">
-        <div class="brandmark">CaliperForge</div>
-        <h1>Precision contributions, every chain.</h1>
-        <p class="tagline">A crypto-protocol contribution agency.</p>
-        <p class="lede">
+    <nav class="hero-nav" aria-label="Primary">
+        <a href="/" class="brandrow">
+            <img src="/mark.svg" alt="" class="mark-sm" width="28" height="28">
+            <span class="wordmark">CaliperForge</span>
+        </a>
+        <div class="nav-links">
+            <a href="/ai-disclosure">AI policy</a>
+            <a href="https://github.com/caliperforge" rel="me">GitHub</a>
+            <a href="mailto:team@caliperforge.com">Contact</a>
+        </div>
+    </nav>
+
+    <div class="hero-inner">
+        <img src="/mark.svg" alt="" class="hero-mark" width="80" height="80">
+
+        <p class="hero-kicker">Crypto-protocol contribution agency</p>
+
+        <h1>
+            Precision contributions, <span class="nowrap"><span class="grad">every chain.</span></span>
+        </h1>
+
+        <p class="hero-lede">
             We ship smart contracts, developer tooling, and ecosystem PRs
             to the protocols building the open Web.
         </p>
-    </header>
 
-    <section>
-        <h2>What we work on</h2>
+        <div class="hero-cta-row">
+            <a href="#chains" class="btn btn-primary">
+                See what we ship
+                <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a href="mailto:team@caliperforge.com" class="btn btn-ghost">
+                team@caliperforge.com
+            </a>
+        </div>
+
+        <p class="hero-operator">
+            Operated by <strong>Michael Moffett</strong> &middot; operator of record on every commit
+        </p>
+    </div>
+
+</section>
+
+<!-- ============= LIGHT BODY ============================================= -->
+<main class="page">
+
+    <section class="section" id="chains">
+        <p class="eyebrow">What we work on</p>
+        <h2>Chains we cover</h2>
+        <p class="section-lede">
+            We work where contracts are shipping. Active language coverage:
+            Solidity, Rust/Anchor, TypeScript.
+        </p>
         <ul class="chains">
             <li>
-                <strong>Base</strong> (OP Stack L2) &mdash; smart contracts,
-                tooling, ecosystem PRs.
+                <span class="name">Base</span>
+                <span class="meta">OP Stack L2</span>
+                <span class="scope">Smart contracts, tooling, ecosystem PRs.</span>
             </li>
             <li>
-                <strong>Optimism Superchain</strong> &mdash; RetroPGF-eligible
-                builds, developer tooling.
+                <span class="name">Optimism Superchain</span>
+                <span class="meta">RetroPGF-eligible</span>
+                <span class="scope">Public-good builds, developer tooling.</span>
             </li>
             <li>
-                <strong>Solana</strong> &mdash; Anchor programs, SPL tooling,
-                Foundation-funded work.
+                <span class="name">Solana</span>
+                <span class="meta">Anchor / SPL</span>
+                <span class="scope">Programs, tooling, Foundation-funded work.</span>
             </li>
         </ul>
-        <p>
-            Active language coverage: Solidity, Rust/Anchor, TypeScript.
+        <p class="coverage-note">
             Move (Sui, Aptos) and Go (Cosmos, Celestia) come online when
             contract volume warrants.
         </p>
     </section>
 
-    <section>
-        <h2>Who runs this</h2>
+    <section class="section prose">
+        <p class="eyebrow">How we work</p>
+        <h2>Reproducible builds. Real attribution. Modern tools.</h2>
         <p>
-            CaliperForge is operated by <strong>Michael Moffett</strong>, the
-            named operator-of-record for every commit, PR, grant application,
-            and bounty claim made under this org. Reachable, KYC-able,
-            accountable.
+            We optimize for cold-environment-reproducible builds, respectful
+            follow-up cadence, and clean attribution on every shipped piece
+            of work. Our preference is production-ready contributions to
+            repos with clear contribution guidelines and active maintainers.
         </p>
-        <ul class="contact-list">
+        <p>
+            We use modern tooling, including AI coding assistants, as part
+            of how we build. Every contribution ships under Michael's name
+            as operator-of-record, tested in a cold-environment reproduction
+            before submission. See our
+            <a href="/ai-disclosure">AI-involvement policy</a>.
+        </p>
+    </section>
+
+    <section class="section" id="contact">
+        <p class="eyebrow">Contact</p>
+        <h2>Reachable, KYC-able, accountable.</h2>
+        <p class="section-lede">
+            CaliperForge is operated by Michael Moffett, the named
+            operator-of-record for every commit, PR, grant application,
+            and bounty claim made under this org. For grant collaboration,
+            hired-gun engagements, or contribution questions:
+        </p>
+        <ul class="contact">
             <li>
                 <span class="label">Operator</span>
                 <span class="value">Michael Moffett</span>
@@ -80,6 +154,10 @@
                 <span class="label">X</span>
                 <span class="value"><a href="https://x.com/caliperforge" rel="me">@caliperforge</a></span>
             </li>
+            <li>
+                <span class="label">Farcaster</span>
+                <span class="value"><a href="https://warpcast.com/caliperforge" rel="me">@caliperforge</a></span>
+            </li>
             <!--
                 ENS link is intentionally omitted from <a href> until
                 caliperforge.eth is registered on the Finance-Lead-owned
@@ -94,38 +172,30 @@
         </ul>
     </section>
 
-    <section>
-        <h2>How we work</h2>
-        <p>
-            We optimize for cold-environment-reproducible builds, respectful
-            follow-up cadence, and clean attribution on every shipped piece
-            of work. Our preference is production-ready contributions to
-            repos with clear contribution guidelines and active maintainers.
-        </p>
-        <p>
-            We use modern tooling, including AI coding assistants, as part
-            of how we build. Every contribution ships under Michael's name
-            as operator-of-record, tested in a cold-environment reproduction
-            before submission. See our
-            <a href="/ai-disclosure">AI-involvement policy</a>.
-        </p>
-    </section>
-
-    <section>
-        <h2>Contact</h2>
-        <p>
-            For grant collaboration, hired-gun engagements, or contribution
-            questions:
-            <a href="mailto:team@caliperforge.com">team@caliperforge.com</a>.
-        </p>
-    </section>
-
-    <footer class="site-footer">
-        <p>CaliperForge &middot; Operator of record: Michael Moffett</p>
-        <p><a href="/ai-disclosure">AI-involvement policy</a></p>
-    </footer>
-
 </main>
+
+<!-- ============= FOOTER (dark, mirrors hero) ============================ -->
+<footer class="site-footer">
+    <div class="site-footer-inner">
+        <div>
+            <a href="/" class="brandrow">
+                <img src="/mark.svg" alt="" class="mark-sm" width="28" height="28">
+                <span class="wordmark">CaliperForge</span>
+            </a>
+            <p class="tagline">Precision contributions, every chain.</p>
+            <p class="meta">
+                Operator of record: Michael Moffett &middot;
+                <a href="/ai-disclosure">AI policy</a>
+            </p>
+        </div>
+        <nav class="site-footer-links" aria-label="Footer">
+            <a href="https://github.com/caliperforge" rel="me">GitHub</a>
+            <a href="https://x.com/caliperforge" rel="me">X</a>
+            <a href="https://warpcast.com/caliperforge" rel="me">Farcaster</a>
+            <a href="mailto:team@caliperforge.com">Email</a>
+        </nav>
+    </div>
+</footer>
 
 </body>
 </html>
