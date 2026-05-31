@@ -547,6 +547,35 @@ main, section, footer, article, aside, nav {
     max-width: var(--measure);
 }
 
+/* ----- projects (reuses .chains card chrome) -------------------------- */
+
+.chains.projects .project-links {
+    display: block;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--ink-soft);
+    word-break: break-word;
+}
+
+.chains.projects .project-links a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--dur-fast) var(--ease-out);
+}
+
+.chains.projects .project-links a:hover {
+    border-bottom-color: var(--accent);
+}
+
+.chains.projects .project-links .sep {
+    color: var(--ink-faint);
+    margin: 0 0.5rem;
+}
+
 /* ----- contact grid (designed, not pasted) ---------------------------- */
 
 .contact {

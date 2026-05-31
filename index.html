@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light">
     <title>CaliperForge — Precision contributions, every chain.</title>
-    <meta name="description" content="CaliperForge is a crypto-protocol contribution agency. We ship smart contracts, developer tooling, and ecosystem PRs across Base, Optimism Superchain, and Solana. Operator: Michael Moffett.">
+    <meta name="description" content="CaliperForge is a crypto-protocol contribution agency. We ship smart contracts, developer tooling, and ecosystem PRs across Base, Optimism Superchain, Solana, and Starknet. Operator: Michael Moffett.">
 
     <!-- Open Graph -->
     <meta property="og:title" content="CaliperForge — Precision contributions, every chain.">
-    <meta property="og:description" content="Crypto-protocol contribution agency. Smart contracts, tooling, ecosystem PRs across Base, Optimism, and Solana.">
+    <meta property="og:description" content="Crypto-protocol contribution agency. Smart contracts, tooling, ecosystem PRs across Base, Optimism, Solana, and Starknet.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://caliperforge.com">
 
@@ -99,11 +99,39 @@
                 <span class="meta">Anchor / SPL</span>
                 <span class="scope">Programs, tooling, Foundation-funded work.</span>
             </li>
+            <li>
+                <span class="name">Starknet</span>
+                <span class="meta">Cairo 2.x</span>
+                <span class="scope">Contract work and developer tooling on snforge.</span>
+            </li>
         </ul>
         <p class="coverage-note">
             Move (Sui, Aptos) and Go (Cosmos, Celestia) come online when
             contract volume warrants.
         </p>
+    </section>
+
+    <section class="section" id="projects">
+        <p class="eyebrow">What we ship</p>
+        <h2>Projects</h2>
+        <p class="section-lede">
+            Open-source tooling we maintain. Source on GitHub, license on the card.
+        </p>
+        <ul class="chains projects">
+            <li>
+                <span class="name">cf-invariants</span>
+                <span class="meta">Rust + Cairo &middot; Apache-2.0</span>
+                <span class="scope">
+                    Open-source snforge sidecar that adds stateful invariant
+                    testing and AI-suggested invariants to Cairo 2.x.
+                </span>
+                <span class="project-links">
+                    <a href="https://github.com/caliperforge/cf-invariants" rel="me">github.com/caliperforge/cf-invariants</a>
+                    <span class="sep" aria-hidden="true">&middot;</span>
+                    <a href="/ai-disclosure">AI-disclosed</a>
+                </span>
+            </li>
+        </ul>
     </section>
 
     <section class="section prose">
@@ -158,16 +186,9 @@
                 <span class="label">Farcaster</span>
                 <span class="value"><a href="https://warpcast.com/caliperforge" rel="me">@caliperforge</a></span>
             </li>
-            <!--
-                ENS link is intentionally omitted from <a href> until
-                caliperforge.eth is registered on the Finance-Lead-owned
-                treasury wallet (T-007 Step 6). Restore as a link the moment
-                ENS registration completes. See setup/landing_deploy.md, the
-                "Post-ENS update" section.
-            -->
             <li>
                 <span class="label">ENS</span>
-                <span class="value muted">caliperforge.eth (pending registration)</span>
+                <span class="value"><a href="https://app.ens.domains/caliperforge.eth">caliperforge.eth</a></span>
             </li>
         </ul>
     </section>
