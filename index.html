@@ -134,6 +134,53 @@
         </ul>
     </section>
 
+    <section class="section" id="starknet-sepolia">
+        <p class="eyebrow">Live on-chain</p>
+        <h2>cf-invariants reference suite on Starknet sepolia.</h2>
+        <p class="section-lede">
+            Three Cairo 2.x contracts deployed to sepolia. Each carries a
+            planted bug on a different surface &mdash; token supply accounting,
+            governance executed-state, AMM constant-product &mdash; and serves
+            as both regression fixture for cf-invariants and an on-chain
+            target you can run the sidecar against today.
+        </p>
+        <ul class="chains deployments">
+            <li>
+                <span class="name">ERC20Ref</span>
+                <span class="meta">Token &middot; Cairo 2.x</span>
+                <span class="scope">Planted bug on supply accounting.</span>
+                <span class="deploy-row">
+                    <code class="addr">0x01def8&hellip;b055b</code>
+                    <a href="https://sepolia.voyager.online/contract/0x01def82c386ce902d589c83c8756a839f204f9bf7ccef02403686158818b055b" rel="noopener">Voyager <span class="arrow" aria-hidden="true">&rarr;</span></a>
+                </span>
+            </li>
+            <li>
+                <span class="name">Governance</span>
+                <span class="meta">Voting &middot; Cairo 2.x</span>
+                <span class="scope">Planted bug on executed-state tracking.</span>
+                <span class="deploy-row">
+                    <code class="addr">0x066738&hellip;794e6</code>
+                    <a href="https://sepolia.voyager.online/contract/0x066738b17bd666f32c57c1c0c779ce7d1cf6366b2402f7ef93f88ede5cf794e6" rel="noopener">Voyager <span class="arrow" aria-hidden="true">&rarr;</span></a>
+                </span>
+            </li>
+            <li>
+                <span class="name">SingleSideAmm</span>
+                <span class="meta">AMM &middot; Cairo 2.x</span>
+                <span class="scope">Planted bug on constant-product reserves.</span>
+                <span class="deploy-row">
+                    <code class="addr">0x05351d&hellip;c81f8</code>
+                    <a href="https://sepolia.voyager.online/contract/0x05351db8cf106a3710caadc8b66f8ecfee686c75eb8142bd91f7b76aa51c81f8" rel="noopener">Voyager <span class="arrow" aria-hidden="true">&rarr;</span></a>
+                </span>
+            </li>
+        </ul>
+        <p class="findings-link">
+            <a href="https://github.com/caliperforge/cf-invariants/blob/main/STARKNET_SEPOLIA_FINDINGS.md" rel="noopener">
+                Read the findings report
+                <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
+        </p>
+    </section>
+
     <section class="section prose">
         <p class="eyebrow">How we work</p>
         <h2>Reproducible builds. Real attribution. Modern tools.</h2>

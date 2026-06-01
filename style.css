@@ -576,6 +576,87 @@ main, section, footer, article, aside, nav {
     margin: 0 0.5rem;
 }
 
+/* ----- deployments (reuses .chains card chrome) ---------------------- */
+
+.chains.deployments .deploy-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.75rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+}
+
+.chains.deployments .addr {
+    color: var(--ink-soft);
+    font-family: var(--font-mono);
+    background: transparent;
+    padding: 0;
+    word-break: break-all;
+}
+
+.chains.deployments .deploy-row a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    white-space: nowrap;
+    transition: border-color var(--dur-fast) var(--ease-out),
+                color var(--dur-fast) var(--ease-out);
+}
+
+.chains.deployments .deploy-row a:hover {
+    color: var(--accent-hover);
+    border-bottom-color: var(--accent-hover);
+}
+
+.chains.deployments .deploy-row a .arrow {
+    display: inline-block;
+    transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.chains.deployments .deploy-row a:hover .arrow {
+    transform: translateX(3px);
+}
+
+/* Findings call-to-action under the deployments grid. Sits as a quiet
+   in-prose link, not a button — it points to long-form GitHub markdown,
+   not a conversion surface. */
+.findings-link {
+    margin: 2rem 0 0 0;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.55;
+}
+
+.findings-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--dur-fast) var(--ease-out),
+                color var(--dur-fast) var(--ease-out);
+}
+
+.findings-link a:hover {
+    color: var(--accent-hover);
+    border-bottom-color: var(--accent-hover);
+}
+
+.findings-link a .arrow {
+    display: inline-block;
+    transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.findings-link a:hover .arrow {
+    transform: translateX(3px);
+}
+
 /* ----- contact grid (designed, not pasted) ---------------------------- */
 
 .contact {
