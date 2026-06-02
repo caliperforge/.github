@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Blog &mdash; CaliperForge</title>
+    <meta name="description" content="Notes from CaliperForge: shipped tooling, build arcs, what is verifiable today.">
+
+    <meta property="og:title" content="Blog — CaliperForge">
+    <meta property="og:description" content="Notes from CaliperForge: shipped tooling, build arcs, what is verifiable today.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://caliperforge.com/blog/">
+
+    <meta name="theme-color" content="#0a0e1a">
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<!-- ============= SUBHERO (dark, compact) ============================== -->
+<section class="subhero">
+    <div class="subhero-inner">
+        <a href="/" class="brandrow">
+            <img src="/mark.svg" alt="" class="mark-sm" width="28" height="28">
+            <span class="wordmark">CaliperForge</span>
+        </a>
+        <p class="kicker">Blog</p>
+        <h1>Notes from the workbench.</h1>
+        <p class="lede">
+            Shipped tooling, build arcs, what is verifiable today. Newest first.
+        </p>
+    </div>
+</section>
+
+<!-- ============= LIGHT BODY ============================================ -->
+<main class="page">
+
+    <section class="section">
+        <ul class="chains projects">
+            <li>
+                <span class="name"><a href="/blog/02_cf-invariants-anchor-on-crucible">Stateful invariant testing for Solana/Anchor &mdash; cf-invariants-anchor on Crucible</a></span>
+                <span class="meta">2026-06-02</span>
+                <span class="scope">
+                    Anchor IDL in. Crucible-compatible fuzz source out. CI
+                    proves it: clean vault passes, planted twin fails.
+                </span>
+            </li>
+            <li>
+                <span class="name"><a href="/blog/01_caliperforge-origins">cf-invariants &mdash; building the missing layer in Cairo testing</a></span>
+                <span class="meta">2026-06-01</span>
+                <span class="scope">
+                    A Rust CLI sidecar that adds stateful invariant testing
+                    to Cairo 2.x. Three reference contracts on Starknet
+                    Sepolia, each surfacing a planted bug on cold start.
+                </span>
+            </li>
+        </ul>
+    </section>
+
+</main>
+
+<!-- ============= FOOTER (dark, mirrors hero) ============================ -->
+<footer class="site-footer">
+    <div class="site-footer-inner">
+        <div>
+            <a href="/" class="brandrow">
+                <img src="/mark.svg" alt="" class="mark-sm" width="28" height="28">
+                <span class="wordmark">CaliperForge</span>
+            </a>
+            <p class="tagline">Precision contributions, every chain.</p>
+            <p class="meta">
+                Operator of record: Michael Moffett &middot;
+                <a href="/ai-disclosure">AI policy</a> &middot;
+                <a href="/">Back to CaliperForge</a>
+            </p>
+        </div>
+        <nav class="site-footer-links" aria-label="Footer">
+            <a href="https://github.com/caliperforge" rel="me">GitHub</a>
+            <a href="https://x.com/caliperforge" rel="me">X</a>
+            <a href="https://warpcast.com/caliperforge" rel="me">Farcaster</a>
+            <a href="https://t.me/caliperforge" rel="me">Telegram</a>
+            <a href="mailto:team@caliperforge.com">Email</a>
+        </nav>
+    </div>
+</footer>
+
+</body>
+</html>
