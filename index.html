@@ -136,14 +136,33 @@
                 <span class="name">cf-invariants-anchor</span>
                 <span class="meta">Rust + Anchor &middot; Apache-2.0</span>
                 <span class="scope">
-                    AI invariant-author for Crucible (Asymmetric Research)
-                    on Solana / Anchor. CI runs the harness against a clean
-                    vault and a planted-bug twin every push &mdash; 0 violations
+                    Invariant-authoring layer on top of Crucible
+                    (Asymmetric Research's coverage-guided Solana fuzzer).
+                    Stateful invariants and AI-suggested invariants tagged
+                    in source; CI runs the harness against a clean vault
+                    and a planted-bug twin every push &mdash; 0 violations
                     on the clean variant, &ge;1 on the planted variant, with
                     scorecards committed.
                 </span>
                 <span class="project-links">
                     <a href="https://github.com/caliperforge/cf-invariants-anchor" rel="me">github.com/caliperforge/cf-invariants-anchor</a>
+                    <span class="sep" aria-hidden="true">&middot;</span>
+                    <a href="/ai-disclosure">AI-disclosed</a>
+                </span>
+            </li>
+            <li>
+                <span class="name">chimera-template-pack</span>
+                <span class="meta">Solidity + Foundry &middot; Apache-2.0 (MIT carve-out)</span>
+                <span class="scope">
+                    Reusable Foundry + Recon Chimera scaffold for contest
+                    entries. Pre-wires Echidna and Medusa stateful-fuzz
+                    campaigns, three seeded invariants, and a CI job that
+                    runs the campaign and writes scorecards into
+                    <code>findings/</code> on every push. Forkable starter,
+                    not a finished audit.
+                </span>
+                <span class="project-links">
+                    <a href="https://github.com/caliperforge/chimera-template-pack" rel="me">github.com/caliperforge/chimera-template-pack</a>
                     <span class="sep" aria-hidden="true">&middot;</span>
                     <a href="/ai-disclosure">AI-disclosed</a>
                 </span>
@@ -213,6 +232,16 @@
             tested in a cold-environment reproduction before submission, and
             carries an explicit AI-involvement note at the point of use.
             See our <a href="/ai-disclosure">AI-involvement policy</a>.
+        </p>
+        <p>
+            Our working pattern is an invariant-authoring layer on top of
+            the engines doing the fuzzing &mdash; snforge on Cairo, Crucible
+            on Solana / Anchor &mdash; with stateful invariants, AI-suggested
+            invariants tagged in source, and clean / planted-bug reference
+            examples checked into CI. We don't compete with the underlying
+            engines on coverage. The edge is how quickly we stand a new-chain
+            specialist up and ship a CI-verified tool: Cairo (snforge) to
+            Solana / Anchor (on Crucible) was roughly one working session.
         </p>
     </section>
 
