@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light">
     <title>CaliperForge — Precision contributions, every chain.</title>
-    <meta name="description" content="CaliperForge is an AI-augmented contribution agency for crypto protocols. We ship smart contracts, developer tooling, and ecosystem PRs across Base, Optimism Superchain, Solana, and Starknet. Operator: Michael Moffett.">
+    <meta name="description" content="CaliperForge is an engineering and security agency shipping invariant-driven, CI-verified tooling — AI-augmented and human-reviewed, operated and signed by a named human. One operator and a small team of specialized AI agents. Current focus: protocol and smart-contract security. Operator: Michael Moffett.">
 
     <!-- Open Graph -->
     <meta property="og:title" content="CaliperForge — Precision contributions, every chain.">
-    <meta property="og:description" content="AI-augmented contribution agency for crypto protocols. Smart contracts, tooling, ecosystem PRs across Base, Optimism, Solana, and Starknet.">
+    <meta property="og:description" content="Engineering and security agency shipping invariant-driven, CI-verified tooling. AI-augmented, human-reviewed. One operator and a small team of specialized AI agents. Current focus: protocol security.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://caliperforge.com">
 
@@ -46,15 +46,18 @@
     <div class="hero-inner">
         <img src="/mark.svg" alt="" class="hero-mark" width="80" height="80">
 
-        <p class="hero-kicker">AI-augmented contribution agency</p>
+        <p class="hero-kicker">Engineering &amp; security agency &mdash; AI-augmented, human-reviewed</p>
 
         <h1>
             Precision contributions, <span class="nowrap"><span class="grad">every chain.</span></span>
         </h1>
 
         <p class="hero-lede">
-            We ship smart contracts, developer tooling, and ecosystem PRs
-            to the protocols building the open Web.
+            Invariant-driven, CI-verified tooling, operated and signed by a
+            named human. One operator and a small team of specialized AI
+            agents; our edge is specialization velocity &mdash; we stand up a
+            new specialist and ship a CI-verified tool in days. Current focus
+            is protocol and smart-contract security.
         </p>
 
         <div class="hero-cta-row">
@@ -82,7 +85,7 @@
         <h2>Chains we cover</h2>
         <p class="section-lede">
             We work where contracts are shipping. Active language coverage:
-            Solidity, Rust/Anchor, TypeScript.
+            Cairo, Rust / Anchor, Solidity, TypeScript.
         </p>
         <ul class="chains">
             <li>
@@ -124,7 +127,8 @@
                 <span class="meta">Rust + Cairo &middot; Apache-2.0</span>
                 <span class="scope">
                     Open-source snforge sidecar that adds stateful invariant
-                    testing and AI-suggested invariants to Cairo 2.x.
+                    testing and AI-suggested invariants to Cairo 2.x. Twelve
+                    reference contracts, Voyager-verified on Starknet Sepolia.
                 </span>
                 <span class="project-links">
                     <a href="https://github.com/caliperforge/cf-invariants" rel="me">github.com/caliperforge/cf-invariants</a>
@@ -173,6 +177,46 @@
                 </span>
             </li>
             <li>
+                <span class="name">cf-invariants-jito-tippayment</span>
+                <span class="meta">Solana / Anchor (Crucible) &middot; Jito tip-payment &middot; Apache-2.0</span>
+                <span class="scope">
+                    Sibling harness for the Jito Foundation
+                    tip-payment program on the same anchor-lang 1.0.1
+                    / Crucible v0.2.0 rails as cf-invariants-jito.
+                    Ships one invariant class to start &mdash;
+                    write-through state-update on
+                    <code>change_tip_receiver</code> &mdash; against a
+                    clean reference and a planted-bug twin. CI: 0
+                    violations clean, &ge;1 violation planted, green on
+                    the first push.
+                </span>
+                <span class="project-links">
+                    <a href="https://github.com/caliperforge/cf-invariants-jito-tippayment" rel="me">github.com/caliperforge/cf-invariants-jito-tippayment</a>
+                    <span class="sep" aria-hidden="true">&middot;</span>
+                    <a href="/blog/05_jito-tippayment-and-ai-invariant-suggester-live">Blog</a>
+                    <span class="sep" aria-hidden="true">&middot;</span>
+                    <a href="/ai-disclosure">AI-disclosed</a>
+                </span>
+            </li>
+            <li>
+                <span class="name">cf-invariants-jito-priorityfee</span>
+                <span class="meta">Solana / Anchor (Crucible) &middot; Jito priority-fee-distribution &middot; Apache-2.0</span>
+                <span class="scope">
+                    Third Jito program harnessed on the same anchor-lang 1.0.1
+                    / Crucible v0.2.0 rails as cf-invariants-jito and
+                    cf-invariants-jito-tippayment. Ships one invariant class
+                    to start &mdash; total priority-fee tips increment on
+                    transfer &mdash; against a clean reference and a
+                    planted-bug twin. CI: 0 violations clean, &ge;1 violation
+                    planted, green on the first push.
+                </span>
+                <span class="project-links">
+                    <a href="https://github.com/caliperforge/cf-invariants-jito-priorityfee" rel="me">github.com/caliperforge/cf-invariants-jito-priorityfee</a>
+                    <span class="sep" aria-hidden="true">&middot;</span>
+                    <a href="/ai-disclosure">AI-disclosed</a>
+                </span>
+            </li>
+            <li>
                 <span class="name">chimera-template-pack</span>
                 <span class="meta">Solidity + Foundry &middot; Apache-2.0 (MIT carve-out)</span>
                 <span class="scope">
@@ -196,11 +240,12 @@
         <p class="eyebrow">Live on-chain</p>
         <h2>cf-invariants reference suite on Starknet sepolia.</h2>
         <p class="section-lede">
-            Three Cairo 2.x contracts deployed to sepolia. Each carries a
-            planted bug on a different surface &mdash; token supply accounting,
-            governance executed-state, AMM constant-product &mdash; and serves
-            as both regression fixture for cf-invariants and an on-chain
-            target you can run the sidecar against today.
+            Twelve Cairo 2.x contracts deployed and Voyager-verified on Sepolia
+            (suite expanded 6 &rarr; 12 on 2026-06-04). Planted-bug references
+            span token supply accounting, governance executed-state, AMM
+            constant-product, and additional surfaces &mdash; both regression
+            fixtures for cf-invariants and on-chain targets you can run the
+            sidecar against today.
         </p>
         <ul class="chains deployments">
             <li>
@@ -230,6 +275,87 @@
                     <a href="https://sepolia.voyager.online/contract/0x05351db8cf106a3710caadc8b66f8ecfee686c75eb8142bd91f7b76aa51c81f8" rel="noopener">Voyager <span class="arrow" aria-hidden="true">&rarr;</span></a>
                 </span>
             </li>
+            <li>
+                <span class="name">ERC4626Ref</span>
+                <span class="meta">Vault &middot; Cairo 2.x</span>
+                <span class="scope">Planted bug on share / asset conservation.</span>
+                <span class="deploy-row">
+                    <code class="addr">0x01d31e&hellip;e08c</code>
+                    <a href="https://sepolia.voyager.online/contract/0x01d31e8fa3772b7ec3a21e8130f928d6ecbd66832752a346ad3d953fecbfe08c" rel="noopener">Voyager <span class="arrow" aria-hidden="true">&rarr;</span></a>
+                </span>
+            </li>
+            <li>
+                <span class="name">MultisigRef</span>
+                <span class="meta">Multisig &middot; Cairo 2.x</span>
+                <span class="scope">Planted bug on threshold monotonicity.</span>
+                <span class="deploy-row">
+                    <code class="addr">0x04fe55&hellip;eef8</code>
+                    <a href="https://sepolia.voyager.online/contract/0x04fe55b17f86d9e5f3888271b72e9c161a37a943de4ce30760c7b9295edceef8" rel="noopener">Voyager <span class="arrow" aria-hidden="true">&rarr;</span></a>
+                </span>
+            </li>
+            <li>
+                <span class="name">ERC721Ref</span>
+                <span class="meta">NFT &middot; Cairo 2.x</span>
+                <span class="scope">Planted bug on token-id uniqueness.</span>
+                <span class="deploy-row">
+                    <code class="addr">0x02b5aa&hellip;55fa</code>
+                    <a href="https://sepolia.voyager.online/contract/0x02b5aa109da3dd5b129d07375f0990cf967dd211b097bc5be52282a2509655fa" rel="noopener">Voyager <span class="arrow" aria-hidden="true">&rarr;</span></a>
+                </span>
+            </li>
+            <li>
+                <span class="name">LendingRef</span>
+                <span class="meta">Lending &middot; Cairo 2.x</span>
+                <span class="scope">Planted bug on per-user solvency.</span>
+                <span class="deploy-row">
+                    <code class="addr">0x0627b8&hellip;7c52</code>
+                    <a href="https://sepolia.voyager.online/contract/0x0627b8abe3b11a2593fc5204f9b86868ff00789b7cc090c3d3e3bfcf58c57c52" rel="noopener">Voyager <span class="arrow" aria-hidden="true">&rarr;</span></a>
+                </span>
+            </li>
+            <li>
+                <span class="name">StakingRef</span>
+                <span class="meta">Staking &middot; Cairo 2.x</span>
+                <span class="scope">Planted bug on stake / slash conservation.</span>
+                <span class="deploy-row">
+                    <code class="addr">0x014e72&hellip;4e09</code>
+                    <a href="https://sepolia.voyager.online/contract/0x014e72228c8aa95e5aad34fdcb00186d335e6f96c3ed4c6c632b85e9aaea4e09" rel="noopener">Voyager <span class="arrow" aria-hidden="true">&rarr;</span></a>
+                </span>
+            </li>
+            <li>
+                <span class="name">VestingRef</span>
+                <span class="meta">Vesting &middot; Cairo 2.x</span>
+                <span class="scope">Planted bug on time-bounded release supply cap.</span>
+                <span class="deploy-row">
+                    <code class="addr">0x032537&hellip;bd38</code>
+                    <a href="https://sepolia.voyager.online/contract/0x032537f261a271e4ccf0ac0e90e41c0f994f9efda69baaa5b66d055b4a0abd38" rel="noopener">Voyager <span class="arrow" aria-hidden="true">&rarr;</span></a>
+                </span>
+            </li>
+            <li>
+                <span class="name">TimelockRef</span>
+                <span class="meta">Timelock &middot; Cairo 2.x</span>
+                <span class="scope">Planted bug on delay-respected execution.</span>
+                <span class="deploy-row">
+                    <code class="addr">0x000cf3&hellip;e3f7</code>
+                    <a href="https://sepolia.voyager.online/contract/0x000cf34be47711061a23197e6f852437729e7b12975059f0bc53d2ef4a81e3f7" rel="noopener">Voyager <span class="arrow" aria-hidden="true">&rarr;</span></a>
+                </span>
+            </li>
+            <li>
+                <span class="name">PaymentSplitterRef</span>
+                <span class="meta">Splitter &middot; Cairo 2.x</span>
+                <span class="scope">Planted bug on proportional-share release.</span>
+                <span class="deploy-row">
+                    <code class="addr">0x019300&hellip;710c</code>
+                    <a href="https://sepolia.voyager.online/contract/0x0193006b31e93d2607626d28f96d76d8bb5c94c485073a533e9b1fc9f929710c" rel="noopener">Voyager <span class="arrow" aria-hidden="true">&rarr;</span></a>
+                </span>
+            </li>
+            <li>
+                <span class="name">OracleRef</span>
+                <span class="meta">Oracle &middot; Cairo 2.x</span>
+                <span class="scope">Planted bug on push-update timestamp monotonicity.</span>
+                <span class="deploy-row">
+                    <code class="addr">0x0617f5&hellip;e023</code>
+                    <a href="https://sepolia.voyager.online/contract/0x0617f50e2027fcc8addc91ea3f12ea15e60702af7dd46751ff6053c306a0e023" rel="noopener">Voyager <span class="arrow" aria-hidden="true">&rarr;</span></a>
+                </span>
+            </li>
         </ul>
         <p class="findings-link">
             <a href="https://github.com/caliperforge/cf-invariants/blob/main/STARKNET_SEPOLIA_FINDINGS.md" rel="noopener">
@@ -241,29 +367,41 @@
 
     <section class="section prose">
         <p class="eyebrow">How we work</p>
-        <h2>Reproducible builds. Real attribution. AI-augmented.</h2>
+        <h2>One operator. A team of specialized AI agents. Reproducible builds.</h2>
         <p>
-            We optimize for cold-environment-reproducible builds, respectful
-            follow-up cadence, and clean attribution on every shipped piece
-            of work. Our preference is production-ready contributions to
-            repos with clear contribution guidelines and active maintainers.
+            CaliperForge is an engineering and security agency shipping
+            invariant-driven, CI-verified tooling &mdash; AI-augmented and
+            human-reviewed, operated and signed by a named human. One operator
+            &mdash; Michael Moffett &mdash; orchestrates a small team of
+            specialized AI agents: an audit engineer, a Cairo specialist, a
+            Rust / Anchor specialist, a grant writer, a content reviewer, and
+            others as the work calls for them. Every specialist is a configured
+            AI agent with its own scope and review pattern. The operator reviews
+            every output, runs cold-environment reproductions, and ships under
+            his own name as operator-of-record.
         </p>
         <p>
-            We use AI coding assistants as part of how we build. Every
+            Our edge is specialization velocity. New chain, new VM, new contest
+            &mdash; we stand the specialist up and the CI-verified tool with it,
+            in days rather than months. Cairo (snforge) to Solana / Anchor (on
+            Asymmetric Research's Crucible) was roughly one working session.
+            The engine is domain-general; the current portfolio is protocol and
+            smart-contract security.
+        </p>
+        <p>
+            Our working pattern is an invariant-authoring layer on top of the
+            engines doing the fuzzing &mdash; snforge on Cairo, Crucible on
+            Solana / Anchor &mdash; with stateful invariants, AI-suggested
+            invariants tagged in source, and clean / planted-bug reference
+            examples checked into CI. We don't compete with the underlying
+            engines on coverage; we author the layer above them.
+        </p>
+        <p>
+            AI involvement is disclosed at point of use; full policy at
+            <a href="/ai-disclosure">caliperforge.com/ai-disclosure</a>. Every
             contribution ships under Michael's name as operator-of-record,
             tested in a cold-environment reproduction before submission, and
             carries an explicit AI-involvement note at the point of use.
-            See our <a href="/ai-disclosure">AI-involvement policy</a>.
-        </p>
-        <p>
-            Our working pattern is an invariant-authoring layer on top of
-            the engines doing the fuzzing &mdash; snforge on Cairo, Crucible
-            on Solana / Anchor &mdash; with stateful invariants, AI-suggested
-            invariants tagged in source, and clean / planted-bug reference
-            examples checked into CI. We don't compete with the underlying
-            engines on coverage. The edge is how quickly we stand a new-chain
-            specialist up and ship a CI-verified tool: Cairo (snforge) to
-            Solana / Anchor (on Crucible) was roughly one working session.
         </p>
     </section>
 
@@ -271,10 +409,10 @@
         <p class="eyebrow">Contact</p>
         <h2>Reachable, KYC-able, accountable.</h2>
         <p class="section-lede">
-            CaliperForge is operated by Michael Moffett, the named
-            operator-of-record for every commit, PR, grant application,
-            and bounty claim made under this org. For grant collaboration,
-            hired-gun engagements, or contribution questions:
+            Operated by Michael Moffett, accountable for every commit, PR,
+            grant application, and bounty claim made under this org. For grant
+            collaboration, engagement inquiries, security tooling questions, or
+            contribution questions:
         </p>
         <ul class="contact">
             <li>
