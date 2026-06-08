@@ -24,6 +24,43 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="canonical" href="https://caliperforge.com/">
+
+    <!-- Structured data: Organization + WebSite -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://caliperforge.com/#organization",
+          "name": "CaliperForge",
+          "url": "https://caliperforge.com",
+          "logo": "https://caliperforge.com/mark.svg",
+          "founder": {
+            "@type": "Person",
+            "name": "Michael Moffett"
+          },
+          "sameAs": [
+            "https://github.com/caliperforge",
+            "https://x.com/caliperforge",
+            "https://farcaster.xyz/caliperforge",
+            "https://t.me/caliperforge",
+            "https://app.ens.domains/caliperforge.eth"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://caliperforge.com/#website",
+          "name": "CaliperForge",
+          "url": "https://caliperforge.com",
+          "publisher": {
+            "@id": "https://caliperforge.com/#organization"
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
 
