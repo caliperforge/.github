@@ -33,6 +33,15 @@ smart-contract security.
 
 ## What we ship now
 
+- **`invariant-atlas`** — the Exploit→Invariant Atlas: six historical
+  DeFi exploits across four VMs (Cairo, Move/Sui, Solana, EVM), each
+  reconstructed as a same-source clean / planted twin where an
+  invariant property *would have* caught the bug class in pre-deploy
+  CI. First cross-VM, defender-side, pre-deploy CI benchmark of this
+  shape; clean passes / planted fires, both asserted on every push.
+  Apache-2.0. See
+  [caliperforge/invariant-atlas](https://github.com/caliperforge/invariant-atlas).
+
 - **`cf-invariants`** — AI-suggested stateful invariant testing for
   Cairo 2.x on top of snforge. Twelve reference contracts deployed
   and Voyager-verified on Starknet Sepolia (suite expanded 6 → 12 on
@@ -49,12 +58,17 @@ smart-contract security.
   **`cf-invariants-jito-priorityfee`** — invariant harnesses for
   Jito tip-distribution, tip-payment, and priority-fee-distribution
   programs on Crucible. Sibling artifacts.
+- **`cf-invariants-pyth`** — invariant-fuzzing harness for the Pyth
+  Solana Receiver, run on Crucible. Ports the upstream program from
+  `anchor-lang` 0.32.1 to 1.0.1; two invariant classes against a clean
+  reference and planted-bug twins, asserted on every push. Apache-2.0.
+  See [caliperforge/cf-invariants-pyth](https://github.com/caliperforge/cf-invariants-pyth).
 
 ## Capabilities
 
-- **Active language coverage:** Cairo, Rust / Anchor, Solidity,
+- **Active language coverage:** Cairo, Rust / Anchor, Solidity, Move,
   TypeScript.
-- **Active chains:** Starknet, Solana, Base, Optimism Superchain.
+- **Active chains:** Starknet, Solana, Sui, Base, Optimism Superchain.
 - **What we author:** stateful-invariant suites, AI-suggested
   invariants tagged in source, CI-verified clean / planted-bug
   reference examples, contest-ready scaffolds, security tooling on
