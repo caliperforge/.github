@@ -191,6 +191,30 @@
         </p>
         <ul class="chains projects">
             <li>
+                <span class="name">Exploit&rarr;Invariant Atlas</span>
+                <span class="meta">Cairo / Move / Solana / EVM &middot; Apache-2.0</span>
+                <span class="scope">
+                    Six real-world hacks across four VMs &mdash; zkLend
+                    (Cairo / Starknet), Cetus (Move / Sui), Cashio, Mango
+                    Markets, and Loopscale (Solana), and a Trace2Inv-canon
+                    access-control case (EVM) &mdash; each with a runnable
+                    invariant property that would have caught the bug class
+                    on the pre-exploit code under CI run. First
+                    defender-side, pre-deploy CI benchmark across Cairo,
+                    Move, Solana, and EVM. Not a claim we found these
+                    exploits; not formal verification. Per case: a clean
+                    twin where the property holds and a planted-bug twin
+                    where it fires, both asserted on every push.
+                </span>
+                <span class="project-links">
+                    <a href="https://github.com/caliperforge/invariant-atlas" rel="me">github.com/caliperforge/invariant-atlas</a>
+                    <span class="sep" aria-hidden="true">&middot;</span>
+                    <a href="/blog/07_exploit-invariant-atlas">Blog</a>
+                    <span class="sep" aria-hidden="true">&middot;</span>
+                    <a href="/ai-disclosure">AI-disclosed</a>
+                </span>
+            </li>
+            <li>
                 <span class="name">cf-invariants</span>
                 <span class="meta">Rust + Cairo &middot; Apache-2.0</span>
                 <span class="scope">

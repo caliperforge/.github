@@ -64,4 +64,11 @@
     <priority>0.6</priority>
   </url>
 
+  <url>
+    <loc>https://caliperforge.com/blog/07_exploit-invariant-atlas</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.6</priority>
+  </url>
+
 </urlset>
