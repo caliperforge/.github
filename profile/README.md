@@ -1,6 +1,8 @@
 # CaliperForge
 
-**Precision contributions, every chain.**  ·  [**caliperforge.com**](https://caliperforge.com)
+**An organization, encoded.**
+
+Precision contributions, every time.  ·  [**caliperforge.com**](https://caliperforge.com)
 
 CaliperForge is an engineering and security agency shipping
 invariant-driven, CI-verified tooling — AI-augmented and
