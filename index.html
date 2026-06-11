@@ -100,6 +100,9 @@
             An organization, <span class="nowrap"><span class="grad">encoded.</span></span>
         </h1>
 
+        <!-- v5: caliper rule — decorative brand signature, no content -->
+        <div class="caliper-rule" aria-hidden="true"></div>
+
         <p class="hero-tagline">Precision contributions, every time.</p>
 
         <p class="hero-lede">
@@ -192,7 +195,11 @@
         <ul class="chains projects">
             <li>
                 <span class="name">Exploit&rarr;Invariant Atlas</span>
-                <span class="meta">Cairo / Move / Solana / EVM &middot; Apache-2.0</span>
+                <span class="badges">
+                    <span class="badge">Cairo &middot; Move &middot; Solana &middot; EVM</span>
+                    <span class="badge badge-ci">CI-asserted</span>
+                    <span class="badge badge-license">Apache-2.0</span>
+                </span>
                 <span class="scope">
                     Six real-world hacks across four VMs &mdash; zkLend
                     (Cairo / Starknet), Cetus (Move / Sui), Cashio, Mango
@@ -216,7 +223,12 @@
             </li>
             <li>
                 <span class="name">cf-invariants</span>
-                <span class="meta">Rust + Cairo &middot; Apache-2.0</span>
+                <span class="badges">
+                    <span class="badge">Starknet &middot; Cairo 2.x</span>
+                    <span class="badge">Rust + Cairo</span>
+                    <span class="badge badge-ci">CI green</span>
+                    <span class="badge badge-license">Apache-2.0</span>
+                </span>
                 <span class="scope">
                     Open-source snforge sidecar that adds stateful invariant
                     testing and AI-suggested invariants to Cairo 2.x. Twelve
@@ -225,12 +237,19 @@
                 <span class="project-links">
                     <a href="https://github.com/caliperforge/cf-invariants" rel="me">github.com/caliperforge/cf-invariants</a>
                     <span class="sep" aria-hidden="true">&middot;</span>
+                    <a href="#starknet-sepolia">Sepolia deployments</a>
+                    <span class="sep" aria-hidden="true">&middot;</span>
                     <a href="/ai-disclosure">AI-disclosed</a>
                 </span>
             </li>
             <li>
                 <span class="name">cf-invariants-anchor</span>
-                <span class="meta">Rust + Anchor &middot; Apache-2.0</span>
+                <span class="badges">
+                    <span class="badge">Solana &middot; Anchor / Crucible</span>
+                    <span class="badge">Rust + Anchor</span>
+                    <span class="badge badge-ci">CI green</span>
+                    <span class="badge badge-license">Apache-2.0</span>
+                </span>
                 <span class="scope">
                     Invariant-authoring layer on top of Crucible
                     (Asymmetric Research's coverage-guided Solana fuzzer).
@@ -248,7 +267,12 @@
             </li>
             <li>
                 <span class="name">cf-invariants-jito</span>
-                <span class="meta">Solana / Anchor (Crucible) &middot; Jito tip-distribution &middot; Apache-2.0</span>
+                <span class="badges">
+                    <span class="badge">Solana &middot; Anchor / Crucible</span>
+                    <span class="badge">Jito tip-distribution</span>
+                    <span class="badge badge-ci">CI green</span>
+                    <span class="badge badge-license">Apache-2.0</span>
+                </span>
                 <span class="scope">
                     Invariant-fuzzing harness for the Jito Foundation
                     tip-distribution program, ported from anchor-lang
@@ -270,7 +294,12 @@
             </li>
             <li>
                 <span class="name">cf-invariants-jito-tippayment</span>
-                <span class="meta">Solana / Anchor (Crucible) &middot; Jito tip-payment &middot; Apache-2.0</span>
+                <span class="badges">
+                    <span class="badge">Solana &middot; Anchor / Crucible</span>
+                    <span class="badge">Jito tip-payment</span>
+                    <span class="badge badge-ci">CI green</span>
+                    <span class="badge badge-license">Apache-2.0</span>
+                </span>
                 <span class="scope">
                     Sibling harness for the Jito Foundation
                     tip-payment program on the same anchor-lang 1.0.1
@@ -292,7 +321,12 @@
             </li>
             <li>
                 <span class="name">cf-invariants-jito-priorityfee</span>
-                <span class="meta">Solana / Anchor (Crucible) &middot; Jito priority-fee-distribution &middot; Apache-2.0</span>
+                <span class="badges">
+                    <span class="badge">Solana &middot; Anchor / Crucible</span>
+                    <span class="badge">Jito priority-fee-distribution</span>
+                    <span class="badge badge-ci">CI green</span>
+                    <span class="badge badge-license">Apache-2.0</span>
+                </span>
                 <span class="scope">
                     Third Jito program harnessed on the same anchor-lang 1.0.1
                     / Crucible v0.2.0 rails as cf-invariants-jito and
@@ -310,7 +344,12 @@
             </li>
             <li>
                 <span class="name">cf-invariants-pyth</span>
-                <span class="meta">Solana / Anchor (Crucible) &middot; Pyth pyth-solana-receiver &middot; Apache-2.0</span>
+                <span class="badges">
+                    <span class="badge">Solana &middot; Anchor / Crucible</span>
+                    <span class="badge">Pyth pyth-solana-receiver</span>
+                    <span class="badge badge-ci">CI green</span>
+                    <span class="badge badge-license">Apache-2.0</span>
+                </span>
                 <span class="scope">
                     Fourth real Solana program harnessed on the same
                     anchor-lang 1.0.1 / Crucible (Asymmetric Research) v0.2.0
@@ -329,7 +368,11 @@
             </li>
             <li>
                 <span class="name">chimera-template-pack</span>
-                <span class="meta">Solidity + Foundry &middot; Apache-2.0 (MIT carve-out)</span>
+                <span class="badges">
+                    <span class="badge">Solidity + Foundry</span>
+                    <span class="badge badge-ci">CI scorecards</span>
+                    <span class="badge badge-license">Apache-2.0 (MIT carve-out)</span>
+                </span>
                 <span class="scope">
                     Reusable Foundry + Recon Chimera scaffold for contest
                     entries. Pre-wires Echidna and Medusa stateful-fuzz
@@ -344,6 +387,62 @@
                     <a href="/ai-disclosure">AI-disclosed</a>
                 </span>
             </li>
+
+            <!-- ==============================================================
+                 RESERVE CARD 1 — hyperevm-safety. PRE-FLIP: DO NOT UNCOMMENT.
+                 Gate: uncomment ONLY after Director confirms the public flip
+                 cleared all open conditions (sec-4b re-gate PASS, audit-eng
+                 spotcheck verdict, CEO spec.md prune/scrub decision — see
+                 D-hyperevm-specmd-public-or-prune-2026-06-10).
+                 VERIFY AT FLIP: repo URL live + public, CI state actually
+                 green on the public repo, license file in tree, scope copy
+                 re-checked against the shipped README by Content QA (sec-4a).
+            <li>
+                <span class="name">hyperevm-safety</span>
+                <span class="badges">
+                    <span class="badge">HyperEVM &middot; Solidity + Foundry</span>
+                    <span class="badge badge-ci">CI green</span>
+                    <span class="badge badge-license">Apache-2.0</span>
+                </span>
+                <span class="scope">
+                    Open-source library of invariants and CI-runnable
+                    property tests for HyperEVM lending protocols that
+                    consume HyperCore oracle reads. Each invariant pairs a
+                    clean reference where the property holds under fuzz
+                    with a planted-bug twin (or a reproduction of a public
+                    on-chain incident) where it fires. Built on
+                    hyper-evm-lib and chimera-template-pack. Not an audit;
+                    not a runtime monitor.
+                </span>
+                <span class="project-links">
+                    <a href="https://github.com/caliperforge/hyperevm-safety" rel="me">github.com/caliperforge/hyperevm-safety</a>
+                    <span class="sep" aria-hidden="true">&middot;</span>
+                    <a href="/ai-disclosure">AI-disclosed</a>
+                </span>
+            </li>
+            ============================================================== -->
+
+            <!-- ==============================================================
+                 RESERVE EDIT 2 — Atlas case 7 (EVM / New Market Trading,
+                 cases/07-evm-newmarket-2026-05). PRE-FLIP: DO NOT APPLY.
+                 This is NOT a new card — when case 7 flips public, the
+                 existing Exploit->Invariant Atlas card's scope sentence
+                 updates from six cases to seven. Replacement scope text
+                 (apply via Content QA sec-4a; VERIFY case list + count
+                 against the shipped repo README at flip):
+
+                 "Seven real-world hacks across four VMs - zkLend
+                 (Cairo / Starknet), Cetus (Move / Sui), Cashio, Mango
+                 Markets, and Loopscale (Solana), a Trace2Inv-canon
+                 access-control case (EVM), and New Market Trading (EVM) -
+                 each with a runnable invariant property that would have
+                 caught the bug class on the pre-exploit code under CI
+                 run. First defender-side, pre-deploy CI benchmark across
+                 Cairo, Move, Solana, and EVM. Not a claim we found these
+                 exploits; not formal verification. Per case: a clean twin
+                 where the property holds and a planted-bug twin where it
+                 fires, both asserted on every push."
+            ============================================================== -->
         </ul>
     </section>
 

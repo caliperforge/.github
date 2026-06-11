@@ -1,8 +1,54 @@
 /* ==========================================================================
-   CaliperForge — landing site stylesheet v3
-   Owner: Design Lead (T-009 v3 redesign — supersedes Design Lead v2)
-   Locked: 2026-05-29
-   Pages: index.html, ai-disclosure.html
+   CaliperForge — landing site stylesheet v5
+   Owner: UX/Design Lead (T-site-v4-visual-punch-2026-06-11 — CEO verdict on
+   the v4 pass: "could be COOLER, more visually appealing." Visual punch from
+   design quality, zero copy changes by this layer.)
+   Pages: index.html, ai-disclosure.html, blog/index.html, blog/*.html
+
+   v5 scope (distinctive identity, NOT repositioning):
+     - Brand palette lands: the org's navy / ice / coral system
+       (navy #1E2761 · ice #CADCFC · coral #F96167 — source: org map) replaces
+       the generic Tailwind-blue-everywhere look. Discipline: ICE is
+       atmosphere (hero depth, glow, gradient text, primary button); CORAL is
+       crisp measurement marks only (caliper ticks, caret, eyebrows, diamond
+       bullets, hover hairlines). No coral washes, no gradient soup.
+     - Signature element: the CALIPER RULE — a measurement-scale rule with
+       minor/major ticks and a coral center needle, under the hero h1 and the
+       blog subhero h1. CSS-only, draws in on load. The thing a visitor
+       remembers; it is literally the brand name.
+     - Hero: h1 scale up (max 4.5rem -> 5.25rem), navy depth pull in the
+       gradient tail (#13192c -> #182450, top kept #0a0e1a so theme-color
+       meta stays true on all pages), icier text ramp, blueprint sub-grid,
+       "encoded." in ice gradient + soft-blinking coral measurement caret.
+     - Sectioning system: CSS-counter section numbers ("01 /") on eyebrows,
+       eyebrows go coral — audit-report register, engineered-document feel.
+     - Punch micro-details: coral ::selection, ice primary button, coral
+       hover hairline on cards, coral inset tick on blog-row hover, card
+       fade-in via view-timeline (opacity only — hover lift preserved).
+     - Print fix (pre-existing): background-clip:text headings printed
+       invisible; print block now resets text-fill.
+     - All v4 AA work preserved; new tokens computed: coral-text #c9333a
+       (5.0:1 on the ice-tinted bg), hero faint #8b99b8 (>=5.2:1 over the
+       full hero gradient), hero muted #9fb1d0 (6.9:1 on the navy tail).
+
+   v4 scope (polish, NOT repositioning):
+     - WCAG-AA contrast fixes: light-surface accent #3b82f6 -> #2563eb (3.7:1
+       -> 5.1:1 on white); hero faint text #64748b -> #7e8ca3 (4.0 -> ~5.8:1)
+     - :focus-visible rings sitewide (none existed)
+     - badge system for project cards: chain / program / CI-green / license
+       chips — each repo presented as a verifiable receipt
+     - receipt footer pinned to card bottom (flex column cards)
+     - blog index variant (.chains.posts): single reading column, plain mono
+       dates, ink titles — list register, not product-card register
+     - inline <code> styling (blog posts were falling back to bare UA mono)
+     - .prose .meta signature footer styling for blog posts
+     - fix: .prose ul bullet styles leaked into ul.contact on ai-disclosure
+       (diamond markers + margins inside the bordered contact grid)
+     - hero capped at min(100svh, 56rem) so very tall viewports don't get a
+       half-screen of empty dark; masthead hairline
+     - density pass on deployments grid; projects grid -> 2-up receipts
+
+   ---- v3 header preserved below (protections all carry forward) ----
 
    Why v3 exists (CEO direct quote on v2):
      "why can't it look like a modern landing page with nice css
@@ -39,32 +85,59 @@
 
     /* ---- Color system ------------------------------------------------- */
 
-    /* Hero (dark) */
-    --hero-bg-top:       #0a0e1a;   /* deep navy-charcoal */
-    --hero-bg-bottom:    #13192c;   /* slightly lighter for depth */
-    --hero-glow:         rgba(59, 130, 246, 0.28);   /* workshop-blue glow */
-    --hero-glow-soft:    rgba(59, 130, 246, 0.06);
-    --hero-text:         #e8edf5;   /* near-white on dark */
-    --hero-text-muted:   #94a3b8;   /* slate-400 */
-    --hero-text-faint:   #64748b;   /* slate-500 */
-    --hero-border:       rgba(255, 255, 255, 0.08);
-    --hero-border-hi:    rgba(255, 255, 255, 0.14);
+    /* Hero (dark) — v5: navy depth from the brand system. TOP stays #0a0e1a
+       on purpose: every page's <meta name="theme-color"> points at it, so
+       the browser chrome stays truthful without touching 9 HTML files. The
+       brand-navy pull happens in the TAIL of the gradient + the glow. */
+    --hero-bg-top:       #0a0e1a;   /* deep navy-charcoal (= theme-color) */
+    --hero-bg-bottom:    #182450;   /* v5: brand-navy tail (#1E2761 family) */
+    --hero-glow:         rgba(86, 118, 255, 0.30);  /* v5: indigo-ice glow */
+    --hero-glow-soft:    rgba(120, 150, 255, 0.07);
+    --hero-text:         #eaf0fb;   /* v5: icy near-white */
+    --hero-text-muted:   #9fb1d0;   /* v5: ice-tinted (6.9:1 on navy tail) */
+    --hero-text-faint:   #8b99b8;   /* v5: ice-tinted (>=5.2:1 over the
+                                       full hero gradient incl. #182450) */
+    --hero-border:       rgba(202, 220, 252, 0.10);
+    --hero-border-hi:    rgba(202, 220, 252, 0.18);
 
-    /* Light section */
-    --bg:                #fafafa;   /* off-white */
+    /* Brand system (v5) — navy / ice / coral, per the org palette.
+       Ice = atmosphere. Coral = measurement marks, used sparingly.
+       Raw coral is decorative-or-on-dark ONLY (3.0:1 on white — never
+       small text on light); --coral-text is the AA-safe light-surface
+       coral (5.0:1 on --bg, 5.2:1 on white). */
+    --ice:               #cadcfc;
+    --coral:             #f96167;   /* dark surfaces + decoration (6.2:1
+                                       on hero navy) */
+    --coral-text:        #c9333a;   /* light-surface coral text, AA */
+
+    /* Light section — v5: bg picks up a whisper of ice so white cards
+       lift; borders tint navy instead of slate. */
+    --bg:                #f8fafd;   /* ice-tinted off-white */
     --bg-card:           #ffffff;
-    --bg-card-hover:     #fcfcfd;
+    --bg-card-hover:     #fcfdff;
     --ink:               #0f172a;   /* slate-900 */
     --ink-soft:          #475569;   /* slate-600 */
     --ink-faint:         #94a3b8;   /* slate-400 */
-    --border:            rgba(15, 23, 42, 0.08);
-    --border-hi:         rgba(15, 23, 42, 0.14);
+    --border:            rgba(30, 39, 97, 0.10);
+    --border-hi:         rgba(30, 39, 97, 0.18);
 
-    /* Brand accent — workshop blue, modern crypto-eng register */
-    --accent:            #3b82f6;   /* blue-500 */
-    --accent-hover:      #60a5fa;   /* blue-400, brighter on hover */
+    /* Brand accent — workshop blue, modern crypto-eng register.
+       v4 split: light surfaces use blue-600 (#2563eb, 5.1:1 on white — the
+       v3 blue-500 was 3.7:1, an AA fail at link/eyebrow sizes); dark
+       surfaces keep the brighter blue via --accent-on-dark. */
+    --accent:            #2563eb;   /* blue-600 — light-surface text/links */
+    --accent-hover:      #1d4ed8;   /* blue-700 — darker on hover (light) */
+    --accent-on-dark:    #60a5fa;   /* blue-400 — accents on dark surfaces */
     --accent-deep:       #1d3557;   /* mark fill, used in mark integration */
-    --accent-quiet:      rgba(59, 130, 246, 0.08);
+    --accent-quiet:      rgba(37, 99, 235, 0.07);
+    --accent-edge:       rgba(37, 99, 235, 0.16);
+
+    /* CI-green receipt indicator (badge text green-700 = 5.0:1 on white;
+       the dot itself is brighter and decorative) */
+    --ok:                #15803d;   /* green-700 — badge text */
+    --ok-dot:            #16a34a;   /* green-600 — indicator dot */
+    --ok-quiet:          rgba(22, 163, 74, 0.08);
+    --ok-edge:           rgba(21, 128, 61, 0.18);
 
     /* ---- Type system -------------------------------------------------- */
 
@@ -130,12 +203,71 @@ main, section, footer, article, aside, nav {
     color: var(--ink);
 }
 
+/* ----- selection (v5) — coral measurement-mark, the first micro-detail
+   anyone who drags a cursor across the page hits ----------------------- */
+
+::selection {
+    background: var(--coral);
+    color: #0a0e1a;             /* navy ink on coral: 6.2:1 */
+}
+
+/* ----- focus visibility (v4 — keyboard a11y, none existed in v3) ------- */
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 3px;
+}
+
+.hero :focus-visible,
+.subhero :focus-visible,
+.site-footer :focus-visible {
+    outline-color: var(--accent-on-dark);
+}
+
+/* ----- inline code (v4 — blog posts use <code> heavily; v3 left it as
+   bare UA monospace) ---------------------------------------------------- */
+
+.prose code,
+.scope code,
+.section code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    background: rgba(15, 23, 42, 0.045);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.08em 0.35em;
+    overflow-wrap: anywhere;
+}
+
+/* <code> inside dark surfaces (subhero ledes on blog posts) */
+.subhero code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid var(--hero-border);
+    border-radius: 4px;
+    padding: 0.08em 0.35em;
+}
+
+/* Blog-post signature footer ("— Michael Moffett. Built with AI
+   assistance…") — v3 had no rule for a bare p.meta in prose. */
+.prose p.meta {
+    margin-top: 2.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+}
+
 /* ----- hero (dark, full viewport on mobile, capped on desktop) -------- */
 
 .hero {
     position: relative;
     min-height: 100vh;
-    min-height: 100svh;             /* small viewport, modern mobile */
+    min-height: min(100svh, 56rem); /* v4: cap on tall viewports — no
+                                       half-screen of empty dark on 4k */
     background:
         radial-gradient(ellipse 60% 50% at 50% 35%, var(--hero-glow), transparent 70%),
         radial-gradient(ellipse 80% 60% at 50% 50%, var(--hero-glow-soft), transparent 80%),
@@ -152,9 +284,13 @@ main, section, footer, article, aside, nav {
     position: absolute;
     inset: 0;
     background-image:
-        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-    background-size: 64px 64px;
+        /* v5: blueprint grid in ice — major 64px lines + faint 16px
+           sub-grid. Engineering-drawing texture, not decoration. */
+        linear-gradient(to right, rgba(202, 220, 252, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(202, 220, 252, 0.035) 1px, transparent 1px),
+        linear-gradient(to right, rgba(202, 220, 252, 0.013) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(202, 220, 252, 0.013) 1px, transparent 1px);
+    background-size: 64px 64px, 64px 64px, 16px 16px, 16px 16px;
     mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 80%);
     -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 80%);
     pointer-events: none;
@@ -179,11 +315,12 @@ main, section, footer, article, aside, nav {
     z-index: 2;
     max-width: var(--container);
     margin: 0 auto;
-    padding: 1.5rem var(--gutter);
+    padding: 1.375rem var(--gutter);
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
+    border-bottom: 1px solid var(--hero-border);   /* v4: masthead hairline */
 }
 
 .hero-nav .brandrow {
@@ -235,7 +372,7 @@ main, section, footer, article, aside, nav {
     margin: 0 auto;
     padding: 4rem var(--gutter) 6rem;
     min-height: calc(100vh - 76px);
-    min-height: calc(100svh - 76px);
+    min-height: min(calc(100svh - 76px), 51rem);   /* v4: match hero cap */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -253,7 +390,7 @@ main, section, footer, article, aside, nav {
     margin-bottom: 2rem;
     box-shadow:
         0 0 0 1px var(--hero-border-hi),
-        0 20px 60px -20px rgba(59, 130, 246, 0.5),
+        0 20px 60px -20px rgba(120, 150, 255, 0.55),   /* v5: ice glow */
         0 8px 30px -10px rgba(0, 0, 0, 0.5);
     animation:
         fade-up var(--dur-slow) var(--ease-out) both,
@@ -261,30 +398,45 @@ main, section, footer, article, aside, nav {
 }
 
 .hero-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
     font-family: var(--font-mono);
     font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--hero-text-muted);
-    margin: 0 0 1.5rem 0;
-    padding: 0.375rem 0.875rem;
+    margin: 0 0 1.75rem 0;
+    padding: 0.375rem 1rem;
     border: 1px solid var(--hero-border);
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(202, 220, 252, 0.04);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     animation: fade-up var(--dur-slow) var(--ease-out) 100ms both;
 }
 
+/* v5: coral caliper-diamond in the kicker pill — same mark family as the
+   prose bullets and the rule needle. Decorative. */
+.hero-kicker::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: var(--coral);
+    transform: rotate(45deg);
+    flex: none;
+}
+
 .hero h1 {
     font-family: var(--font-sans);
-    font-size: clamp(2.25rem, 5.6vw + 0.5rem, 4.5rem);
+    /* v5: scale up — the headline is four words, let it own the screen. */
+    font-size: clamp(2.5rem, 6.2vw + 0.5rem, 5.25rem);
     font-weight: 600;
-    line-height: 1.05;
-    letter-spacing: -0.035em;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
     color: var(--hero-text);
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 1.375rem 0;     /* v5: tighter — caliper rule sits below */
     max-width: 22ch;
     text-wrap: balance;
     hyphens: manual;
@@ -298,16 +450,70 @@ main, section, footer, article, aside, nav {
 }
 
 .hero h1 .grad {
-    background: linear-gradient(180deg, var(--hero-text) 0%, #b8c5d6 100%);
+    /* v5: ice gradient — brand ice instead of generic steel. Large display
+       text, contrast not load-bearing. */
+    background: linear-gradient(135deg, #ffffff 10%, var(--ice) 60%, #9db9ec 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
 }
 
+/* v5: soft-blinking coral measurement caret after "encoded." — the page is
+   an organization being written. Slow, low-key blink; goes static under
+   prefers-reduced-motion (keyframes end at opacity 1). */
+.hero h1 .grad::after {
+    content: "";
+    display: inline-block;
+    width: 0.055em;
+    height: 0.72em;
+    margin-left: 0.1em;
+    background: var(--coral);
+    border-radius: 1px;
+    animation: caret-blink 1.4s linear 1.6s infinite;
+}
+
+/* v5: the caliper rule — measurement scale under the headline. Minor ticks
+   every 10px, major ticks every 50px, coral center needle. Draws in. */
+.caliper-rule {
+    position: relative;
+    width: min(21rem, 64%);
+    height: 14px;
+    margin: 0 auto 2rem;
+    background-image:
+        repeating-linear-gradient(90deg,
+            rgba(202, 220, 252, 0.7) 0 1px, transparent 1px 50px),
+        repeating-linear-gradient(90deg,
+            rgba(202, 220, 252, 0.38) 0 1px, transparent 1px 10px);
+    background-size: calc(100% - 49px) 14px, calc(100% - 9px) 7px;
+    background-position: left bottom, left bottom;
+    background-repeat: no-repeat;
+    border-bottom: 1px solid rgba(202, 220, 252, 0.55);
+    animation: rule-draw var(--dur-slow) var(--ease-out) 350ms both;
+}
+
+.caliper-rule::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -1px;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 19px;
+    background: var(--coral);
+    border-radius: 1px;
+    box-shadow: 0 0 12px rgba(249, 97, 103, 0.55);
+}
+
+/* left-aligned variant for subheros (blog index) */
+.caliper-rule.left {
+    margin: 0 0 1.75rem 0;
+    width: min(15rem, 56%);
+}
+
 .hero-tagline {
     font-family: var(--font-sans);
-    font-size: clamp(1.0625rem, 1.6vw + 0.5rem, 1.375rem);
+    font-size: clamp(1.0625rem, 1.7vw + 0.5rem, 1.5rem);   /* v5: up a notch */
     font-weight: 500;
     line-height: 1.35;
     letter-spacing: -0.01em;
@@ -374,16 +580,17 @@ main, section, footer, article, aside, nav {
 }
 
 .btn-primary {
-    background: var(--hero-text);
-    color: var(--hero-bg-top);
-    border-color: var(--hero-text);
+    /* v5: ice button — white-to-ice ramp, navy ink. Brand, not generic. */
+    background: linear-gradient(180deg, #ffffff 0%, var(--ice) 130%);
+    color: #0d1430;
+    border-color: rgba(255, 255, 255, 0.85);
 }
 
 .btn-primary:hover {
     background: #ffffff;
     border-color: #ffffff;
     transform: translateY(-1px);
-    box-shadow: 0 10px 30px -10px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 12px 36px -12px rgba(202, 220, 252, 0.5);
 }
 
 .btn-ghost {
@@ -415,32 +622,42 @@ main, section, footer, article, aside, nav {
     max-width: var(--container);
     margin: 0 auto;
     padding: 6rem var(--gutter) 5rem;
+    counter-reset: section;         /* v5: numbered sections */
 }
 
 .section {
-    margin-bottom: 5rem;
+    margin-bottom: 6rem;            /* v5: more air between sections */
+    counter-increment: section;
 }
 
 .section:last-of-type {
     margin-bottom: 0;
 }
 
+/* v5: eyebrows go coral with a CSS-counter section index ("01 / WHAT
+   CALIPERFORGE IS") — audit-report sectioning, engineered-document feel.
+   Counter is generated content: decorative, makes no claims. */
 .eyebrow {
     font-family: var(--font-mono);
     font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--accent);
-    margin: 0 0 0.75rem 0;
+    color: var(--coral-text);
+    margin: 0 0 0.875rem 0;
+}
+
+.eyebrow::before {
+    content: counter(section, decimal-leading-zero) " / ";
+    color: var(--ink-faint);
 }
 
 .section h2 {
     font-family: var(--font-sans);
-    font-size: clamp(1.75rem, 2.4vw + 0.5rem, 2.5rem);
+    font-size: clamp(1.875rem, 2.6vw + 0.5rem, 2.75rem);   /* v5: up */
     font-weight: 600;
-    line-height: 1.15;
-    letter-spacing: -0.025em;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
     color: var(--ink);
     margin: 0 0 1rem 0;
     text-wrap: balance;
@@ -479,6 +696,9 @@ main, section, footer, article, aside, nav {
 
 .chains li {
     position: relative;
+    display: flex;                  /* v4: column flow so receipt footers */
+    flex-direction: column;         /* pin to the card bottom (margin-top:
+                                       auto on .project-links/.deploy-row) */
     padding: 1.5rem;
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -498,7 +718,8 @@ main, section, footer, article, aside, nav {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    /* v5: coral measurement hairline on hover — the brand mark, not blue */
+    background: linear-gradient(90deg, transparent, var(--coral), transparent);
     opacity: 0;
     transition: opacity var(--dur-fast) var(--ease-out);
 }
@@ -509,7 +730,7 @@ main, section, footer, article, aside, nav {
     transform: translateY(-2px);
     box-shadow:
         0 1px 2px rgba(15, 23, 42, 0.04),
-        0 12px 32px -16px rgba(59, 130, 246, 0.18);
+        0 16px 40px -18px rgba(30, 39, 97, 0.28);   /* v5: navy depth */
 }
 
 .chains li:hover::before {
@@ -527,25 +748,77 @@ main, section, footer, article, aside, nav {
 }
 
 .chains .meta {
-    display: inline-block;
+    align-self: flex-start;         /* don't stretch in the flex column */
     font-family: var(--font-mono);
     font-size: 0.6875rem;
     font-weight: 500;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--accent);
     background: var(--accent-quiet);
-    padding: 0.1875rem 0.5rem;
-    border-radius: 4px;
+    border: 1px solid var(--accent-edge);
+    padding: 0.1875rem 0.625rem;
+    border-radius: 999px;           /* v4: pill, matches the badge system */
     margin-bottom: 1rem;
 }
 
 .chains .scope {
     display: block;
     font-size: 0.9375rem;
-    line-height: 1.55;
+    line-height: 1.6;
     color: var(--ink-soft);
     margin: 0;
+}
+
+/* ----- badge system (v4) — the receipt chips on project cards ---------- */
+/* Chain / program chips restate the card's existing meta line; the
+   CI-green chip restates a CI claim already made in the card copy; the
+   license chip restates the license. NO new claims live in badges. */
+
+.badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin: 0 0 1rem 0;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4375rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-quiet);
+    border: 1px solid var(--accent-edge);
+    padding: 0.1875rem 0.625rem;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.badge-ci {
+    color: var(--ok);
+    background: var(--ok-quiet);
+    border-color: var(--ok-edge);
+}
+
+.badge-ci::before {
+    content: "";
+    width: 0.4375rem;
+    height: 0.4375rem;
+    border-radius: 50%;
+    background: var(--ok-dot);
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.14);
+    flex: none;
+}
+
+.badge-license {
+    color: var(--ink-soft);
+    background: rgba(15, 23, 42, 0.035);
+    border-color: var(--border);
 }
 
 .coverage-note {
@@ -553,6 +826,8 @@ main, section, footer, article, aside, nav {
     padding: 1.25rem 1.5rem;
     background: var(--bg-card);
     border: 1px solid var(--border);
+    border-left: 2px solid var(--coral);    /* v5: coral receipt edge
+                                               (decorative, not text) */
     border-radius: var(--radius-sm);
     font-size: 0.9375rem;
     line-height: 1.55;
@@ -560,17 +835,40 @@ main, section, footer, article, aside, nav {
     max-width: var(--measure);
 }
 
+/* v4: the checkable numbers ("12 … 4 … 1") set in mono ink — they're the
+   receipt, let them register as figures. */
+.coverage-note strong {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--ink);
+}
+
 /* ----- projects (reuses .chains card chrome) -------------------------- */
+
+/* v4: receipts read better wide — 2-up on desktop instead of 3–4 skinny
+   text towers. Long scope paragraphs get a usable measure. */
+.chains.projects {
+    grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
+    gap: 1.125rem;
+}
+
+.chains.projects li {
+    padding: 1.625rem 1.75rem;
+}
 
 .chains.projects .project-links {
     display: block;
-    margin-top: 1rem;
+    margin-top: auto;               /* v4: pin receipt footer to bottom */
     padding-top: 1rem;
     border-top: 1px solid var(--border);
     font-family: var(--font-mono);
     font-size: 0.8125rem;
     color: var(--ink-soft);
     word-break: break-word;
+}
+
+.chains.projects .scope {
+    margin-bottom: 1rem;            /* breathing room above the footer */
 }
 
 .chains.projects .project-links a {
@@ -589,7 +887,84 @@ main, section, footer, article, aside, nav {
     margin: 0 0.5rem;
 }
 
+/* ----- blog index (v4) — reading list, not product cards --------------- */
+/* blog/index.html uses .chains.posts: single column, plain mono date
+   (the v3 reuse styled dates as uppercase accent pills — wrong register),
+   ink titles that take accent on hover. */
+
+.chains.posts {
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+    max-width: 46rem;
+}
+
+.chains.posts li {
+    padding: 1.375rem 1.625rem;
+}
+
+.chains.posts li:hover {
+    transform: none;                /* list rows shouldn't levitate */
+    box-shadow: inset 2px 0 0 var(--coral),
+        0 1px 2px rgba(15, 23, 42, 0.04);   /* v5: coral index tick */
+}
+
+.chains.posts .name {
+    font-size: 1.125rem;
+    line-height: 1.4;
+    margin-bottom: 0.375rem;
+}
+
+.chains.posts .name a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: none;
+    transition: color var(--dur-fast) var(--ease-out);
+}
+
+.chains.posts .name a:hover {
+    color: var(--accent);
+}
+
+.chains.posts .meta {
+    align-self: flex-start;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: none;           /* it's a date, not a label */
+    color: var(--ink-soft);
+    background: transparent;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+    margin-bottom: 0.625rem;
+}
+
+.chains.posts .scope {
+    font-size: 0.9375rem;
+}
+
 /* ----- deployments (reuses .chains card chrome) ---------------------- */
+
+/* v4: 12 deployment receipts — denser grid, smaller padding, footer
+   pinned, so the section scans as a verification table, not a card wall. */
+.chains.deployments {
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 0.875rem;
+}
+
+.chains.deployments li {
+    padding: 1.25rem;
+}
+
+.chains.deployments .name {
+    font-size: 1.0625rem;
+}
+
+.chains.deployments .scope {
+    font-size: 0.875rem;
+    margin-bottom: 0.875rem;
+}
 
 .chains.deployments .deploy-row {
     display: flex;
@@ -597,8 +972,8 @@ main, section, footer, article, aside, nav {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 0.5rem 0.75rem;
-    margin-top: 1rem;
-    padding-top: 1rem;
+    margin-top: auto;               /* v4: pin to card bottom */
+    padding-top: 0.875rem;
     border-top: 1px solid var(--border);
     font-family: var(--font-mono);
     font-size: 0.8125rem;
@@ -753,14 +1128,18 @@ a:hover {
 
 /* ----- generic in-prose lists (ai-disclosure body) -------------------- */
 
-.prose ul {
+/* v4 fix: v3's bare ".prose ul" selectors leaked diamond markers and
+   per-item margins into ul.contact on ai-disclosure (rendered bullets
+   inside the bordered contact grid). Scope the prose-bullet treatment
+   away from the structured lists. */
+.prose ul:not(.contact):not(.chains) {
     list-style: none;
     padding: 0;
     margin: 0 0 1.5rem 0;
     max-width: var(--measure);
 }
 
-.prose ul li {
+.prose ul:not(.contact):not(.chains) li {
     position: relative;
     padding-left: 1.5rem;
     margin-bottom: 0.875rem;
@@ -768,7 +1147,7 @@ a:hover {
     line-height: 1.6;
 }
 
-.prose ul li::before {
+.prose ul:not(.contact):not(.chains) li::before {
     content: "";
     position: absolute;
     left: 0;
@@ -776,7 +1155,7 @@ a:hover {
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 1px;
-    background: var(--accent);
+    background: var(--coral);       /* v5: caliper-diamond mark family */
     transform: rotate(45deg);
     transform-origin: center;
 }
@@ -844,17 +1223,22 @@ a:hover {
     font-weight: 500;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--accent-hover);
+    color: var(--coral);            /* v5: coral on navy (6.2:1, AA) */
     margin: 0 0 1rem 0;
 }
 
 .subhero h1 {
     font-family: var(--font-sans);
-    font-size: clamp(2rem, 4vw + 0.5rem, 3rem);
+    font-size: clamp(2rem, 4.2vw + 0.5rem, 3.25rem);   /* v5: up a notch */
     font-weight: 600;
-    line-height: 1.1;
+    line-height: 1.08;
     letter-spacing: -0.03em;
     color: var(--hero-text);
+    /* v5: ice gradient text, same treatment as the hero tail */
+    background: linear-gradient(135deg, #ffffff 20%, var(--ice) 75%, #9db9ec 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin: 0 0 1rem 0;
     max-width: 24ch;
     text-wrap: balance;
@@ -872,7 +1256,8 @@ a:hover {
 /* ----- footer (light) -------------------------------------------------- */
 
 .site-footer {
-    background: var(--hero-bg-top);
+    /* v5: faint navy depth, mirrors the hero's brand-navy pull */
+    background: linear-gradient(180deg, var(--hero-bg-top) 0%, #111a3e 140%);
     color: var(--hero-text-muted);
     padding: 3.5rem var(--gutter) 2.5rem;
     margin-top: 6rem;
@@ -1003,6 +1388,39 @@ a:hover {
     }
 }
 
+/* v5: caliper rule draws open from center on load. Ends at identity. */
+@keyframes rule-draw {
+    from {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+    to {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+.caliper-rule {
+    transform-origin: 50% 50%;
+}
+
+/* v5: measurement caret — crisp terminal blink (hold/hold, near-vertical
+   edges). Starts AND ends at opacity 1, so the reduced-motion clamp
+   (duration ~0, iteration 1) leaves a static caret. */
+@keyframes caret-blink {
+    0%, 52%       { opacity: 1; }
+    56%, 96%      { opacity: 0; }
+    100%          { opacity: 1; }
+}
+
+/* v5: card fade-in as cards enter the viewport — opacity ONLY. A transform
+   keyframe here would fill forwards and pin translateY(0), killing the
+   hover lift (animations beat transitions in the cascade). */
+@keyframes card-reveal {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
 /* Section reveal on scroll — CSS-only via view-timeline where supported,
    graceful no-op elsewhere. No JS, no IntersectionObserver. */
 @supports (animation-timeline: view()) {
@@ -1010,6 +1428,12 @@ a:hover {
         animation: section-reveal linear both;
         animation-timeline: view();
         animation-range: entry 0% entry 60%;
+    }
+
+    .chains li {
+        animation: card-reveal linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 45%;
     }
 }
 
@@ -1024,6 +1448,10 @@ a:hover {
 
     .hero-mark {
         animation: none;
+    }
+
+    .hero h1 .grad::after {
+        animation: none;            /* static coral caret */
     }
 }
 
@@ -1096,6 +1524,11 @@ a:hover {
         border-radius: 12px;
     }
 
+    .caliper-rule {
+        width: 72%;
+        margin-bottom: 1.5rem;
+    }
+
     .hero-cta-row {
         flex-direction: column;
         width: 100%;
@@ -1162,6 +1595,21 @@ a:hover {
     .hero-cta-row,
     .hero-nav .nav-links {
         display: none;
+    }
+
+    /* v5: gradient-text headings printed INVISIBLE (text-fill transparent
+       survives a color override) — reset the clip for print. Pre-existing
+       bug for .grad; subhero h1 joined the gradient club in v5. */
+    .hero h1 .grad,
+    .subhero h1 {
+        background: none !important;
+        -webkit-text-fill-color: initial !important;
+        color: #000000 !important;
+    }
+
+    .hero h1 .grad::after,
+    .caliper-rule {
+        display: none;              /* screen furniture, not document */
     }
 }
 
