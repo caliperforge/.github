@@ -56,6 +56,23 @@ smart-contract security.
   every push.
 - **`chimera-template-pack`** — reusable Foundry + Recon Chimera
   scaffold for EVM build-to-win contest entries.
+- **`hyperevm-safety`** — open-source library of invariants and
+  CI-runnable property tests for HyperEVM lending protocols that
+  consume HyperCore oracle reads. Six HyperCore-boundary invariants
+  in v0.1 (oracle staleness, mark / oracle deviation, szDecimals
+  round-trip, precompile gas DoS, CoreWriter solvency window,
+  Chainlink-compat invariant catching adapters that defeat
+  staleness). All six run as
+  CI-runnable property tests against a clean reference under fuzz;
+  in v0.1, three ship a planted or incident-reproduction counterpart
+  that fires `INVARIANT VIOLATED` on the same CI run — precompile
+  gas DoS, CoreWriter solvency window, and the JELLY (Mar 2025)
+  mark-price manipulation reproduction (covering oracle staleness
+  and mark / oracle deviation) against a minimal lending-market
+  reference. Planted twins for szDecimals round-trip and the
+  Chainlink-compat adapter are M2 roadmap. Built on `hyper-evm-lib`
+  and the CaliperForge `chimera-template-pack`. Apache-2.0. See
+  [caliperforge/hyperevm-safety](https://github.com/caliperforge/hyperevm-safety).
 - **`cf-invariants-jito`**, **`cf-invariants-jito-tippayment`**, and
   **`cf-invariants-jito-priorityfee`** — invariant harnesses for
   Jito tip-distribution, tip-payment, and priority-fee-distribution
