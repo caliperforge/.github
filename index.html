@@ -156,18 +156,13 @@
         <h2>Chains we cover</h2>
         <p class="section-lede">
             We work where contracts are shipping. Active language coverage:
-            Cairo, Rust / Anchor, Solidity, TypeScript.
+            Cairo, Rust / Anchor, Solidity.
         </p>
         <ul class="chains">
             <li>
-                <span class="name">Base</span>
-                <span class="meta">OP Stack L2</span>
-                <span class="scope">Smart contracts, tooling, ecosystem PRs.</span>
-            </li>
-            <li>
-                <span class="name">Optimism Superchain</span>
-                <span class="meta">RetroPGF-eligible</span>
-                <span class="scope">Public-good builds, developer tooling.</span>
+                <span class="name">Starknet</span>
+                <span class="meta">Cairo 2.x</span>
+                <span class="scope">Contract work and developer tooling on snforge.</span>
             </li>
             <li>
                 <span class="name">Solana</span>
@@ -175,13 +170,19 @@
                 <span class="scope">Programs, tooling, Foundation-funded work.</span>
             </li>
             <li>
-                <span class="name">Starknet</span>
-                <span class="meta">Cairo 2.x</span>
-                <span class="scope">Contract work and developer tooling on snforge.</span>
+                <span class="name">HyperEVM</span>
+                <span class="meta">Solidity / Foundry</span>
+                <span class="scope">HyperCore-boundary invariants and CI-runnable property tests for lending protocols.</span>
+            </li>
+            <li>
+                <span class="name">Ethereum / EVM</span>
+                <span class="meta">Invariant forensics</span>
+                <span class="scope">Bridge-conservation invariant references and exploit-to-invariant case reproductions for EVM protocols.</span>
             </li>
         </ul>
         <p class="coverage-note">
-            Move (Sui, Aptos) and Go (Cosmos, Celestia) come online when
+            Base and the Optimism Superchain come online as ecosystem work
+            lands; Move (Sui, Aptos) and Go (Cosmos, Celestia) when
             contract volume warrants.
         </p>
     </section>
@@ -410,15 +411,15 @@
                     defeat downstream staleness checks. All six run as
                     CI-runnable property tests
                     against a clean reference where the property holds under
-                    fuzz; in v0.1, three carry a planted or
-                    incident-reproduction counterpart that fires a deterministic
-                    <code>INVARIANT VIOLATED</code> marker on the same CI run
-                    &mdash; precompile gas DoS, CoreWriter solvency window, and
-                    the JELLY (Mar 2025) mark-price manipulation reproduction
-                    (covering oracle staleness and mark/oracle deviation against
-                    a minimal lending-market reference). Planted twins for
-                    szDecimals round-trip and the Chainlink-compat adapter are
-                    M2 roadmap. Built on
+                    fuzz. Three fire <code>INVARIANT VIOLATED</code> on the
+                    same CI run &mdash; the szDecimals round-trip (D-3) and
+                    Chainlink-compat (D-6) planted twins, and the JELLY
+                    (Mar 2025) mark-price manipulation reproduction (covering
+                    oracle staleness and mark/oracle deviation, D-1/D-2)
+                    against a minimal lending-market reference. Precompile
+                    gas DoS (D-4) and CoreWriter solvency window (D-5) carry
+                    inline broken-reference tests demonstrating the bug class
+                    deterministically. Built on
                     <a href="https://github.com/hyperliquid-dev/hyper-evm-lib" rel="noopener">hyper-evm-lib</a>
                     (the HyperCore precompile / CoreWriter simulator the
                     ecosystem already uses) and the CaliperForge
@@ -427,6 +428,44 @@
                 </span>
                 <span class="project-links">
                     <a href="https://github.com/caliperforge/hyperevm-safety" rel="me">github.com/caliperforge/hyperevm-safety</a>
+                    <span class="sep" aria-hidden="true">&middot;</span>
+                    <a href="/ai-disclosure">AI-disclosed</a>
+                </span>
+            </li>
+
+                        <li>
+                <span class="name">cf-invariants-verus-bridge-conservation</span>
+                <span class="badges">
+                    <span class="badge">EVM &middot; Solidity + Foundry</span>
+                    <span class="badge">Recon Chimera &middot; Echidna</span>
+                    <span class="badge badge-ci">CI green</span>
+                    <span class="badge badge-license">Apache-2.0</span>
+                </span>
+                <span class="scope">
+                    A runnable, CI-verified reference for the cross-side
+                    conservation invariant class in lock/mint bridges &mdash;
+                    anchored on the Verus&ndash;Ethereum bridge exploit of
+                    2026-05-18 (reported losses USD&nbsp;11.58M, per Halborn).
+                    The bridge&rsquo;s solvency rule existed in prose and spec
+                    but was never expressed as a machine-checkable invariant.
+                    This repo lifts it to one line:
+                    <code>sum_locked_eth &minus; sum_released_eth ==
+                    sum_minted_verus &minus; sum_burned_verus</code>.
+                    A clean reference contract holds the invariant; a planted-bug
+                    twin breaks it. Both legs run as a CI matrix on every push &mdash;
+                    clean exits 0 violations, planted surfaces a counterexample
+                    (<code>invariants_violated: 1</code> on the scorecard, with a
+                    deterministic forge replay test in-tree). Built on a Chimera-pattern harness (Recon Chimera +
+                    Foundry, Echidna), tracking the CaliperForge
+                    <code>chimera-template-pack</code> pinning. Not an audit; not a forensic
+                    incident report; not a port of Verus&rsquo;s production code.
+                    The published analyses (Halborn formal post-mortem;
+                    Blockaid and PeckShield firm advisories) cover the forensic
+                    angle; this repo adds the dimension none of them has &mdash;
+                    a machine-checkable expression of the rule.
+                </span>
+                <span class="project-links">
+                    <a href="https://github.com/caliperforge/cf-invariants-verus-bridge-conservation" rel="me">github.com/caliperforge/cf-invariants-verus-bridge-conservation</a>
                     <span class="sep" aria-hidden="true">&middot;</span>
                     <a href="/ai-disclosure">AI-disclosed</a>
                 </span>
