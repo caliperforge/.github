@@ -388,31 +388,42 @@
                 </span>
             </li>
 
-            <!-- ==============================================================
-                 RESERVE CARD 1 — hyperevm-safety. PRE-FLIP: DO NOT UNCOMMENT.
-                 Gate: uncomment ONLY after Director confirms the public flip
-                 cleared all open conditions (sec-4b re-gate PASS, audit-eng
-                 spotcheck verdict, CEO spec.md prune/scrub decision — see
-                 D-hyperevm-specmd-public-or-prune-2026-06-10).
-                 VERIFY AT FLIP: repo URL live + public, CI state actually
-                 green on the public repo, license file in tree, scope copy
-                 re-checked against the shipped README by Content QA (sec-4a).
+            <!-- hyperevm-safety card applied 2026-06-12 — flip conditions verified:
+                 repo public + CI green from fresh clone (run 27379686747, head 540464e),
+                 Apache-2.0 in tree, §4a micro-recheck PASS on this exact copy
+                 (hyperevm-safety__content_qa__cascade-recheck-2026-06-11). -->
             <li>
                 <span class="name">hyperevm-safety</span>
                 <span class="badges">
                     <span class="badge">HyperEVM &middot; Solidity + Foundry</span>
+                    <span class="badge">hyper-evm-lib + Recon Chimera</span>
                     <span class="badge badge-ci">CI green</span>
                     <span class="badge badge-license">Apache-2.0</span>
                 </span>
                 <span class="scope">
-                    Open-source library of invariants and CI-runnable
-                    property tests for HyperEVM lending protocols that
-                    consume HyperCore oracle reads. Each invariant pairs a
-                    clean reference where the property holds under fuzz
-                    with a planted-bug twin (or a reproduction of a public
-                    on-chain incident) where it fires. Built on
-                    hyper-evm-lib and chimera-template-pack. Not an audit;
-                    not a runtime monitor.
+                    Open-source library of invariants and CI-runnable property
+                    tests for HyperEVM lending protocols that consume HyperCore
+                    oracle reads. Six HyperCore-boundary invariants ship in v0.1
+                    &mdash; oracle staleness, mark/oracle deviation, szDecimals
+                    round-trip, precompile gas DoS, CoreWriter solvency window,
+                    and a Chainlink-compat invariant catching adapters that
+                    defeat downstream staleness checks. All six run as
+                    CI-runnable property tests
+                    against a clean reference where the property holds under
+                    fuzz; in v0.1, three carry a planted or
+                    incident-reproduction counterpart that fires a deterministic
+                    <code>INVARIANT VIOLATED</code> marker on the same CI run
+                    &mdash; precompile gas DoS, CoreWriter solvency window, and
+                    the JELLY (Mar 2025) mark-price manipulation reproduction
+                    (covering oracle staleness and mark/oracle deviation against
+                    a minimal lending-market reference). Planted twins for
+                    szDecimals round-trip and the Chainlink-compat adapter are
+                    M2 roadmap. Built on
+                    <a href="https://github.com/hyperliquid-dev/hyper-evm-lib" rel="noopener">hyper-evm-lib</a>
+                    (the HyperCore precompile / CoreWriter simulator the
+                    ecosystem already uses) and the CaliperForge
+                    <code>chimera-template-pack</code>. Not an audit; not a
+                    runtime monitor.
                 </span>
                 <span class="project-links">
                     <a href="https://github.com/caliperforge/hyperevm-safety" rel="me">github.com/caliperforge/hyperevm-safety</a>
@@ -420,7 +431,6 @@
                     <a href="/ai-disclosure">AI-disclosed</a>
                 </span>
             </li>
-            ============================================================== -->
 
             <!-- ==============================================================
                  RESERVE EDIT 2 — Atlas case 7 (EVM / New Market Trading,
