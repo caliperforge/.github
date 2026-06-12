@@ -63,16 +63,28 @@ smart-contract security.
   round-trip, precompile gas DoS, CoreWriter solvency window,
   Chainlink-compat invariant catching adapters that defeat
   staleness). All six run as
-  CI-runnable property tests against a clean reference under fuzz;
-  in v0.1, three ship a planted or incident-reproduction counterpart
-  that fires `INVARIANT VIOLATED` on the same CI run — precompile
-  gas DoS, CoreWriter solvency window, and the JELLY (Mar 2025)
-  mark-price manipulation reproduction (covering oracle staleness
-  and mark / oracle deviation) against a minimal lending-market
-  reference. Planted twins for szDecimals round-trip and the
-  Chainlink-compat adapter are M2 roadmap. Built on `hyper-evm-lib`
+  CI-runnable property tests against a clean reference under fuzz.
+  Three fire `INVARIANT VIOLATED` on the same CI run — the
+  szDecimals round-trip (D-3) and Chainlink-compat (D-6) planted
+  twins, and the JELLY (Mar 2025) mark-price manipulation
+  reproduction (covering oracle staleness and mark / oracle
+  deviation, D-1/D-2) against a minimal lending-market reference.
+  Precompile gas DoS (D-4) and CoreWriter solvency window (D-5)
+  carry inline broken-reference tests demonstrating the bug class
+  deterministically. Built on `hyper-evm-lib`
   and the CaliperForge `chimera-template-pack`. Apache-2.0. See
   [caliperforge/hyperevm-safety](https://github.com/caliperforge/hyperevm-safety).
+- **`cf-invariants-verus-bridge-conservation`** — CI-verified reference
+  for the cross-side conservation invariant class in lock/mint bridges,
+  anchored on the Verus–Ethereum bridge exploit of 2026-05-18 (reported
+  losses USD 11.58M, per Halborn). The conservation rule existed in
+  prose; this repo lifts it to a one-line property:
+  `sum_locked_eth − sum_released_eth == sum_minted_verus − sum_burned_verus`.
+  Clean reference holds (0 violations); planted-bug twin breaks it
+  (counterexample emitted; `invariants_violated: 1` on the scorecard). CI matrix asserts
+  both outcomes on every push. Not an audit; not a forensic report.
+  Chimera-pattern harness (Recon Chimera + Foundry, Echidna), tracking the CaliperForge `chimera-template-pack` pinning. Apache-2.0. See
+  [caliperforge/cf-invariants-verus-bridge-conservation](https://github.com/caliperforge/cf-invariants-verus-bridge-conservation).
 - **`cf-invariants-jito`**, **`cf-invariants-jito-tippayment`**, and
   **`cf-invariants-jito-priorityfee`** — invariant harnesses for
   Jito tip-distribution, tip-payment, and priority-fee-distribution
