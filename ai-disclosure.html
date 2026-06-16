@@ -47,6 +47,7 @@
         <p class="lede">
             Disclosed on every contribution, as a matter of policy.
         </p>
+        <p class="policy-date">Policy effective: 2026-06-01</p>
     </div>
 </section>
 
@@ -55,13 +56,13 @@
 
     <section class="section">
         <p>
-            CaliperForge is an engineering and security agency shipping
-            invariant-driven, CI-verified tooling &mdash; AI-augmented and
-            human-reviewed, operated and signed by a named human. We disclose
-            AI involvement on every contribution we file. This page is the
-            long-form version of that disclosure; every PR description, grant
-            application, and bounty claim we submit carries a short canonical
-            footer pointing readers here.
+            CaliperForge is an AI research studio &mdash; verifiable,
+            auditable, correctable autonomous systems, specializing in
+            security &amp; invariants. We disclose AI involvement on every
+            contribution we file. This page is the long-form version of that
+            disclosure; every PR description, grant application, and bounty
+            claim we submit carries a short canonical footer pointing readers
+            here.
         </p>
     </section>
 
@@ -74,9 +75,18 @@
                 AI assistance.
             </li>
             <li>
-                Every draft is reviewed by a human engineer, tested in a
-                cold-environment reproduction, and submitted under the named
-                operator-of-record, <strong>Michael Moffett</strong>.
+                Every draft passes through a multi-gate internal review: a
+                content-quality gate (&sect;4a &mdash; anti-AI-ism lint,
+                factual register check, register compliance) and, for
+                code-bearing artifacts, a code-quality gate (&sect;4b).
+                Anti-bloat discipline is enforced: reviewer never equals
+                drafter. AI Ops runs nightly integrity sweeps on gate
+                verdicts; AI HR audits the oversight function itself. Model
+                selection is tiered &mdash; frontier models on judgment,
+                oversight, and gate work; mid-tier on volume and build.
+                After the gates, the operator reviews, verifies in a
+                cold-environment CI reproduction, and submits under the
+                named operator-of-record, <strong>Michael Moffett</strong>.
             </li>
             <li>
                 Michael is accountable for the code, the tests, and any
@@ -86,6 +96,14 @@
                 We do not file against repositories whose maintainers have
                 stated an anti-AI-contribution policy. Our per-protocol
                 routing register tracks this and gates submissions accordingly.
+            </li>
+            <li>
+                AI-suggested invariants carry typed provenance in-tree at
+                the source level: <code>InvariantSource::AiSuggested {
+                model, prompt_version, timestamp_utc }</code>. Reviewers
+                can see which invariants were AI-proposed and which were
+                hand-authored at the point of the run, not from a footnote
+                added later.
             </li>
         </ul>
     </section>
@@ -102,13 +120,10 @@
         </p>
         <p>
             We treat disclosure as the per-submission protective layer.
-            Visitors and reviewers who land on CaliperForge see an
-            engineering and security agency shipping invariant-driven,
-            CI-verified tooling &mdash; AI-augmented and human-reviewed,
-            operated and signed by a named human. The current focus is
-            protocol and smart-contract security. Every submission we file
-            then carries an explicit, identical footer naming the
-            AI-augmented workflow and pointing back here. The brand-front
+            Visitors and reviewers who land on CaliperForge find an AI
+            research studio specializing in security and invariants. Every
+            submission we file carries an explicit, identical footer naming
+            the AI-augmented workflow and pointing back here. The brand-front
             layer and the per-submission layer are decoupled by design:
             tone calibration at one does not loosen disclosure at the other.
         </p>
@@ -118,7 +133,7 @@
         <p class="eyebrow">Routing</p>
         <h2>How we route.</h2>
         <p>
-            Before any submission, our spec writer checks the target repo
+            Before any submission, our workflow checks the target repo
             or program against an internal per-protocol register marking
             the maintainer's AI posture as friendly, case-by-case, or
             hostile. We ship to friendly and case-by-case. We do not ship
