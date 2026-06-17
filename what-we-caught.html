@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>What our gates caught &mdash; CaliperForge</title>
+    <meta name="description" content="The record of what CaliperForge's own review gates caught, and the three things they missed. 16 real defects caught, 0 false positives, 3 documented misses across 48 adjudicated §4a/§4b gate decisions. Our own adjudicated record of our own gates — not an external audit.">
+
+    <meta property="og:title" content="What our gates caught — CaliperForge">
+    <meta property="og:description" content="The record of what CaliperForge's own review gates caught, and the three things they missed. Our own adjudicated record of our own gates — not an external audit.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://caliperforge.com/what-we-caught">
+    <meta property="og:image" content="https://caliperforge.com/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@caliperforge">
+    <meta name="twitter:title" content="What our gates caught — CaliperForge">
+    <meta name="twitter:description" content="The record of what CaliperForge's own review gates caught, and the three things they missed. Our own adjudicated record of our own gates — not an external audit.">
+    <meta name="twitter:image" content="https://caliperforge.com/og.png">
+
+    <meta name="theme-color" content="#0a0e1a">
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="canonical" href="https://caliperforge.com/what-we-caught">
+</head>
+<body>
+
+<!-- ============= SUBHERO (dark, compact) ============================== -->
+<section class="subhero">
+    <div class="subhero-inner">
+        <a href="/" class="brandrow">
+            <img src="/mark.svg" alt="" class="mark-sm" width="28" height="28">
+            <span class="wordmark">CaliperForge</span>
+        </a>
+        <p class="kicker">Self-correction record</p>
+        <h1>What our gates caught.</h1>
+        <p class="lede">
+            The record of what our own review gates caught &mdash; and
+            the three things they missed. This is our own adjudicated
+            record of our own gates, not an external audit.
+        </p>
+        <p class="policy-date">
+            Window: 2026-06-04 &rarr; 2026-06-16 &middot;
+            48 adjudicated &sect;4a / &sect;4b gate decisions &middot;
+            source: ai_ops control-effectiveness adjudication, 2026-06-16
+        </p>
+    </div>
+</section>
+
+<!-- ============= LIGHT BODY ============================================ -->
+<main class="page">
+
+    <!-- ============= 01 / FRAMING ============================ -->
+    <section class="section prose">
+        <p class="eyebrow">What this page is</p>
+        <h2>Our gates, on the record.</h2>
+        <p>
+            CaliperForge's contribution workflow runs every artifact
+            through two independent review gates before anything ships
+            &mdash; <strong>&sect;4a</strong> for content, factual claims,
+            and source quality; <strong>&sect;4b</strong> for code and
+            CI-runnable property tests. Reviewer is never the drafter.
+            Each gate either passes, fails, or fails-with-fixes, and
+            every verdict is logged.
+        </p>
+        <p>
+            This page publishes the adjudicated record: what those gates
+            caught, what they missed, and where the misses were caught
+            downstream. It updates as new adjudications land. The misses
+            column is part of the design &mdash; a self-correction record
+            that only shows wins is worthless.
+        </p>
+    </section>
+
+    <!-- ============= 02 / HEADLINE METRICS =================== -->
+    <section class="section" id="metrics">
+        <p class="eyebrow">The numbers</p>
+        <h2>48 adjudicated decisions, in receipts.</h2>
+        <p class="section-lede">
+            Adjudicated against the documented downstream record &mdash; a
+            gate PASS counts as confirmed clean only if no later round
+            caught something it should have. The figures below cover the
+            48 &sect;4a / &sect;4b gate decisions in the window. The
+            <code>needs_ceo</code> HOLD mechanism is a separate, still-being-adjudicated
+            track and is not folded into these numbers.
+        </p>
+        <ul class="chains projects">
+            <li>
+                <span class="name">16</span>
+                <span class="meta">Real defects caught</span>
+                <span class="scope">
+                    True-positive catches: the gate fired, the artifact had
+                    a real defect, the fix landed before publish. 4 in
+                    &sect;4b code-quality, 12 in &sect;4a content-QA.
+                </span>
+            </li>
+            <li>
+                <span class="name">0</span>
+                <span class="meta">False positives</span>
+                <span class="scope">
+                    Zero cases where the gate flagged a non-issue and the
+                    artifact shipped unchanged on review. Of the 16 stops,
+                    every one was a real defect.
+                </span>
+            </li>
+            <li>
+                <span class="name">3</span>
+                <span class="meta">Documented misses</span>
+                <span class="scope">
+                    Three gate PASSes were later contradicted by a
+                    downstream catch. All three are published below
+                    with the artifact, the missed defect, and where it
+                    was finally caught.
+                </span>
+            </li>
+            <li>
+                <span class="name">84%</span>
+                <span class="meta">Catch rate</span>
+                <span class="scope">
+                    16 true-positive catches against 19 real defects
+                    (16 caught at the gate + 3 caught one step
+                    downstream). Precision 100% on what fired; false-positive
+                    rate 0% across 29 true negatives.
+                </span>
+            </li>
+        </ul>
+        <p class="coverage-note">
+            <strong>16</strong> defects caught &middot;
+            <strong>0</strong> false positives &middot;
+            <strong>3</strong> documented misses &middot;
+            <strong>84%</strong> catch rate (16 / 19) &middot;
+            <strong>100%</strong> precision (16 / 16) &middot;
+            <strong>0%</strong> false-positive rate (0 / 29). Across the
+            48 &sect;4a / &sect;4b decisions adjudicated 2026-06-16. The
+            denominators are the published record &mdash; nothing rounded,
+            nothing aggregated up.
+        </p>
+    </section>
+
+    <!-- ============= 03 / THE MECHANISM ====================== -->
+    <section class="section prose" id="mechanism">
+        <p class="eyebrow">Why these numbers mean something</p>
+        <h2>Planted twins on CI, independent reviewer on every gate.</h2>
+        <p>
+            Every CaliperForge harness ships with two CI legs &mdash; a
+            clean reference where the invariant holds (0 violations
+            required) and a planted-bug twin where it must fire
+            (&ge;1 violation required). The CI job fails if either side
+            doesn't behave. That's the structural floor: the catches and
+            the misses live above a build that already gates itself.
+            On top of that, two independent review gates fire before
+            publish &mdash; <strong>&sect;4a</strong> on content
+            (factual claims, source quality, register), <strong>&sect;4b</strong>
+            on code (correctness, anti-bloat, CI integrity). The reviewer
+            for each gate is never the drafter, by policy. The figures
+            above are what that two-leg-CI plus independent-review system
+            caught and what it missed.
+        </p>
+    </section>
+
+    <!-- ============= 04 / THE THREE MISSES =================== -->
+    <section class="section" id="misses">
+        <p class="eyebrow">The honest column</p>
+        <h2>The three misses, published.</h2>
+        <p class="section-lede">
+            Three gate PASSes in the window were later contradicted by a
+            downstream catch. Each is cited below: which gate missed it,
+            what the artifact carried, which downstream gate caught it,
+            and where the fix landed. Caught by our own gates, fixed
+            same-day or next-day in every case &mdash; not hidden, not
+            softened.
+        </p>
+        <ul class="chains projects">
+            <li>
+                <span class="name">FN-1 &mdash; Governance-pack email policy</span>
+                <span class="badges">
+                    <span class="badge">&sect;4b miss</span>
+                    <span class="badge">PASS 2026-06-10</span>
+                    <span class="badge badge-ci">Caught 2026-06-12</span>
+                </span>
+                <span class="scope">
+                    The &sect;4b reviewer audited the cf-invariants
+                    community-health pack (CODE_OF_CONDUCT,
+                    CONTRIBUTING, GOVERNANCE, SECURITY &mdash; 455 lines
+                    across 4 files) for canonical-string consistency,
+                    including email, and passed it. Two days later, the
+                    &sect;4a community-health gate caught
+                    <code>security@caliperforge.com</code> at 4 sites in
+                    violation of the
+                    <code>feedback_email_caliperforge_only</code> policy
+                    and contradicting the live README's published
+                    security contact, <code>michael@caliperforge.com</code>.
+                    Email-string consistency was declared in &sect;4b's
+                    scope; the policy mismatch was a &sect;4b miss. Fix
+                    landed at commit <code>0bff2c4</code> via the &sect;4a community-health regate.
+                </span>
+                <span class="project-links">
+                    Caught downstream by &sect;4a community-health (TP).
+                    Both gate verdicts and the regate are in the public
+                    record.
+                </span>
+            </li>
+            <li>
+                <span class="name">FN-2 &mdash; hyperevm-safety README over-claim</span>
+                <span class="badges">
+                    <span class="badge">&sect;4b miss</span>
+                    <span class="badge">PASS 2026-06-11</span>
+                    <span class="badge badge-ci">Caught same-day</span>
+                </span>
+                <span class="scope">
+                    The &sect;4b preflip-regate passed the
+                    hyperevm-safety README with the note "20 referenced
+                    paths exist." The README was then pushed to the
+                    public repo at the flip carrying a factual
+                    over-claim &mdash; "each invariant paired with a
+                    planted-bug twin that fires on CI" &mdash; that was
+                    not tree-true (two of the six invariants ship with
+                    deterministic broken-reference tests, not planted
+                    twins; two more landed only at the M2 milestone).
+                    <strong>The over-claim text was live on the public
+                    GitHub README for roughly three hours</strong>
+                    before our own &sect;4a cascade caught it
+                    (FAIL-WITH-FIXES, same day at 17:42). Root-cause fix
+                    pushed public 18:01 at commit <code>e46fe9c</code>.
+                    Caught by our own gates, fixed same-day &mdash; but
+                    the public repo carried the over-claim for those
+                    three hours. That's the honest framing.
+                </span>
+                <span class="project-links">
+                    Caught downstream by &sect;4a cascade (TP).
+                    Window of public exposure: ~3 hours. Root-cause fix
+                    at <code>e46fe9c</code>.
+                </span>
+            </li>
+            <li>
+                <span class="name">FN-3 &mdash; verus-bridge source-quality issues</span>
+                <span class="badges">
+                    <span class="badge">&sect;4a miss</span>
+                    <span class="badge">PASS 2026-06-11</span>
+                    <span class="badge badge-ci">Caught 2026-06-12</span>
+                </span>
+                <span class="scope">
+                    The &sect;4a preflip-regate on the verus-bridge
+                    writeup confirmed that 10 prior fix-loop items had
+                    landed (API-arity mismatches, broken twins, etc.)
+                    and passed. The same writeup still carried sourcing
+                    issues &mdash; an ExVul citation that did not
+                    resolve (sweep returned zero hits), Blockaid /
+                    PeckShield wording that over-stated firm advisories
+                    as post-mortems, and an imprecise count framing.
+                    Caught next day by a follow-on &sect;4a
+                    sources-regate. Fix landed at commit
+                    <code>cfb0677</code>: ExVul dropped, the firm
+                    advisories downgraded with pinned URLs + dates, the
+                    count framing removed. Factual-accuracy and
+                    source-verification were declared in &sect;4a's
+                    scope; this was a &sect;4a-scope miss.
+                </span>
+                <span class="project-links">
+                    Caught downstream by &sect;4a sources-regate (TP).
+                    CEO Option-C rewrite directed 2026-06-12.
+                </span>
+            </li>
+        </ul>
+    </section>
+
+    <!-- ============= 05 / WHAT THIS IS / ISN'T =============== -->
+    <section class="section prose" id="scope">
+        <p class="eyebrow">Scope &amp; honesty</p>
+        <h2>What this is, what it isn't.</h2>
+        <ul>
+            <li>
+                <strong>What this is.</strong> Our own adjudicated record
+                of our own &sect;4a content and &sect;4b code review
+                gates &mdash; the 48 decisions logged 2026-06-04 through
+                2026-06-16. Every figure traces to a documented decision
+                with a cited verdict, fix landing, and downstream
+                outcome.
+            </li>
+            <li>
+                <strong>What it isn't.</strong> Not an external audit.
+                Not a formal-verification claim. Not a coverage metric on
+                the underlying fuzz engines (snforge on Cairo, Crucible
+                on Solana / Anchor, Echidna / Medusa on EVM &mdash; those
+                have their own coverage stories). Not a claim that gates
+                guarantee correctness; they catch what they catch, and
+                the misses column is what they didn't.
+            </li>
+            <li>
+                <strong>Excluded.</strong> The <code>needs_ceo</code>
+                HOLD mechanism &mdash; the third class of decisions in
+                our queue &mdash; is deliberately not folded into the
+                catch-rate. It's a separate, still-being-adjudicated
+                track. When it's settled, it'll get its own published
+                record.
+            </li>
+            <li>
+                <strong>Growing.</strong> The window grows as new
+                adjudications land. The misses column grows with it, by
+                design. A self-correction record that only shows wins
+                isn't a self-correction record.
+            </li>
+        </ul>
+        <p>
+            Source memo: <code>ops/audits/ai_ops/control_effectiveness_adjudication_2026-06-16.md</code>
+            &mdash; the per-decision evidence table backing every figure
+            on this page. Internal path today; the publishable summary
+            link gets added when Director picks the public surface.
+        </p>
+    </section>
+
+</main>
+
+<!-- ============= FOOTER (dark, mirrors hero) ============================ -->
+<footer class="site-footer">
+    <div class="site-footer-inner">
+        <div>
+            <a href="/" class="brandrow">
+                <img src="/mark.svg" alt="" class="mark-sm" width="28" height="28">
+                <span class="wordmark">CaliperForge</span>
+            </a>
+            <p class="tagline">Precision contributions, every time.</p>
+            <p class="meta">
+                Operator of record: Michael Moffett &middot;
+                <a href="/">Back to CaliperForge</a>
+            </p>
+        </div>
+        <nav class="site-footer-links" aria-label="Footer">
+            <a href="/blog/">Blog</a>
+            <a href="/ai-disclosure">AI policy</a>
+            <a href="https://github.com/caliperforge" rel="me">GitHub</a>
+            <a href="mailto:team@caliperforge.com">Email</a>
+        </nav>
+    </div>
+</footer>
+
+</body>
+</html>
