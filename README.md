@@ -105,10 +105,11 @@ What our own gates caught — published with provenance — at
 
 ## Capabilities
 
-- **Active language coverage:** Cairo, Rust / Anchor, Solidity, Move,
-  TypeScript.
-- **Active chains:** Starknet, Solana, Sui, Base, Optimism Superchain,
-  HyperEVM.
+- **Active language coverage:** Cairo, Rust / Anchor, Solidity.
+- **Active chains:** Starknet, Solana, HyperEVM, Ethereum / EVM.
+  Base and the Optimism Superchain come online as ecosystem work
+  lands; Move (Sui, Aptos) and Go (Cosmos, Celestia) when contract
+  volume warrants.
 - **What we author:** stateful-invariant suites, AI-suggested
   invariants tagged in source, CI-verified clean / planted-bug
   reference examples, contest-ready scaffolds, security tooling on
