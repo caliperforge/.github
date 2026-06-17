@@ -1,16 +1,14 @@
 # CaliperForge
 
-**An organization, encoded.**
+**Verifiable, auditable, correctable.**
 
-Precision contributions, every time.  ·  [**caliperforge.com**](https://caliperforge.com)
+AI research studio specializing in security & invariants.  ·  [**caliperforge.com**](https://caliperforge.com)
 
-CaliperForge is an engineering and security agency shipping
-invariant-driven, CI-verified tooling — AI-augmented and
-human-reviewed, operated and signed by a named human. One operator
-orchestrates a small team of specialized AI agents; our edge is
-specialization velocity — we stand up a new specialist and ship a
-CI-verified tool in days. Current focus is protocol and smart-contract
-security.
+CaliperForge researches autonomous systems you can verify, audit, and correct.
+Every shipped harness carries a clean reference where the invariant holds, a
+planted-bug twin where it fires, and a CI-asserted record of what our own
+gates caught. The receipts are the proof, not a claim — see
+[**what we caught**](https://caliperforge.com/what-we-caught).
 
 AI involvement is disclosed at point of use; full policy at
 [caliperforge.com/ai-disclosure](https://caliperforge.com/ai-disclosure)
@@ -18,20 +16,19 @@ and in [./AI_DISCLOSURE.md](./AI_DISCLOSURE.md).
 
 ## How we work
 
-One operator (Michael Moffett, named below) orchestrates a small team
-of specialized AI agents — an audit engineer, a Cairo specialist, a
-Rust / Anchor specialist, a grant writer, a content reviewer, and
-others as the work calls for them. Every specialist is a configured
-AI agent with its own scope and review pattern; the operator reviews
-every output, runs cold-environment reproductions, and ships under his
-own name as operator-of-record.
+One operator (Michael Moffett, named below) orchestrates a small team of
+specialized AI agents — an audit engineer, a Cairo specialist, a Rust /
+Anchor specialist, a grant writer, a content reviewer, and others as the
+work calls for them. Each agent is scoped, has a defined output discipline,
+and cross-checks the others before anything leaves the workspace. The
+operator reviews every load-bearing decision, runs cold-environment
+reproductions, and ships under his own name as operator-of-record.
 
-Specialization velocity is the working pattern. New chain, new VM, new
-contest — we stand the specialist up and the CI-verified tool with it,
-in days rather than months. Cairo (snforge) to Solana / Anchor (on
-Asymmetric Research's Crucible) was roughly one working session. The
-engine is domain-general; the current portfolio is protocol and
-smart-contract security.
+Specialization velocity is the working pattern: a new chain, a new VM, a
+new specialist and a CI-verified tool with it, in days rather than months.
+Cairo (snforge) → Solana / Anchor (on Asymmetric Research's Crucible) was
+roughly one working session. The engine is domain-general; the current
+portfolio is protocol and smart-contract security.
 
 ## What we ship now
 
@@ -45,9 +42,8 @@ smart-contract security.
   [caliperforge/invariant-atlas](https://github.com/caliperforge/invariant-atlas).
 
 - **`cf-invariants`** — AI-suggested stateful invariant testing for
-  Cairo 2.x on top of snforge. Twelve reference contracts deployed
-  and Voyager-verified on Starknet Sepolia (suite expanded 6 → 12 on
-  2026-06-04). Apache-2.0. See
+  Cairo 2.x on top of snforge. **Twelve** reference contracts deployed
+  and Voyager-verified on Starknet Sepolia. Apache-2.0. See
   [caliperforge/cf-invariants](https://github.com/caliperforge/cf-invariants).
 - **`cf-invariants-anchor`** — invariant-authoring layer on top of
   Crucible (Asymmetric Research's coverage-guided Solana fuzzer) for
@@ -62,17 +58,16 @@ smart-contract security.
   in v0.1 (oracle staleness, mark / oracle deviation, szDecimals
   round-trip, precompile gas DoS, CoreWriter solvency window,
   Chainlink-compat invariant catching adapters that defeat
-  staleness). All six run as
-  CI-runnable property tests against a clean reference under fuzz.
-  Three fire `INVARIANT VIOLATED` on the same CI run — the
-  szDecimals round-trip (D-3) and Chainlink-compat (D-6) planted
-  twins, and the JELLY (Mar 2025) mark-price manipulation
-  reproduction (covering oracle staleness and mark / oracle
-  deviation, D-1/D-2) against a minimal lending-market reference.
-  Precompile gas DoS (D-4) and CoreWriter solvency window (D-5)
-  carry inline broken-reference tests demonstrating the bug class
-  deterministically. Built on `hyper-evm-lib`
-  and the CaliperForge `chimera-template-pack`. Apache-2.0. See
+  staleness). All six run as CI-runnable property tests against a
+  clean reference under fuzz. Three fire `INVARIANT VIOLATED` on the
+  same CI run — the szDecimals round-trip (D-3) and Chainlink-compat
+  (D-6) planted twins, and the JELLY (Mar 2025) mark-price
+  manipulation reproduction (covering oracle staleness and mark /
+  oracle deviation, D-1/D-2) against a minimal lending-market
+  reference. Precompile gas DoS (D-4) and CoreWriter solvency window
+  (D-5) carry inline broken-reference tests demonstrating the bug
+  class deterministically. Built on `hyper-evm-lib` and the
+  CaliperForge `chimera-template-pack`. Apache-2.0. See
   [caliperforge/hyperevm-safety](https://github.com/caliperforge/hyperevm-safety).
 - **`cf-invariants-verus-bridge-conservation`** — CI-verified reference
   for the cross-side conservation invariant class in lock/mint bridges,
@@ -81,9 +76,11 @@ smart-contract security.
   prose; this repo lifts it to a one-line property:
   `sum_locked_eth − sum_released_eth == sum_minted_verus − sum_burned_verus`.
   Clean reference holds (0 violations); planted-bug twin breaks it
-  (counterexample emitted; `invariants_violated: 1` on the scorecard). CI matrix asserts
-  both outcomes on every push. Not an audit; not a forensic report.
-  Chimera-pattern harness (Recon Chimera + Foundry, Echidna), tracking the CaliperForge `chimera-template-pack` pinning. Apache-2.0. See
+  (counterexample emitted; `invariants_violated: 1` on the scorecard).
+  CI matrix asserts both outcomes on every push. Not an audit; not a
+  forensic report. Chimera-pattern harness (Recon Chimera + Foundry,
+  Echidna), tracking the CaliperForge `chimera-template-pack` pinning.
+  Apache-2.0. See
   [caliperforge/cf-invariants-verus-bridge-conservation](https://github.com/caliperforge/cf-invariants-verus-bridge-conservation).
 - **`cf-invariants-jito`**, **`cf-invariants-jito-tippayment`**, and
   **`cf-invariants-jito-priorityfee`** — invariant harnesses for
@@ -95,11 +92,23 @@ smart-contract security.
   reference and planted-bug twins, asserted on every push. Apache-2.0.
   See [caliperforge/cf-invariants-pyth](https://github.com/caliperforge/cf-invariants-pyth).
 
+## Receipts
+
+- **12** Cairo contracts Voyager-verified
+- **5** Solana programs CI-green (Jito tip-distribution; Jito
+  tip-payment; Jito priority-fee-distribution; Pyth Solana Receiver;
+  Anchor reference)
+- **1** operator of record
+
+What our own gates caught — published with provenance — at
+[caliperforge.com/what-we-caught](https://caliperforge.com/what-we-caught).
+
 ## Capabilities
 
 - **Active language coverage:** Cairo, Rust / Anchor, Solidity, Move,
   TypeScript.
-- **Active chains:** Starknet, Solana, Sui, Base, Optimism Superchain.
+- **Active chains:** Starknet, Solana, Sui, Base, Optimism Superchain,
+  HyperEVM.
 - **What we author:** stateful-invariant suites, AI-suggested
   invariants tagged in source, CI-verified clean / planted-bug
   reference examples, contest-ready scaffolds, security tooling on
