@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light">
     <title>What our gates caught &mdash; CaliperForge</title>
-    <meta name="description" content="The record of what CaliperForge's own review gates caught, and the three things they missed. 16 real defects caught, 0 false positives, 3 documented misses across 48 adjudicated §4a/§4b gate decisions. Our own adjudicated record of our own gates — not an external audit.">
+    <meta name="description" content="The record of what CaliperForge's own review gates caught, and the three things they missed. 17 real defects caught, 0 false positives, 3 documented misses across 49 adjudicated §4a/§4b gate decisions. Our own adjudicated record of our own gates — not an external audit.">
 
     <meta property="og:title" content="What our gates caught — CaliperForge">
     <meta property="og:description" content="The record of what CaliperForge's own review gates caught, and the three things they missed. Our own adjudicated record of our own gates — not an external audit.">
@@ -58,9 +58,10 @@
             record of our own gates, not an external audit.
         </p>
         <p class="policy-date">
-            Window: 2026-06-04 &rarr; 2026-06-16 &middot;
-            48 adjudicated &sect;4a / &sect;4b gate decisions &middot;
-            source: ai_ops control-effectiveness adjudication, 2026-06-16
+            Window: 2026-06-04 &rarr; 2026-06-19 &middot;
+            49 adjudicated &sect;4a / &sect;4b gate decisions &middot;
+            source: ai_ops control-effectiveness adjudication, 2026-06-16,
+            extended 2026-06-19
         </p>
     </div>
 </section>
@@ -93,23 +94,23 @@
     <!-- ============= 02 / HEADLINE METRICS =================== -->
     <section class="section" id="metrics">
         <p class="eyebrow">The numbers</p>
-        <h2>48 adjudicated decisions, in receipts.</h2>
+        <h2>49 adjudicated decisions, in receipts.</h2>
         <p class="section-lede">
             Adjudicated against the documented downstream record &mdash; a
             gate PASS counts as confirmed clean only if no later round
             caught something it should have. The figures below cover the
-            48 &sect;4a / &sect;4b gate decisions in the window. The
+            49 &sect;4a / &sect;4b gate decisions in the window. The
             <code>needs_ceo</code> HOLD mechanism is a separate, still-being-adjudicated
             track and is not folded into these numbers.
         </p>
         <ul class="chains projects">
             <li>
-                <span class="name">16</span>
+                <span class="name">17</span>
                 <span class="meta">Real defects caught</span>
                 <span class="scope">
                     True-positive catches: the gate fired, the artifact had
                     a real defect, the fix landed before publish. 4 in
-                    &sect;4b code-quality, 12 in &sect;4a content-QA.
+                    &sect;4b code-quality, 13 in &sect;4a content-QA.
                 </span>
             </li>
             <li>
@@ -117,7 +118,7 @@
                 <span class="meta">False positives</span>
                 <span class="scope">
                     Zero cases where the gate flagged a non-issue and the
-                    artifact shipped unchanged on review. Of the 16 stops,
+                    artifact shipped unchanged on review. Of the 17 stops,
                     every one was a real defect.
                 </span>
             </li>
@@ -132,24 +133,25 @@
                 </span>
             </li>
             <li>
-                <span class="name">84%</span>
+                <span class="name">85%</span>
                 <span class="meta">Catch rate</span>
                 <span class="scope">
-                    16 true-positive catches against 19 real defects
-                    (16 caught at the gate + 3 caught one step
+                    17 true-positive catches against 20 real defects
+                    (17 caught at the gate + 3 caught one step
                     downstream). Precision 100% on what fired; false-positive
                     rate 0% across 29 true negatives.
                 </span>
             </li>
         </ul>
         <p class="coverage-note">
-            <strong>16</strong> defects caught &middot;
+            <strong>17</strong> defects caught &middot;
             <strong>0</strong> false positives &middot;
             <strong>3</strong> documented misses &middot;
-            <strong>84%</strong> catch rate (16 / 19) &middot;
-            <strong>100%</strong> precision (16 / 16) &middot;
+            <strong>85%</strong> catch rate (17 / 20) &middot;
+            <strong>100%</strong> precision (17 / 17) &middot;
             <strong>0%</strong> false-positive rate (0 / 29). Across the
-            48 &sect;4a / &sect;4b decisions adjudicated 2026-06-16. The
+            49 &sect;4a / &sect;4b decisions adjudicated 2026-06-16,
+            extended 2026-06-19. The
             denominators are the published record &mdash; nothing rounded,
             nothing aggregated up.
         </p>
@@ -290,8 +292,8 @@
             <li>
                 <strong>What this is.</strong> Our own adjudicated record
                 of our own &sect;4a content and &sect;4b code review
-                gates &mdash; the 48 decisions logged 2026-06-04 through
-                2026-06-16. Every figure traces to a documented decision
+                gates &mdash; the 49 decisions logged 2026-06-04 through
+                2026-06-19. Every figure traces to a documented decision
                 with a cited verdict, fix landing, and downstream
                 outcome.
             </li>
@@ -320,10 +322,17 @@
             </li>
         </ul>
         <p>
-            Source memo: <code>ops/audits/ai_ops/control_effectiveness_adjudication_2026-06-16.md</code>
+            Source memo: <code>ops/audits/ai_ops/control_effectiveness_adjudication_2026-06-16.md</code>,
+            extended by <code>ops/audits/ai_ops/whatwecaught_adjudication_2026-06-19.md</code>
             &mdash; the per-decision evidence table backing every figure
-            on this page. Internal path today; the publishable summary
-            link gets added when Director picks the public surface.
+            on this page. The 2026-06-19 extension adds one &sect;4a
+            pre-ship catch (an unsupported &ldquo;Atlas: 6 exploits
+            reproduced&rdquo; homepage headline, removed before deploy)
+            and records the live HyperEVM D-3/D-6 enumeration correction
+            as content-currency drift, not a gate miss &mdash; no gate
+            had passed that homepage copy. Internal paths today; the
+            publishable summary link gets added when Director picks the
+            public surface.
         </p>
     </section>
 
