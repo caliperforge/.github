@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Roadmap | CaliperForge</title>
+    <meta name="description" content="CaliperForge build roadmap: what we shipped, what we are building next, and what is in the pipeline. By track: Solana, Starknet/Cairo, Atlas, EVM/HyperEVM, AI-safety cert, Sui/Move.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Roadmap | CaliperForge">
+    <meta property="og:description" content="Receipts-first invariant tooling across Solana, Starknet/Cairo, EVM, and Sui. Shipped, building now, and pipeline — by track.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://caliperforge.com/roadmap/">
+    <meta property="og:image" content="https://caliperforge.com/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@caliperforge">
+    <meta name="twitter:title" content="Roadmap | CaliperForge">
+    <meta name="twitter:description" content="Receipts-first invariant tooling across Solana, Starknet/Cairo, EVM, and Sui. Shipped, building now, and pipeline — by track.">
+    <meta name="twitter:image" content="https://caliperforge.com/og.png">
+
+    <meta name="theme-color" content="#0a0e1a">
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+
+    <link rel="stylesheet" href="/style.css">
+    <link rel="canonical" href="https://caliperforge.com/roadmap/">
+
+    <!-- Roadmap-specific styles (supplement to /style.css) -->
+    <style>
+    /* ---- SUBHERO DIAGRAM AREA ---------------------------------------- */
+
+    .rdm-diagram-label {
+        font-family: var(--font-mono);
+        font-size: 0.6875rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--hero-text-faint);
+        margin: 2rem 0 0.875rem;
+    }
+
+    .rdm-svg-wrap {
+        width: 100%;
+        max-width: 620px;
+        margin-bottom: 2.5rem;
+    }
+
+    .rdm-svg-wrap svg {
+        width: 100%;
+        height: auto;
+        overflow: visible;
+    }
+
+    /* ---- STATUS LEGEND ----------------------------------------------- */
+
+    .rdm-legend {
+        display: flex;
+        gap: 1.75rem;
+        flex-wrap: wrap;
+        padding-top: 1.375rem;
+        border-top: 1px solid var(--hero-border);
+    }
+
+    .rdm-legend-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--font-mono);
+        font-size: 0.6875rem;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--hero-text-muted);
+    }
+
+    .rdm-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex: none;
+    }
+    .rdm-dot-shipped  { background: #16a34a; }
+    .rdm-dot-building { background: #60a5fa; animation: rdm-pulse 2.2s ease-out infinite; }
+    .rdm-dot-planned  { background: transparent; border: 1.5px solid rgba(202,220,252,0.32); }
+
+    @keyframes rdm-pulse {
+        0%   { box-shadow: 0 0 0 0   rgba(96,165,250,0.45); }
+        70%  { box-shadow: 0 0 0 6px rgba(96,165,250,0); }
+        100% { box-shadow: 0 0 0 0   rgba(96,165,250,0); }
+    }
+
+    /* ---- SWIM-LANE TABLE --------------------------------------------- */
+
+    .rdm-table-scroll {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin-bottom: 3.5rem;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+    }
+
+    table.rdm-table {
+        width: 100%;
+        min-width: 800px;
+        border-collapse: collapse;
+        background: var(--bg-card);
+    }
+
+    table.rdm-table thead th {
+        padding: 0.875rem 1.25rem;
+        text-align: left;
+        vertical-align: bottom;
+        font-family: var(--font-mono);
+        font-size: 0.6875rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        color: var(--ink-faint);
+    }
+
+    table.rdm-table thead th:nth-child(2) { color: var(--ok); }
+    table.rdm-table thead th:nth-child(3) { color: var(--ink-soft); }
+    table.rdm-table thead th:nth-child(4) { color: var(--ink-faint); }
+
+    .rdm-th-lane { width: 11.5rem; }
+
+    table.rdm-table tr.rdm-divider td {
+        padding: 0.4375rem 1.25rem;
+        background: var(--bg);
+        border-top: 2px solid var(--border);
+        border-right: none !important;
+        font-family: var(--font-mono);
+        font-size: 0.5625rem;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+    }
+
+    table.rdm-table tbody tr {
+        border-bottom: 1px solid var(--border);
+    }
+    table.rdm-table tbody tr:last-child { border-bottom: none; }
+
+    table.rdm-table tbody td {
+        padding: 1.25rem;
+        vertical-align: top;
+        border-right: 1px solid var(--border);
+    }
+    table.rdm-table tbody td:last-child { border-right: none; }
+
+    .rdm-td-lane {
+        width: 11.5rem;
+        background: var(--bg);
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+        line-height: 1.35;
+    }
+
+    .rdm-lane-chip {
+        display: inline-block;
+        margin-top: 0.375rem;
+        font-family: var(--font-mono);
+        font-size: 0.5625rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: var(--accent-quiet);
+        border: 1px solid var(--accent-edge);
+        padding: 0.1rem 0.45rem;
+        border-radius: 999px;
+    }
+
+    /* Card stack in cells */
+    .rdm-cards { display: flex; flex-direction: column; gap: 0.625rem; }
+
+    .rdm-card {
+        position: relative;
+        padding: 0.8125rem 0.9375rem 0.8125rem 1.125rem;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        background: var(--bg-card);
+        overflow: hidden;
+    }
+
+    .rdm-card::before {
+        content: "";
+        position: absolute;
+        left: 0; top: 0; bottom: 0;
+        width: 3px;
+    }
+    .rdm-card.sh::before  { background: #16a34a; }
+    .rdm-card.bl::before  { background: #60a5fa; }
+    .rdm-card.pl::before  { background: var(--border-hi); }
+
+    .rdm-card-hd {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.4375rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .rdm-cdot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        margin-top: 0.34em;
+        flex: none;
+    }
+    .rdm-cdot-sh { background: #16a34a; }
+    .rdm-cdot-bl { background: #60a5fa; animation: rdm-pulse 2.2s ease-out infinite; }
+    .rdm-cdot-pl { background: transparent; border: 1.5px solid var(--ink-faint); }
+
+    .rdm-ct {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        line-height: 1.35;
+        color: var(--ink);
+    }
+    .rdm-card.pl .rdm-ct { color: var(--ink-soft); }
+
+    .rdm-cd {
+        margin-left: 1.0rem;
+        font-size: 0.75rem;
+        line-height: 1.55;
+        color: var(--ink-soft);
+    }
+    .rdm-card.pl .rdm-cd { color: var(--ink-faint); }
+
+    /* ---- "WHAT WE ARE NOT" BOX --------------------------------------- */
+
+    .rdm-not-box {
+        margin-top: 3rem;
+        padding: 1.25rem 1.5rem;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        background: var(--bg-card);
+        max-width: 52rem;
+    }
+
+    .rdm-not-box-title {
+        font-family: var(--font-mono);
+        font-size: 0.6875rem;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+        margin-bottom: 0.625rem;
+    }
+
+    .rdm-not-box ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.375rem;
+        padding: 0;
+        margin: 0;
+    }
+
+    .rdm-not-box li {
+        font-size: 0.8125rem;
+        color: var(--ink-soft);
+        line-height: 1.5;
+        padding-left: 1.125rem;
+        position: relative;
+    }
+
+    .rdm-not-box li::before {
+        content: "";
+        position: absolute;
+        left: 0; top: 0.525em;
+        width: 5px; height: 5px;
+        border: 1px solid var(--ink-faint);
+        border-radius: 1px;
+    }
+
+    /* ---- UPDATE NOTE ------------------------------------------------- */
+
+    .rdm-update-note {
+        font-family: var(--font-mono);
+        font-size: 0.6875rem;
+        letter-spacing: 0.02em;
+        color: var(--ink-faint);
+        line-height: 1.65;
+        max-width: 52rem;
+        margin-top: 2rem;
+    }
+
+    /* ---- CALIPER RULE IN SUBHERO (matches site/style.css) ------------ */
+
+    .subhero .caliper-rule {
+        margin: 1.5rem 0 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .rdm-dot-building,
+        .rdm-cdot-bl {
+            animation: none;
+        }
+    }
+    </style>
+</head>
+<body>
+
+<!-- ============= SUBHERO (dark, compact) ============================== -->
+<section class="subhero">
+    <div class="subhero-inner">
+        <nav class="subhero-nav" aria-label="Primary">
+            <a href="/" class="brandrow">
+                <img src="/mark.svg" alt="" class="mark-sm" width="28" height="28">
+                <span class="wordmark">CaliperForge</span>
+            </a>
+            <div class="nav-links">
+                <a href="/blog/">Blog</a>
+                <a href="/what-we-caught">What we caught</a>
+                <a href="/engagements/">Engagements</a>
+                <a href="/roadmap/" aria-current="page">Roadmap</a>
+                <a href="/ai-disclosure">AI policy</a>
+                <a href="https://github.com/caliperforge" rel="me">GitHub</a>
+                <a href="mailto:team@caliperforge.com">Contact</a>
+            </div>
+        </nav>
+
+        <p class="kicker">CaliperForge / Roadmap / 2026</p>
+        <h1>What we are building.</h1>
+        <p class="lede">
+            Receipts-first invariant tooling across Solana, Starknet/Cairo,
+            EVM, and Sui. Each track shows the shipped base, what we are
+            building next, and what is further out. Current as of 2026-06-21.
+        </p>
+        <p class="policy-date">
+            Operator of record: Michael Moffett &middot;
+            <a href="/ai-disclosure">AI policy</a>
+        </p>
+
+        <!-- Branching diagram -->
+        <p class="rdm-diagram-label">Build tracks</p>
+        <div class="rdm-svg-wrap">
+            <svg viewBox="0 0 620 360" xmlns="http://www.w3.org/2000/svg"
+                 role="img"
+                 aria-label="CaliperForge build tracks: six branches from one trunk. Headline: Solana, Starknet/Cairo, Atlas. Supporting: EVM/HyperEVM, AI-safety cert, Sui/Move.">
+
+                <defs>
+                    <filter id="coral-glow" x="-80%" y="-80%" width="260%" height="260%">
+                        <feGaussianBlur stdDeviation="3" result="b"/>
+                        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                    <filter id="hi-glow" x="-60%" y="-60%" width="220%" height="220%">
+                        <feGaussianBlur stdDeviation="1.5" result="b"/>
+                        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                </defs>
+
+                <!-- Trunk box -->
+                <rect x="8" y="129" width="132" height="112" rx="10"
+                      fill="rgba(202,220,252,0.06)" stroke="rgba(202,220,252,0.26)" stroke-width="1.5"/>
+                <text x="74" y="160" text-anchor="middle"
+                      font-family="Geist,-apple-system,sans-serif"
+                      font-size="10" font-weight="700" letter-spacing="0.09em" fill="#cadcfc">CALIPERFORGE</text>
+                <text x="74" y="179" text-anchor="middle"
+                      font-family="Geist Mono,monospace"
+                      font-size="8" fill="#8b99b8">receipts-first</text>
+                <text x="74" y="192" text-anchor="middle"
+                      font-family="Geist Mono,monospace"
+                      font-size="8" fill="#8b99b8">invariant tooling</text>
+                <text x="74" y="205" text-anchor="middle"
+                      font-family="Geist Mono,monospace"
+                      font-size="8" fill="#8b99b8">multi-VM</text>
+                <text x="74" y="218" text-anchor="middle"
+                      font-family="Geist Mono,monospace"
+                      font-size="8" fill="#8b99b8">security</text>
+
+                <!-- Branch origin: coral dot -->
+                <circle cx="140" cy="185" r="4.5" fill="#f96167" filter="url(#coral-glow)" opacity="0.9"/>
+
+                <!-- Headline branches -->
+                <path d="M 140,185 C 192,185 192,44 268,44"
+                      fill="none" stroke="rgba(202,220,252,0.52)" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M 140,185 C 192,185 192,100 268,100"
+                      fill="none" stroke="rgba(202,220,252,0.52)" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M 140,185 C 192,185 192,156 268,156"
+                      fill="none" stroke="rgba(202,220,252,0.52)" stroke-width="1.5" stroke-linecap="round"/>
+
+                <!-- Supporting branches -->
+                <path d="M 140,185 C 192,185 192,230 268,230"
+                      fill="none" stroke="rgba(202,220,252,0.26)" stroke-width="1.2" stroke-linecap="round"/>
+                <path d="M 140,185 C 192,185 192,276 268,276"
+                      fill="none" stroke="rgba(202,220,252,0.26)" stroke-width="1.2" stroke-linecap="round"/>
+                <path d="M 140,185 C 192,185 192,322 268,322"
+                      fill="none" stroke="rgba(202,220,252,0.26)" stroke-width="1.2" stroke-linecap="round"/>
+
+                <!-- Junction dots -->
+                <circle cx="268" cy="44"  r="3"   fill="rgba(202,220,252,0.65)" filter="url(#hi-glow)"/>
+                <circle cx="268" cy="100" r="3"   fill="rgba(202,220,252,0.65)" filter="url(#hi-glow)"/>
+                <circle cx="268" cy="156" r="3"   fill="rgba(202,220,252,0.65)" filter="url(#hi-glow)"/>
+                <circle cx="268" cy="230" r="2.5" fill="rgba(202,220,252,0.35)"/>
+                <circle cx="268" cy="276" r="2.5" fill="rgba(202,220,252,0.35)"/>
+                <circle cx="268" cy="322" r="2.5" fill="rgba(202,220,252,0.35)"/>
+
+                <!-- Headline lane boxes -->
+                <rect x="272" y="22"  width="212" height="44" rx="8"
+                      fill="rgba(202,220,252,0.07)" stroke="rgba(202,220,252,0.32)" stroke-width="1.5"/>
+                <text x="378" y="41" text-anchor="middle"
+                      font-family="Geist,-apple-system,sans-serif"
+                      font-size="11.5" font-weight="700" fill="#cadcfc">Solana</text>
+                <text x="378" y="57" text-anchor="middle"
+                      font-family="Geist Mono,monospace"
+                      font-size="8" fill="#9fb1d0">cf-invariants devtooling</text>
+
+                <rect x="272" y="78"  width="212" height="44" rx="8"
+                      fill="rgba(202,220,252,0.07)" stroke="rgba(202,220,252,0.32)" stroke-width="1.5"/>
+                <text x="378" y="97" text-anchor="middle"
+                      font-family="Geist,-apple-system,sans-serif"
+                      font-size="11.5" font-weight="700" fill="#cadcfc">Starknet / Cairo</text>
+                <text x="378" y="113" text-anchor="middle"
+                      font-family="Geist Mono,monospace"
+                      font-size="8" fill="#9fb1d0">invariant reference suite</text>
+
+                <rect x="272" y="134" width="212" height="44" rx="8"
+                      fill="rgba(202,220,252,0.07)" stroke="rgba(202,220,252,0.32)" stroke-width="1.5"/>
+                <text x="378" y="153" text-anchor="middle"
+                      font-family="Geist,-apple-system,sans-serif"
+                      font-size="11.5" font-weight="700" fill="#cadcfc">Atlas</text>
+                <text x="378" y="169" text-anchor="middle"
+                      font-family="Geist Mono,monospace"
+                      font-size="8" fill="#9fb1d0">cross-chain exploit catalog</text>
+
+                <!-- Supporting separator -->
+                <line x1="272" y1="190" x2="484" y2="190"
+                      stroke="rgba(202,220,252,0.12)" stroke-width="1" stroke-dasharray="3 4"/>
+                <text x="272" y="205"
+                      font-family="Geist Mono,monospace"
+                      font-size="6.5" fill="#4a5a78" letter-spacing="0.14em">SUPPORTING TRACKS</text>
+
+                <!-- Supporting lane boxes -->
+                <rect x="272" y="210" width="212" height="40" rx="7"
+                      fill="rgba(202,220,252,0.04)" stroke="rgba(202,220,252,0.18)" stroke-width="1.2"/>
+                <text x="378" y="227" text-anchor="middle"
+                      font-family="Geist,-apple-system,sans-serif"
+                      font-size="10.5" font-weight="600" fill="#9fb1d0">EVM / HyperEVM</text>
+                <text x="378" y="242" text-anchor="middle"
+                      font-family="Geist Mono,monospace"
+                      font-size="7.5" fill="#6b7fa0">safety harnesses + chimera scaffold</text>
+
+                <rect x="272" y="256" width="212" height="40" rx="7"
+                      fill="rgba(202,220,252,0.04)" stroke="rgba(202,220,252,0.18)" stroke-width="1.2"/>
+                <text x="378" y="273" text-anchor="middle"
+                      font-family="Geist,-apple-system,sans-serif"
+                      font-size="10.5" font-weight="600" fill="#9fb1d0">AI-safety regression cert</text>
+                <text x="378" y="288" text-anchor="middle"
+                      font-family="Geist Mono,monospace"
+                      font-size="7.5" fill="#6b7fa0">cf-modeleval</text>
+
+                <rect x="272" y="302" width="212" height="40" rx="7"
+                      fill="rgba(202,220,252,0.04)" stroke="rgba(202,220,252,0.18)" stroke-width="1.2"/>
+                <text x="378" y="319" text-anchor="middle"
+                      font-family="Geist,-apple-system,sans-serif"
+                      font-size="10.5" font-weight="600" fill="#9fb1d0">Sui / Move</text>
+                <text x="378" y="334" text-anchor="middle"
+                      font-family="Geist Mono,monospace"
+                      font-size="7.5" fill="#6b7fa0">Move invariant harness</text>
+
+            </svg>
+        </div>
+
+        <!-- Status legend -->
+        <div class="rdm-legend">
+            <div class="rdm-legend-item">
+                <span class="rdm-dot rdm-dot-shipped"></span>
+                Shipped &mdash; public artifact with receipts
+            </div>
+            <div class="rdm-legend-item">
+                <span class="rdm-dot rdm-dot-building"></span>
+                Building now &mdash; active work in progress
+            </div>
+            <div class="rdm-legend-item">
+                <span class="rdm-dot rdm-dot-planned"></span>
+                Pipeline &mdash; sequenced, not yet started
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============= LIGHT BODY ============================================ -->
+<main class="page">
+
+    <section class="section" id="by-track">
+        <p class="eyebrow">Build track detail</p>
+        <h2>By track</h2>
+        <p class="section-lede">
+            Each row is a build track. Shipped shows what exists with verifiable
+            public receipts. Proposing next shows the concrete build we are working
+            toward. Pipeline shows what is sequenced further out. Nothing in
+            &ldquo;Proposing next&rdquo; or &ldquo;Pipeline&rdquo; is presented
+            as done. Status accurate as of 2026-06-21.
+        </p>
+
+        <!-- Swim-lane table -->
+        <div class="rdm-table-scroll">
+        <table class="rdm-table">
+            <thead>
+                <tr>
+                    <th class="rdm-th-lane">Track</th>
+                    <th>Shipped</th>
+                    <th>Proposing next</th>
+                    <th>Pipeline</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <!-- ===== ROW 1: SOLANA ===== -->
+                <tr>
+                    <td class="rdm-td-lane">
+                        Solana
+                        <div><span class="rdm-lane-chip">devtooling</span></div>
+                    </td>
+                    <td>
+                        <div class="rdm-cards">
+                            <div class="rdm-card sh">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-sh"></span>
+                                    <span class="rdm-ct">4 CI-green Solana harnesses</span>
+                                </div>
+                                <p class="rdm-cd">cf-invariants-anchor (Crucible / Anchor), cf-invariants-jito x3, cf-invariants-pyth (Pyth oracle flip 2026-06-06). All public, all CI-confirmed.</p>
+                            </div>
+                            <div class="rdm-card sh">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-sh"></span>
+                                    <span class="rdm-ct">Atlas: C3 Cashio, C4 Mango, C5 Loopscale</span>
+                                </div>
+                                <p class="rdm-cd">Three Solana exploit twins in the Atlas benchmark. Cashio (~$50M, Mar 2022), Mango (~$117M, Oct 2022), Loopscale (~$5.8M, Apr 2025). Post-mortem cited; planted twin + clean leg; CI green.</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="rdm-cards">
+                            <div class="rdm-card bl">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-bl"></span>
+                                    <span class="rdm-ct">Expand harness coverage to new Solana program types</span>
+                                </div>
+                                <p class="rdm-cd">Extend the invariant harness suite to additional Solana program patterns as new exploit classes are analyzed. Add Atlas Solana cases as incidents occur.</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="rdm-cards">
+                            <div class="rdm-card pl">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-pl"></span>
+                                    <span class="rdm-ct">ETHOnline 2026 &mdash; Solana sprint track</span>
+                                </div>
+                                <p class="rdm-cd">Sep 4&ndash;16, async. Pick Solana sponsor track where existing harnesses provide a head start. Small in-window delta on top of current repos.</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- ===== ROW 2: STARKNET / CAIRO ===== -->
+                <tr>
+                    <td class="rdm-td-lane">
+                        Starknet /<br>Cairo
+                        <div><span class="rdm-lane-chip">reference suite</span></div>
+                    </td>
+                    <td>
+                        <div class="rdm-cards">
+                            <div class="rdm-card sh">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-sh"></span>
+                                    <span class="rdm-ct">cf-invariants &mdash; 12-class Cairo reference suite</span>
+                                </div>
+                                <p class="rdm-cd">Source-verified on Starknet Sepolia (PR&nbsp;#2, commit 003e33c, CI run 27075213962, 26/26 green, 2026-06-07). The only CI-verified Cairo invariant reference suite on Starknet Sepolia.</p>
+                            </div>
+                            <div class="rdm-card sh">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-sh"></span>
+                                    <span class="rdm-ct">snforge upstream PR #4409</span>
+                                </div>
+                                <p class="rdm-cd">Cairo dev-tool upstream contribution to starknet-foundry. Open PR, in review by maintainers.</p>
+                            </div>
+                            <div class="rdm-card sh">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-sh"></span>
+                                    <span class="rdm-ct">Atlas: C1 zkLend (Cairo)</span>
+                                </div>
+                                <p class="rdm-cd">zkLend exploit twin (~$10M, Feb 2025). Demonstrates the live-exploit-to-invariant pipeline on Cairo.</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="rdm-cards">
+                            <div class="rdm-card bl">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-bl"></span>
+                                    <span class="rdm-ct">snforge PR #4409 merge + cookbook blog post</span>
+                                </div>
+                                <p class="rdm-cd">snforge PR is open and in maintainer review. Once merged: publish a cookbook blog post demonstrating the invariant suite in practice and targeting a named L2 adopter.</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="rdm-cards">
+                            <div class="rdm-card pl">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-pl"></span>
+                                    <span class="rdm-ct">Extend Cairo reference suite to additional contract patterns</span>
+                                </div>
+                                <p class="rdm-cd">Named L2 adopter on record. Add new invariant classes as the Starknet contract ecosystem grows. Deepen Cairo ecosystem contribution via upstream tooling work.</p>
+                            </div>
+                            <div class="rdm-card pl">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-pl"></span>
+                                    <span class="rdm-ct">Ethereum ecosystem engagement</span>
+                                </div>
+                                <p class="rdm-cd">Prerequisite: snforge PR merge + named L2 adopter. Pursue Ethereum Foundation ecosystem program when prerequisites land.</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- ===== ROW 3: ATLAS ===== -->
+                <tr>
+                    <td class="rdm-td-lane">
+                        Atlas
+                        <div><span class="rdm-lane-chip">benchmark</span></div>
+                    </td>
+                    <td>
+                        <div class="rdm-cards">
+                            <div class="rdm-card sh">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-sh"></span>
+                                    <span class="rdm-ct">Atlas v0.1 &mdash; 7 exploit cases, cross-VM</span>
+                                </div>
+                                <p class="rdm-cd">C1 zkLend (Cairo), C2 Cetus (Move), C3 Cashio + C4 Mango + C5 Loopscale (Solana), C6 EVM access-control, C7 New Market Trading (EVM). Each case: post-mortem cite, planted twin, clean leg, CI evidence, scorecard. Defender-side, pre-deploy.</p>
+                            </div>
+                            <div class="rdm-card sh">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-sh"></span>
+                                    <span class="rdm-ct">Aztec writeup (2026-06-21)</span>
+                                </div>
+                                <p class="rdm-cd">Cross-layer conservation class identified and explained. Maps the proof-vs-settlement-scope divergence in the Aztec architecture. Publicly names the gap our next case closes.</p>
+                            </div>
+                            <div class="rdm-card sh">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-sh"></span>
+                                    <span class="rdm-ct">&ldquo;Lost in Translation?&rdquo; &mdash; AI-safety paper</span>
+                                </div>
+                                <p class="rdm-cd">96-cell eval matrix: 4 Atlas twins &times; 4 languages &times; 3 auditor LLMs, Claude judge. First published cross-model, cross-language code-surface auditing numbers (2026-06-20).</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="rdm-cards">
+                            <div class="rdm-card bl">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-bl"></span>
+                                    <span class="rdm-ct">C8: Aztec cross-layer settlement twin</span>
+                                </div>
+                                <p class="rdm-cd">Engineering feasibility probe in progress (memo target 2026-06-23). Clean leg asserts the settlement-loop invariant holds; planted leg reproduces the proof-vs-settlement-scope class. Closes the gap the Aztec writeup publicly named. Builds from the D-5 HyperEVM conservation reference.</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="rdm-cards">
+                            <div class="rdm-card pl">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-pl"></span>
+                                    <span class="rdm-ct">Atlas v0.2 &mdash; second cross-layer case + new bug class</span>
+                                </div>
+                                <p class="rdm-cd">Once C8 ships: add a second cross-layer case (different bridge or ZK-rollup settlement path) and one additional bug class not yet covered. Standard Atlas case template applies throughout.</p>
+                            </div>
+                            <div class="rdm-card pl">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-pl"></span>
+                                    <span class="rdm-ct">arXiv preprint extension</span>
+                                </div>
+                                <p class="rdm-cd">Extend the &ldquo;Lost in Translation?&rdquo; methodology to cover the cross-layer Atlas additions. Positions for broader academic engagement.</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- ===== SECTION DIVIDER: SUPPORTING TRACKS ===== -->
+                <tr class="rdm-divider">
+                    <td colspan="4">Supporting tracks</td>
+                </tr>
+
+                <!-- ===== ROW 4: EVM / HYPEREVM ===== -->
+                <tr>
+                    <td class="rdm-td-lane">
+                        EVM /<br>HyperEVM
+                        <div><span class="rdm-lane-chip">safety harness</span></div>
+                    </td>
+                    <td>
+                        <div class="rdm-cards">
+                            <div class="rdm-card sh">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-sh"></span>
+                                    <span class="rdm-ct">chimera-template-pack</span>
+                                </div>
+                                <p class="rdm-cd">EVM Foundry scaffold for invariant harnesses. Public, CI-confirmed. Reusable base for new EVM harness builds.</p>
+                            </div>
+                            <div class="rdm-card sh">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-sh"></span>
+                                    <span class="rdm-ct">hyperevm-safety v0.1</span>
+                                </div>
+                                <p class="rdm-cd">Foundry harness on HyperEVM. JELLY incident-twin + D-5 CoreWriterSolvencyWindow cross-layer conservation reference (commit 540464e, CI 6/6 green).</p>
+                            </div>
+                            <div class="rdm-card sh">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-sh"></span>
+                                    <span class="rdm-ct">Atlas: C6 EVM access-control, C7 New Market Trading</span>
+                                </div>
+                                <p class="rdm-cd">C6: representative EVM access-control class. C7: New Market Trading (~$3.98M, May 2026). Both: post-mortem cited, twin pair, CI evidence.</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="rdm-cards">
+                            <div class="rdm-card bl">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-bl"></span>
+                                    <span class="rdm-ct">hyperevm-safety D-6: RollupSettlementWindow</span>
+                                </div>
+                                <p class="rdm-cd">Extend the D-5 cross-layer conservation reference into a D-6 RollupSettlementWindow harness that reproduces the Aztec proof-vs-settlement-scope class. This is the engineering path for Atlas C8 (feasibility probe in progress).</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="rdm-cards">
+                            <div class="rdm-card pl">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-pl"></span>
+                                    <span class="rdm-ct">Continue HyperEVM harness expansion</span>
+                                </div>
+                                <p class="rdm-cd">Add new EVM and HyperEVM safety harnesses as the protocol evolves and new incident classes emerge. New Atlas EVM cases as incidents occur.</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- ===== ROW 5: AI-SAFETY REGRESSION CERT ===== -->
+                <tr>
+                    <td class="rdm-td-lane">
+                        AI-safety<br>regression cert
+                        <div><span class="rdm-lane-chip">eval product</span></div>
+                    </td>
+                    <td>
+                        <div class="rdm-cards">
+                            <div class="rdm-card sh">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-sh"></span>
+                                    <span class="rdm-ct">&ldquo;Lost in Translation?&rdquo; paper (2026-06-20)</span>
+                                </div>
+                                <p class="rdm-cd">96-cell eval matrix: 4 Atlas twins, 4 languages, 3 auditor LLMs, Claude judge. Headline result: frontier closed-weight models language-robust (4/4 every cell); open-weight Llama&nbsp;3.3&nbsp;70B drops on code-switched inputs. First published cross-model numbers for multilingual code-surface auditing.</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="rdm-cards">
+                            <div class="rdm-card bl">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-bl"></span>
+                                    <span class="rdm-ct">cf-modeleval evidence gate &mdash; 5 items</span>
+                                </div>
+                                <p class="rdm-cd">Building: 3 safety properties as planted-twin suites; live receipts across 2 or more models; certificate artifact; model-changed-recertify demo; GitHub Action. All five required before design-partner outreach begins. Order is non-negotiable.</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="rdm-cards">
+                            <div class="rdm-card pl">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-pl"></span>
+                                    <span class="rdm-ct">cf-modeleval v1 &mdash; design-partner cohort</span>
+                                </div>
+                                <p class="rdm-cd">Once the evidence gate closes: outreach to a pilot cohort of design partners. Partners run cf-modeleval on real model deployments; receipts compound.</p>
+                            </div>
+                            <div class="rdm-card pl">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-pl"></span>
+                                    <span class="rdm-ct">AISI evaluations bounty engagement</span>
+                                </div>
+                                <p class="rdm-cd">UK AI Security Institute bounty for novel evaluations. cf-modeleval is the evaluation deliverable. Engagement gated on round-open status; watch for next round announcement.</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- ===== ROW 6: SUI / MOVE ===== -->
+                <tr>
+                    <td class="rdm-td-lane">
+                        Sui / Move
+                        <div><span class="rdm-lane-chip">Move VM</span></div>
+                    </td>
+                    <td>
+                        <div class="rdm-cards">
+                            <div class="rdm-card sh">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-sh"></span>
+                                    <span class="rdm-ct">cf-invariants-move (Sui Devnet)</span>
+                                </div>
+                                <p class="rdm-cd">Move invariant harness on Sui Devnet. Public, CI-confirmed. Demonstrates structured Move security work using the same invariant methodology as the rest of the portfolio.</p>
+                            </div>
+                            <div class="rdm-card sh">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-sh"></span>
+                                    <span class="rdm-ct">Atlas: C2 Cetus (Move / ~$223M)</span>
+                                </div>
+                                <p class="rdm-cd">Cetus DEX exploit twin (May 2025). Largest-value Move exploit in the Atlas. Post-mortem cited; CI green. Demonstrates AI-positive, defender-side methodology on Move.</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="rdm-cards">
+                            <div class="rdm-card bl">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-bl"></span>
+                                    <span class="rdm-ct">Extend Move harness to additional Sui program types</span>
+                                </div>
+                                <p class="rdm-cd">Expand cf-invariants-move coverage to new Sui program patterns. Add further Move Atlas cases as new exploit classes emerge in the ecosystem.</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="rdm-cards">
+                            <div class="rdm-card pl">
+                                <div class="rdm-card-hd">
+                                    <span class="rdm-cdot rdm-cdot-pl"></span>
+                                    <span class="rdm-ct">Deepen Sui ecosystem engagement</span>
+                                </div>
+                                <p class="rdm-cd">Structured security work with Sui ecosystem stakeholders as harness coverage and Atlas Move case count grows. Scope depends on ecosystem security needs at that stage.</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        </div><!-- /rdm-table-scroll -->
+
+        <!-- What we are not -->
+        <div class="rdm-not-box">
+            <p class="rdm-not-box-title">What this roadmap does not claim</p>
+            <ul>
+                <li>We do not claim to find live exploits. Our Atlas cases are defender-side benchmark twins, not live exploit discoveries.</li>
+                <li>We do not claim formal verification. Our invariant harnesses are CI-enforced property tests, not proofs.</li>
+                <li>We do not claim coverage we have not shipped. Every &ldquo;Shipped&rdquo; item above has a public repo and CI receipt.</li>
+                <li>Items listed under &ldquo;Proposing next&rdquo; and &ldquo;Pipeline&rdquo; are not done. We will update this page when they ship.</li>
+            </ul>
+        </div>
+
+        <p class="rdm-update-note">
+            Update cadence: this page updates when (a)&nbsp;a public artifact ships
+            or (b)&nbsp;a major Atlas case ships.
+            Status is current as of 2026-06-21.
+        </p>
+
+    </section>
+
+</main>
+
+<!-- ============= FOOTER (dark, mirrors hero) ============================ -->
+<footer class="site-footer">
+    <div class="site-footer-inner">
+        <div>
+            <a href="/" class="brandrow">
+                <img src="/mark.svg" alt="" class="mark-sm" width="28" height="28">
+                <span class="wordmark">CaliperForge</span>
+            </a>
+            <p class="tagline">Precision contributions, every time.</p>
+            <p class="meta">
+                Operator of record: Michael Moffett &middot;
+                <a href="/ai-disclosure">AI policy</a>
+            </p>
+        </div>
+        <nav class="site-footer-links" aria-label="Footer">
+            <a href="/blog/">Blog</a>
+            <a href="https://github.com/caliperforge" rel="me">GitHub</a>
+            <a href="/engagements/">Engagements</a>
+            <a href="/roadmap/">Roadmap</a>
+            <a href="https://x.com/caliperforge" rel="me">X</a>
+            <a href="https://farcaster.xyz/caliperforge" rel="me">Farcaster</a>
+            <a href="https://t.me/caliperforge" rel="me">Telegram</a>
+            <a href="mailto:team@caliperforge.com">Email</a>
+        </nav>
+    </div>
+</footer>
+
+</body>
+</html>

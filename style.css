@@ -855,41 +855,6 @@ main, section, footer, article, aside, nav {
     letter-spacing: 0.01em;
 }
 
-/* Atelier proof figure — inline receipt-level evidence inside .prose sections.
-   Constrained width, subordinate to the .coverage-note gate-record strip.
-   Do not use full bleed; this is supporting evidence, not a hero element.
-   Added: design-review P2, T-site-build-ia-and-design-2026-06-21. */
-.atelier-figure {
-    margin: 2rem 0 1.75rem;
-    max-width: min(40rem, 100%);        /* stays inside prose measure (42rem) */
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-    background: var(--bg-card);
-}
-
-.atelier-figure img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-bottom: 1px solid var(--border);
-}
-
-.atelier-caption {
-    padding: 0.875rem 1.25rem;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    line-height: 1.55;
-    color: var(--ink-soft);
-    letter-spacing: 0.01em;
-}
-
-.atelier-caption-sub {
-    display: block;
-    margin-top: 0.25rem;
-    color: var(--ink-faint);
-}
-
 /* ----- projects (reuses .chains card chrome) -------------------------- */
 
 /* v4: receipts read better wide — 2-up on desktop instead of 3–4 skinny
