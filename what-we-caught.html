@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light">
-    <title>What our gates caught &mdash; CaliperForge</title>
+    <title>What our gates caught | CaliperForge</title>
     <meta name="description" content="The record of what CaliperForge's own review gates caught, and the three things they missed. 17 real defects caught, 0 false positives, 3 documented misses across 49 adjudicated §4a/§4b gate decisions. Our own adjudicated record of our own gates — not an external audit.">
 
-    <meta property="og:title" content="What our gates caught — CaliperForge">
+    <meta property="og:title" content="What our gates caught | CaliperForge">
     <meta property="og:description" content="The record of what CaliperForge's own review gates caught, and the three things they missed. Our own adjudicated record of our own gates — not an external audit.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://caliperforge.com/what-we-caught">
@@ -17,7 +17,7 @@
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@caliperforge">
-    <meta name="twitter:title" content="What our gates caught — CaliperForge">
+    <meta name="twitter:title" content="What our gates caught | CaliperForge">
     <meta name="twitter:description" content="The record of what CaliperForge's own review gates caught, and the three things they missed. Our own adjudicated record of our own gates — not an external audit.">
     <meta name="twitter:image" content="https://caliperforge.com/og.png">
 
@@ -45,6 +45,7 @@
             <div class="nav-links">
                 <a href="/blog/">Blog</a>
                 <a href="/what-we-caught">What we caught</a>
+                <a href="/engagements/">Engagements</a>
                 <a href="/ai-disclosure">AI policy</a>
                 <a href="https://github.com/caliperforge" rel="me">GitHub</a>
                 <a href="mailto:team@caliperforge.com">Contact</a>
@@ -57,11 +58,18 @@
             the three things they missed. This is our own adjudicated
             record of our own gates, not an external audit.
         </p>
+        <!-- policy-date: figures auto-filled by caught-metrics.js; static
+             values are the honest fallback if the fetch fails. -->
         <p class="policy-date">
-            Window: 2026-06-04 &rarr; 2026-06-19 &middot;
-            49 adjudicated &sect;4a / &sect;4b gate decisions &middot;
-            source: ai_ops control-effectiveness adjudication, 2026-06-16,
-            extended 2026-06-19
+            Window:
+            <span class="cf-m" data-cf-key="window_start">2026-06-04</span>
+            &rarr;
+            <span class="cf-m" data-cf-key="window_end">2026-06-21</span>
+            &middot;
+            <span class="cf-m" data-cf-key="adjudicated">46</span>
+            adjudicated &sect;4a / &sect;4b gate decisions &middot;
+            auto-refreshed
+            <span class="cf-m" data-cf-key="last_updated">2026-06-21T15:02:09Z</span>
         </p>
     </div>
 </section>
@@ -94,66 +102,84 @@
     <!-- ============= 02 / HEADLINE METRICS =================== -->
     <section class="section" id="metrics">
         <p class="eyebrow">The numbers</p>
-        <h2>49 adjudicated decisions, in receipts.</h2>
+        <!-- h2 figure filled by caught-metrics.js; static value is honest fallback -->
+        <h2><span class="cf-m" data-cf-key="adjudicated">46</span> adjudicated decisions, in receipts.</h2>
         <p class="section-lede">
             Adjudicated against the documented downstream record &mdash; a
             gate PASS counts as confirmed clean only if no later round
             caught something it should have. The figures below cover the
-            49 &sect;4a / &sect;4b gate decisions in the window. The
+            &sect;4a / &sect;4b gate decisions in the window. The
             <code>needs_ceo</code> HOLD mechanism is a separate, still-being-adjudicated
             track and is not folded into these numbers.
         </p>
         <ul class="chains projects">
             <li>
-                <span class="name">17</span>
+                <span class="name cf-m" data-cf-key="tp">15</span>
                 <span class="meta">Real defects caught</span>
                 <span class="scope">
                     True-positive catches: the gate fired, the artifact had
                     a real defect, the fix landed before publish. 4 in
-                    &sect;4b code-quality, 13 in &sect;4a content-QA.
+                    &sect;4b code-quality, 11 in &sect;4a content-QA.
                 </span>
             </li>
             <li>
-                <span class="name">0</span>
+                <span class="name cf-m" data-cf-key="fp">0</span>
                 <span class="meta">False positives</span>
                 <span class="scope">
                     Zero cases where the gate flagged a non-issue and the
-                    artifact shipped unchanged on review. Of the 17 stops,
+                    artifact shipped unchanged on review. Of the
+                    <span class="cf-m" data-cf-key="tp">15</span> stops,
                     every one was a real defect.
                 </span>
             </li>
             <li>
-                <span class="name">3</span>
+                <span class="name cf-m" data-cf-key="fn">3</span>
                 <span class="meta">Documented misses</span>
                 <span class="scope">
-                    Three gate PASSes were later contradicted by a
-                    downstream catch. All three are published below
-                    with the artifact, the missed defect, and where it
-                    was finally caught.
+                    Gate PASSes later contradicted by a downstream catch.
+                    All three are published below with the artifact,
+                    the missed defect, and where it was finally caught.
                 </span>
             </li>
             <li>
-                <span class="name">85%</span>
+                <span class="name cf-m" data-cf-key="catch_rate_display">83%</span>
                 <span class="meta">Catch rate</span>
                 <span class="scope">
-                    17 true-positive catches against 20 real defects
-                    (17 caught at the gate + 3 caught one step
-                    downstream). Precision 100% on what fired; false-positive
-                    rate 0% across 29 true negatives.
+                    <span class="cf-m" data-cf-key="tp">15</span> true-positive
+                    catches against
+                    <span class="cf-m" data-cf-key="adjudicated_defects">18</span>
+                    real defects
+                    (<span class="cf-m" data-cf-key="tp">15</span> caught at the gate
+                    + <span class="cf-m" data-cf-key="fn">3</span> caught one step
+                    downstream). Precision
+                    <span class="cf-m" data-cf-key="precision_display">100%</span>
+                    on what fired; false-positive rate
+                    <span class="cf-m" data-cf-key="false_positive_rate_display">0%</span>
+                    across <span class="cf-m" data-cf-key="tn">28</span> true negatives.
                 </span>
             </li>
         </ul>
-        <p class="coverage-note">
-            <strong>17</strong> defects caught &middot;
-            <strong>0</strong> false positives &middot;
-            <strong>3</strong> documented misses &middot;
-            <strong>85%</strong> catch rate (17 / 20) &middot;
-            <strong>100%</strong> precision (17 / 17) &middot;
-            <strong>0%</strong> false-positive rate (0 / 29). Across the
-            49 &sect;4a / &sect;4b decisions adjudicated 2026-06-16,
-            extended 2026-06-19. The
-            denominators are the published record &mdash; nothing rounded,
+        <!-- live summary bar — figures filled by caught-metrics.js -->
+        <p class="coverage-note" id="caught-metrics-bar">
+            <strong class="cf-m" data-cf-key="tp">15</strong> defects caught
+            &middot; <strong class="cf-m" data-cf-key="fp">0</strong> false positives
+            &middot; <strong class="cf-m" data-cf-key="fn">3</strong> documented misses
+            &middot; <strong class="cf-m" data-cf-key="catch_rate_display">83%</strong>
+            catch rate &middot;
+            <strong class="cf-m" data-cf-key="precision_display">100%</strong>
+            precision &middot;
+            <strong class="cf-m" data-cf-key="false_positive_rate_display">0%</strong>
+            false-positive rate. Across
+            <strong class="cf-m" data-cf-key="adjudicated">46</strong>
+            &sect;4a / &sect;4b decisions in the window. The
+            denominators are the published record -- nothing rounded,
             nothing aggregated up.
+            <span class="data-stamp">Window:
+                <span class="cf-m" data-cf-key="window_start">2026-06-04</span> &rarr;
+                <span class="cf-m" data-cf-key="window_end">2026-06-21</span>
+                &middot; auto-refreshed
+                <span class="cf-m" data-cf-key="last_updated">2026-06-21T15:02:09Z</span>.
+            </span>
         </p>
     </section>
 
@@ -178,6 +204,33 @@
         </p>
     </section>
 
+    <!-- ============= 03b / RECENT CATCHES, FRAMED ============ -->
+    <!-- receipts-feed rendered by caught-metrics.js from caught_public.json.
+         Static fallback: a single honest-empty card that reads clearly
+         if the fetch fails or data is not yet promoted. -->
+    <section class="section" id="receipts">
+        <p class="eyebrow">Recent catches, framed</p>
+        <h2>The last few stops, in their own words.</h2>
+        <p class="section-lede">
+            Each row is one gate stop -- what was caught, which gate, when.
+            Curated; not a raw verdict dump. A new entry appears only after
+            passing its own §4a review.
+        </p>
+        <ul class="chains projects" id="receipts-feed">
+            <!-- honest-empty fallback: replaced by JS when data loads -->
+            <li>
+                <span class="name">Live receipts loading</span>
+                <span class="meta">auto-refreshed</span>
+                <span class="scope">
+                    Gate receipts are published after passing §4a curation
+                    review. If this message persists, check that
+                    <code>site/data/caught_public.json</code> is deployed
+                    and the server is reachable.
+                </span>
+            </li>
+        </ul>
+    </section>
+
     <!-- ============= 04 / THE THREE MISSES =================== -->
     <section class="section" id="misses">
         <p class="eyebrow">The honest column</p>
@@ -190,7 +243,10 @@
             same-day or next-day in every case &mdash; not hidden, not
             softened.
         </p>
-        <ul class="chains projects">
+        <!-- misses-feed: rendered by caught-metrics.js from caught_public.json misses[].
+             Existing FN-1/2/3 items below are the static fallback; JS replaces them
+             with the same content from the JSON (plus any new entries) when data loads. -->
+        <ul class="chains projects" id="misses-feed">
             <li>
                 <span class="name">FN-1 &mdash; Governance-pack email policy</span>
                 <span class="badges">
@@ -334,6 +390,24 @@
             publishable summary link gets added when Director picks the
             public surface.
         </p>
+        <p>
+            Methodology behind the gate record:
+            <a href="/blog/">writeups on caliperforge.com/blog</a>
+            and
+            <a href="https://medium.com/@caliperforge" rel="noopener">medium.com/@caliperforge</a>.
+        </p>
+    </section>
+
+    <!-- ============= §4a / WHERE THIS DISCIPLINE LANDS ======= -->
+    <section class="section prose" id="services-cta">
+        <p class="eyebrow">Where this discipline lands</p>
+        <h2>The gate record applied to your work.</h2>
+        <p>
+            This is the gate record. The same discipline applied to your
+            contracts, your CI, your audit-readiness:
+            <a href="mailto:team@caliperforge.com"
+               data-pending-services="true">team@caliperforge.com</a>.
+        </p>
     </section>
 
 </main>
@@ -354,12 +428,110 @@
         </div>
         <nav class="site-footer-links" aria-label="Footer">
             <a href="/blog/">Blog</a>
-            <a href="/ai-disclosure">AI policy</a>
             <a href="https://github.com/caliperforge" rel="me">GitHub</a>
+            <a href="/engagements/">Engagements</a>
+            <a href="/ai-disclosure">AI policy</a>
             <a href="mailto:team@caliperforge.com">Email</a>
         </nav>
     </div>
 </footer>
 
+<!-- caught-metrics.js: fetch live gate stats from caught_public.json.
+     Fills [data-cf-key] spans, renders receipts + misses feeds.
+     Swallows all errors silently -- static fallback stays visible. -->
+<script>
+(function () {
+  var FEED = '/data/caught_public.json';
+  var RETRY_MS = 90000;
+
+  /* ---- fill simple data-cf-key spans ---- */
+  function fillSpans(data) {
+    var m = data.metrics || {};
+    var map = {
+      tp: m.tp,
+      fp: m.fp,
+      fn: m.fn,
+      tn: m.tn,
+      adjudicated: m.adjudicated,
+      adjudicated_defects: (m.tp || 0) + (m.fn || 0),
+      catch_rate_display: m.catch_rate_display,
+      precision_display: m.precision_display,
+      false_positive_rate_display: m.false_positive_rate_display,
+      window_start: data.window_start,
+      window_end: data.window_end,
+      last_updated: data.last_updated
+    };
+    document.querySelectorAll('[data-cf-key]').forEach(function (el) {
+      var v = map[el.getAttribute('data-cf-key')];
+      if (v !== undefined && v !== null) el.textContent = v;
+    });
+  }
+
+  /* ---- render receipts feed ---- */
+  function renderReceipts(receipts) {
+    var ul = document.getElementById('receipts-feed');
+    if (!ul || !receipts || !receipts.length) return;
+    ul.innerHTML = receipts.slice(0, 5).map(function (r) {
+      return '<li>' +
+        '<span class="name">' + esc(r.headline) + '</span>' +
+        '<span class="badges">' +
+          '<span class="badge">' + esc(r.gate) + ' stop</span>' +
+          '<span class="badge">caught ' + esc(r.verdict_iso) + '</span>' +
+          (r.fix_ref ? '<span class="badge">fix: ' + esc(r.fix_ref) + '</span>' : '') +
+        '</span>' +
+        '<span class="scope">' + (r.frame || '') + '</span>' +
+        (r.writeup_url
+          ? '<span class="project-links"><a href="' + esc(r.writeup_url) + '" rel="noopener">Writeup</a></span>'
+          : '') +
+      '</li>';
+    }).join('');
+  }
+
+  /* ---- render misses feed ---- */
+  function renderMisses(misses) {
+    var ul = document.getElementById('misses-feed');
+    if (!ul || !misses || !misses.length) return;
+    ul.innerHTML = misses.map(function (m) {
+      return '<li>' +
+        '<span class="name">' + esc(m.headline) + '</span>' +
+        '<span class="badges">' +
+          '<span class="badge">' + esc(m.gate_missed) + ' miss</span>' +
+          '<span class="badge">PASS ' + esc(m.gate_pass_iso) + '</span>' +
+          '<span class="badge badge-ci">Caught ' + esc(m.caught_iso) + '</span>' +
+        '</span>' +
+        '<span class="scope">' + (m.frame || '') + '</span>' +
+        '<span class="project-links">Caught downstream by ' +
+          esc(m.caught_by) + ' (TP). Fix: ' + esc(m.fix_ref) + '.' +
+        '</span>' +
+      '</li>';
+    }).join('');
+  }
+
+  /* minimal HTML escaping for attribute values / text */
+  function esc(s) {
+    return String(s || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function go() {
+    fetch(FEED, { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(function (data) {
+        fillSpans(data);
+        renderReceipts(data.receipts);
+        renderMisses(data.misses);
+      })
+      .catch(function () { /* silent: static fallback remains */ });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    go();
+    setInterval(go, RETRY_MS);
+  });
+}());
+</script>
 </body>
 </html>

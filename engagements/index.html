@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Engagements | CaliperForge</title>
+    <meta name="description" content="CaliperForge takes on bounded, CI-verified engagements in security and invariants. Invariant test suites, exploit-to-invariant references, CI harnesses, new-VM invariant authoring, and AI-safety eval harnesses. One accountable operator. Contact for scoping.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Engagements | CaliperForge">
+    <meta property="og:description" content="CaliperForge takes on bounded, CI-verified engagements in security and invariants. Invariant test suites, exploit-to-invariant references, CI harnesses, new-VM invariant authoring, and AI-safety eval harnesses. One accountable operator. Contact for scoping.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://caliperforge.com/engagements/">
+    <meta property="og:image" content="https://caliperforge.com/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@caliperforge">
+    <meta name="twitter:title" content="Engagements | CaliperForge">
+    <meta name="twitter:description" content="CaliperForge takes on bounded, CI-verified engagements in security and invariants. Invariant test suites, exploit-to-invariant references, CI harnesses, new-VM invariant authoring, and AI-safety eval harnesses. One accountable operator. Contact for scoping.">
+    <meta name="twitter:image" content="https://caliperforge.com/og.png">
+
+    <meta name="theme-color" content="#0a0e1a">
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+
+    <link rel="stylesheet" href="/style.css">
+    <link rel="canonical" href="https://caliperforge.com/engagements/">
+</head>
+<body>
+
+<!-- ============= SUBHERO (dark, compact) ============================== -->
+<section class="subhero">
+    <div class="subhero-inner">
+        <nav class="subhero-nav" aria-label="Primary">
+            <a href="/" class="brandrow">
+                <img src="/mark.svg" alt="" class="mark-sm" width="28" height="28">
+                <span class="wordmark">CaliperForge</span>
+            </a>
+            <div class="nav-links">
+                <a href="/blog/">Blog</a>
+                <a href="/what-we-caught">What we caught</a>
+                <a href="/engagements/">Engagements</a>
+                <a href="/ai-disclosure">AI policy</a>
+                <a href="https://github.com/caliperforge" rel="me">GitHub</a>
+                <a href="mailto:team@caliperforge.com">Contact</a>
+            </div>
+        </nav>
+        <p class="kicker">CaliperForge / Engagements</p>
+        <h1>What we build for you.</h1>
+        <p class="lede">
+            One accountable operator, a specialized, self-verifying AI org.
+            We take on bounded, CI-verified engagements in security and
+            invariants. Every engagement ships with the same discipline as
+            the open-source work: a clean reference where the property holds,
+            a planted-bug twin where it fires, CI assertions on every push,
+            AI-augmentation disclosed, and every deliverable reproduced in a
+            cold environment before handoff.
+        </p>
+        <p class="policy-date">
+            Operator of record: Michael Moffett &middot;
+            <a href="/ai-disclosure">AI policy</a>
+        </p>
+    </div>
+</section>
+
+<!-- ============= LIGHT BODY ============================================ -->
+<main class="page">
+
+    <!-- ============= 01 / SECURITY AND INVARIANTS ===================== -->
+    <section class="section" id="security">
+        <p class="eyebrow">What we build</p>
+        <h2>Security and invariants</h2>
+        <p class="section-lede">
+            Each item links to the open-source proof artifact that backs the claim.
+        </p>
+        <ul class="chains projects">
+
+            <li id="invariant-suites">
+                <span class="name">Invariant test suites for your protocol</span>
+                <span class="badges">
+                    <span class="badge">stateful &middot; CI-runnable</span>
+                    <span class="badge badge-ci">clean + planted twin per class</span>
+                </span>
+                <span class="scope">
+                    We express the safety rules your protocol should enforce as
+                    machine-checkable invariants, build a clean reference contract
+                    where each property holds, and a planted-bug twin where it fires.
+                    Both legs run in CI on every push. The suite covers access-control,
+                    conservation, governance-state, and AMM reserve classes out of the
+                    existing reference library; new classes authored for your
+                    protocol's specific invariants. You get the harness, the twin
+                    pair per class, and a proof register: what each invariant asserts,
+                    what the planted twin violated, and what the CI run confirmed.
+                </span>
+                <span class="project-links">
+                    Proof:
+                    <a href="https://github.com/caliperforge/cf-invariants" rel="noopener">cf-invariants</a>
+                    (Cairo/Starknet, 12-class matrix, Voyager-verified)
+                    <span class="sep" aria-hidden="true">&middot;</span>
+                    <a href="https://github.com/caliperforge/cf-invariants-anchor" rel="noopener">cf-invariants-anchor</a>
+                    <span class="sep" aria-hidden="true">&middot;</span>
+                    <a href="https://github.com/caliperforge/cf-invariants-jito" rel="noopener">cf-invariants-jito</a>
+                    <span class="sep" aria-hidden="true">&middot;</span>
+                    <a href="https://github.com/caliperforge/cf-invariants-pyth" rel="noopener">cf-invariants-pyth</a>
+                    (Solana/Anchor real-protocol harnesses, all CI green)
+                </span>
+            </li>
+
+            <li id="exploit-to-invariant">
+                <span class="name">Exploit-to-invariant references and post-incident analysis</span>
+                <span class="badges">
+                    <span class="badge">EVM &middot; Cairo &middot; Move &middot; Solana</span>
+                    <span class="badge">post-incident</span>
+                    <span class="badge badge-ci">CI-asserted</span>
+                </span>
+                <span class="scope">
+                    We take a published exploit and express the broken rule as a
+                    machine-checkable property. You get a runnable reference where
+                    the invariant holds on the pre-exploit code structure and a
+                    planted-bug twin that replicates the break class: the exact
+                    CI discipline that would have caught it pre-deploy. For
+                    post-incident work: we document the exploit class, derive the
+                    invariant, and deliver a CI-verified reference your team can run
+                    and extend. A machine-checkable expression of the rule the protocol broke,
+                    CI-runnable and forkable.
+                </span>
+                <span class="project-links">
+                    Proof:
+                    <a href="https://github.com/caliperforge/invariant-atlas" rel="noopener">Exploit&rarr;Invariant Atlas</a>
+                    (seven real hacks across Cairo, Move, Solana, EVM; clean and planted twin per case, CI-asserted)
+                    <span class="sep" aria-hidden="true">&middot;</span>
+                    <a href="https://github.com/caliperforge/cf-invariants-verus-bridge-conservation" rel="noopener">cf-invariants-verus-bridge-conservation</a>
+                    (Verus bridge conservation invariant derived from the 2026-05-18 exploit)
+                </span>
+            </li>
+
+            <li id="ci-harnesses">
+                <span class="name">CI security harnesses wired into your pipeline</span>
+                <span class="badges">
+                    <span class="badge">Foundry &middot; Echidna &middot; Medusa</span>
+                    <span class="badge">Crucible &middot; snforge</span>
+                    <span class="badge badge-ci">CI scorecards on every push</span>
+                </span>
+                <span class="scope">
+                    We build and wire a stateful-fuzz harness for your existing
+                    contracts into your CI pipeline. Foundry, Echidna, Medusa on
+                    EVM; Crucible on Solana/Anchor; snforge on Cairo/Starknet.
+                    You get a scored scorecard committed on every push, invariant
+                    classes seeded for your protocol's surface, and a planted-bug
+                    twin per class that confirms the harness catches the class
+                    before the clean code ships. Not a runtime monitor; a
+                    pre-deploy CI discipline.
+                </span>
+                <span class="project-links">
+                    Proof:
+                    <a href="https://github.com/caliperforge/chimera-template-pack" rel="noopener">chimera-template-pack</a>
+                    (Foundry + Recon Chimera scaffold, pre-wired Echidna/Medusa, CI scorecards on every push)
+                    <span class="sep" aria-hidden="true">&middot;</span>
+                    <a href="https://github.com/caliperforge/hyperevm-safety" rel="noopener">hyperevm-safety</a>
+                    (six HyperCore-boundary invariants, CI-runnable property tests for HyperEVM lending protocols)
+                </span>
+            </li>
+
+            <li id="new-vm">
+                <span class="name">New-VM and new-protocol invariant authoring, fast</span>
+                <span class="badges">
+                    <span class="badge">Cairo &middot; Solana &middot; EVM &middot; HyperEVM</span>
+                    <span class="badge">specialization-velocity</span>
+                </span>
+                <span class="scope">
+                    A new chain, a new VM, a specialized harness, CI-verified: in
+                    days rather than months. We onboard to a new VM by studying
+                    the execution model, selecting the right fuzzer, authoring
+                    the invariant layer on top of it, and shipping a CI-green
+                    first harness. The existing suite covers Cairo/Starknet,
+                    Solana/Anchor, EVM/Foundry, and HyperEVM; each chain was added
+                    with a CI-verified harness in the same fast pattern. Contact
+                    to discuss coverage for your chain.
+                </span>
+                <span class="project-links">
+                    Proof: the public project family spans Cairo (snforge), Solana/Anchor
+                    (Crucible), and HyperEVM (Foundry/Chimera). The Solana suite was
+                    authored from the Cairo baseline in one working session.
+                    <span class="sep" aria-hidden="true">&middot;</span>
+                    <a href="https://github.com/caliperforge" rel="noopener">github.com/caliperforge</a>
+                </span>
+            </li>
+
+        </ul>
+    </section>
+
+    <!-- ============= 02 / AI-SAFETY EVALS ============================= -->
+    <section class="section prose" id="evals">
+        <p class="eyebrow">AI-safety evals</p>
+        <h2>Evaluation harnesses for AI systems</h2>
+        <p>
+            We build evaluation harnesses for AI systems using the same
+            planted-twin discipline as the smart-contract work. A
+            language-conditioned detection-rate eval, a regression harness,
+            or a ground-truth benchmark built from planted-bug twins.
+            The eval harness measures where an AI system's accuracy degrades
+            and surfaces the failure mode in a reproducible, CI-runnable form.
+        </p>
+        <p>
+            Scope: eval harness design and build; planted-bug ground truth
+            generation; detection-rate measurement across language, model, or
+            domain conditions. We deliver a harness and a proof register,
+            same format as the contract work. Not a standalone AI audit service.
+        </p>
+        <p class="coverage-note">
+            Proof:
+            <a href="https://github.com/caliperforge/apart-global-south-lost-in-translation" rel="noopener">apart-global-south-lost-in-translation</a>:
+            language-conditioned detection-rate eval, EN / ES / PT / CS,
+            Atlas planted-bug twins as ground truth. Apart Global South track
+            submission. Research artifact and eval harness.
+        </p>
+    </section>
+
+    <!-- ============= 03 / HOW WE ENGAGE =============================== -->
+    <section class="section" id="how-we-engage">
+        <p class="eyebrow">How we engage</p>
+        <h2>Bounded scope. Fixed deliverable. CI-verified.</h2>
+        <p class="section-lede">
+            Every engagement is scoped up front with a fixed deliverable
+            agreed before build starts. We do not take open-ended retainers.
+            The deliverable is a CI-verified artifact with a written proof
+            register.
+        </p>
+        <ul class="contact">
+            <li>
+                <span class="label">Scope</span>
+                <span class="value">Bounded. Invariant classes, CI target, and deliverable scope agreed before build starts.</span>
+            </li>
+            <li>
+                <span class="label">Deliverable</span>
+                <span class="value">CI-green harness, clean and planted-twin pair, proof register. Reproduced in a cold environment before handoff.</span>
+            </li>
+            <li>
+                <span class="label">Principal</span>
+                <span class="value">Michael Moffett, operator of record, KYC-able, named on every artifact.</span>
+            </li>
+            <li>
+                <span class="label">AI-augmentation</span>
+                <span class="value">Disclosed on every artifact. Full policy at <a href="/ai-disclosure">caliperforge.com/ai-disclosure</a>.</span>
+            </li>
+            <li>
+                <span class="label">White-label</span>
+                <span class="value">Available for security tooling and invariant work. Michael Moffett named principal on the artifact; client is the client-facing principal.</span>
+            </li>
+        </ul>
+        <p class="coverage-note">
+            Not a substitute for a formal audit. The invariant harness is one
+            layer in a defense-in-depth pre-deploy pipeline. Where a client
+            needs a formal audit, we name that line and refer.
+        </p>
+    </section>
+
+    <!-- ============= 04 / CONTACT ==================================== -->
+    <section class="section" id="contact">
+        <p class="eyebrow">Contact</p>
+        <h2>Reach out to scope.</h2>
+        <p class="section-lede">
+            All engagements are scoped per project. Contact to discuss which
+            deliverable fits your pipeline or to start scoping.
+        </p>
+        <ul class="contact">
+            <li>
+                <span class="label">Direct</span>
+                <span class="value"><a href="mailto:michael@caliperforge.com">michael@caliperforge.com</a></span>
+            </li>
+            <li>
+                <span class="label">Team</span>
+                <span class="value"><a href="mailto:team@caliperforge.com">team@caliperforge.com</a></span>
+            </li>
+            <li>
+                <span class="label">GitHub</span>
+                <span class="value"><a href="https://github.com/caliperforge" rel="me">github.com/caliperforge</a></span>
+            </li>
+        </ul>
+    </section>
+
+</main>
+
+<!-- ============= FOOTER (dark, mirrors hero) ============================ -->
+<footer class="site-footer">
+    <div class="site-footer-inner">
+        <div>
+            <a href="/" class="brandrow">
+                <img src="/mark.svg" alt="" class="mark-sm" width="28" height="28">
+                <span class="wordmark">CaliperForge</span>
+            </a>
+            <p class="tagline">Precision contributions, every time.</p>
+            <p class="meta">
+                Operator of record: Michael Moffett &middot;
+                <a href="/ai-disclosure">AI policy</a>
+            </p>
+        </div>
+        <nav class="site-footer-links" aria-label="Footer">
+            <a href="/blog/">Blog</a>
+            <a href="https://github.com/caliperforge" rel="me">GitHub</a>
+            <a href="/engagements/">Engagements</a>
+            <a href="https://x.com/caliperforge" rel="me">X</a>
+            <a href="https://farcaster.xyz/caliperforge" rel="me">Farcaster</a>
+            <a href="https://t.me/caliperforge" rel="me">Telegram</a>
+            <a href="mailto:team@caliperforge.com">Email</a>
+        </nav>
+    </div>
+</footer>
+
+</body>
+</html>

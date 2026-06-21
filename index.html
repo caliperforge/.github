@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light">
     <meta name="google-site-verification" content="0cbuQsuWiuuYX1GUbAcRBpIl7_f2iMybllf4jNPw4cI" />
-    <title>CaliperForge — AI research studio · verifiable, auditable, correctable</title>
+    <title>CaliperForge | AI research studio · verifiable, auditable, correctable</title>
     <meta name="description" content="CaliperForge is an AI research studio specializing in security and invariants. We build autonomous systems you can verify, audit, and correct — stateful invariant testing, planted-twin CI, and a published record of what our gates catch. Human-operated, accountable on every commit.">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="CaliperForge — AI research studio · verifiable, auditable, correctable">
+    <meta property="og:title" content="CaliperForge | AI research studio · verifiable, auditable, correctable">
     <meta property="og:description" content="AI research studio specializing in security and invariants. Stateful invariant testing, planted-twin CI, a published record of what our gates catch. Verifiable, auditable, correctable. Human-operated.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://caliperforge.com">
@@ -20,7 +20,7 @@
     <!-- Twitter / X card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@caliperforge">
-    <meta name="twitter:title" content="CaliperForge — AI research studio · verifiable, auditable, correctable">
+    <meta name="twitter:title" content="CaliperForge | AI research studio · verifiable, auditable, correctable">
     <meta name="twitter:description" content="AI research studio specializing in security and invariants. Stateful invariant testing, planted-twin CI, a published record of what our gates catch. Verifiable, auditable, correctable. Human-operated.">
     <meta name="twitter:image" content="https://caliperforge.com/og.png">
 
@@ -86,6 +86,7 @@
         <div class="nav-links">
             <a href="/blog/">Blog</a>
             <a href="/what-we-caught">What we caught</a>
+            <a href="/engagements/">Engagements</a>
             <a href="/ai-disclosure">AI policy</a>
             <a href="https://github.com/caliperforge" rel="me">GitHub</a>
             <a href="mailto:team@caliperforge.com">Contact</a>
@@ -141,21 +142,36 @@
         <p>
             CaliperForge researches autonomous systems you can verify,
             audit, and correct &mdash; specializing in security and
-            invariants. Every shipped harness carries a clean reference
-            where the invariant holds, a planted-bug twin where it fires,
-            and a CI-asserted record of what our own gates caught. The
-            receipts below are the proof, not a claim.
+            invariants. The receipts below are the proof, not a claim.
         </p>
-        <p class="coverage-note">
-            <strong>12</strong> reference contracts deployed and
-            Voyager-verified on-chain (Starknet Sepolia)
-            &middot; CI-verified harnesses across Cairo, Solana, EVM,
-            and HyperEVM
-            &middot; <strong>~30</strong> invariant classes with
-            clean / planted twins &mdash; all firing in CI today except
-            <strong>2</strong> HyperEVM twins (szDecimals D-3, Chainlink
-            D-6) on the M2 roadmap
-            &middot; <strong>1</strong> operator of record.
+        <!-- live gate-record strip — figures filled by caught-metrics.js;
+             baked-in values are the honest fallback if the fetch fails. -->
+        <p class="coverage-note" id="home-metrics-strip">
+            <strong class="cf-m" data-cf-key="tp">15</strong> defects caught at the gate
+            &middot; <strong class="cf-m" data-cf-key="fp">0</strong> false positives
+            &middot; <strong class="cf-m" data-cf-key="fn">3</strong>
+            <a href="/what-we-caught#misses">documented misses</a>.
+            <strong class="cf-m" data-cf-key="catch_rate_display">83%</strong> catch rate
+            across <strong class="cf-m" data-cf-key="adjudicated">46</strong>
+            adjudicated &sect;4a / &sect;4b gate decisions.
+            <span class="data-stamp">Window:
+                <span class="cf-m" data-cf-key="window_start">2026-06-04</span> &rarr;
+                <span class="cf-m" data-cf-key="window_end">2026-06-21</span>
+                &middot; auto-refreshed
+                <span class="cf-m" data-cf-key="last_updated">2026-06-21T15:02:09Z</span>.
+            </span>
+        </p>
+    </section>
+
+    <section class="section prose" id="method">
+        <p class="eyebrow">The method</p>
+        <h2>Clean reference. Planted-bug twin. CI on every push.</h2>
+        <p>
+            We express a protocol's safety rule as a machine-checkable
+            invariant, ship a clean reference where it holds and a
+            planted-bug twin where it fires, and assert both in CI on
+            every push. The invariant fires on the planted twin and
+            stays silent on the clean. Receipts, not claims.
         </p>
     </section>
 
@@ -660,7 +676,7 @@
     </section>
 
     <section class="section prose" id="how">
-        <p class="eyebrow">How it works</p>
+        <p class="eyebrow">How we are organized</p>
         <h2>Specialized agents, scoped and cross-checked.</h2>
         <p>
             The organization is a team of specialized AI agents &mdash; an
@@ -679,6 +695,19 @@
             (on Asymmetric Research's Crucible) was roughly one working
             session.
         </p>
+        <figure class="atelier-figure">
+            <img
+                src="/assets/atelier-cockpit.png"
+                alt="Atelier session showing the CaliperForge operating model: Director, specialist agents, Content QA, and AI Ops visible in the conversation tree. Each participant labeled by role; scope documents in view."
+                width="800"
+                height="500"
+                loading="lazy"
+            >
+            <figcaption class="atelier-caption">
+                The operating model made visible: one operator, a cross-checked AI org, every agent and gate in view.
+                <span class="atelier-caption-sub">Source: Atelier session, CaliperForge. The org that produces every public artifact.</span>
+            </figcaption>
+        </figure>
         <p>
             The tooling layer below the org-shape is an invariant-authoring
             layer on top of the engines doing the fuzzing &mdash; snforge
@@ -781,6 +810,7 @@
         <nav class="site-footer-links" aria-label="Footer">
             <a href="/blog/">Blog</a>
             <a href="https://github.com/caliperforge" rel="me">GitHub</a>
+            <a href="/engagements/">Engagements</a>
             <a href="https://x.com/caliperforge" rel="me">X</a>
             <a href="https://farcaster.xyz/caliperforge" rel="me">Farcaster</a>
             <a href="https://t.me/caliperforge" rel="me">Telegram</a>
@@ -789,5 +819,42 @@
     </div>
 </footer>
 
+<!-- caught-metrics.js: fetch live gate stats; fill data-cf-key spans; silent-fail -->
+<script>
+(function () {
+  var FEED = '/data/caught_public.json';
+  var RETRY_MS = 90000;
+
+  function fill(data) {
+    var m = data.metrics || {};
+    var map = {
+      tp: m.tp,
+      fp: m.fp,
+      fn: m.fn,
+      adjudicated: m.adjudicated,
+      catch_rate_display: m.catch_rate_display,
+      window_start: data.window_start,
+      window_end: data.window_end,
+      last_updated: data.last_updated
+    };
+    document.querySelectorAll('[data-cf-key]').forEach(function (el) {
+      var v = map[el.getAttribute('data-cf-key')];
+      if (v !== undefined && v !== null) el.textContent = v;
+    });
+  }
+
+  function go() {
+    fetch(FEED, { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(fill)
+      .catch(function () { /* silent: baked-in fallback stays */ });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    go();
+    setInterval(go, RETRY_MS);
+  });
+}());
+</script>
 </body>
 </html>
