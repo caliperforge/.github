@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title>What we caught — CaliperForge</title>
+  <meta name="description" content="The record of what CaliperForge's own review gates caught, and the three things they missed. Our own adjudicated record of our own gates — not an external audit.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../preview.css">
+</head>
+<body class="cockpit-page">
+
+<div class="preview-banner">
+  PREVIEW · caliperforge.com/preview/what-we-caught/ · cockpit redesign v4 · 2026-06-21
+</div>
+
+<nav class="site-nav">
+  <a href="../" class="brand-row">
+    <svg class="brand-mark" viewBox="0 0 26 26" fill="none">
+      <rect width="26" height="26" rx="6" fill="#1d3557"/>
+      <rect x="5" y="12" width="16" height="1.5" rx="0.75" fill="#cadcfc"/>
+      <rect x="5" y="8" width="3" height="8" rx="1" fill="#cadcfc"/>
+      <rect x="18" y="8" width="3" height="8" rx="1" fill="#cadcfc"/>
+      <rect x="11.5" y="15" width="3" height="5" rx="0.75" fill="#f96167"/>
+    </svg>
+    <span>CaliperForge</span>
+  </a>
+  <div class="nav-links">
+    <a href="../" class="nav-link">Home</a>
+    <a href="../studio/" class="nav-link featured">Studio</a>
+    <a href="./" class="nav-link featured active">What we caught</a>
+    <a href="../roadmap/" class="nav-link">Roadmap</a>
+    <div class="nav-divider"></div>
+    <a href="/engagements/" class="nav-link dim">Engagements</a>
+    <a href="/ai-disclosure" class="nav-link dim">AI policy</a>
+    <a href="https://github.com/caliperforge" class="nav-link">GitHub</a>
+    <a href="mailto:team@caliperforge.com" class="nav-cta">Contact</a>
+  </div>
+</nav>
+
+<!-- Cockpit header: headline + stats -->
+<header class="cockpit-header">
+  <div class="cockpit-header-inner">
+    <div class="cockpit-label">
+      <div class="live-dot"></div>
+      Self-correction record · §4a / §4b gate decisions · auto-refreshed
+    </div>
+    <div class="cockpit-rate-display">
+      <span class="cf-m" data-cf-key="catch_rate_display">83%</span>
+    </div>
+    <div class="cockpit-rate-sub">
+      Overall catch rate ·
+      <span class="cf-m" data-cf-key="tp">15</span> true positives ·
+      <span class="cf-m" data-cf-key="fn">3</span> documented misses ·
+      <span class="cf-m" data-cf-key="adjudicated">46</span> adjudicated decisions
+    </div>
+    <div class="cockpit-stamp">
+      Window: <span class="cf-m" data-cf-key="window_start">2026-06-04</span> →
+      <span class="cf-m" data-cf-key="window_end">2026-06-21</span> ·
+      refreshed: <span class="cf-m" data-cf-key="last_updated">2026-06-21T15:02:09Z</span><br>
+      Source: <code>/data/caught_public.json</code> · our own adjudicated record · not an external audit
+    </div>
+
+    <!-- Stat card row -->
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-card-tag">Catch rate</div>
+        <div class="stat-card-num"><span class="cf-m" data-cf-key="catch_rate_display">83%</span></div>
+        <div class="stat-card-desc">
+          <span class="cf-m" data-cf-key="tp">15</span> of 18 real defects caught at the gate
+        </div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-card-tag">True positives</div>
+        <div class="stat-card-num"><span class="cf-m" data-cf-key="tp">15</span></div>
+        <div class="stat-card-desc">
+          Gate fired · defect confirmed · fix landed before publish
+        </div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-card-tag">False negatives</div>
+        <div class="stat-card-num"><span class="cf-m" data-cf-key="fn">3</span></div>
+        <div class="stat-card-desc">
+          Gate passed · defect caught downstream · published below
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-tag">Precision / stop rate</div>
+        <div class="stat-card-num"><span class="cf-m" data-cf-key="precision_display">100%</span></div>
+        <div class="stat-card-desc">
+          When the gate fires, it is right · <span class="cf-m" data-cf-key="fp">0</span> false positives
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="cockpit-body">
+
+  <!-- Cockpit screenshot reference — the Atelier Caught view -->
+  <section class="cockpit-section" id="cockpit-reference">
+    <div class="cockpit-section-label">The Atelier cockpit — Caught view</div>
+    <p style="font-family:var(--mono);font-size:0.78rem;color:var(--t-1);margin-bottom:1.25rem;max-width:72ch;line-height:1.65;">
+      This page mirrors the Atelier's Caught view in real time. The screenshot below
+      is the actual cockpit dashboard — the data shown here is pulled from the same
+      source via <code>/data/caught_public.json</code>.
+    </p>
+    <img src="../assets/caught.png"
+         alt="Atelier Caught view: Gate-effectiveness dashboard showing 90% catch rate, 27 true positives, 3 false negatives, 6% stop rate; BY GATE bars showing CEO Hold 100%, §4a Content QA 92%, §4b Code Quality 67%; BY AGENT rows; adjudicated record showing 16 defects and 84% catch rate."
+         class="cockpit-shot">
+    <div class="cockpit-shot-caption">
+      Atelier cockpit · Caught view · gate-effectiveness dashboard ·
+      this page mirrors that data, live via <code>/data/caught_public.json</code>
+    </div>
+  </section>
+
+  <!-- BY GATE: bar charts -->
+  <section class="cockpit-section">
+    <div class="cockpit-section-label">Performance by gate</div>
+
+    <div class="gate-bars">
+
+      <!-- §4a Content QA -->
+      <div class="gate-bar-row">
+        <div class="gate-bar-info">
+          <span class="gate-bar-name">§4a Content QA</span>
+          <span class="gate-bar-rate" id="bar-rate-4a">91.7%</span>
+          <span class="gate-bar-n">catch rate · n=<span id="bar-n-4a">31</span> decisions</span>
+        </div>
+        <div class="gate-bar-track">
+          <div class="gate-bar-fill" id="bar-fill-4a" style="width:91.7%;"></div>
+        </div>
+        <div class="gate-bar-breakdown">
+          <span class="gate-chip tp">TP <span class="cf-m" data-cf-key="gate_4a_tp">11</span></span>
+          <span class="gate-chip fn">FN <span class="cf-m" data-cf-key="gate_4a_fn">1</span></span>
+          <span class="gate-chip tn">TN <span class="cf-m" data-cf-key="gate_4a_tn">19</span></span>
+          <span class="gate-chip fp">FP <span class="cf-m" data-cf-key="gate_4a_fp">0</span></span>
+        </div>
+      </div>
+
+      <!-- §4b Code Quality -->
+      <div class="gate-bar-row">
+        <div class="gate-bar-info">
+          <span class="gate-bar-name">§4b Code Quality</span>
+          <span class="gate-bar-rate amber" id="bar-rate-4b">66.7%</span>
+          <span class="gate-bar-n">catch rate · n=<span id="bar-n-4b">15</span> decisions</span>
+        </div>
+        <div class="gate-bar-track">
+          <div class="gate-bar-fill amber" id="bar-fill-4b" style="width:66.7%;"></div>
+        </div>
+        <div class="gate-bar-breakdown">
+          <span class="gate-chip tp">TP <span class="cf-m" data-cf-key="gate_4b_tp">4</span></span>
+          <span class="gate-chip fn">FN <span class="cf-m" data-cf-key="gate_4b_fn">2</span></span>
+          <span class="gate-chip tn">TN <span class="cf-m" data-cf-key="gate_4b_tn">9</span></span>
+          <span class="gate-chip fp">FP <span class="cf-m" data-cf-key="gate_4b_fp">0</span></span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BY GATE: table summary -->
+  <section class="cockpit-section">
+    <div class="cockpit-section-label">Gate summary table</div>
+    <table class="agent-table">
+      <thead>
+        <tr>
+          <th>Gate</th>
+          <th>Catch rate</th>
+          <th>TP (stops)</th>
+          <th>FN (misses)</th>
+          <th>TN (clean pass)</th>
+          <th>FP</th>
+          <th>Total decisions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name">§4a Content QA</td>
+          <td class="rate-green">
+            <div class="agent-pct-bar">
+              <div class="agent-pct-track">
+                <div class="agent-pct-fill" style="width:91.7%;"></div>
+              </div>
+              <span id="tbl-rate-4a">91.7%</span>
+            </div>
+          </td>
+          <td class="num" style="color:var(--green);"><span class="cf-m" data-cf-key="gate_4a_tp">11</span></td>
+          <td class="num" style="color:var(--amber);"><span class="cf-m" data-cf-key="gate_4a_fn">1</span></td>
+          <td class="num"><span class="cf-m" data-cf-key="gate_4a_tn">19</span></td>
+          <td class="num"><span class="cf-m" data-cf-key="gate_4a_fp">0</span></td>
+          <td class="num"><span id="tbl-n-4a">31</span></td>
+        </tr>
+        <tr>
+          <td class="name">§4b Code Quality</td>
+          <td class="rate-amber">
+            <div class="agent-pct-bar">
+              <div class="agent-pct-track">
+                <div class="agent-pct-fill" style="width:66.7%;background:var(--amber);"></div>
+              </div>
+              <span id="tbl-rate-4b">66.7%</span>
+            </div>
+          </td>
+          <td class="num" style="color:var(--green);"><span class="cf-m" data-cf-key="gate_4b_tp">4</span></td>
+          <td class="num" style="color:var(--amber);"><span class="cf-m" data-cf-key="gate_4b_fn">2</span></td>
+          <td class="num"><span class="cf-m" data-cf-key="gate_4b_tn">9</span></td>
+          <td class="num"><span class="cf-m" data-cf-key="gate_4b_fp">0</span></td>
+          <td class="num"><span id="tbl-n-4b">15</span></td>
+        </tr>
+        <tr style="background:rgba(255,255,255,0.02);">
+          <td class="name" style="color:var(--t-2);">Combined</td>
+          <td class="rate-green"><strong><span class="cf-m" data-cf-key="catch_rate_display">83%</span></strong></td>
+          <td class="num" style="color:var(--green);"><strong><span class="cf-m" data-cf-key="tp">15</span></strong></td>
+          <td class="num" style="color:var(--amber);"><strong><span class="cf-m" data-cf-key="fn">3</span></strong></td>
+          <td class="num"><strong><span class="cf-m" data-cf-key="tn">28</span></strong></td>
+          <td class="num"><strong><span class="cf-m" data-cf-key="fp">0</span></strong></td>
+          <td class="num"><strong><span class="cf-m" data-cf-key="adjudicated">46</span></strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-family:var(--mono);font-size:0.68rem;color:var(--t-2);margin-top:0.75rem;">
+      Catch rate = TP / (TP + FN). Precision = TP / (TP + FP) =
+      <span class="cf-m" data-cf-key="precision_display">100%</span>.
+      FP rate = FP / (FP + TN) =
+      <span class="cf-m" data-cf-key="false_positive_rate_display">0%</span>.
+    </p>
+  </section>
+
+  <!-- Mechanism -->
+  <section class="cockpit-section">
+    <div class="cockpit-section-label">Why these numbers mean something</div>
+    <h2 style="font-size:1.3rem;font-weight:600;color:var(--t-0);margin-bottom:1rem;letter-spacing:-0.02em;">
+      Planted twins on CI, independent reviewer on every gate.
+    </h2>
+    <p class="prose-p">
+      Every CaliperForge harness ships with two CI legs — a clean reference
+      where the invariant holds (0 violations required) and a planted-bug twin
+      where it must fire (≥1 required). The CI job fails if either side doesn't
+      behave. That is the structural floor. On top of that, two independent
+      review gates fire before publish — §4a on content, §4b on code.
+      Reviewer is never the drafter, by policy. The figures above are what
+      that system caught — and what it missed.
+    </p>
+  </section>
+
+  <!-- KPIs + Runs supporting screenshots -->
+  <section class="cockpit-section" id="supporting">
+    <div class="cockpit-section-label">Supporting evidence — Atelier KPIs and Runs views</div>
+    <p style="font-family:var(--mono);font-size:0.78rem;color:var(--t-1);margin-bottom:1.25rem;max-width:72ch;line-height:1.65;">
+      Two additional views from the cockpit: team KPI metrics and the completed-runs feed.
+      Both are the actual Atelier — not mockups.
+    </p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
+      <div>
+        <img src="../assets/kpis.png"
+             alt="Atelier KPIs view: Team and agent metrics showing gate decisions, stops, and stop percentage."
+             class="cockpit-shot">
+        <div class="cockpit-shot-caption">KPIs view · team and agent metrics</div>
+      </div>
+      <div>
+        <img src="../assets/runs.png"
+             alt="Atelier Runs view: Completed-runs feed with return codes (rc=0) and durations — proof of activity."
+             class="cockpit-shot">
+        <div class="cockpit-shot-caption">Runs view · completed dispatches feed</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent catches (live feed) -->
+  <section class="cockpit-section" id="receipts">
+    <div class="cockpit-section-label">Recent catches</div>
+    <div class="record-list" id="receipts-feed">
+      <div class="record-item tp">
+        <div class="record-header">
+          <span class="record-id">R-2026-06-19-atlas-headline</span>
+          <span class="record-headline">Unsupported "6 exploits reproduced" homepage headline, pulled pre-deploy.</span>
+        </div>
+        <div class="record-badges">
+          <span class="pill gate">§4a Content QA</span>
+          <span class="pill caught">Caught pre-deploy</span>
+          <span class="pill date">2026-06-19</span>
+        </div>
+        <div class="record-frame">
+          A §4a content-QA gate stopped the homepage Atlas headline because the
+          source repo README did not carry the count. Rewritten to the structural
+          framing before deploy — the defect never reached the public site.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The three misses -->
+  <section class="cockpit-section" id="misses">
+    <div class="cockpit-section-label">The honest column — documented misses</div>
+    <p style="font-family:var(--mono);font-size:0.78rem;color:var(--t-1);margin-bottom:1.5rem;max-width:72ch;line-height:1.65;">
+      <span class="cf-m" data-cf-key="fn">3</span> gate PASSes later contradicted by a downstream catch.
+      Each is published below: which gate missed, what it carried, which downstream gate caught it.
+      A self-correction record that only shows wins is worthless.
+    </p>
+    <div class="record-list" id="misses-feed">
+
+      <div class="record-item fn">
+        <div class="record-header">
+          <span class="record-id">FN-1</span>
+          <span class="record-headline">Governance-pack email policy missed at code review gate</span>
+        </div>
+        <div class="record-badges">
+          <span class="pill gate">§4b Code Quality</span>
+          <span class="pill miss">Gate PASS 2026-06-10</span>
+          <span class="pill caught">Caught §4a 2026-06-12</span>
+        </div>
+        <div class="record-frame">
+          The §4b reviewer audited the cf-invariants community-health pack (455 lines,
+          4 files) for canonical-string consistency including email, and passed it.
+          Two days later, the §4a community-health gate caught
+          <code>security@caliperforge.com</code> at 4 sites in violation of the
+          feedback-email-only policy. Email-string consistency was declared in §4b scope;
+          this was a §4b miss. Fix landed at commit <code>0bff2c4</code>.
+        </div>
+      </div>
+
+      <div class="record-item fn">
+        <div class="record-header">
+          <span class="record-id">FN-2</span>
+          <span class="record-headline">hyperevm-safety README over-claim shipped to public repo</span>
+        </div>
+        <div class="record-badges">
+          <span class="pill gate">§4b Code Quality</span>
+          <span class="pill miss">Gate PASS 2026-06-11</span>
+          <span class="pill caught">Caught §4a 2026-06-11 (same day)</span>
+        </div>
+        <div class="record-frame">
+          The §4b preflip-regate passed the hyperevm-safety README with
+          "20 referenced paths exist." The README then shipped to the public repo
+          carrying a factual over-claim — "each invariant paired with a planted-bug
+          twin that fires on CI" — that was not tree-true (two of six invariants ship
+          with deterministic broken-reference tests, not planted twins; two more
+          landed only at M2). Over-claim was live on public GitHub for ~3 hours before
+          §4a caught it (FAIL-WITH-FIXES). Root-cause fix pushed at <code>e46fe9c</code>.
+          That is the honest framing.
+        </div>
+      </div>
+
+      <div class="record-item fn">
+        <div class="record-header">
+          <span class="record-id">FN-3</span>
+          <span class="record-headline">verus-bridge writeup source-quality issues passed initial gate</span>
+        </div>
+        <div class="record-badges">
+          <span class="pill gate">§4a Content QA</span>
+          <span class="pill miss">Gate PASS 2026-06-11</span>
+          <span class="pill caught">Caught §4a sources-regate 2026-06-12</span>
+        </div>
+        <div class="record-frame">
+          The §4a preflip-regate on the verus-bridge writeup confirmed 10 prior
+          fix-loop items had landed and passed. The writeup still carried sourcing
+          issues — an ExVul citation that did not resolve, Blockaid and PeckShield
+          wording that over-stated firm advisories as post-mortems, and an imprecise
+          count framing. Caught next day by a follow-on §4a sources-regate.
+          Fix at <code>cfb0677</code>: ExVul dropped, firm advisories downgraded with
+          pinned URLs and dates, count framing removed.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">CaliperForge</div>
+      <div class="footer-tagline">AI research studio · verifiable, auditable, correctable.</div>
+      <div class="footer-tagline" style="margin-top:0.3rem;">Operator of record: Michael Moffett · <a href="/ai-disclosure" style="color:var(--t-2);">AI policy</a></div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="../">Home</a></li>
+      <li><a href="../studio/">Studio</a></li>
+      <li><a href="./">What we caught</a></li>
+      <li><a href="../roadmap/">Roadmap</a></li>
+      <li><a href="https://github.com/caliperforge">GitHub</a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- caught-metrics.js — full version with gate bars -->
+<script>
+(function () {
+  var FEED = '/data/caught_public.json';
+
+  function pctNum(n, d) {
+    if (!d) return 0;
+    return Math.round((n / d) * 10000) / 100;
+  }
+
+  function fill(data) {
+    var m = data.metrics || {};
+    var bg = m.by_public_gate || {};
+    var g4a = bg.content_qa_4a || {};
+    var g4b = bg.code_quality_4b || {};
+
+    var map = {
+      tp: m.tp, fp: m.fp, fn: m.fn, tn: m.tn,
+      adjudicated: m.adjudicated,
+      catch_rate_display: m.catch_rate_display,
+      precision_display: m.precision_display,
+      false_positive_rate_display: m.false_positive_rate_display,
+      window_start: data.window_start,
+      window_end: data.window_end,
+      last_updated: data.last_updated,
+      gate_4a_tp: g4a.tp, gate_4a_fn: g4a.fn,
+      gate_4a_tn: g4a.tn, gate_4a_fp: g4a.fp,
+      gate_4b_tp: g4b.tp, gate_4b_fn: g4b.fn,
+      gate_4b_tn: g4b.tn, gate_4b_fp: g4b.fp
+    };
+
+    document.querySelectorAll('[data-cf-key]').forEach(function (el) {
+      var v = map[el.getAttribute('data-cf-key')];
+      if (v !== undefined && v !== null) el.textContent = v;
+    });
+
+    /* gate bar charts */
+    var n4a = (g4a.tp||0) + (g4a.fp||0) + (g4a.tn||0) + (g4a.fn||0);
+    var n4b = (g4b.tp||0) + (g4b.fp||0) + (g4b.tn||0) + (g4b.fn||0);
+    var defects4a = (g4a.tp||0) + (g4a.fn||0);
+    var defects4b = (g4b.tp||0) + (g4b.fn||0);
+    var rate4a = pctNum(g4a.tp||0, defects4a);
+    var rate4b = pctNum(g4b.tp||0, defects4b);
+
+    function setText(id, v) { var el = document.getElementById(id); if (el) el.textContent = v; }
+    function setWidth(id, w) { var el = document.getElementById(id); if (el) el.style.width = w; }
+
+    setText('bar-rate-4a', rate4a.toFixed(1) + '%');
+    setText('bar-rate-4b', rate4b.toFixed(1) + '%');
+    setText('bar-n-4a', n4a);
+    setText('bar-n-4b', n4b);
+    setWidth('bar-fill-4a', rate4a + '%');
+    setWidth('bar-fill-4b', rate4b + '%');
+    setText('tbl-rate-4a', rate4a.toFixed(1) + '%');
+    setText('tbl-rate-4b', rate4b.toFixed(1) + '%');
+    setText('tbl-n-4a', n4a);
+    setText('tbl-n-4b', n4b);
+
+    /* render receipts from JSON if present */
+    if (data.receipts && data.receipts.length) {
+      var feed = document.getElementById('receipts-feed');
+      if (feed) {
+        feed.innerHTML = data.receipts.map(function (r) {
+          return '<div class="record-item tp">'
+            + '<div class="record-header">'
+            + '<span class="record-id">' + r.id + '</span>'
+            + '<span class="record-headline">' + r.headline + '</span>'
+            + '</div>'
+            + '<div class="record-badges">'
+            + '<span class="pill gate">' + r.gate + '</span>'
+            + '<span class="pill caught">Caught</span>'
+            + '<span class="pill date">' + r.verdict_iso + '</span>'
+            + '</div>'
+            + '<div class="record-frame">' + (r.frame || '') + '</div>'
+            + '</div>';
+        }).join('');
+      }
+    }
+
+    /* render misses from JSON if present */
+    if (data.misses && data.misses.length) {
+      var mFeed = document.getElementById('misses-feed');
+      if (mFeed) {
+        mFeed.innerHTML = data.misses.map(function (r) {
+          return '<div class="record-item fn">'
+            + '<div class="record-header">'
+            + '<span class="record-id">' + r.id + '</span>'
+            + '<span class="record-headline">' + r.headline + '</span>'
+            + '</div>'
+            + '<div class="record-badges">'
+            + '<span class="pill gate">' + (r.gate_missed || '') + '</span>'
+            + '<span class="pill miss">Gate PASS ' + (r.gate_pass_iso || '') + '</span>'
+            + '<span class="pill caught">Caught ' + (r.caught_by || '') + ' ' + (r.caught_iso || '') + '</span>'
+            + '</div>'
+            + '<div class="record-frame">' + (r.frame || '') + '</div>'
+            + '</div>';
+        }).join('');
+      }
+    }
+  }
+
+  function go() {
+    fetch(FEED, { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(fill)
+      .catch(function () {});
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    go();
+    setInterval(go, 90000);
+  });
+}());
+</script>
+
+</body>
+</html>

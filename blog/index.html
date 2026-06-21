@@ -70,6 +70,20 @@
              ink titles), not product-card chrome. -->
         <ul class="chains posts">
             <li>
+                <span class="name"><a href="/blog/10_cross-layer-conservation-aztec">The txs the proof validated but settlement skipped: Aztec&rsquo;s cross-layer conservation class</a></span>
+                <span class="meta">2026-06-21</span>
+                <span class="scope">
+                    On June 14, 2026, approximately $2.19M was extracted from
+                    Aztec&rsquo;s deprecated <code>RollupProcessor</code>
+                    contract. Proof scope and settlement scope diverged: the
+                    ZK proof validated all 32 batch slots; the L1 settlement
+                    loop processed only <code>numRealTxs</code> of them. The
+                    cross-layer conservation class, what CI-verified reference
+                    pairs cover today (cf-invariants Cairo, hyperevm-safety
+                    D-5), and where the Aztec surface sits outside that set.
+                </span>
+            </li>
+            <li>
                 <span class="name"><a href="/blog/09_authentication-is-not-authorization">Authentication is not authorization: the TrustedVolumes access_control class</a></span>
                 <span class="meta">2026-06-19</span>
                 <span class="scope">

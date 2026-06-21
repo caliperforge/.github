@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title>CaliperForge — AI research studio · verifiable, auditable, correctable</title>
+  <meta name="description" content="CaliperForge is an AI research studio specializing in security and invariants. Stateful invariant testing, planted-twin CI, and a published record of what our gates catch.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="preview.css">
+</head>
+<body>
+
+<div class="preview-banner">
+  PREVIEW · caliperforge.com/preview/ · cockpit redesign v4 · 2026-06-21
+</div>
+
+<nav class="site-nav">
+  <a href="./" class="brand-row">
+    <svg class="brand-mark" viewBox="0 0 26 26" fill="none">
+      <rect width="26" height="26" rx="6" fill="#1d3557"/>
+      <rect x="5" y="12" width="16" height="1.5" rx="0.75" fill="#cadcfc"/>
+      <rect x="5" y="8" width="3" height="8" rx="1" fill="#cadcfc"/>
+      <rect x="18" y="8" width="3" height="8" rx="1" fill="#cadcfc"/>
+      <rect x="11.5" y="15" width="3" height="5" rx="0.75" fill="#f96167"/>
+    </svg>
+    <span>CaliperForge</span>
+  </a>
+  <div class="nav-links">
+    <a href="./" class="nav-link active">Home</a>
+    <a href="studio/" class="nav-link featured">Studio</a>
+    <a href="what-we-caught/" class="nav-link featured">What we caught</a>
+    <a href="roadmap/" class="nav-link">Roadmap</a>
+    <div class="nav-divider"></div>
+    <a href="/engagements/" class="nav-link dim">Engagements</a>
+    <a href="/ai-disclosure" class="nav-link dim">AI policy</a>
+    <a href="https://github.com/caliperforge" class="nav-link">GitHub</a>
+    <a href="mailto:team@caliperforge.com" class="nav-cta">Contact</a>
+  </div>
+</nav>
+
+<!-- Hero: asymmetric split — text left, gate panel right -->
+<section style="background: linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 80%);">
+  <div class="hero-split">
+    <!-- Left column: identity + CTAs -->
+    <div>
+      <p class="hero-kicker">CaliperForge · AI research studio</p>
+      <h1 class="hero-h1">The delivery<br>is <span class="grad">the proof.</span></h1>
+      <div class="caliper-rule"></div>
+      <p class="hero-lede">
+        AI research studio specializing in security and invariants.
+        Verifiable, auditable, correctable autonomous systems —
+        stateful invariant testing, planted-twin CI, and a published
+        record of what our gates catch.
+      </p>
+      <div class="hero-cta-row">
+        <a href="what-we-caught/" class="btn-primary">
+          See what we caught →
+        </a>
+        <a href="mailto:team@caliperforge.com" class="btn-ghost">
+          team@caliperforge.com
+        </a>
+      </div>
+      <p class="hero-footnote">
+        Human in the loop · operator of record: Michael Moffett · every commit
+      </p>
+    </div>
+
+    <!-- Right column: gate instrument panel -->
+    <div class="gate-panel">
+      <div class="gate-panel-header">
+        <span style="font-family:var(--mono);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;">Gate metrics · live</span>
+        <div class="live-dot"></div>
+      </div>
+
+      <div>
+        <div class="gate-panel-rate">
+          <span class="cf-m" data-cf-key="catch_rate_display">83%</span>
+        </div>
+        <div class="gate-panel-rate-label">Overall catch rate</div>
+      </div>
+
+      <div class="gate-panel-bar">
+        <div class="gate-panel-bar-fill" style="width:83%;" data-cf-bar-pct="catch_rate"></div>
+      </div>
+
+      <div class="gate-mini-grid">
+        <div class="gate-mini-card green">
+          <div class="gate-mini-num"><span class="cf-m" data-cf-key="tp">15</span></div>
+          <div class="gate-mini-label">True pos.</div>
+        </div>
+        <div class="gate-mini-card amber">
+          <div class="gate-mini-num"><span class="cf-m" data-cf-key="fn">3</span></div>
+          <div class="gate-mini-label">Misses</div>
+        </div>
+        <div class="gate-mini-card">
+          <div class="gate-mini-num" style="color:var(--t-0)"><span class="cf-m" data-cf-key="fp">0</span></div>
+          <div class="gate-mini-label">False pos.</div>
+        </div>
+        <div class="gate-mini-card">
+          <div class="gate-mini-num" style="color:var(--t-0)"><span class="cf-m" data-cf-key="adjudicated">46</span></div>
+          <div class="gate-mini-label">Adjudicated</div>
+        </div>
+      </div>
+
+      <div class="gate-panel-stamp">
+        <span class="cf-m" data-cf-key="window_start">2026-06-04</span> →
+        <span class="cf-m" data-cf-key="window_end">2026-06-21</span><br>
+        §4a content · §4b code quality · auto-refreshed<br>
+        Precision: <span class="cf-m" data-cf-key="precision_display">100%</span> ·
+        FP rate: <span class="cf-m" data-cf-key="false_positive_rate_display">0%</span>
+      </div>
+
+      <a href="what-we-caught/" style="font-family:var(--mono);font-size:0.72rem;color:var(--ice);margin-top:0.25rem;">
+        Full record → what we caught
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Method band -->
+<div class="method-band">
+  <div class="method-band-inner">
+    <div class="method-step">
+      <div class="method-step-num">01 / express</div>
+      <div class="method-step-title">Machine-checkable invariant</div>
+      <div class="method-step-desc">
+        We express the protocol's safety rule as a property that CI can
+        assert — not a prose spec, not an opinion.
+      </div>
+    </div>
+    <div class="method-step">
+      <div class="method-step-num">02 / ship twin</div>
+      <div class="method-step-title">Clean + planted-bug CI pair</div>
+      <div class="method-step-desc">
+        Clean reference: invariant holds. Planted-bug twin: invariant fires.
+        Both run on every push. The CI job fails if either side breaks.
+      </div>
+    </div>
+    <div class="method-step">
+      <div class="method-step-num">03 / publish</div>
+      <div class="method-step-title">Receipts, not claims</div>
+      <div class="method-step-desc">
+        The gate record is public — what fired, what missed, how often.
+        Self-correction is part of the design. Misses are published too.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page body -->
+<main class="page-body">
+
+  <!-- Chains -->
+  <section class="section" id="chains">
+    <p class="eyebrow">What we work on</p>
+    <h2>Chains we cover</h2>
+    <p class="section-lede">Active language coverage: Cairo, Rust/Anchor, Solidity.</p>
+    <ul class="chains-list">
+      <li class="chain-item">
+        <div>
+          <div class="chain-name">Starknet</div>
+          <span class="chain-meta">Cairo 2.x</span>
+        </div>
+        <div class="chain-scope">Contract work and developer tooling on snforge.</div>
+      </li>
+      <li class="chain-item">
+        <div>
+          <div class="chain-name">Solana</div>
+          <span class="chain-meta">Anchor / SPL</span>
+        </div>
+        <div class="chain-scope">Programs, tooling, Foundation-funded work.</div>
+      </li>
+      <li class="chain-item">
+        <div>
+          <div class="chain-name">HyperEVM</div>
+          <span class="chain-meta">Solidity / Foundry</span>
+        </div>
+        <div class="chain-scope">HyperCore-boundary invariants and CI-runnable property tests for lending protocols.</div>
+      </li>
+      <li class="chain-item">
+        <div>
+          <div class="chain-name">Ethereum / EVM</div>
+          <span class="chain-meta">Invariant forensics</span>
+        </div>
+        <div class="chain-scope">Bridge-conservation invariant references and exploit-to-invariant case reproductions.</div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Projects -->
+  <section class="section" id="projects">
+    <p class="eyebrow">What we ship</p>
+    <h2>Projects</h2>
+    <p class="section-lede">Open-source tooling we maintain. Curated; full list on GitHub.</p>
+
+    <div class="proj-grid">
+      <!-- Feature card: flagship -->
+      <div class="proj-card feature">
+        <div>
+          <div class="proj-name">Exploit→Invariant Atlas</div>
+          <div class="proj-badges">
+            <span class="badge">Cairo · Move · Solana · EVM</span>
+            <span class="badge badge-ci">CI-asserted</span>
+            <span class="badge badge-license">Apache-2.0</span>
+          </div>
+          <p class="proj-scope">
+            Six real-world hacks across four VMs — zkLend, Cetus, Cashio,
+            Mango Markets, Loopscale, and a Trace2Inv EVM case — each with
+            a runnable invariant that would have caught the bug class on
+            pre-exploit code. Clean twin where the property holds, planted-bug
+            twin where it fires. First defender-side, pre-deploy CI benchmark
+            across Cairo, Move, Solana, and EVM.
+          </p>
+          <div class="proj-links">
+            <a href="https://github.com/caliperforge/invariant-atlas">github.com/caliperforge/invariant-atlas</a>
+            <span>·</span>
+            <a href="/ai-disclosure">AI-disclosed</a>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;">
+          <div class="proj-meta" style="color:var(--t-2);font-size:0.68rem;">6 cases · 4 VMs · all CI-asserted</div>
+          <div style="background:var(--bg-3);border:1px solid var(--border-0);border-radius:var(--r-m);padding:0.75rem;font-family:var(--mono);font-size:0.7rem;color:var(--t-1);line-height:1.8;">
+            <div style="color:var(--green);">✓ clean: 0 violations</div>
+            <div style="color:var(--amber);">⚑ planted: ≥1 violation</div>
+            <div style="color:var(--t-2);">on every push · CI matrix</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-name">cf-invariants</div>
+        <div class="proj-badges">
+          <span class="badge">Starknet · Cairo 2.x</span>
+          <span class="badge badge-ci">CI green</span>
+          <span class="badge badge-license">Apache-2.0</span>
+        </div>
+        <p class="proj-scope">snforge sidecar: stateful invariant testing + AI-suggested invariants. 12 reference contracts, Voyager-verified on Sepolia.</p>
+        <div class="proj-links">
+          <a href="https://github.com/caliperforge/cf-invariants">GitHub</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-name">cf-invariants-anchor</div>
+        <div class="proj-badges">
+          <span class="badge">Solana · Anchor / Crucible</span>
+          <span class="badge badge-ci">CI green</span>
+          <span class="badge badge-license">Apache-2.0</span>
+        </div>
+        <p class="proj-scope">Invariant-authoring layer on top of Crucible. Stateful invariants, AI-suggested invariants tagged in source; CI: clean passes, planted fires.</p>
+        <div class="proj-links">
+          <a href="https://github.com/caliperforge/cf-invariants-anchor">GitHub</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-name">hyperevm-safety</div>
+        <div class="proj-badges">
+          <span class="badge">HyperEVM · Solidity + Foundry</span>
+          <span class="badge badge-ci">CI green</span>
+          <span class="badge badge-license">Apache-2.0</span>
+        </div>
+        <p class="proj-scope">6 HyperCore-boundary invariants for lending protocols — oracle staleness, mark/oracle deviation, szDecimals, and more. CI-runnable property tests.</p>
+        <div class="proj-links">
+          <a href="https://github.com/caliperforge/hyperevm-safety">GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <a href="https://github.com/caliperforge" class="view-all-link">
+      View all projects on GitHub →
+    </a>
+
+    <div class="coverage-note">
+      <strong><span class="cf-m" data-cf-key="tp">15</span> defects caught at the gate</strong>
+      · <span class="cf-m" data-cf-key="fp">0</span> false positives
+      · <span class="cf-m" data-cf-key="fn">3</span> <a href="what-we-caught/">documented misses</a>
+      · <strong><span class="cf-m" data-cf-key="catch_rate_display">83%</span> catch rate</strong>
+      across <span class="cf-m" data-cf-key="adjudicated">46</span> adjudicated gate decisions.
+      <a href="what-we-caught/" style="color:var(--ice);margin-left:0.5rem;">Full record →</a>
+    </div>
+  </section>
+
+  <!-- Studio teaser with REAL screenshot -->
+  <section class="section" id="studio-teaser">
+    <p class="eyebrow">The studio</p>
+    <h2>Specialized agents. Human principal. Running live.</h2>
+    <div class="studio-teaser">
+      <div class="studio-teaser-text">
+        <h3>The Atelier cockpit</h3>
+        <p>
+          The organization runs on a live internal cockpit — the Atelier —
+          where every agent's gate decisions, catch record, and workstream
+          state are visible in real time. Structured, accountable, auditable.
+          The site you're reading is one of the outputs it produces.
+        </p>
+        <a href="studio/" class="btn-primary" style="display:inline-flex;margin-top:1.25rem;">
+          Inside the studio →
+        </a>
+      </div>
+      <div class="cockpit-shot-wrap">
+        <img src="assets/floor.png"
+             alt="Atelier Floor view — live dispatches, ACTIVE NOW, RECENT RUNS, TOP 3 KPIs, WAITING ON YOU, WORKSTREAMS pills"
+             class="cockpit-shot">
+        <div class="cockpit-shot-caption">Atelier cockpit · Floor view · live operating state</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it's organized -->
+  <section class="section" id="how">
+    <p class="eyebrow">How we are organized</p>
+    <h2>Specialized agents, scoped and cross-checked.</h2>
+    <p class="prose-p">
+      The organization is a team of specialized AI agents — an audit engineer,
+      a Cairo specialist, a Rust/Anchor specialist, a grant writer, a content
+      reviewer, and others as the work calls for them. Each is scoped, each has
+      a defined output discipline, and each cross-checks the others before
+      anything leaves the workspace. The operator reviews every load-bearing
+      decision and ships under his own name.
+    </p>
+    <p class="prose-p">
+      AI involvement is disclosed at point of use.
+      Full policy: <a href="/ai-disclosure">caliperforge.com/ai-disclosure</a>.
+    </p>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <p class="eyebrow">Contact</p>
+    <h2>Reachable, KYC-able, accountable.</h2>
+    <div class="contact-strip">
+      <div class="contact-item">
+        <div class="contact-label">Operator</div>
+        <div class="contact-value">Michael Moffett</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Direct</div>
+        <div class="contact-value"><a href="mailto:michael@caliperforge.com">michael@caliperforge.com</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Team</div>
+        <div class="contact-value"><a href="mailto:team@caliperforge.com">team@caliperforge.com</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">GitHub</div>
+        <div class="contact-value"><a href="https://github.com/caliperforge">github.com/caliperforge</a></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">CaliperForge</div>
+      <div class="footer-tagline">AI research studio · verifiable, auditable, correctable.</div>
+      <div class="footer-tagline" style="margin-top:0.3rem;">Operator of record: Michael Moffett · <a href="/ai-disclosure" style="color:var(--t-2);">AI policy</a></div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="./">Home</a></li>
+      <li><a href="studio/">Studio</a></li>
+      <li><a href="what-we-caught/">What we caught</a></li>
+      <li><a href="roadmap/">Roadmap</a></li>
+      <li><a href="/engagements/">Engagements</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="https://github.com/caliperforge">GitHub</a></li>
+      <li><a href="https://x.com/caliperforge">X</a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- caught-metrics.js — fetches /data/caught_public.json; fills data-cf-key spans;
+     updates gate bar chart + hero bar; silent fail on fetch error. -->
+<script>
+(function () {
+  var FEED = '/data/caught_public.json';
+
+  function pctNum(n, d) {
+    if (!d) return 0;
+    return Math.round((n / d) * 10000) / 100;
+  }
+
+  function fill(data) {
+    var m = data.metrics || {};
+    var map = {
+      tp: m.tp, fp: m.fp, fn: m.fn, tn: m.tn,
+      adjudicated: m.adjudicated,
+      catch_rate_display: m.catch_rate_display,
+      precision_display: m.precision_display,
+      false_positive_rate_display: m.false_positive_rate_display,
+      window_start: data.window_start,
+      window_end: data.window_end,
+      last_updated: data.last_updated
+    };
+    document.querySelectorAll('[data-cf-key]').forEach(function (el) {
+      var v = map[el.getAttribute('data-cf-key')];
+      if (v !== undefined && v !== null) el.textContent = v;
+    });
+    /* hero bar fill */
+    var heroBar = document.querySelector('[data-cf-bar-pct="catch_rate"]');
+    if (heroBar && m.catch_rate) {
+      heroBar.style.width = (m.catch_rate * 100).toFixed(1) + '%';
+    }
+  }
+
+  function go() {
+    fetch(FEED, { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(fill)
+      .catch(function () { /* silent — baked-in fallback values stay */ });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    go();
+    setInterval(go, 90000);
+  });
+}());
+</script>
+
+</body>
+</html>
