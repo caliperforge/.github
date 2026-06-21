@@ -91,6 +91,14 @@ portfolio is protocol and smart-contract security.
   `anchor-lang` 0.32.1 to 1.0.1; two invariant classes against a clean
   reference and planted-bug twins, asserted on every push. Apache-2.0.
   See [caliperforge/cf-invariants-pyth](https://github.com/caliperforge/cf-invariants-pyth).
+- **`apart-global-south-lost-in-translation`** — Apart Global South
+  hackathon eval harness: a language-conditioned detection-rate eval
+  measuring whether AI code auditors catch planted bugs across EN, ES,
+  PT, and CS surface code. Uses Atlas planted-bug twins as the ground
+  truth; measures per-language detection rates to surface where auditor
+  accuracy degrades under language shift. Research artifact and eval
+  harness submitted for the Apart Global South track. Apache-2.0. See
+  [caliperforge/apart-global-south-lost-in-translation](https://github.com/caliperforge/apart-global-south-lost-in-translation).
 
 ## Receipts
 
