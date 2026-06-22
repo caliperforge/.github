@@ -1,23 +1,23 @@
 {
   "schema": "caught_public.v2",
-  "last_updated": "2026-06-21T15:02:09Z",
+  "last_updated": "2026-06-22T00:00:00Z",
   "window_start": "2026-06-04",
-  "window_end": "2026-06-21",
+  "window_end": "2026-06-22",
   "metrics": {
-    "tp": 15,
+    "tp": 17,
     "fp": 0,
     "fn": 3,
-    "tn": 28,
-    "adjudicated": 46,
-    "catch_rate": 0.8333,
-    "catch_rate_display": "83%",
+    "tn": 29,
+    "adjudicated": 49,
+    "catch_rate": 0.85,
+    "catch_rate_display": "85%",
     "precision": 1.0,
     "precision_display": "100%",
     "false_positive_rate": 0.0,
     "false_positive_rate_display": "0%",
     "by_public_gate": {
       "content_qa_4a": {
-        "tp": 11,
+        "tp": 13,
         "fp": 0,
         "tn": 19,
         "fn": 1
@@ -25,13 +25,13 @@
       "code_quality_4b": {
         "tp": 4,
         "fp": 0,
-        "tn": 9,
+        "tn": 10,
         "fn": 2
       }
     }
   },
   "by_gate": {
-    "content_qa": 11,
+    "content_qa": 13,
     "code_quality": 4,
     "ceo_hold": 30,
     "task_hygiene": 0
@@ -39,14 +39,14 @@
   "by_agent": [
     {
       "agent": "content_qa_reviewer",
-      "pct": "92%",
-      "n": 31,
-      "stops": 11
+      "pct": "93%",
+      "n": 33,
+      "stops": 13
     },
     {
       "agent": "code_quality_reviewer",
       "pct": "67%",
-      "n": 15,
+      "n": 16,
       "stops": 4
     }
   ],
