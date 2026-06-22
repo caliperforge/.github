@@ -52,13 +52,13 @@
             </div>
         </nav>
         <p class="kicker">Blog &middot; 2026-06-02 &middot; Michael Moffett</p>
-        <h1>Build update &mdash; cf-invariants Cairo suite grows to nine, chimera-template-pack ships.</h1>
+        <h1>Build update, cf-invariants Cairo suite grows to nine, chimera-template-pack ships.</h1>
         <p class="lede">
             Two CaliperForge builds went out this week that haven't been
             written up yet. Both are infrastructure for the
             security-tooling line we've been working on, and both showed
             up on the public repos before this writeup did, which is the
-            order we prefer. This is the writeup &mdash; what shipped,
+            order we prefer. This is the writeup, what shipped,
             where it lives, and what each one makes cheaper next.
         </p>
     </div>
@@ -91,7 +91,7 @@
         </p>
         <ul>
             <li>
-                <strong><code>lending_ref</code> &mdash; per-user
+                <strong><code>lending_ref</code>, per-user
                 solvency under LTV.</strong> A minimal single-asset
                 lending market. The planted bug is that
                 <code>withdraw_collateral</code> decrements the
@@ -108,7 +108,7 @@
                 Voyager-source-verified.
             </li>
             <li>
-                <strong><code>staking_ref</code> &mdash; multi-pool
+                <strong><code>staking_ref</code>, multi-pool
                 conservation under slashing.</strong> A staking vault
                 with a slashing-escheat path. The planted bug is that
                 <code>slash(victim)</code> zeros the victim's stake and
@@ -122,7 +122,7 @@
                 <a href="https://sepolia.voyager.online/contract/0x014e72228c8aa95e5aad34fdcb00186d335e6f96c3ed4c6c632b85e9aaea4e09" rel="noopener"><code>0x014e&hellip;4e09</code></a>.
             </li>
             <li>
-                <strong><code>vesting_ref</code> &mdash; time-bounded
+                <strong><code>vesting_ref</code>, time-bounded
                 supply cap.</strong> A linear-vesting contract. The
                 planted bug is that <code>claim()</code> pays out
                 <code>total_grant &minus; claimed</code> unconditionally
@@ -142,9 +142,9 @@
             </li>
         </ul>
         <p>
-            The full deployment manifest &mdash; class hashes, declare
+            The full deployment manifest, class hashes, declare
             and deploy tx hashes, constructor calldata, and Voyager
-            source-verification job IDs for all nine contracts &mdash;
+            source-verification job IDs for all nine contracts , 
             is at
             <a href="https://github.com/caliperforge/cf-invariants/blob/main/STARKNET_SEPOLIA_DEPLOYMENTS.md" rel="noopener"><code>STARKNET_SEPOLIA_DEPLOYMENTS.md</code></a>.
             The findings writeup with reproduction commands is at
@@ -165,8 +165,8 @@
             contest entries. It is a Foundry project pre-wired for
             <a href="https://github.com/Recon-Fuzz/create-chimera-app" rel="noopener">Recon's Chimera</a>
             stateful-fuzz pattern (Echidna + Medusa), with three seeded
-            invariants &mdash; solvency, monotonic share price,
-            access-control &mdash; each marked with a
+            invariants, solvency, monotonic share price,
+            access-control, each marked with a
             <code>TODO(protocol)</code> edit point in
             <code>test/recon/Properties.sol</code>. A bundled CI
             workflow runs the campaign on every push and captures
@@ -178,7 +178,7 @@
             cycle-time delta. Standing up the same harness ad-hoc for a
             Cantina or Code4rena entry has been running roughly five
             days of focused work. Forking the template runs about two
-            days. That is not a launch claim &mdash; it is the
+            days. That is not a launch claim, it is the
             difference between writing the Foundry config, the Echidna
             config, the Medusa config, the campaign runner, the
             scorecard capture script, and the CI workflow from scratch
@@ -196,7 +196,7 @@
         <h2>Inside-the-tool and outside-the-tool versions of the same cadence.</h2>
         <p>
             We hold both of these under the same lens we have been
-            describing as specialization velocity &mdash; how quickly
+            describing as specialization velocity, how quickly
             the org can stand a new-chain or new-tooling-class
             specialist up and ship a CI-verified artifact. The Cairo
             suite expansion is the inside-the-tool version: three new
@@ -208,14 +208,14 @@
         </p>
         <p>
             Neither is a launch, and neither is a tool-count claim.
-            The throughline is the cadence &mdash; an org that ships
+            The throughline is the cadence, an org that ships
             verified security tooling fast, with the proof checked into
             public CI rather than asserted in a deck. Both repos are
             public if you want to check the cadence against the commit
             history.
         </p>
         <p class="meta">
-            &mdash; Michael Moffett. Built with AI assistance; AI-suggested invariants are tagged in source. Full AI policy at <a href="/ai-disclosure">caliperforge.com/ai-disclosure</a>.
+           , Michael Moffett. Built with AI assistance; AI-suggested invariants are tagged in source. Full AI policy at <a href="/ai-disclosure">caliperforge.com/ai-disclosure</a>.
         </p>
     </section>
 

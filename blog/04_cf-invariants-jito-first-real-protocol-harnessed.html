@@ -1,5 +1,5 @@
 <!--
-  MARQUEE — CEO eyeball required before Director deploys.
+  MARQUEE, CEO eyeball required before Director deploys.
   Drafted by: Identity Lead, 2026-06-03 (T-jito-cascade-content-2026-06-03).
   Register owner: Identity Lead (drafted into Blog Writer outbox per dispatch).
   Source: https://github.com/caliperforge/cf-invariants-jito (commit e683c5a, CI-green 2026-06-03).
@@ -61,7 +61,7 @@
             </div>
         </nav>
         <p class="kicker">Blog &middot; 2026-06-03 &middot; Michael Moffett</p>
-        <h1>First real protocol harnessed &mdash; cf-invariants-jito on Crucible.</h1>
+        <h1>First real protocol harnessed, cf-invariants-jito on Crucible.</h1>
         <p class="lede">
             Crucible ships the execution rails for invariant fuzzing on
             Solana / Anchor. The invariants and the program-under-test
@@ -96,7 +96,7 @@
         <p>
             cf-invariants-jito is the answer to that. The target is the
             <a href="https://github.com/jito-foundation/jito-programs/tree/master/mev-programs/programs/tip-distribution" rel="noopener">Jito Foundation tip-distribution program</a>
-            &mdash; the on-chain piece of the
+           , the on-chain piece of the
             <a href="https://www.jito.network/" rel="noopener">Jito</a>
             MEV-redistribution stack on Solana. After a Jito-Solana
             validator earns MEV tips in an epoch, the program holds those
@@ -128,7 +128,7 @@
             The port lives at
             <a href="https://github.com/caliperforge/cf-invariants-jito/tree/main/programs/tip-distribution" rel="noopener"><code>programs/tip-distribution</code></a>
             in the repo. The production Jito program is not modified by
-            this harness &mdash; the port exists only so Crucible can
+            this harness, the port exists only so Crucible can
             drive it. The on-chain footprint of Jito tip-distribution
             stays whatever Jito Foundation deploys.
         </p>
@@ -148,37 +148,37 @@
         </p>
         <ul>
             <li>
-                <strong><code>claim_amount_conservation</code></strong> &mdash;
+                <strong><code>claim_amount_conservation</code></strong> , 
                 <code>invariant_claim_amount_conservation</code>. The
                 lamports debited from the <code>TipDistributionAccount</code>
                 on a successful <code>claim</code> equal the lamports
                 credited to the claimant. Planted-bug site:
                 <code>programs/tip-distribution/src/state.rs::transfer_lamports</code>
-                &mdash; off-by-one debit.
+               , off-by-one debit.
             </li>
             <li>
-                <strong><code>no_double_claim</code></strong> &mdash;
+                <strong><code>no_double_claim</code></strong> , 
                 <code>invariant_no_double_claim</code>. For a given
                 (TDA, claimant) pair, at most one successful <code>claim</code>
                 ever fires. Planted-bug site:
                 <code>programs/tip-distribution/src/lib.rs::claim</code>
-                runtime gate &mdash; replay accepted.
+                runtime gate, replay accepted.
             </li>
             <li>
-                <strong><code>merkle_authority</code></strong> &mdash;
+                <strong><code>merkle_authority</code></strong> , 
                 <code>invariant_merkle_proof_required</code>. A
                 <code>claim</code> only succeeds if the supplied proof
                 verifies against the uploaded Merkle root. Planted-bug
                 site: <code>programs/tip-distribution/src/merkle_proof.rs::verify</code>
-                &mdash; early-accept short-circuit.
+               , early-accept short-circuit.
             </li>
             <li>
-                <strong><code>admin_gating</code></strong> &mdash;
+                <strong><code>admin_gating</code></strong> , 
                 <code>invariant_update_config_requires_authority</code>.
                 <code>update_config</code> only succeeds when signed by
                 the current config authority. Planted-bug site:
                 <code>programs/tip-distribution/src/lib.rs::update_config</code>
-                &mdash; authority check dropped.
+               , authority check dropped.
             </li>
         </ul>
         <p>
@@ -216,7 +216,7 @@
             That assertion held on commit
             <a href="https://github.com/caliperforge/cf-invariants-jito/commit/e683c5a" rel="noopener"><code>e683c5a</code></a>,
             the publication commit. The CI badge on the repo README is
-            the source of truth from here on &mdash; if it is red, the
+            the source of truth from here on, if it is red, the
             harness is broken.
         </p>
         <p>
@@ -242,8 +242,8 @@
         <h2>Specialization velocity, expressed as an existence proof.</h2>
         <p>
             CaliperForge's edge is not new fuzzing engines. The engines
-            doing the work &mdash; snforge on Cairo, Crucible on Solana /
-            Anchor &mdash; are run by other teams and we do not compete
+            doing the work, snforge on Cairo, Crucible on Solana /
+            Anchor, are run by other teams and we do not compete
             with them on coverage. What we are testing is throughput: how
             quickly the same operator can stand up an invariant-authoring
             layer against a new VM, against a new real protocol, and get
@@ -310,7 +310,7 @@
             Michael Moffett.
         </p>
         <p class="meta">
-            &mdash; Michael Moffett. Built with AI assistance; the harness scaffold and the four invariant fixtures were drafted with an AI coding assistant under operator review, with full repo attribution. AI policy at <a href="/ai-disclosure">caliperforge.com/ai-disclosure</a>.
+           , Michael Moffett. Built with AI assistance; the harness scaffold and the four invariant fixtures were drafted with an AI coding assistant under operator review, with full repo attribution. AI policy at <a href="/ai-disclosure">caliperforge.com/ai-disclosure</a>.
         </p>
     </section>
 

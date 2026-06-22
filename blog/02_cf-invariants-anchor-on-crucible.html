@@ -52,12 +52,12 @@
             </div>
         </nav>
         <p class="kicker">Blog &middot; 2026-06-02 &middot; Michael Moffett</p>
-        <h1>Stateful invariant testing for Solana/Anchor &mdash; cf-invariants-anchor on Crucible.</h1>
+        <h1>Stateful invariant testing for Solana/Anchor, cf-invariants-anchor on Crucible.</h1>
         <p class="lede">
             Crucible and Trident ship the execution engine for invariant
             fuzzing on Anchor. They do not ship the invariants.
             cf-invariants-anchor is the authoring layer that sits on top
-            &mdash; IDL in, ready-to-run Crucible source out, planted bug
+           , IDL in, ready-to-run Crucible source out, planted bug
             surfaced by CI.
         </p>
     </div>
@@ -145,7 +145,7 @@
         </p>
         <ul>
             <li><code>vault_ref_clean</code>: <strong>0 invariants violated.</strong></li>
-            <li><code>vault_ref_planted</code>: <strong>&ge;1 invariant violated</strong> &mdash; the bookkeeping drift surfaces inside the 30-second Crucible timeout.</li>
+            <li><code>vault_ref_planted</code>: <strong>&ge;1 invariant violated</strong>, the bookkeeping drift surfaces inside the 30-second Crucible timeout.</li>
         </ul>
         <p>
             The real captured outputs from the green run on 2026-06-02 are
@@ -173,7 +173,7 @@
         <p>
             One thing worth saying plainly: this took four CI runs to go
             green. The first failed on a <code>cargo-build-sbf</code>
-            toolchain pin &mdash; platform-tools v1.52 is required because
+            toolchain pin, platform-tools v1.52 is required because
             Crucible v0.2.0's deps need edition2024, which earlier
             platform-tools' rustc 1.84 cannot build. The second failed on a
             real <code>anchor-lang</code> 1.0.x <code>CpiContext</code> API
@@ -226,7 +226,7 @@
             Issues and PRs are open.
         </p>
         <p class="meta">
-            &mdash; Michael Moffett. Built with AI assistance; AI-suggested invariants are tagged in source. Full AI policy at <a href="/ai-disclosure">caliperforge.com/ai-disclosure</a>.
+           , Michael Moffett. Built with AI assistance; AI-suggested invariants are tagged in source. Full AI policy at <a href="/ai-disclosure">caliperforge.com/ai-disclosure</a>.
         </p>
     </section>
 

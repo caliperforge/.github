@@ -3,7 +3,7 @@
   (anti-AI-ism, register, factual). On §4a PASS, the reviewer files the
   qa_verdict per ops/qa_verdicts/README.md (artifact_id=cf-invariants,
   gate=content_qa, scope=blog-06). Director deploys via gh-pages with
-  .nojekyll guard after PASS. Marquee tag NO — non-marquee (incremental
+  .nojekyll guard after PASS. Marquee tag NO, non-marquee (incremental
   to cf-invariants cluster), no CEO eyeball required.
   Drafted by: blog_writer, 2026-06-07 (T-blog-06-deploy-2026-06-07).
   Parent dispatch: agents/identity_lead/outbox/announcement_wave_day4_2026-06-04.md §2.
@@ -72,12 +72,12 @@
             </div>
         </nav>
         <p class="kicker">Blog &middot; 2026-06-07 &middot; Michael Moffett</p>
-        <h1>cf-invariants on Starknet Sepolia &mdash; twelve references, paired clean/planted CI green.</h1>
+        <h1>cf-invariants on Starknet Sepolia, twelve references, paired clean/planted CI green.</h1>
         <p class="lede">
             The cf-invariants reference suite grew from six Cairo
             references to twelve on 2026-06-04. Six new contract
-            families joined the set &mdash; lending, staking, vesting,
-            timelock, payment splitter, oracle &mdash; each with its
+            families joined the set, lending, staking, vesting,
+            timelock, payment splitter, oracle, each with its
             own invariant class and a planted-bug twin. Three days
             later, a paired GitHub Actions matrix went green: every
             reference is now asserted as clean=0 on its clean variant
@@ -94,7 +94,7 @@
 
     <section class="section">
         <p class="eyebrow">The suite at twelve</p>
-        <h2>Six new contract families &mdash; the most-shipped Cairo shapes not in the original six.</h2>
+        <h2>Six new contract families, the most-shipped Cairo shapes not in the original six.</h2>
         <p>
             The
             <a href="/blog/01_caliperforge-origins">Day-1 launch post</a>
@@ -146,7 +146,7 @@
         </p>
         <ul>
             <li>
-                <strong><code>lending_ref</code></strong> &mdash;
+                <strong><code>lending_ref</code></strong> , 
                 per-user solvency. The clean lending market enforces
                 an LTV cap on both borrow and withdraw.
                 <code>withdraw_collateral</code> in the planted
@@ -159,7 +159,7 @@
                 (<a href="https://github.com/caliperforge/cf-invariants/blob/main/references/lending_ref/README.md" rel="noopener">README</a>.)
             </li>
             <li>
-                <strong><code>staking_ref</code></strong> &mdash;
+                <strong><code>staking_ref</code></strong> , 
                 stake/slash conservation across the staking pool and
                 the slashed pool.
                 <code>slash(victim)</code> zeroes the victim's stake
@@ -170,7 +170,7 @@
                 (<a href="https://github.com/caliperforge/cf-invariants/blob/main/references/staking_ref/README.md" rel="noopener">README</a>.)
             </li>
             <li>
-                <strong><code>vesting_ref</code></strong> &mdash;
+                <strong><code>vesting_ref</code></strong> , 
                 claimed &le; vested at any time. The clean linear
                 vesting contract gates <code>claim()</code> on
                 <code>vested_at(now)</code>; the planted
@@ -182,7 +182,7 @@
                 (<a href="https://github.com/caliperforge/cf-invariants/blob/main/references/vesting_ref/README.md" rel="noopener">README</a>.)
             </li>
             <li>
-                <strong><code>timelock_ref</code></strong> &mdash;
+                <strong><code>timelock_ref</code></strong> , 
                 delay respected. The clean timelock requires
                 <code>now &ge; queued_at(tx_id) + delay</code> at
                 execute time. The planted
@@ -194,7 +194,7 @@
             </li>
             <li>
                 <strong><code>payment_splitter_ref</code></strong>
-                &mdash; proportional release. The clean three-recipient
+               , proportional release. The clean three-recipient
                 splitter pays each caller their share-weighted
                 entitlement. The planted <code>release()</code> pays
                 the caller <code>total_received - released[caller]</code>
@@ -205,7 +205,7 @@
                 (<a href="https://github.com/caliperforge/cf-invariants/blob/main/references/payment_splitter_ref/README.md" rel="noopener">README</a>.)
             </li>
             <li>
-                <strong><code>oracle_ref</code></strong> &mdash;
+                <strong><code>oracle_ref</code></strong> , 
                 <code>last_update_ts</code> monotonicity. The clean
                 push-update oracle gates each write on
                 <code>new_ts &gt; last_update_ts</code>; the planted
@@ -232,7 +232,7 @@
         <h2>Paired clean/planted across all twelve, plus a Caracal pre-flight.</h2>
         <p>
             The repo did not have a GitHub Actions workflow when the
-            three-to-nine expansion shipped &mdash; the proof was
+            three-to-nine expansion shipped, the proof was
             local <code>snforge test</code> output plus the Voyager
             verification links. The first end-to-end CI workflow
             landed on 2026-06-04 and went green on run
@@ -258,14 +258,14 @@
         </p>
         <ul>
             <li>
-                <strong>Planted leg</strong> &mdash; default scarb
+                <strong>Planted leg</strong>, default scarb
                 build; snforge test is expected to fail with
                 <code>INVARIANT VIOLATED &lt;reason&gt;</code> on
                 stdout. CI inverts the exit code and asserts the
                 marker is present.
             </li>
             <li>
-                <strong>Clean leg</strong> &mdash;
+                <strong>Clean leg</strong> , 
                 <code>scarb build --features clean</code> +
                 <code>snforge test --features clean</code>. CI
                 asserts <code>rc == 0</code> AND no
@@ -282,9 +282,9 @@
             file is
             <a href="https://github.com/caliperforge/cf-invariants/blob/main/.github/workflows/ci.yml" rel="noopener"><code>.github/workflows/ci.yml</code></a>
             and is the substantive reference an external Cairo dev
-            can lift. The clean-variant convention &mdash; one
+            can lift. The clean-variant convention, one
             <code>clean</code> scarb feature gating one
-            <code>CLEAN_TWIN</code> branch per reference &mdash; is
+            <code>CLEAN_TWIN</code> branch per reference, is
             the pattern the
             <a href="https://github.com/foundry-rs/starknet-foundry/pull/4409" rel="noopener">snforge docs PR #4409</a>
             (opened 2026-06-04, pending first-time-contributor
@@ -300,7 +300,7 @@
         <p>
             One day after the suite expansion,
             <a href="https://github.com/caliperforge/cf-invariants-jito-priorityfee" rel="noopener">cf-invariants-jito-priorityfee</a>
-            went public &mdash; the third real
+            went public, the third real
             <a href="https://www.jito.network/" rel="noopener">Jito Foundation</a>
             program harnessed on
             <a href="https://github.com/asymmetric-research/crucible" rel="noopener">Crucible</a>,
@@ -314,7 +314,7 @@
             paired clean/planted, CI green on the first push at
             commit <code>a32c1d3</code>, run
             <a href="https://github.com/caliperforge/cf-invariants-jito-priorityfee/actions/runs/26919123180" rel="noopener">26919123180</a>.
-            Three Jito programs, one rail &mdash; the
+            Three Jito programs, one rail, the
             specialization-velocity claim as an existence proof, not
             a forecast. Bundled hand-off via
             <a href="https://github.com/jito-foundation/jito-programs/issues/163" rel="noopener">Jito intro issue #163</a>
@@ -355,7 +355,7 @@
                 <strong>Not autonomous AI discovery.</strong> The
                 invariants in the new six were drafted with AI
                 assistance under operator review, then frozen as
-                hand-authored fixtures &mdash; each reference's
+                hand-authored fixtures, each reference's
                 test-driver header names the AI source and the
                 scorecard carries an AI-disclosure block. The harness
                 is what <em>checks</em> them; no candidate reaches a
@@ -367,7 +367,7 @@
                 budget, not proofs. The CI green light is evidence
                 that the harness surfaces each planted bug within
                 budget on the planted variant and finds no violation
-                on the clean variant &mdash; not a proof that no
+                on the clean variant, not a proof that no
                 violation exists under any input.
             </li>
         </ul>
@@ -379,7 +379,7 @@
             Apache-2.0. Issues and PRs are open.
         </p>
         <p class="meta">
-            &mdash; Michael Moffett. Built with AI assistance; the harness scaffolds, the reference fixtures, and the AI-suggester orchestration were drafted with an AI coding assistant under operator review, with full repo attribution. AI policy at <a href="/ai-disclosure">caliperforge.com/ai-disclosure</a>.
+           , Michael Moffett. Built with AI assistance; the harness scaffolds, the reference fixtures, and the AI-suggester orchestration were drafted with an AI coding assistant under operator review, with full repo attribution. AI policy at <a href="/ai-disclosure">caliperforge.com/ai-disclosure</a>.
         </p>
     </section>
 

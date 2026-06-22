@@ -1,8 +1,8 @@
 <!--
-  Blog 09 — Authentication is not authorization: the TrustedVolumes access_control class
+  Blog 09, Authentication is not authorization: the TrustedVolumes access_control class
   Source: agents/rust_anchor_specialist/outbox/trustedvolumes_writeup_draft_2026-06-19.md (article body).
   Staged by: site editor, 2026-06-19.
-  DO NOT DEPLOY — Director runs deploy_caliperforge_site.sh after §4a PASS.
+  DO NOT DEPLOY, Director runs deploy_caliperforge_site.sh after §4a PASS.
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -64,8 +64,8 @@
             (rekt.news) to a bug that reads as obvious after the fact: the
             contract checked whether a signer was authorized for the wrong
             principal. The code that validated the signature was doing
-            exactly what it appeared to be doing &mdash; looking up a key
-            in a map &mdash; and was wrong because the map was indexed on
+            exactly what it appeared to be doing, looking up a key
+            in a map, and was wrong because the map was indexed on
             the caller&rsquo;s address instead of the order&rsquo;s maker
             address. That is the load-bearing bug for the access_control
             class. The full attack chained three more bugs the QuillAudits
@@ -131,7 +131,7 @@
         <p>
             The second leg made the first leg drainable.
             <code>registerAllowedOrderSigner</code> was a permissionless
-            entry point &mdash; any address could register any key as an
+            entry point, any address could register any key as an
             allowed signer for itself. So the attack required no privileged
             access and no prior position:
         </p>
@@ -163,9 +163,9 @@
         <h2>Authentication used as authorization.</h2>
         <p>
             The contract had two distinct functions: a registration
-            function (&ldquo;tell me which key you control &mdash;
+            function (&ldquo;tell me which key you control , 
             authentication&rdquo;) and a settlement function (&ldquo;this
-            key is allowed to spend this maker&rsquo;s balance &mdash;
+            key is allowed to spend this maker&rsquo;s balance , 
             authorization&rdquo;). The settlement function keyed its
             authorization lookup on <code>msg.sender</code>, which is
             correct for authentication (&ldquo;am I who I say I am?&rdquo;)
@@ -193,8 +193,8 @@
         <blockquote>
             <p>
                 <em>No caller can cause a maker&rsquo;s balance to move
-                unless the maker&rsquo;s own key &mdash; not the
-                caller&rsquo;s key &mdash; has signed the order.</em>
+                unless the maker&rsquo;s own key, not the
+                caller&rsquo;s key, has signed the order.</em>
             </p>
         </blockquote>
         <p>
@@ -221,8 +221,8 @@
         </ul>
         <p>
             The violating sequence is short. A stateful fuzzer that carries
-            an attacker keypair in its call space &mdash; one the
-            authorized principal never granted anything to &mdash; is
+            an attacker keypair in its call space, one the
+            authorized principal never granted anything to, is
             designed to find this shape quickly.
             <code>registerAllowedOrderSigner</code> is available in the
             callspace; <code>settle</code> is available in the callspace;
@@ -232,7 +232,7 @@
         <p>
             banteg&rsquo;s Foundry repro is exploit-shaped: reconstruct the
             exact attacker call sequence and replay it against block
-            25039669. That is a valuable artifact &mdash; it confirms the
+            25039669. That is a valuable artifact, it confirms the
             attack surface on the real pre-exploit contract. Our framing is
             orthogonal. State the property the contract should have
             enforced. Show a reference where the property holds on the clean
@@ -250,17 +250,17 @@
             reference pair verified in CI today. All three are CI-verified
             per the build squad&rsquo;s proof register. The two incidents
             are EVM; the reference pairs are Anchor/Solana and
-            Cairo/Starknet &mdash; the property is rail-agnostic, and we
+            Cairo/Starknet, the property is rail-agnostic, and we
             note the gap on the Solidity rail honestly at the end.
         </p>
         <p>
-            <strong>cf-invariants-anchor &mdash; Anchor / Solana,
+            <strong>cf-invariants-anchor, Anchor / Solana,
             <code>access_control</code> class
             (<code>admin_ref</code> / <code>admin_ref_planted</code>).</strong>
             The clean variant holds a vault with Anchor&rsquo;s
             <code>has_one = depositor</code> constraint and PDA seeds
             derived from <code>depositor.key()</code>. The planted variant
-            drops both constraints &mdash; Anchor will then accept any
+            drops both constraints, Anchor will then accept any
             account owned by the program in the vault slot regardless of the
             signer. The access_control invariant fuzzes with a fresh
             attacker keypair every round; any successful unauthorized call
@@ -280,7 +280,7 @@
             and runtime are different.
         </p>
         <p>
-            <strong>cf-invariants-jito &mdash; Anchor / Solana,
+            <strong>cf-invariants-jito, Anchor / Solana,
             <code>admin_gating</code> class on the real Jito
             tip-distribution program.</strong> The planted twin drops the
             <code>UpdateConfig::auth(&amp;ctx)?</code> call from
@@ -304,7 +304,7 @@
             wrong-principal lookup &rarr; show the invariant fires.
         </p>
         <p>
-            <strong>cf-invariants &mdash; Cairo / Starknet, 12-class
+            <strong>cf-invariants, Cairo / Starknet, 12-class
             matrix.</strong> The 12-class reference suite includes
             governance and multisig under the access-control / monotonicity
             pattern. Twelve reference contracts &times; twelve invariant
@@ -334,7 +334,7 @@
             does not exist in the current toolkit (hyperevm-safety v0.1
             ships six HyperCore-boundary classes: oracle staleness, oracle
             deviation, decimals scaling, gas DoS, solvency window, broken
-            Chainlink adapter &mdash; none access_control-shaped).
+            Chainlink adapter, none access_control-shaped).
         </p>
         <p>
             The invariant design is clear regardless:
@@ -391,8 +391,8 @@
                 We do not claim our tooling would have automatically
                 generated the right invariant from the ABI. The AI
                 suggester proposes candidates; an operator reviews; the
-                harness verifies. The framing we use elsewhere &mdash;
-                &ldquo;assistive, human-reviewed suggester&rdquo; &mdash;
+                harness verifies. The framing we use elsewhere , 
+                &ldquo;assistive, human-reviewed suggester&rdquo; , 
                 applies here.
             </li>
             <li>
@@ -440,7 +440,7 @@
                 <a href="https://gist.github.com/banteg/3475d43a80fb6e0ab81f2fa549b88c1b" rel="noopener">gist.github.com/banteg/3475d43a80fb6e0ab81f2fa549b88c1b</a>
             </li>
             <li>
-                QuillAudits hack analysis (fuller four-bug breakdown &mdash;
+                QuillAudits hack analysis (fuller four-bug breakdown , 
                 wrong-principal fillOrder check + permissionless
                 registration + taker-as-from-address with unlimited proxy
                 approvals + broken replay guard):
@@ -453,30 +453,30 @@
         <ul>
             <li>
                 <a href="https://github.com/caliperforge/cf-invariants-anchor" rel="noopener">cf-invariants-anchor</a>
-                &mdash; Anchor / Solana, <code>access_control</code>
+               , Anchor / Solana, <code>access_control</code>
                 reference pair, CI-verified <code>aee4136</code>.
             </li>
             <li>
                 <a href="https://github.com/caliperforge/cf-invariants-jito" rel="noopener">cf-invariants-jito</a>
-                &mdash; Anchor / Solana, <code>admin_gating</code> class on
+               , Anchor / Solana, <code>admin_gating</code> class on
                 real Jito tip-distribution, CI-verified
                 <code>e683c5a</code>.
             </li>
             <li>
                 <a href="https://github.com/caliperforge/cf-invariants" rel="noopener">cf-invariants</a>
-                &mdash; Cairo / Starknet, 12-class matrix, CI-verified
+               , Cairo / Starknet, 12-class matrix, CI-verified
                 <code>003e33c</code>, run <code>27075213962</code>.
             </li>
             <li>
                 <a href="https://github.com/caliperforge/cf-invariants/tree/main/docs/cookbook" rel="noopener">cf-invariants developer cookbook</a>
-                &mdash; see also, public since 2026-06-11,
+               , see also, public since 2026-06-11,
                 <code>7f94b08</code>.
             </li>
         </ul>
         <p class="meta">
-            Operator of record: Michael Moffett &mdash;
+            Operator of record: Michael Moffett , 
             <a href="mailto:michael@caliperforge.com">michael@caliperforge.com</a>
-            &mdash;
+            , 
             <a href="mailto:team@caliperforge.com">team@caliperforge.com</a>.
             This writeup was drafted with AI assistance; the invariant
             framing, the same-source reference mapping, and this post were

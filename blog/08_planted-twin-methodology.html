@@ -61,8 +61,8 @@
         <p class="lede">
             A clean reference contract. A planted-bug twin. One invariant
             that fires on the planted side and holds on the clean side.
-            Both legs wired into CI. That structure &mdash; repeated
-            across every harness CaliperForge ships &mdash; is the
+            Both legs wired into CI. That structure, repeated
+            across every harness CaliperForge ships, is the
             planted-twin methodology. This is a brief account of what it
             does and what it does not claim.
         </p>
@@ -77,7 +77,7 @@
         <h2>A clean pair is two contracts and one test file.</h2>
         <p>
             CaliperForge harnesses ship the same structural unit.
-            Take a contract that is supposed to satisfy some rule &mdash;
+            Take a contract that is supposed to satisfy some rule , 
             a conservation law, an access control, a solvency bound. Write
             the clean version: the version that actually satisfies it.
             Write the planted version: the same contract, with exactly one
@@ -107,7 +107,7 @@
             started failing on a correct one.
         </p>
         <p>
-            The deterministic violation record is the checkable artifact &mdash;
+            The deterministic violation record is the checkable artifact , 
             an <code>INVARIANT VIOLATED</code> marker on stdout in the
             Foundry-twin repos, a scorecard recording the violation count
             in the Echidna-campaign repos. Anyone who clones the repo and runs
@@ -129,7 +129,7 @@
             The planted twin answers the question the clean leg cannot:
             does the property actually catch the bug class it is supposed
             to catch? A property that passes on both the clean and the
-            planted implementation is a broken property &mdash; it is not
+            planted implementation is a broken property, it is not
             testing what it claims to test. By requiring the planted leg to
             fire, the methodology keeps the test honest. The harness is
             only as good as its ability to break on known-bad code.
@@ -206,8 +206,8 @@
             auditor can identify. A planted-twin harness covers the
             invariant classes it encodes. A passing CI run on a fork of
             one of these repos against a production protocol does not
-            certify the protocol is safe. The residual surface &mdash;
-            the bug classes the properties do not encode &mdash; is the
+            certify the protocol is safe. The residual surface , 
+            the bug classes the properties do not encode, is the
             protocol&rsquo;s.
         </p>
         <p>
@@ -245,7 +245,7 @@
         <ul>
             <li>
                 <a href="https://github.com/caliperforge/hyperevm-safety" rel="noopener"><strong>caliperforge/hyperevm-safety</strong></a>
-                &mdash; HyperEVM lending invariants. Six HyperCore-boundary
+               , HyperEVM lending invariants. Six HyperCore-boundary
                 classes; three marker-firing planted or incident-reproduction
                 twins now in-tree (D-3 SzDecimalsRoundTrip,
                 D-6 ChainlinkAdapterDefeatsStaleness, JELLY reproduction).
@@ -253,15 +253,15 @@
             </li>
             <li>
                 <a href="https://github.com/caliperforge/cf-invariants-verus-bridge-conservation" rel="noopener"><strong>caliperforge/cf-invariants-verus-bridge-conservation</strong></a>
-                &mdash; bridge conservation invariant reference, anchored on
+               , bridge conservation invariant reference, anchored on
                 the 2026-05-18 Verus&ndash;Ethereum exploit. One property,
                 two contracts, CI matrix. Apache-2.0.
             </li>
         </ul>
         <p class="meta">
-            Operator of record: Michael Moffett &mdash;
+            Operator of record: Michael Moffett , 
             <a href="mailto:michael@caliperforge.com">michael@caliperforge.com</a>
-            &mdash;
+            , 
             <a href="mailto:team@caliperforge.com">team@caliperforge.com</a>.
             AI assistance was used in drafting the invariant properties,
             same-source twin reconstructions, and this post; all content
