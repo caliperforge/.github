@@ -103,7 +103,7 @@
             Verifiable, auditable, <span class="nowrap"><span class="grad">correctable.</span></span>
         </h1>
 
-        <!-- v5: caliper rule — decorative brand signature, no content -->
+        <!-- v5: caliper rule - decorative brand signature, no content -->
         <div class="caliper-rule" aria-hidden="true"></div>
 
         <p class="hero-tagline">Precision contributions, every time.</p>
@@ -166,29 +166,46 @@
                 <span class="section-num">01 /</span>
                 <h2>What CaliperForge is</h2>
             </div>
-            <p class="prose">An AI research studio. The delivery is the proof.</p>
             <p class="prose">
-                CaliperForge researches autonomous systems you can verify,
-                audit, and correct, specializing in security and
-                invariants. The receipts below are the proof, not a claim.
+                An AI research studio specializing in security and invariants. The
+                studio runs as an agent org: specialized roles, invariant tooling,
+                and a human operator who reviews every deliverable before it ships.
+                The proof is in the receipts.
             </p>
-            <!-- live gate-record strip — figures filled by caught-metrics.js;
+            <p class="prose">
+                We build autonomous systems you can check. Stateful invariant
+                testing. Planted-twin CI on every harness. A published record of
+                what our own gates caught and what they missed. The proof is in the
+                receipts -- not in a claim about the receipts.
+            </p>
+            <!-- stat card strip: figures filled by caught-metrics.js;
                  baked-in values are the honest fallback if the fetch fails. -->
-            <p class="coverage-note" id="home-metrics-strip">
-                <strong class="cf-m" data-cf-key="tp">15</strong> defects caught at the gate
-                &middot; <strong class="cf-m" data-cf-key="fp">0</strong> false positives
-                &middot; <strong class="cf-m" data-cf-key="fn">3</strong>
-                <a href="/what-we-caught#misses">documented misses</a>.
-                <strong class="cf-m" data-cf-key="catch_rate_display">83%</strong> catch rate
-                across <strong class="cf-m" data-cf-key="adjudicated">46</strong>
-                adjudicated &sect;4a / &sect;4b gate decisions.
-                <span class="data-stamp">Window:
-                    <span class="cf-m" data-cf-key="window_start">2026-06-04</span> &rarr;
-                    <span class="cf-m" data-cf-key="window_end">2026-06-21</span>
-                    &middot; auto-refreshed
-                    <span class="cf-m" data-cf-key="last_updated">2026-06-21T15:02:09Z</span>.
-                </span>
+            <div class="cf-kpi-strip">
+                <div class="cf-kpi-cell">
+                    <div class="cf-kpi-value kpi-good cf-m" data-cf-key="catch_rate_display">83%</div>
+                    <div class="cf-kpi-label">Catch rate</div>
+                </div>
+                <div class="cf-kpi-cell">
+                    <div class="cf-kpi-value kpi-good cf-m" data-cf-key="tp">15</div>
+                    <div class="cf-kpi-label">Defects caught</div>
+                </div>
+                <div class="cf-kpi-cell">
+                    <div class="cf-kpi-value kpi-warn cf-m" data-cf-key="fn">3</div>
+                    <div class="cf-kpi-label">Documented misses</div>
+                </div>
+                <div class="cf-kpi-cell">
+                    <div class="cf-kpi-value kpi-zero cf-m" data-cf-key="fp">0</div>
+                    <div class="cf-kpi-label">False positives</div>
+                </div>
+            </div>
+            <p class="coverage-note">
+                Window:
+                <span class="cf-m" data-cf-key="window_start">2026-06-04</span> &rarr;
+                <span class="cf-m" data-cf-key="window_end">2026-06-21</span>
+                &middot; auto-refreshed
+                <span class="cf-m" data-cf-key="last_updated">2026-06-21T15:02:09Z</span>.
             </p>
+            <p><a href="/what-we-caught">Full gate record and adjudicated decisions.</a></p>
         </div>
     </section>
 

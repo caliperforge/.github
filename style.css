@@ -2163,3 +2163,155 @@ a:hover {
 }
 
 /* ===== END v8 additions ===== */
+
+/* ===== Cockpit-style stat cards, bar breakdown, dash grid, agent table ===== */
+/* Added: T-site-unified-build-2026-06-22 per spec §7. Additive only. */
+
+/* ---- Stat card strip ---- */
+.cf-kpi-strip {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-card);
+  margin-bottom: 2.5rem;
+  overflow: hidden;
+}
+.cf-kpi-cell {
+  flex: 1;
+  padding: 1.25rem 1.5rem;
+  border-left: 1px solid var(--border);
+}
+.cf-kpi-cell:first-child { border-left: 0; }
+.cf-kpi-value {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+  font-variant-numeric: tabular-nums;
+}
+.cf-kpi-value.kpi-good { color: var(--ok); }
+.cf-kpi-value.kpi-warn { color: #b45309; }
+.cf-kpi-value.kpi-zero { color: var(--ink-soft); }
+.cf-kpi-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-faint);
+}
+@media (max-width: 640px) {
+  .cf-kpi-strip { flex-wrap: wrap; }
+  .cf-kpi-cell { flex-basis: 50%; border-top: 1px solid var(--border); }
+  .cf-kpi-cell:nth-child(-n+2) { border-top: 0; }
+}
+@media (max-width: 400px) {
+  .cf-kpi-cell { flex-basis: 100%; }
+  .cf-kpi-cell:nth-child(-n+1) { border-top: 0; }
+}
+
+/* ---- Horizontal bar breakdown ---- */
+.cf-bar-section { margin: 0 0 1.5rem; }
+.cf-bar-section-title {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--ink-faint);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.cf-bar-section-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.cf-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.cf-bar-row:last-child { border-bottom: 0; }
+.cf-bar-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  min-width: 10rem;
+  flex-shrink: 0;
+}
+.cf-bar-fill {
+  height: 8px;
+  border-radius: 2px;
+  background: var(--accent);
+  opacity: 0.65;
+  max-width: 240px;
+}
+.cf-bar-count {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+/* ---- Two-panel grid ---- */
+.cf-dash-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+.cf-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+@media (max-width: 720px) {
+  .cf-dash-grid { grid-template-columns: 1fr; }
+}
+
+/* ---- By-agent table ---- */
+.cf-agent-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+.cf-agent-table thead th {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-faint);
+  padding: 0.35rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  font-weight: 400;
+}
+.cf-agent-table thead th:not(:first-child) { text-align: right; }
+.cf-agent-table tbody td {
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink-soft);
+  vertical-align: top;
+}
+.cf-agent-table tbody td:first-child {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--ink);
+}
+.cf-agent-table tbody td:not(:first-child) {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.cf-agent-table tbody tr:last-child td { border-bottom: 0; }
+.cf-agent-table tbody tr:hover td { background: var(--accent-quiet); }
+/* ===== END cockpit card additions ===== */

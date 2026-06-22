@@ -1,5 +1,5 @@
 {
-  "schema": "caught_public.v1",
+  "schema": "caught_public.v2",
   "last_updated": "2026-06-21T15:02:09Z",
   "window_start": "2026-06-04",
   "window_end": "2026-06-21",
@@ -30,14 +30,34 @@
       }
     }
   },
+  "by_gate": {
+    "content_qa": 11,
+    "code_quality": 4,
+    "ceo_hold": 30,
+    "task_hygiene": 0
+  },
+  "by_agent": [
+    {
+      "agent": "content_qa_reviewer",
+      "pct": "92%",
+      "n": 31,
+      "stops": 11
+    },
+    {
+      "agent": "code_quality_reviewer",
+      "pct": "67%",
+      "n": 15,
+      "stops": 4
+    }
+  ],
   "receipts": [
     {
       "id": "R-2026-06-19-atlas-headline",
       "headline": "Unsupported \"6 exploits reproduced\" homepage headline, pulled pre-deploy.",
-      "gate": "\u00a74a",
+      "gate": "§4a",
       "verdict_iso": "2026-06-19",
       "fix_ref": "pre-deploy edit",
-      "frame": "A \u00a74a content-QA gate stopped the homepage Atlas headline because the source repo README did not carry the count. The line was rewritten to the structural framing before the deploy -- so this defect never reached the public site.",
+      "frame": "A §4a content-QA gate stopped the homepage Atlas headline because the source repo README did not carry the count. The line was rewritten to the structural framing before the deploy -- so this defect never reached the public site.",
       "writeup_url": null
     }
   ],
@@ -45,32 +65,32 @@
     {
       "id": "FN-1",
       "headline": "Governance-pack email policy missed at code review gate",
-      "gate_missed": "\u00a74b",
+      "gate_missed": "§4b",
       "gate_pass_iso": "2026-06-10",
-      "caught_by": "\u00a74a community-health regate",
+      "caught_by": "§4a community-health regate",
       "caught_iso": "2026-06-12",
       "fix_ref": "commit 0bff2c4",
-      "frame": "The \u00a74b reviewer audited the cf-invariants community-health pack (CODE_OF_CONDUCT, CONTRIBUTING, GOVERNANCE, SECURITY -- 455 lines across 4 files) for canonical-string consistency, including email, and passed it. Two days later, the \u00a74a community-health gate caught <code>security@caliperforge.com</code> at 4 sites in violation of the feedback-email-only policy and contradicting the live README's published security contact, <code>michael@caliperforge.com</code>. Email-string consistency was declared in \u00a74b's scope; the policy mismatch was a \u00a74b miss. Fix landed at commit <code>0bff2c4</code> via the \u00a74a community-health regate."
+      "frame": "The §4b reviewer audited the cf-invariants community-health pack (CODE_OF_CONDUCT, CONTRIBUTING, GOVERNANCE, SECURITY -- 455 lines across 4 files) for canonical-string consistency, including email, and passed it. Two days later, the §4a community-health gate caught <code>security@caliperforge.com</code> at 4 sites in violation of the feedback-email-only policy and contradicting the live README's published security contact, <code>michael@caliperforge.com</code>. Email-string consistency was declared in §4b's scope; the policy mismatch was a §4b miss. Fix landed at commit <code>0bff2c4</code> via the §4a community-health regate."
     },
     {
       "id": "FN-2",
       "headline": "hyperevm-safety README over-claim shipped to public repo",
-      "gate_missed": "\u00a74b",
+      "gate_missed": "§4b",
       "gate_pass_iso": "2026-06-11",
-      "caught_by": "\u00a74a cascade",
+      "caught_by": "§4a cascade",
       "caught_iso": "2026-06-11",
       "fix_ref": "commit e46fe9c",
-      "frame": "The \u00a74b preflip-regate passed the hyperevm-safety README with the note \"20 referenced paths exist.\" The README was then pushed to the public repo at the flip carrying a factual over-claim -- \"each invariant paired with a planted-bug twin that fires on CI\" -- that was not tree-true (two of the six invariants ship with deterministic broken-reference tests, not planted twins; two more landed only at the M2 milestone). The over-claim text was live on the public GitHub README for roughly three hours before our own \u00a74a cascade caught it (FAIL-WITH-FIXES, same day at 17:42). Root-cause fix pushed public 18:01 at commit <code>e46fe9c</code>. Caught by our own gates, fixed same-day -- but the public repo carried the over-claim for those three hours. That is the honest framing."
+      "frame": "The §4b preflip-regate passed the hyperevm-safety README with the note \"20 referenced paths exist.\" The README was then pushed to the public repo at the flip carrying a factual over-claim -- \"each invariant paired with a planted-bug twin that fires on CI\" -- that was not tree-true (two of the six invariants ship with deterministic broken-reference tests, not planted twins; two more landed only at the M2 milestone). The over-claim text was live on the public GitHub README for roughly three hours before our own §4a cascade caught it (FAIL-WITH-FIXES, same day at 17:42). Root-cause fix pushed public 18:01 at commit <code>e46fe9c</code>. Caught by our own gates, fixed same-day -- but the public repo carried the over-claim for those three hours. That is the honest framing."
     },
     {
       "id": "FN-3",
       "headline": "verus-bridge writeup source-quality issues passed initial gate",
-      "gate_missed": "\u00a74a",
+      "gate_missed": "§4a",
       "gate_pass_iso": "2026-06-11",
-      "caught_by": "\u00a74a sources-regate",
+      "caught_by": "§4a sources-regate",
       "caught_iso": "2026-06-12",
       "fix_ref": "commit cfb0677",
-      "frame": "The \u00a74a preflip-regate on the verus-bridge writeup confirmed that 10 prior fix-loop items had landed (API-arity mismatches, broken twins, etc.) and passed. The same writeup still carried sourcing issues -- an ExVul citation that did not resolve (sweep returned zero hits), Blockaid and PeckShield wording that over-stated firm advisories as post-mortems, and an imprecise count framing. Caught next day by a follow-on \u00a74a sources-regate. Fix landed at commit <code>cfb0677</code>: ExVul dropped, the firm advisories downgraded with pinned URLs and dates, the count framing removed. Factual-accuracy and source-verification were declared in \u00a74a's scope; this was a \u00a74a-scope miss."
+      "frame": "The §4a preflip-regate on the verus-bridge writeup confirmed that 10 prior fix-loop items had landed (API-arity mismatches, broken twins, etc.) and passed. The same writeup still carried sourcing issues -- an ExVul citation that did not resolve (sweep returned zero hits), Blockaid and PeckShield wording that over-stated firm advisories as post-mortems, and an imprecise count framing. Caught next day by a follow-on §4a sources-regate. Fix landed at commit <code>cfb0677</code>: ExVul dropped, the firm advisories downgraded with pinned URLs and dates, the count framing removed. Factual-accuracy and source-verification were declared in §4a's scope; this was a §4a-scope miss."
     }
   ]
 }

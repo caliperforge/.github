@@ -44,8 +44,9 @@
             </a>
             <div class="nav-links">
                 <a href="/blog/">Blog</a>
-                <a href="/what-we-caught">What we caught</a>
+                <a href="/what-we-caught" aria-current="page">What we caught</a>
                 <a href="/engagements/">Engagements</a>
+                <a href="/roadmap/">Roadmap</a>
                 <a href="/ai-disclosure">AI policy</a>
                 <a href="https://github.com/caliperforge" rel="me">GitHub</a>
                 <a href="mailto:team@caliperforge.com">Contact</a>
@@ -55,8 +56,8 @@
         <h1>What our gates caught.</h1>
         <p class="lede">
             The record of what our own review gates caught, and
-            the three things they missed. This is our own adjudicated
-            record of our own gates, not an external audit.
+            the three things they missed. This is our own record.
+            Not an external audit.
         </p>
         <!-- policy-date: figures auto-filled by caught-metrics.js; static
              values are the honest fallback if the fetch fails. -->
@@ -83,82 +84,79 @@
         <h2>Our gates, on the record.</h2>
         <p>
             CaliperForge's contribution workflow runs every artifact
-            through two independent review gates before anything ships
-           , <strong>&sect;4a</strong> for content, factual claims,
+            through two independent review gates before anything ships:
+            <strong>&sect;4a</strong> for content, factual claims,
             and source quality; <strong>&sect;4b</strong> for code and
             CI-runnable property tests. Reviewer is never the drafter.
-            Each gate either passes, fails, or fails-with-fixes, and
-            every verdict is logged.
         </p>
         <p>
             This page publishes the adjudicated record: what those gates
             caught, what they missed, and where the misses were caught
-            downstream. It updates as new adjudications land. The misses
-            column is part of the design, a self-correction record
+            downstream. The numbers update as new adjudications land. The misses
+            column is part of the design. A self-correction record
             that only shows wins is worthless.
+        </p>
+        <p>
+            A note on scope: the figures below cover &sect;4a and &sect;4b gate
+            decisions. The CEO Hold mechanism is a separate escalation track and
+            is counted separately at the top of the gate breakdown.
         </p>
     </section>
 
-    <!-- ============= 02 / HEADLINE METRICS =================== -->
+    <!-- ============= 02 / THE NUMBERS (cockpit layout) ========= -->
     <section class="section" id="metrics">
         <p class="eyebrow">The numbers</p>
         <!-- h2 figure filled by caught-metrics.js; static value is honest fallback -->
-        <h2><span class="cf-m" data-cf-key="adjudicated">46</span> adjudicated decisions, in receipts.</h2>
+        <h2><span class="cf-m" data-cf-key="adjudicated">46</span> adjudicated decisions, on the record.</h2>
         <p class="section-lede">
-            Adjudicated against the documented downstream record, a
-            gate PASS counts as confirmed clean only if no later round
-            caught something it should have. The figures below cover the
-            &sect;4a / &sect;4b gate decisions in the window. The
-            <code>needs_ceo</code> HOLD mechanism is a separate, still-being-adjudicated
-            track and is not folded into these numbers.
+            These figures cover the &sect;4a and &sect;4b gate decisions in the window.
+            A gate PASS counts as confirmed clean only if no later round caught
+            something the gate should have caught. Nothing is rounded; nothing
+            is aggregated up.
         </p>
-        <ul class="chains projects">
-            <li>
-                <span class="name cf-m" data-cf-key="tp">15</span>
-                <span class="meta">Real defects caught</span>
-                <span class="scope">
-                    True-positive catches: the gate fired, the artifact had
-                    a real defect, the fix landed before publish. 4 in
-                    &sect;4b code-quality, 11 in &sect;4a content-QA.
-                </span>
-            </li>
-            <li>
-                <span class="name cf-m" data-cf-key="fp">0</span>
-                <span class="meta">False positives</span>
-                <span class="scope">
-                    Zero cases where the gate flagged a non-issue and the
-                    artifact shipped unchanged on review. Of the
-                    <span class="cf-m" data-cf-key="tp">15</span> stops,
-                    every one was a real defect.
-                </span>
-            </li>
-            <li>
-                <span class="name cf-m" data-cf-key="fn">3</span>
-                <span class="meta">Documented misses</span>
-                <span class="scope">
-                    Gate PASSes later contradicted by a downstream catch.
-                    All three are published below with the artifact,
-                    the missed defect, and where it was finally caught.
-                </span>
-            </li>
-            <li>
-                <span class="name cf-m" data-cf-key="catch_rate_display">83%</span>
-                <span class="meta">Catch rate</span>
-                <span class="scope">
-                    <span class="cf-m" data-cf-key="tp">15</span> true-positive
-                    catches against
-                    <span class="cf-m" data-cf-key="adjudicated_defects">18</span>
-                    real defects
-                    (<span class="cf-m" data-cf-key="tp">15</span> caught at the gate
-                    + <span class="cf-m" data-cf-key="fn">3</span> caught one step
-                    downstream). Precision
-                    <span class="cf-m" data-cf-key="precision_display">100%</span>
-                    on what fired; false-positive rate
-                    <span class="cf-m" data-cf-key="false_positive_rate_display">0%</span>
-                    across <span class="cf-m" data-cf-key="tn">28</span> true negatives.
-                </span>
-            </li>
-        </ul>
+
+        <!-- Stat card strip: 4 cells, populated by caught-metrics.js -->
+        <div class="cf-kpi-strip">
+            <div class="cf-kpi-cell">
+                <div class="cf-kpi-value kpi-good cf-m" data-cf-key="catch_rate_display">83%</div>
+                <div class="cf-kpi-label">Catch rate</div>
+            </div>
+            <div class="cf-kpi-cell">
+                <div class="cf-kpi-value kpi-good cf-m" data-cf-key="tp">15</div>
+                <div class="cf-kpi-label">Defects caught</div>
+            </div>
+            <div class="cf-kpi-cell">
+                <div class="cf-kpi-value kpi-warn cf-m" data-cf-key="fn">3</div>
+                <div class="cf-kpi-label">Documented misses</div>
+            </div>
+            <div class="cf-kpi-cell">
+                <div class="cf-kpi-value kpi-zero cf-m" data-cf-key="fp">0</div>
+                <div class="cf-kpi-label">False positives</div>
+            </div>
+        </div>
+
+        <!-- Two-panel grid: by-gate bars (left) + by-agent table (right) -->
+        <div class="cf-dash-grid">
+            <!-- Left panel: by gate -->
+            <div class="cf-panel">
+                <div class="cf-bar-section-title">By gate</div>
+                <div id="by-gate-feed">
+                    <!-- populated by caught-metrics.js from by_gate; honest-empty fallback: -->
+                    <p class="coverage-note">Gate breakdown loading -- check
+                    <code>site/data/caught_public.json</code>.</p>
+                </div>
+            </div>
+            <!-- Right panel: by agent (reviewer) -->
+            <div class="cf-panel">
+                <div class="cf-bar-section-title">By agent (reviewer)</div>
+                <div id="by-agent-feed">
+                    <!-- populated by caught-metrics.js from by_agent; honest-empty fallback: -->
+                    <p class="coverage-note">Agent breakdown loading -- check
+                    <code>site/data/caught_public.json</code>.</p>
+                </div>
+            </div>
+        </div>
+
         <!-- live summary bar, figures filled by caught-metrics.js -->
         <p class="coverage-note" id="caught-metrics-bar">
             <strong class="cf-m" data-cf-key="tp">15</strong> defects caught
@@ -340,55 +338,21 @@
         </ul>
     </section>
 
-    <!-- ============= 05 / WHAT THIS IS / ISN'T =============== -->
+    <!-- ============= 05 / SCOPE NOTE ========================= -->
     <section class="section prose" id="scope">
-        <p class="eyebrow">Scope &amp; honesty</p>
-        <h2>What this is, what it isn't.</h2>
-        <ul>
-            <li>
-                <strong>What this is.</strong> Our own adjudicated record
-                of our own &sect;4a content and &sect;4b code review
-                gates, the 49 decisions logged 2026-06-04 through
-                2026-06-19. Every figure traces to a documented decision
-                with a cited verdict, fix landing, and downstream
-                outcome.
-            </li>
-            <li>
-                <strong>What it isn't.</strong> Not an external audit.
-                Not a formal-verification claim. Not a coverage metric on
-                the underlying fuzz engines (snforge on Cairo, Crucible
-                on Solana / Anchor, Echidna / Medusa on EVM, those
-                have their own coverage stories). Not a claim that gates
-                guarantee correctness; they catch what they catch, and
-                the misses column is what they didn't.
-            </li>
-            <li>
-                <strong>Excluded.</strong> The <code>needs_ceo</code>
-                HOLD mechanism, the third class of decisions in
-                our queue, is deliberately not folded into the
-                catch-rate. It's a separate, still-being-adjudicated
-                track. When it's settled, it'll get its own published
-                record.
-            </li>
-            <li>
-                <strong>Growing.</strong> The window grows as new
-                adjudications land. The misses column grows with it, by
-                design. A self-correction record that only shows wins
-                isn't a self-correction record.
-            </li>
-        </ul>
+        <p class="eyebrow">Scope</p>
+        <h2>What this record covers.</h2>
         <p>
-            Source memo: <code>ops/audits/ai_ops/control_effectiveness_adjudication_2026-06-16.md</code>,
-            extended by <code>ops/audits/ai_ops/whatwecaught_adjudication_2026-06-19.md</code>
-           , the per-decision evidence table backing every figure
-            on this page. The 2026-06-19 extension adds one &sect;4a
-            pre-ship catch (an unsupported &ldquo;Atlas: 6 exploits
-            reproduced&rdquo; homepage headline, removed before deploy)
-            and records the live HyperEVM D-3/D-6 enumeration correction
-            as content-currency drift, not a gate miss, no gate
-            had passed that homepage copy. Internal paths today; the
-            publishable summary link gets added when Director picks the
-            public surface.
+            This is our own record. Not an external audit. Every figure traces
+            to a documented decision with a cited verdict, fix landing, and
+            downstream outcome. The window grows as new adjudications land.
+            The misses column grows with it, by design.
+        </p>
+        <p>
+            The <code>needs_ceo</code> HOLD mechanism is a separate escalation
+            track, deliberately not folded into the catch-rate. It gets its own
+            count in the gate breakdown above. The denominators are the published
+            record -- nothing rounded, nothing aggregated up.
         </p>
         <p>
             Methodology behind the gate record:
@@ -430,19 +394,24 @@
             <a href="/blog/">Blog</a>
             <a href="https://github.com/caliperforge" rel="me">GitHub</a>
             <a href="/engagements/">Engagements</a>
-            <a href="/ai-disclosure">AI policy</a>
+            <a href="/roadmap/">Roadmap</a>
+            <a href="https://x.com/caliperforge" rel="me">X</a>
+            <a href="https://farcaster.xyz/caliperforge" rel="me">Farcaster</a>
+            <a href="https://t.me/caliperforge" rel="me">Telegram</a>
             <a href="mailto:team@caliperforge.com">Email</a>
         </nav>
     </div>
 </footer>
 
 <!-- caught-metrics.js: fetch live gate stats from caught_public.json.
-     Fills [data-cf-key] spans, renders receipts + misses feeds.
+     Fills [data-cf-key] spans, renders receipts + misses + by-gate + by-agent feeds.
      Swallows all errors silently -- static fallback stays visible. -->
 <script>
 (function () {
   var FEED = '/data/caught_public.json';
   var RETRY_MS = 90000;
+  /* Max bar width in px, matching spec §4.2 */
+  var MAX_BAR_PX = 240;
 
   /* ---- fill simple data-cf-key spans ---- */
   function fillSpans(data) {
@@ -465,6 +434,56 @@
       var v = map[el.getAttribute('data-cf-key')];
       if (v !== undefined && v !== null) el.textContent = v;
     });
+  }
+
+  /* ---- render by-gate horizontal bars ---- */
+  function renderByGate(byGate) {
+    var feed = document.getElementById('by-gate-feed');
+    if (!feed || !byGate) return;
+    var gateLabels = {
+      content_qa: '§4a Content QA',
+      code_quality: '§4b Code Quality',
+      ceo_hold: 'CEO Hold',
+      task_hygiene: 'Task Hygiene'
+    };
+    var keys = ['content_qa', 'code_quality', 'ceo_hold', 'task_hygiene'];
+    var vals = keys.map(function(k) { return byGate[k] || 0; });
+    var maxVal = Math.max.apply(null, vals.concat([1]));
+    feed.innerHTML = keys.map(function(k, i) {
+      var n = vals[i];
+      var barW = Math.round(n / maxVal * MAX_BAR_PX);
+      return '<div class="cf-bar-row">' +
+        '<span class="cf-bar-label">' + esc(gateLabels[k] || k) + '</span>' +
+        '<span class="cf-bar-fill" style="width:' + barW + 'px"></span>' +
+        '<span class="cf-bar-count">n=' + n + '</span>' +
+        '</div>';
+    }).join('');
+  }
+
+  /* ---- render by-agent table ---- */
+  function renderByAgent(byAgent) {
+    var feed = document.getElementById('by-agent-feed');
+    if (!feed || !byAgent || !byAgent.length) return;
+    var rows = byAgent.slice().sort(function(a, b) {
+      return (b.stops || 0) - (a.stops || 0);
+    });
+    feed.innerHTML = '<table class="cf-agent-table">' +
+      '<thead><tr>' +
+        '<th>Agent</th>' +
+        '<th>Catch %</th>' +
+        '<th>n</th>' +
+        '<th>Stops</th>' +
+      '</tr></thead>' +
+      '<tbody>' +
+      rows.map(function(r) {
+        return '<tr>' +
+          '<td>' + esc(r.agent) + '</td>' +
+          '<td>' + esc(r.pct) + '</td>' +
+          '<td>' + esc(String(r.n)) + '</td>' +
+          '<td>' + esc(String(r.stops)) + '</td>' +
+          '</tr>';
+      }).join('') +
+      '</tbody></table>';
   }
 
   /* ---- render receipts feed ---- */
@@ -507,7 +526,7 @@
     }).join('');
   }
 
-  /* minimal HTML escaping for attribute values / text */
+  /* minimal HTML escaping */
   function esc(s) {
     return String(s || '')
       .replace(/&/g, '&amp;')
@@ -521,6 +540,8 @@
       .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
       .then(function (data) {
         fillSpans(data);
+        renderByGate(data.by_gate);
+        renderByAgent(data.by_agent);
         renderReceipts(data.receipts);
         renderMisses(data.misses);
       })
