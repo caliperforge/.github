@@ -1953,7 +1953,7 @@ a:hover {
     position: relative; z-index: 2;
     max-width: var(--container);
     margin: 0 auto;
-    padding: 2.5rem var(--gutter) 4rem;
+    padding: 3.625rem var(--gutter) 4rem;   /* top matches .subhero after v9 Fix 3 */
 }
 
 .rdm-kicker {
@@ -2154,7 +2154,7 @@ a:hover {
 /* ----- roadmap responsive tweaks --------------------------------------- */
 
 @media (max-width: 768px) {
-    .rdm-hero-inner { padding-bottom: 3rem; }
+    .rdm-hero-inner { padding-top: 2.625rem; padding-bottom: 3rem; }   /* top matches .subhero mobile */
 }
 
 @media (prefers-reduced-motion: reduce) {
