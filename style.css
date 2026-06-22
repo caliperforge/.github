@@ -2315,3 +2315,84 @@ a:hover {
 .cf-agent-table tbody tr:last-child td { border-bottom: 0; }
 .cf-agent-table tbody tr:hover td { background: var(--accent-quiet); }
 /* ===== END cockpit card additions ===== */
+
+/* ==========================================================================
+   v9 additions: T-site-polish-pass-2026-06-22
+   Fix 2: section heading accent color
+   Fix 3: nav spacing parity (hero-nav vs subhero-nav)
+   Fix 4: blog index as project-style cards
+   ========================================================================== */
+
+/* ---- Fix 2: section heading accent + sizing (h2 inside .section-head) ----
+   The v8 additions left .section-head h2 unstyled; UA default size reads
+   flat and too small. Give them accent blue + a matching scale.           */
+.section-head h2 {
+    font-family: var(--font-sans);
+    font-size: clamp(1.875rem, 2.6vw + 0.5rem, 2.75rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    color: var(--accent);   /* #2563eb (5.1:1 on --bg, AA) */
+    margin: 0;
+    text-wrap: balance;
+}
+
+/* ---- Fix 3: nav parity ------------------------------------------------
+   hero-nav:     padding: 1.375rem var(--gutter)  (top+bottom = 1.375rem each)
+   subhero-nav:  padding-top was 0; padding-bottom was 1.25rem
+   Fix: add padding-top: 1.375rem to subhero-nav so bar height matches;
+   reduce .subhero top padding by the same amount to keep layout weight.  */
+.subhero-nav {
+    padding-top: 1.375rem;   /* new: match hero-nav */
+}
+.subhero {
+    padding-top: 3.625rem;   /* was 5rem; 5rem - 1.375rem = 3.625rem */
+}
+@media (max-width: 768px) {
+    .subhero {
+        padding-top: 2.625rem;  /* was 4rem; 4rem - 1.375rem */
+    }
+}
+
+/* ---- Fix 4: blog index as project-style cards -------------------------
+   Replaces .chains.posts list with a 2-col card grid matching .projects-grid.
+   New classes: .blog-cards-grid (layout), .blog-card-title (link style),
+   .blog-card-date (mono date pill). Reuses .project-card, .project-desc,
+   .project-receipt from the v8 section.                                   */
+.blog-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+@media (max-width: 700px) {
+    .blog-cards-grid { grid-template-columns: 1fr; }
+}
+
+.blog-card-title {
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: none;
+    letter-spacing: -0.01em;
+    display: block;
+}
+.blog-card-title:hover {
+    color: var(--accent);
+    border-bottom: none;
+}
+.blog-card-date {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    background: rgba(15, 23, 42, 0.035);
+    color: var(--ink-soft);
+    border: 1px solid var(--border);
+    padding: 0.1875rem 0.625rem;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+/* ===== END v9 additions ===== */

@@ -178,32 +178,34 @@
                 what our own gates caught and what they missed. The proof is in the
                 receipts -- not in a claim about the receipts.
             </p>
-            <!-- stat card strip: figures filled by caught-metrics.js;
-                 baked-in values are the honest fallback if the fetch fails. -->
+            <!-- Operational-scale strip. All figures sourced from live telemetry:
+                 agents/ roster v3 + directories (specialized agents),
+                 ops/qa_verdicts/control_effectiveness.jsonl (gate reviews),
+                 ops/runs/ledger.md (agent dispatches),
+                 ledger first entry 2026-05-31 (days running). -->
             <div class="cf-kpi-strip">
                 <div class="cf-kpi-cell">
-                    <div class="cf-kpi-value kpi-good cf-m" data-cf-key="catch_rate_display">83%</div>
-                    <div class="cf-kpi-label">Catch rate</div>
+                    <div class="cf-kpi-value">36</div>
+                    <div class="cf-kpi-label">Specialized agents</div>
                 </div>
                 <div class="cf-kpi-cell">
-                    <div class="cf-kpi-value kpi-good cf-m" data-cf-key="tp">15</div>
-                    <div class="cf-kpi-label">Defects caught</div>
+                    <div class="cf-kpi-value">1,106</div>
+                    <div class="cf-kpi-label">Gate reviews to date</div>
                 </div>
                 <div class="cf-kpi-cell">
-                    <div class="cf-kpi-value kpi-warn cf-m" data-cf-key="fn">3</div>
-                    <div class="cf-kpi-label">Documented misses</div>
+                    <div class="cf-kpi-value">714</div>
+                    <div class="cf-kpi-label">Agent dispatches</div>
                 </div>
                 <div class="cf-kpi-cell">
-                    <div class="cf-kpi-value kpi-zero cf-m" data-cf-key="fp">0</div>
-                    <div class="cf-kpi-label">False positives</div>
+                    <div class="cf-kpi-value">22</div>
+                    <div class="cf-kpi-label">Days running</div>
                 </div>
             </div>
             <p class="coverage-note">
-                Window:
-                <span class="cf-m" data-cf-key="window_start">2026-06-04</span> &rarr;
-                <span class="cf-m" data-cf-key="window_end">2026-06-21</span>
-                &middot; auto-refreshed
-                <span class="cf-m" data-cf-key="last_updated">2026-06-21T15:02:09Z</span>.
+                Operational totals as of 2026-06-22. The &sect;4a/&sect;4b adjudicated
+                catch record (15 defects caught, 83% catch rate, 0 false positives,
+                3 documented misses) is on the
+                <a href="/what-we-caught">full gate record</a>.
             </p>
             <p><a href="/what-we-caught">Full gate record and adjudicated decisions.</a></p>
         </div>

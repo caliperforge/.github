@@ -67,13 +67,17 @@
 <main class="page">
 
     <section class="section">
-        <!-- v4: .posts variant, reading list register (plain mono dates,
-             ink titles), not product-card chrome. -->
-        <ul class="chains posts">
-            <li>
-                <span class="name"><a href="/blog/11_syscoin-conservation-mint-without-burn">5 billion SYS, one missing burn: Syscoin, SPV proofs, and the conservation invariant</a></span>
-                <span class="meta">2026-06-22</span>
-                <span class="scope">
+        <!-- v9: blog entries as project-style cards (T-site-polish-pass-2026-06-22 Fix 4).
+             Uses .blog-cards-grid + .project-card from v8; .blog-card-title + .blog-card-date
+             are new helpers in style.css. Same bordered card chrome as the homepage projects. -->
+        <div class="blog-cards-grid">
+
+            <div class="project-card">
+                <div class="project-card-head">
+                    <a href="/blog/11_syscoin-conservation-mint-without-burn" class="blog-card-title">5 billion SYS, one missing burn: Syscoin, SPV proofs, and the conservation invariant</a>
+                    <span class="blog-card-date">2026-06-22</span>
+                </div>
+                <p class="project-desc">
                     On June 7, 2026, the Syscoin bridge lost a reported $8.56M
                     to a malformed SPV proof accepted as valid: approximately
                     5 billion SYS minted on the destination side with no
@@ -83,118 +87,146 @@
                     maps to CI-verified conservation reference pairs on
                     Anchor/Solana (cf-invariants-anchor, cf-invariants-jito)
                     and Cairo/Starknet (cf-invariants).
-                </span>
-            </li>
-            <li>
-                <span class="name"><a href="/blog/10_cross-layer-conservation-aztec">The txs the proof validated but settlement skipped: Aztec&rsquo;s cross-layer conservation class</a></span>
-                <span class="meta">2026-06-21</span>
-                <span class="scope">
+                </p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-card-head">
+                    <a href="/blog/10_cross-layer-conservation-aztec" class="blog-card-title">The txs the proof validated but settlement skipped: Aztec&rsquo;s cross-layer conservation class</a>
+                    <span class="blog-card-date">2026-06-21</span>
+                </div>
+                <p class="project-desc">
                     On June 14, 2026, approximately $2.19M was extracted from
                     Aztec&rsquo;s deprecated <code>RollupProcessor</code>
                     contract. Proof scope and settlement scope diverged: the
                     ZK proof validated all 32 batch slots; the L1 settlement
                     loop processed only <code>numRealTxs</code> of them. The
                     cross-layer conservation class, what CI-verified reference
-                    pairs cover today (cf-invariants Cairo, hyperevm-safety
-                    D-5), and where the Aztec surface sits outside that set.
-                </span>
-            </li>
-            <li>
-                <span class="name"><a href="/blog/09_authentication-is-not-authorization">Authentication is not authorization: the TrustedVolumes access_control class</a></span>
-                <span class="meta">2026-06-19</span>
-                <span class="scope">
+                    pairs cover today, and where the Aztec surface sits outside that set.
+                </p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-card-head">
+                    <a href="/blog/09_authentication-is-not-authorization" class="blog-card-title">Authentication is not authorization: the TrustedVolumes access_control class</a>
+                    <span class="blog-card-date">2026-06-19</span>
+                </div>
+                <p class="project-desc">
                     TrustedVolumes lost a reported $5.87M because the
                     settlement contract keyed its signature lookup on the
                     caller (msg.sender) instead of the order&rsquo;s maker.
                     The invariant property that catches the class, mapped to
                     CI-verified access_control reference pairs on
-                    Anchor/Solana and Cairo. No Solidity-rail pair yet, said
-                    plainly.
-                </span>
-            </li>
-            <li>
-                <span class="name"><a href="/blog/08_planted-twin-methodology">The planted-twin methodology: what it is and what it is not</a></span>
-                <span class="meta">2026-06-12</span>
-                <span class="scope">
+                    Anchor/Solana and Cairo. No Solidity-rail pair yet, said plainly.
+                </p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-card-head">
+                    <a href="/blog/08_planted-twin-methodology" class="blog-card-title">The planted-twin methodology: what it is and what it is not</a>
+                    <span class="blog-card-date">2026-06-12</span>
+                </div>
+                <p class="project-desc">
                     A clean reference where the property holds, a planted
-                    twin where it fires, both on the same CI run , 
+                    twin where it fires, both on the same CI run:
                     why a checkable pair beats a claim. hyperevm-safety
                     v0.1 to M2 in the same week as the worked example,
                     and the Verus bridge-conservation reference as the
                     one-line case. Not an audit; not a runtime monitor.
-                </span>
-            </li>
-            <li>
-                <span class="name"><a href="/blog/07_exploit-invariant-atlas">Exploit&rarr;Invariant Atlas, six cross-VM defender-side CI cases</a></span>
-                <span class="meta">2026-06-08</span>
-                <span class="scope">
-                    Six real-world hacks, Cairo, Move, Solana, EVM
-                   , each with a runnable invariant that would have
-                    caught the bug class on the pre-exploit code under CI
-                    run. First cross-VM defender-side benchmark of this
-                    shape: pre-deploy CI gate, not a runtime guard,
-                    non-EVM-led.
-                </span>
-            </li>
-            <li>
-                <span class="name"><a href="/blog/06_cf-invariants-sepolia-suite-expansion-6-to-12-and-ci-green">cf-invariants on Starknet Sepolia, twelve references, paired clean/planted CI green</a></span>
-                <span class="meta">2026-06-07</span>
-                <span class="scope">
+                </p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-card-head">
+                    <a href="/blog/07_exploit-invariant-atlas" class="blog-card-title">Exploit&rarr;Invariant Atlas, six cross-VM defender-side CI cases</a>
+                    <span class="blog-card-date">2026-06-08</span>
+                </div>
+                <p class="project-desc">
+                    Six real-world hacks across Cairo, Move, Solana, and EVM,
+                    each with a runnable invariant that would have
+                    caught the bug class on the pre-exploit code under CI.
+                    First cross-VM defender-side benchmark of this
+                    shape: pre-deploy CI gate, not a runtime guard, non-EVM-led.
+                </p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-card-head">
+                    <a href="/blog/06_cf-invariants-sepolia-suite-expansion-6-to-12-and-ci-green" class="blog-card-title">cf-invariants on Starknet Sepolia, twelve references, paired clean/planted CI green</a>
+                    <span class="blog-card-date">2026-06-07</span>
+                </div>
+                <p class="project-desc">
                     Lending, staking, vesting, timelock, payment
                     splitter, and oracle join the suite. Twenty-six
                     GitHub Actions jobs green: paired clean=0 /
                     planted&ge;1 across all twelve references, plus a
                     Caracal static-analysis pre-flight.
-                </span>
-            </li>
-            <li>
-                <span class="name"><a href="/blog/05_jito-tippayment-and-ai-invariant-suggester-live">Two Jito programs on the same rails, and the AI invariant-suggester goes live</a></span>
-                <span class="meta">2026-06-03</span>
-                <span class="scope">
+                </p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-card-head">
+                    <a href="/blog/05_jito-tippayment-and-ai-invariant-suggester-live" class="blog-card-title">Two Jito programs on the same rails, and the AI invariant-suggester goes live</a>
+                    <span class="blog-card-date">2026-06-03</span>
+                </div>
+                <p class="project-desc">
                     cf-invariants-jito-tippayment ports the second
                     Jito program onto the same anchor-lang 1.0.1 /
                     Crucible v0.2.0 rails, CI green on first push.
                     The AI invariant-suggester runs live against both
                     Jito surfaces under one prompt.
-                </span>
-            </li>
-            <li>
-                <span class="name"><a href="/blog/04_cf-invariants-jito-first-real-protocol-harnessed">First real protocol harnessed, cf-invariants-jito on Crucible</a></span>
-                <span class="meta">2026-06-03</span>
-                <span class="scope">
+                </p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-card-head">
+                    <a href="/blog/04_cf-invariants-jito-first-real-protocol-harnessed" class="blog-card-title">First real protocol harnessed, cf-invariants-jito on Crucible</a>
+                    <span class="blog-card-date">2026-06-03</span>
+                </div>
+                <p class="project-desc">
                     Jito tip-distribution ported from anchor-lang 0.31.1 to 1.0.1,
-                    four invariant classes, four planted-bug twins. CI: clean=0,
-                    planted&ge;1 across all four.
-                </span>
-            </li>
-            <li>
-                <span class="name"><a href="/blog/03_cairo-references-expansion-and-chimera-template-pack">Build update, cf-invariants Cairo suite grows to nine, chimera-template-pack ships</a></span>
-                <span class="meta">2026-06-02</span>
-                <span class="scope">
+                    four invariant classes, four planted-bug twins.
+                    CI: clean=0, planted&ge;1 across all four.
+                </p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-card-head">
+                    <a href="/blog/03_cairo-references-expansion-and-chimera-template-pack" class="blog-card-title">Build update, cf-invariants Cairo suite grows to nine, chimera-template-pack ships</a>
+                    <span class="blog-card-date">2026-06-02</span>
+                </div>
+                <p class="project-desc">
                     Three new Voyager-verified Cairo references on
                     Starknet Sepolia (lending, staking, vesting). A
                     Foundry + Recon Chimera scaffold for stamping
                     contest entries.
-                </span>
-            </li>
-            <li>
-                <span class="name"><a href="/blog/02_cf-invariants-anchor-on-crucible">Stateful invariant testing for Solana/Anchor, cf-invariants-anchor on Crucible</a></span>
-                <span class="meta">2026-06-02</span>
-                <span class="scope">
-                    Anchor IDL in. Crucible-compatible fuzz source out. CI
-                    proves it: clean vault passes, planted twin fails.
-                </span>
-            </li>
-            <li>
-                <span class="name"><a href="/blog/01_caliperforge-origins">cf-invariants, building the missing layer in Cairo testing</a></span>
-                <span class="meta">2026-06-01</span>
-                <span class="scope">
+                </p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-card-head">
+                    <a href="/blog/02_cf-invariants-anchor-on-crucible" class="blog-card-title">Stateful invariant testing for Solana/Anchor, cf-invariants-anchor on Crucible</a>
+                    <span class="blog-card-date">2026-06-02</span>
+                </div>
+                <p class="project-desc">
+                    Anchor IDL in. Crucible-compatible fuzz source out.
+                    CI proves it: clean vault passes, planted twin fails.
+                </p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-card-head">
+                    <a href="/blog/01_caliperforge-origins" class="blog-card-title">cf-invariants, building the missing layer in Cairo testing</a>
+                    <span class="blog-card-date">2026-06-01</span>
+                </div>
+                <p class="project-desc">
                     A Rust CLI sidecar that adds stateful invariant testing
                     to Cairo 2.x. Three reference contracts on Starknet
                     Sepolia, each surfacing a planted bug on cold start.
-                </span>
-            </li>
-        </ul>
+                </p>
+            </div>
+
+        </div>
     </section>
 
 </main>
