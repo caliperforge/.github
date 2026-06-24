@@ -99,6 +99,15 @@ portfolio is protocol and smart-contract security.
   accuracy degrades under language shift. Research artifact and eval
   harness submitted for the Apart Global South track. Apache-2.0. See
   [caliperforge/apart-global-south-lost-in-translation](https://github.com/caliperforge/apart-global-south-lost-in-translation).
+- **`cf-modeleval`**: planted-twin discrimination-power harness for AI safety
+  properties. Measures whether an evaluation check has falsifiable discrimination
+  power against a stated failure mode (prompt-injection resistance, sycophancy
+  resistance) across three providers (Anthropic, OpenAI, Groq). Paired CLEAN /
+  PLANTED legs with a fixed scorer and committed receipts; CI matrix re-asserts
+  every cell on every push. Methodology contribution: how to make an AI safety
+  eval falsifiable by pairing every CLEAN claim to a PLANTED control. Not a
+  model ranking; not a jailbreak discovery. Apache-2.0. See
+  [caliperforge/cf-modeleval](https://github.com/caliperforge/cf-modeleval).
 
 ## Receipts
 
