@@ -178,33 +178,36 @@
                 what our own gates caught and what they missed. The proof is in the
                 receipts -- not in a claim about the receipts.
             </p>
-            <!-- Operational-scale strip. All figures sourced from live telemetry:
-                 agents/ roster v3 + directories (specialized agents),
-                 ops/qa_verdicts/control_effectiveness.jsonl (gate reviews),
-                 ops/runs/ledger.md (agent dispatches),
-                 ledger first entry 2026-05-31 (days running). -->
+            <!-- Operational-scale strip. All figures sourced from live telemetry
+                 and auto-refreshed daily by scripts/ops/homepage_stats_refresh.py:
+                   - specialized_agents: agents/_roster.json (len(roles))
+                   - gate_reviews:       ops/qa_verdicts/control_effectiveness.jsonl
+                   - agent_dispatches:   ops/runs/ledger.md (## headers)
+                   - days_running:       today - 2026-05-31 (first ledger entry)
+                 The static values below are the honest fallback (rewritten by the
+                 same daily job); the JS at end-of-page fetches /data/org_stats.json
+                 and fills data-cf-key spans between daily-job runs. -->
             <div class="cf-kpi-strip">
                 <div class="cf-kpi-cell">
-                    <div class="cf-kpi-value">36</div>
+                    <div class="cf-kpi-value" data-cf-key="specialized_agents">34</div>
                     <div class="cf-kpi-label">Specialized agents</div>
                 </div>
                 <div class="cf-kpi-cell">
-                    <div class="cf-kpi-value">1,106</div>
+                    <div class="cf-kpi-value" data-cf-key="gate_reviews">2,126</div>
                     <div class="cf-kpi-label">Gate reviews to date</div>
                 </div>
                 <div class="cf-kpi-cell">
-                    <div class="cf-kpi-value">714</div>
+                    <div class="cf-kpi-value" data-cf-key="agent_dispatches">905</div>
                     <div class="cf-kpi-label">Agent dispatches</div>
                 </div>
                 <div class="cf-kpi-cell">
-                    <div class="cf-kpi-value">22</div>
+                    <div class="cf-kpi-value" data-cf-key="days_running">26</div>
                     <div class="cf-kpi-label">Days running</div>
                 </div>
             </div>
             <p class="coverage-note">
-                Operational totals as of 2026-06-22. The &sect;4a/&sect;4b adjudicated
-                catch record (17 defects caught, 85% catch rate, 0 false positives,
-                3 documented misses) is on the
+                Operational totals as of <span data-cf-key="as_of">2026-06-26</span>. The &sect;4a/&sect;4b adjudicated
+                catch record (<span data-cf-key="tp">18</span> defects caught, <span data-cf-key="catch_rate_display">86%</span> catch rate, <span data-cf-key="fp">0</span> false positives, <span data-cf-key="fn">3</span> documented misses) is on the
                 <a href="/what-we-caught">full gate record</a>.
             </p>
             <p><a href="/what-we-caught">Full gate record and adjudicated decisions.</a></p>
@@ -853,15 +856,23 @@
     </div>
 </footer>
 
-<!-- caught-metrics.js: fetch live gate stats; fill data-cf-key spans; silent-fail -->
+<!-- live-stats.js: fetch live gate stats AND live org-scale stats; fill
+     data-cf-key spans; silent-fail (static baked fallback stays visible). -->
 <script>
 (function () {
-  var FEED = '/data/caught_public.json';
+  var FEEDS = ['/data/caught_public.json', '/data/org_stats.json'];
   var RETRY_MS = 90000;
 
-  function fill(data) {
+  function fill(map) {
+    document.querySelectorAll('[data-cf-key]').forEach(function (el) {
+      var v = map[el.getAttribute('data-cf-key')];
+      if (v !== undefined && v !== null) el.textContent = v;
+    });
+  }
+
+  function mapFromCaught(data) {
     var m = data.metrics || {};
-    var map = {
+    return {
       tp: m.tp,
       fp: m.fp,
       fn: m.fn,
@@ -871,17 +882,34 @@
       window_end: data.window_end,
       last_updated: data.last_updated
     };
-    document.querySelectorAll('[data-cf-key]').forEach(function (el) {
-      var v = map[el.getAttribute('data-cf-key')];
-      if (v !== undefined && v !== null) el.textContent = v;
-    });
+  }
+
+  function fmtInt(n) {
+    if (typeof n !== 'number') return n;
+    return n.toLocaleString('en-US');
+  }
+
+  function mapFromOrgStats(data) {
+    return {
+      specialized_agents: fmtInt(data.specialized_agents),
+      gate_reviews:       fmtInt(data.gate_reviews),
+      agent_dispatches:   fmtInt(data.agent_dispatches),
+      days_running:       fmtInt(data.days_running),
+      as_of:              data.as_of,
+      launch_date:        data.launch_date
+    };
   }
 
   function go() {
-    fetch(FEED, { cache: 'no-store' })
-      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
-      .then(fill)
-      .catch(function () { /* silent: baked-in fallback stays */ });
+    FEEDS.forEach(function (url) {
+      fetch(url, { cache: 'no-store' })
+        .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+        .then(function (data) {
+          if (url.indexOf('caught_public') >= 0) fill(mapFromCaught(data));
+          else if (url.indexOf('org_stats') >= 0) fill(mapFromOrgStats(data));
+        })
+        .catch(function () { /* silent: baked-in fallback stays */ });
+    });
   }
 
   document.addEventListener('DOMContentLoaded', function () {
