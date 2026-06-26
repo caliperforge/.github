@@ -1,16 +1,16 @@
 {
   "schema": "caught_public.v2",
-  "last_updated": "2026-06-22T00:00:00Z",
+  "last_updated": "2026-06-26T00:00:00Z",
   "window_start": "2026-06-04",
-  "window_end": "2026-06-22",
+  "window_end": "2026-06-26",
   "metrics": {
-    "tp": 17,
+    "tp": 18,
     "fp": 0,
     "fn": 3,
     "tn": 29,
-    "adjudicated": 49,
-    "catch_rate": 0.85,
-    "catch_rate_display": "85%",
+    "adjudicated": 50,
+    "catch_rate": 0.86,
+    "catch_rate_display": "86%",
     "precision": 1.0,
     "precision_display": "100%",
     "false_positive_rate": 0.0,
@@ -27,6 +27,12 @@
         "fp": 0,
         "tn": 10,
         "fn": 2
+      },
+      "audit_cycle": {
+        "tp": 1,
+        "fp": 0,
+        "tn": 0,
+        "fn": 0
       }
     }
   },
@@ -34,7 +40,8 @@
     "content_qa": 13,
     "code_quality": 4,
     "ceo_hold": 30,
-    "task_hygiene": 0
+    "task_hygiene": 0,
+    "audit_cycle": 1
   },
   "by_agent": [
     {
@@ -48,9 +55,24 @@
       "pct": "67%",
       "n": 16,
       "stops": 4
+    },
+    {
+      "agent": "developer_engagement_lead",
+      "pct": "100%",
+      "n": 1,
+      "stops": 1
     }
   ],
   "receipts": [
+    {
+      "id": "a-loopscale-presend-oracle-framing-2026-06-26",
+      "headline": "Loopscale hand-off draft misattributed April 2025 exploit root cause, caught pre-send.",
+      "gate": "pre-send verify",
+      "verdict_iso": "2026-06-26",
+      "fix_ref": "draft flagged for rewrite; not sent",
+      "frame": "An independent pre-send verification of the outbound Loopscale maintainer hand-off draft found that draft paragraphs attributed the April 2025 Loopscale exploit to 'no TWAP floor / single-source oracle.' Loopscale's own published post-mortem names a materially different root cause: incomplete program-account validation on the RateX PT pricing path for non-Loop borrows, allowing an attacker-deployed program to spoof the RateX market interface and return an inflated PT exchange rate. The TWAP-floor absence was a contributing defense gap, not the architectural root cause and not in the announced fix package. Sending the incorrect framing to the team that wrote and published the correct post-mortem would be a credibility failure on a single-shot maintainer introduction. Caught and corrected pre-send.",
+      "writeup_url": null
+    },
     {
       "id": "R-2026-06-19-atlas-headline",
       "headline": "Unsupported \"6 exploits reproduced\" homepage headline, pulled pre-deploy.",
