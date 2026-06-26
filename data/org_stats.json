@@ -1,12 +1,12 @@
 {
   "schema": "org_stats.v1",
-  "last_updated": "2026-06-26T20:26:19Z",
+  "last_updated": "2026-06-26T20:46:07Z",
   "as_of": "2026-06-26",
-  "launch_date": "2026-05-31",
+  "launch_date": "2026-05-27",
   "specialized_agents": 34,
   "gate_reviews": 2126,
-  "agent_dispatches": 905,
-  "days_running": 26,
+  "agent_dispatches": 909,
+  "days_running": 31,
   "catch": {
     "tp": 18,
     "fp": 0,
@@ -22,7 +22,7 @@
     "specialized_agents": "agents/_roster.json (len(roles))",
     "gate_reviews": "ops/qa_verdicts/control_effectiveness.jsonl (line count)",
     "agent_dispatches": "ops/runs/ledger.md (count of '^## ' headers)",
-    "days_running": "today - 2026-05-31",
+    "days_running": "(today - 2026-05-27) + 1 (inclusive; launch day = day 1)",
     "catch": "site/data/caught_public.json (mirror; single source)"
   },
   "errors": []

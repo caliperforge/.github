@@ -183,7 +183,7 @@
                    - specialized_agents: agents/_roster.json (len(roles))
                    - gate_reviews:       ops/qa_verdicts/control_effectiveness.jsonl
                    - agent_dispatches:   ops/runs/ledger.md (## headers)
-                   - days_running:       today - 2026-05-31 (first ledger entry)
+                   - days_running:       (today - 2026-05-27) + 1 (inclusive; launch day = day 1)
                  The static values below are the honest fallback (rewritten by the
                  same daily job); the JS at end-of-page fetches /data/org_stats.json
                  and fills data-cf-key spans between daily-job runs. -->
@@ -197,11 +197,11 @@
                     <div class="cf-kpi-label">Gate reviews to date</div>
                 </div>
                 <div class="cf-kpi-cell">
-                    <div class="cf-kpi-value" data-cf-key="agent_dispatches">905</div>
+                    <div class="cf-kpi-value" data-cf-key="agent_dispatches">909</div>
                     <div class="cf-kpi-label">Agent dispatches</div>
                 </div>
                 <div class="cf-kpi-cell">
-                    <div class="cf-kpi-value" data-cf-key="days_running">26</div>
+                    <div class="cf-kpi-value" data-cf-key="days_running">31</div>
                     <div class="cf-kpi-label">Days running</div>
                 </div>
             </div>
