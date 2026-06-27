@@ -266,30 +266,6 @@
             <p class="section-lede">
                 Open-source tooling we maintain. Source on GitHub, license on the card.
             </p>
-            <!-- Build tally. Live counts of what we have shipped, refreshed daily
-                 by scripts/ops/build_tally_refresh.py:
-                   - oss_repos_public:  gh repo list caliperforge (public, non-archived, exclude .github)
-                   - vms_covered:       VMS_COVERED constant in the refresh script
-                                        (editorial; matches "Chains we cover" section)
-                   - grants_in_flight:  ops/crm/opportunities.json (type grant*, stage in
-                                        {submitted, drafting, active})
-                 Static fallback rewritten in place by the same daily job; the JS at
-                 end-of-page fetches /data/build_tally.json and fills data-cf-key spans
-                 between daily-job runs. -->
-            <div class="cf-kpi-strip">
-                <div class="cf-kpi-cell">
-                    <div class="cf-kpi-value" data-cf-key="oss_repos_public">14</div>
-                    <div class="cf-kpi-label">Public OSS repos</div>
-                </div>
-                <div class="cf-kpi-cell">
-                    <div class="cf-kpi-value" data-cf-key="vms_covered">5</div>
-                    <div class="cf-kpi-label">VMs covered</div>
-                </div>
-                <div class="cf-kpi-cell">
-                    <div class="cf-kpi-value" data-cf-key="grants_in_flight">6</div>
-                    <div class="cf-kpi-label">Grants in flight</div>
-                </div>
-            </div>
             <div class="projects-grid">
 
                 <div class="project-card">
@@ -918,7 +894,7 @@
      data-cf-key spans; silent-fail (static baked fallback stays visible). -->
 <script>
 (function () {
-  var FEEDS = ['/data/caught_public.json', '/data/org_stats.json', '/data/build_tally.json'];
+  var FEEDS = ['/data/caught_public.json', '/data/org_stats.json'];
   var RETRY_MS = 90000;
 
   // Client-side day-counter source of truth. CEO ground-truth anchor 2026-06-26:
@@ -974,14 +950,6 @@
     return n.toLocaleString('en-US');
   }
 
-  function mapFromBuildTally(data) {
-    return {
-      oss_repos_public: fmtInt(data.oss_repos_public),
-      vms_covered:      fmtInt(data.vms_covered),
-      grants_in_flight: fmtInt(data.grants_in_flight)
-    };
-  }
-
   function mapFromOrgStats(data) {
     // days_running is intentionally OMITTED from this map. It is computed
     // client-side from launch_date in applyDaysRunning() so the counter is
@@ -1012,8 +980,6 @@
             if (data && typeof data.launch_date === 'string') {
               applyDaysRunning(data.launch_date);
             }
-          } else if (url.indexOf('build_tally') >= 0) {
-            fill(mapFromBuildTally(data));
           }
         })
         .catch(function () { /* silent: baked-in fallback stays */ });
