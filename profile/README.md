@@ -69,6 +69,19 @@ portfolio is protocol and smart-contract security.
   class deterministically. Built on `hyper-evm-lib` and the
   CaliperForge `chimera-template-pack`. Apache-2.0. See
   [caliperforge/hyperevm-safety](https://github.com/caliperforge/hyperevm-safety).
+- **`bsc-invariants`**: open-source library of invariants and
+  CI-runnable property tests for BNB Smart Chain DeFi protocols,
+  starting with PancakeSwap v3 (the canonical BSC DEX). Five
+  PancakeSwap v3 invariants ship in v0.0.2: P-1
+  FeeGrowthGlobalMonotonicity, P-2 TickInBounds, P-3
+  SqrtPriceX96InBounds, P-4 LiquidityEventConsistency, and P-5
+  FeeGrowthOutsideConsistency. P-1 ships with a planted-twin CI
+  pair: clean passes, planted leg fires
+  `INVARIANT VIOLATED feeGrowth_neverDecreases` and exits non-zero
+  on the same CI run. Venus (M2) and Stargate (M3) harnesses are
+  planned, not started. Not an audit; not a runtime monitor.
+  Apache-2.0. See
+  [caliperforge/bsc-invariants](https://github.com/caliperforge/bsc-invariants).
 - **`cf-invariants-verus-bridge-conservation`** — CI-verified reference
   for the cross-side conservation invariant class in lock/mint bridges,
   anchored on the Verus–Ethereum bridge exploit of 2026-05-18 (reported
