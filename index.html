@@ -194,7 +194,7 @@
                 </div>
                 <div class="cf-kpi-cell">
                     <div class="cf-kpi-value" data-cf-key="gate_reviews">2,157</div>
-                    <div class="cf-kpi-label">Gate reviews to date</div>
+                    <div class="cf-kpi-label">Gate reviews (all gates)</div>
                 </div>
                 <div class="cf-kpi-cell">
                     <div class="cf-kpi-value" data-cf-key="agent_dispatches">929</div>
@@ -206,8 +206,11 @@
                 </div>
             </div>
             <p class="coverage-note">
-                Operational totals as of <span data-cf-key="as_of">2026-06-27</span>. The &sect;4a/&sect;4b adjudicated
-                catch record (<span data-cf-key="tp">18</span> defects caught, <span data-cf-key="catch_rate_display">86%</span> catch rate, <span data-cf-key="fp">0</span> false positives, <span data-cf-key="fn">3</span> documented misses) is on the
+                Operational totals as of <span data-cf-key="as_of">2026-06-27</span>. Gate reviews counts every gate-check row
+                (&sect;4a content, &sect;4b code, CEO Hold, task hygiene). The adjudicated catch record is a
+                subset: <span data-cf-key="tp">18</span> defects caught, <span data-cf-key="catch_rate_display">86%</span> catch rate,
+                <span data-cf-key="fp">0</span> false positives, <span data-cf-key="fn">3</span> documented misses across
+                <span data-cf-key="adjudicated">50</span> &sect;4a/&sect;4b adjudicated decisions &mdash;
                 <a href="/what-we-caught">full gate record</a>.
             </p>
             <p><a href="/what-we-caught">Full gate record and adjudicated decisions.</a></p>
@@ -863,6 +866,33 @@
   var FEEDS = ['/data/caught_public.json', '/data/org_stats.json'];
   var RETRY_MS = 90000;
 
+  // Client-side day-counter source of truth. CEO ground-truth anchor 2026-06-26:
+  // 2026-05-27 is day 1, inclusive. Computed in the browser at every page load
+  // so the homepage day count is correct EVERY day with zero cron dependency.
+  // The build-time fallback baked into data-cf-key="days_running" is only seen
+  // for the instant before this script runs. If org_stats.json carries a
+  // launch_date, we honor it (CEO can ratify a new anchor without a JS edit);
+  // otherwise we fall back to this hardcoded constant.
+  var LAUNCH_DATE_ISO = '2026-05-27';
+
+  function computeDaysRunning(launchIso) {
+    var launch = new Date(launchIso + 'T00:00:00Z');
+    if (isNaN(launch.getTime())) return null;
+    var now = new Date();
+    var todayUtc = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+    var days = Math.floor((todayUtc - launch.getTime()) / 86400000) + 1;
+    return days < 1 ? 1 : days;
+  }
+
+  function applyDaysRunning(launchIso) {
+    var n = computeDaysRunning(launchIso || LAUNCH_DATE_ISO);
+    if (n == null) return;
+    var text = n.toLocaleString('en-US');
+    document.querySelectorAll('[data-cf-key="days_running"]').forEach(function (el) {
+      el.textContent = text;
+    });
+  }
+
   function fill(map) {
     document.querySelectorAll('[data-cf-key]').forEach(function (el) {
       var v = map[el.getAttribute('data-cf-key')];
@@ -890,29 +920,45 @@
   }
 
   function mapFromOrgStats(data) {
+    // days_running is intentionally OMITTED from this map. It is computed
+    // client-side from launch_date in applyDaysRunning() so the counter is
+    // never stale, even if the daily refresh job dies.
     return {
       specialized_agents: fmtInt(data.specialized_agents),
       gate_reviews:       fmtInt(data.gate_reviews),
       agent_dispatches:   fmtInt(data.agent_dispatches),
-      days_running:       fmtInt(data.days_running),
       as_of:              data.as_of,
       launch_date:        data.launch_date
     };
   }
 
   function go() {
+    // Recompute the day counter on every tick — keeps it correct through a
+    // UTC midnight rollover without a page reload.
+    applyDaysRunning();
+
     FEEDS.forEach(function (url) {
       fetch(url, { cache: 'no-store' })
         .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
         .then(function (data) {
-          if (url.indexOf('caught_public') >= 0) fill(mapFromCaught(data));
-          else if (url.indexOf('org_stats') >= 0) fill(mapFromOrgStats(data));
+          if (url.indexOf('caught_public') >= 0) {
+            fill(mapFromCaught(data));
+          } else if (url.indexOf('org_stats') >= 0) {
+            fill(mapFromOrgStats(data));
+            // Honor a CEO-ratified launch_date if the JSON carries one.
+            if (data && typeof data.launch_date === 'string') {
+              applyDaysRunning(data.launch_date);
+            }
+          }
         })
         .catch(function () { /* silent: baked-in fallback stays */ });
     });
   }
 
   document.addEventListener('DOMContentLoaded', function () {
+    // Apply the client-computed day counter IMMEDIATELY so a viewer never
+    // sees the build-time fallback even for a frame.
+    applyDaysRunning();
     go();
     setInterval(go, RETRY_MS);
   });
