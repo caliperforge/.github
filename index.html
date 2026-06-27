@@ -497,6 +497,37 @@
 
                 <div class="project-card">
                     <div class="project-card-head">
+                        <span class="project-name">bsc-invariants</span>
+                        <span class="badge badge-green">CI &#10003;</span>
+                    </div>
+                    <p class="project-desc">
+                        Open-source library of invariants and CI-runnable
+                        property tests for BNB Smart Chain DeFi protocols,
+                        starting with PancakeSwap v3 (the canonical BSC
+                        DEX). Five PancakeSwap v3 invariants ship in
+                        v0.0.2: P-1 FeeGrowthGlobalMonotonicity, P-2
+                        TickInBounds, P-3 SqrtPriceX96InBounds, P-4
+                        LiquidityEventConsistency, and P-5
+                        FeeGrowthOutsideConsistency. P-1 ships with a
+                        planted-twin CI pair: clean passes, planted leg
+                        fires <code>INVARIANT VIOLATED feeGrowth_neverDecreases</code>
+                        and exits non-zero on the same CI run. Venus
+                        (M2) and Stargate (M3) harnesses are planned,
+                        not started. Not an audit; not a runtime monitor.
+                    </p>
+                    <div class="project-receipt">
+                        <span class="badge badge-navy">BSC &middot; Solidity + Foundry</span>
+                        <span class="badge badge-grey">Apache-2.0</span>
+                    </div>
+                    <div class="project-links-v8">
+                        <a href="https://github.com/caliperforge/bsc-invariants" rel="me">github.com/caliperforge/bsc-invariants</a>
+                        <span class="sep" aria-hidden="true">&middot;</span>
+                        <a href="/ai-disclosure">AI-disclosed</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-card-head">
                         <span class="project-name">cf-invariants-verus-bridge-conservation</span>
                         <span class="badge badge-green">CI &#10003;</span>
                     </div>
