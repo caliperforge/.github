@@ -1,23 +1,23 @@
 {
   "schema": "caught_public.v2",
-  "last_updated": "2026-06-26T00:00:00Z",
+  "last_updated": "2026-06-27T14:56:31Z",
   "window_start": "2026-06-04",
-  "window_end": "2026-06-26",
+  "window_end": "2026-06-27",
   "metrics": {
-    "tp": 18,
+    "tp": 15,
     "fp": 0,
     "fn": 3,
-    "tn": 29,
-    "adjudicated": 50,
-    "catch_rate": 0.86,
-    "catch_rate_display": "86%",
+    "tn": 28,
+    "adjudicated": 46,
+    "catch_rate": 0.8333,
+    "catch_rate_display": "83%",
     "precision": 1.0,
     "precision_display": "100%",
     "false_positive_rate": 0.0,
     "false_positive_rate_display": "0%",
     "by_public_gate": {
       "content_qa_4a": {
-        "tp": 13,
+        "tp": 11,
         "fp": 0,
         "tn": 19,
         "fn": 1
@@ -25,7 +25,7 @@
       "code_quality_4b": {
         "tp": 4,
         "fp": 0,
-        "tn": 10,
+        "tn": 9,
         "fn": 2
       },
       "audit_cycle": {
@@ -37,30 +37,66 @@
     }
   },
   "by_gate": {
-    "content_qa": 13,
+    "content_qa": 14,
     "code_quality": 4,
-    "ceo_hold": 30,
+    "ceo_hold": 48,
     "task_hygiene": 0,
     "audit_cycle": 1
   },
   "by_agent": [
     {
       "agent": "content_qa_reviewer",
-      "pct": "93%",
-      "n": 33,
-      "stops": 13
+      "pct": "92%",
+      "n": 31,
+      "stops": 11
+    },
+    {
+      "agent": "engineering_lead",
+      "pct": "100%",
+      "n": 8,
+      "stops": 9
+    },
+    {
+      "agent": "ai_ops",
+      "pct": "100%",
+      "n": 4,
+      "stops": 4
     },
     {
       "agent": "code_quality_reviewer",
       "pct": "67%",
-      "n": 16,
+      "n": 15,
       "stops": 4
     },
     {
-      "agent": "developer_engagement_lead",
+      "agent": "grant_writer",
       "pct": "100%",
-      "n": 1,
-      "stops": 1
+      "n": 4,
+      "stops": 4
+    },
+    {
+      "agent": "research_lead",
+      "pct": "100%",
+      "n": 4,
+      "stops": 4
+    },
+    {
+      "agent": "bounty_hunter",
+      "pct": "n/a",
+      "n": 2,
+      "stops": 2
+    },
+    {
+      "agent": "cairo_specialist",
+      "pct": "n/a",
+      "n": 2,
+      "stops": 2
+    },
+    {
+      "agent": "finance",
+      "pct": "100%",
+      "n": 2,
+      "stops": 2
     }
   ],
   "receipts": [
