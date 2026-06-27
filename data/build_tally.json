@@ -1,0 +1,21 @@
+{
+  "schema": "build_tally.v1",
+  "last_updated": "2026-06-27T20:53:01Z",
+  "as_of": "2026-06-27",
+  "oss_repos_public": 14,
+  "vms_covered": 5,
+  "vms_covered_list": [
+    "Cairo",
+    "Solana",
+    "EVM",
+    "HyperEVM",
+    "BSC"
+  ],
+  "grants_in_flight": 6,
+  "sources": {
+    "oss_repos_public": "gh repo list caliperforge --visibility public (non-archived, exclude .github)",
+    "vms_covered": "VMS_COVERED constant in scripts/ops/build_tally_refresh.py (editorial; matches homepage section 02)",
+    "grants_in_flight": "ops/crm/opportunities.json (type startswith 'grant' AND stage in {submitted, drafting, active})"
+  },
+  "errors": []
+}
