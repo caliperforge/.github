@@ -69,7 +69,7 @@ portfolio is protocol and smart-contract security.
   class deterministically. Built on `hyper-evm-lib` and the
   CaliperForge `chimera-template-pack`. Apache-2.0. See
   [caliperforge/hyperevm-safety](https://github.com/caliperforge/hyperevm-safety).
-- **`bsc-invariants`**: open-source library of invariants and
+- **`bsc-invariants`** — open-source library of invariants and
   CI-runnable property tests for BNB Smart Chain DeFi protocols,
   starting with PancakeSwap v3 (the canonical BSC DEX). Five
   PancakeSwap v3 invariants ship in v0.0.2: P-1
