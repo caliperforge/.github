@@ -1,8 +1,8 @@
 {
   "schema": "caught_public.v2",
-  "last_updated": "2026-06-27T21:08:55Z",
+  "last_updated": "2026-06-28T09:00:04Z",
   "window_start": "2026-06-04",
-  "window_end": "2026-06-27",
+  "window_end": "2026-06-28",
   "metrics": {
     "tp": 15,
     "fp": 0,

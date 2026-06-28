@@ -266,6 +266,14 @@
             <p class="section-lede">
                 Open-source tooling we maintain. Source on GitHub, license on the card.
             </p>
+            <!-- Build-tally KPI strip was staged here 2026-06-27 (oss_repos_public,
+                 vms_covered, grants_in_flight) and then un-posted by CEO pending
+                 D-buildtally-publish-2026-06-27 (Identity Lead -> CEO; comms vet).
+                 scripts/ops/build_tally_refresh.py + site/data/build_tally.json
+                 still ship and stay current daily. On SHIP / REFRAME: restore the
+                 cf-kpi-strip here and the mapFromBuildTally hook in the JS at
+                 end-of-page. On KILL: retire the script, the wiring in
+                 scripts/ops/daily_site_stats_deploy.py (step 1b/3), and this comment. -->
             <div class="projects-grid">
 
                 <div class="project-card">
