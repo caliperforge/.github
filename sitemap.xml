@@ -16,6 +16,20 @@
   </url>
 
   <url>
+    <loc>https://caliperforge.com/papers</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://caliperforge.com/papers/bnb_invariants_whitepaper_2026-06-27.pdf</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://caliperforge.com/ai-disclosure</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
