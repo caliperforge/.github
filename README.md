@@ -69,6 +69,19 @@ portfolio is protocol and smart-contract security.
   class deterministically. Built on `hyper-evm-lib` and the
   CaliperForge `chimera-template-pack`. Apache-2.0. See
   [caliperforge/hyperevm-safety](https://github.com/caliperforge/hyperevm-safety).
+- **`bsc-invariants`** — open-source library of invariants and
+  CI-runnable property tests for BNB Smart Chain DeFi protocols,
+  starting with PancakeSwap v3 (the canonical BSC DEX). Five
+  PancakeSwap v3 invariants ship in v0.0.2: P-1
+  FeeGrowthGlobalMonotonicity, P-2 TickInBounds, P-3
+  SqrtPriceX96InBounds, P-4 LiquidityEventConsistency, and P-5
+  FeeGrowthOutsideConsistency. P-1 ships with a planted-twin CI
+  pair: clean passes, planted leg fires
+  `INVARIANT VIOLATED feeGrowth_neverDecreases` and exits non-zero
+  on the same CI run. Venus (M2) and Stargate (M3) harnesses are
+  planned, not started. Not an audit; not a runtime monitor.
+  Apache-2.0. See
+  [caliperforge/bsc-invariants](https://github.com/caliperforge/bsc-invariants).
 - **`cf-invariants-verus-bridge-conservation`** — CI-verified reference
   for the cross-side conservation invariant class in lock/mint bridges,
   anchored on the Verus–Ethereum bridge exploit of 2026-05-18 (reported
@@ -91,6 +104,23 @@ portfolio is protocol and smart-contract security.
   `anchor-lang` 0.32.1 to 1.0.1; two invariant classes against a clean
   reference and planted-bug twins, asserted on every push. Apache-2.0.
   See [caliperforge/cf-invariants-pyth](https://github.com/caliperforge/cf-invariants-pyth).
+- **`apart-global-south-lost-in-translation`** — Apart Global South
+  hackathon eval harness: a language-conditioned detection-rate eval
+  measuring whether AI code auditors catch planted bugs across EN, ES,
+  PT, and CS surface code. Uses Atlas planted-bug twins as the ground
+  truth; measures per-language detection rates to surface where auditor
+  accuracy degrades under language shift. Research artifact and eval
+  harness submitted for the Apart Global South track. Apache-2.0. See
+  [caliperforge/apart-global-south-lost-in-translation](https://github.com/caliperforge/apart-global-south-lost-in-translation).
+- **`cf-modeleval`**: planted-twin discrimination-power harness for AI safety
+  properties. Measures whether an evaluation check has falsifiable discrimination
+  power against a stated failure mode (prompt-injection resistance, sycophancy
+  resistance) across three providers (Anthropic, OpenAI, Groq). Paired CLEAN /
+  PLANTED legs with a fixed scorer and committed receipts; CI matrix re-asserts
+  every cell on every push. Methodology contribution: how to make an AI safety
+  eval falsifiable by pairing every CLEAN claim to a PLANTED control. Not a
+  model ranking; not a jailbreak discovery. Apache-2.0. See
+  [caliperforge/cf-modeleval](https://github.com/caliperforge/cf-modeleval).
 
 ## Receipts
 
