@@ -1,427 +1,417 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="color-scheme" content="dark">
-  <title>CaliperForge — AI research studio · verifiable, auditable, correctable</title>
-  <meta name="description" content="CaliperForge is an AI research studio specializing in security and invariants. Stateful invariant testing, planted-twin CI, and a published record of what our gates catch.">
-  <meta name="robots" content="noindex">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="preview.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CaliperForge | AI research studio, verifiable, auditable, correctable</title>
+<meta name="description" content="An AI research studio specializing in security and invariants. We build autonomous systems you can check, and the delivery is the proof.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0b0f1c">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/preview/caliper.css">
 </head>
 <body>
 
-<div class="preview-banner">
-  PREVIEW · caliperforge.com/preview/ · cockpit redesign v4 · 2026-06-21
-</div>
+<!-- ============== NAVY MASTHEAD ============================================ -->
+<div class="cf-band--navy">
 
-<nav class="site-nav">
-  <a href="./" class="brand-row">
-    <svg class="brand-mark" viewBox="0 0 26 26" fill="none">
-      <rect width="26" height="26" rx="6" fill="#1d3557"/>
-      <rect x="5" y="12" width="16" height="1.5" rx="0.75" fill="#cadcfc"/>
-      <rect x="5" y="8" width="3" height="8" rx="1" fill="#cadcfc"/>
-      <rect x="18" y="8" width="3" height="8" rx="1" fill="#cadcfc"/>
-      <rect x="11.5" y="15" width="3" height="5" rx="0.75" fill="#f96167"/>
-    </svg>
-    <span>CaliperForge</span>
-  </a>
-  <div class="nav-links">
-    <a href="./" class="nav-link active">Home</a>
-    <a href="studio/" class="nav-link featured">Studio</a>
-    <a href="what-we-caught/" class="nav-link featured">What we caught</a>
-    <a href="roadmap/" class="nav-link">Roadmap</a>
-    <div class="nav-divider"></div>
-    <a href="/engagements/" class="nav-link dim">Engagements</a>
-    <a href="/ai-disclosure" class="nav-link dim">AI policy</a>
-    <a href="https://github.com/caliperforge" class="nav-link">GitHub</a>
-    <a href="mailto:team@caliperforge.com" class="nav-cta">Contact</a>
+  <!-- operator strip -->
+  <div class="cf-opstrip">
+    <div class="cf-opstrip__row">
+      <span class="cf-opstrip__operator">● OPERATOR OF RECORD · MICHAEL MOFFETT · accountable on every commit</span>
+      <span class="cf-opstrip__meta"><a href="mailto:team@caliperforge.com">team@caliperforge.com</a></span>
+    </div>
   </div>
-</nav>
 
-<!-- Hero: asymmetric split — text left, gate panel right -->
-<section style="background: linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 80%);">
-  <div class="hero-split">
-    <!-- Left column: identity + CTAs -->
-    <div>
-      <p class="hero-kicker">CaliperForge · AI research studio</p>
-      <h1 class="hero-h1">The delivery<br>is <span class="grad">the proof.</span></h1>
-      <div class="caliper-rule"></div>
-      <p class="hero-lede">
-        AI research studio specializing in security and invariants.
-        Verifiable, auditable, correctable autonomous systems —
-        stateful invariant testing, planted-twin CI, and a published
-        record of what our gates catch.
-      </p>
-      <div class="hero-cta-row">
-        <a href="what-we-caught/" class="btn-primary">
-          See what we caught →
-        </a>
-        <a href="mailto:team@caliperforge.com" class="btn-ghost">
-          team@caliperforge.com
-        </a>
+  <!-- nav -->
+  <nav class="cf-nav" aria-label="Primary">
+    <a class="cf-nav-brand" href="/"><span class="cf-mark" aria-hidden="true"></span>CaliperForge</a>
+    <div class="cf-nav-right">
+      <div class="cf-nav-links">
+        <a href="/blog/">Blog</a>
+        <a href="/what-we-caught">What we caught</a>
+        <a href="/engagements/">Engagements</a>
+        <a href="/roadmap/">Roadmap</a>
+        <a href="https://github.com/caliperforge" rel="me">GitHub</a>
       </div>
-      <p class="hero-footnote">
-        Human in the loop · operator of record: Michael Moffett · every commit
-      </p>
+      <a class="cf-cta-gold" href="mailto:team@caliperforge.com?subject=Start%20an%20engagement">Start an engagement</a>
+    </div>
+  </nav>
+
+  <!-- hero -->
+  <header class="cf-hero">
+    <div class="cf-eyebrow cf-eyebrow--hero">AI RESEARCH STUDIO · SECURITY &amp; INVARIANTS</div>
+    <div class="cf-hero-grid">
+      <h1 class="cf-h1">Verifiable, auditable, <span class="cf-italic-gold">correctable.</span></h1>
+      <div class="cf-hero-aside">
+        <p class="cf-prose">An AI research studio specializing in security and invariants. We build autonomous systems you can check, and the delivery is the proof.</p>
+        <div class="cf-hero-actions">
+          <a class="cf-cta-gold cf-cta-gold--lg" href="mailto:team@caliperforge.com?subject=Start%20an%20engagement">Start an engagement &rarr;</a>
+          <a class="cf-link-cream-underline" href="/what-we-caught">See what we ship</a>
+        </div>
+      </div>
     </div>
 
-    <!-- Right column: gate instrument panel -->
-    <div class="gate-panel">
-      <div class="gate-panel-header">
-        <span style="font-family:var(--mono);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;">Gate metrics · live</span>
-        <div class="live-dot"></div>
-      </div>
+    <!-- operator quote -->
+    <blockquote class="cf-quote">
+      <div class="cf-quote__text">"We build autonomous systems you can check. The proof is in the receipts, not in a claim about the receipts."</div>
+      <div class="cf-quote__meta">HUMAN IN THE LOOP<br><b>OPERATOR OF RECORD</b></div>
+    </blockquote>
+  </header>
 
-      <div>
-        <div class="gate-panel-rate">
-          <span class="cf-m" data-cf-key="catch_rate_display">83%</span>
-        </div>
-        <div class="gate-panel-rate-label">Overall catch rate</div>
+  <!-- stats up front -->
+  <section class="cf-shell" style="padding-top:54px;padding-bottom:64px;">
+    <div class="cf-stats4">
+      <div class="cf-stat">
+        <div class="cf-stat-num cf-stat-num--cream" data-stat="caught.tp"></div>
+        <div class="cf-stat-label cf-stat-label--hero">DEFECTS CAUGHT AT THE GATE</div>
       </div>
-
-      <div class="gate-panel-bar">
-        <div class="gate-panel-bar-fill" style="width:83%;" data-cf-bar-pct="catch_rate"></div>
+      <div class="cf-stat">
+        <div class="cf-stat-num cf-stat-num--lg" data-stat="caught.catch_rate"></div>
+        <div class="cf-stat-label cf-stat-label--gold">CATCH RATE · <span data-stat="caught.adjudicated"></span> DECISIONS</div>
       </div>
-
-      <div class="gate-mini-grid">
-        <div class="gate-mini-card green">
-          <div class="gate-mini-num"><span class="cf-m" data-cf-key="tp">15</span></div>
-          <div class="gate-mini-label">True pos.</div>
-        </div>
-        <div class="gate-mini-card amber">
-          <div class="gate-mini-num"><span class="cf-m" data-cf-key="fn">3</span></div>
-          <div class="gate-mini-label">Misses</div>
-        </div>
-        <div class="gate-mini-card">
-          <div class="gate-mini-num" style="color:var(--t-0)"><span class="cf-m" data-cf-key="fp">0</span></div>
-          <div class="gate-mini-label">False pos.</div>
-        </div>
-        <div class="gate-mini-card">
-          <div class="gate-mini-num" style="color:var(--t-0)"><span class="cf-m" data-cf-key="adjudicated">46</span></div>
-          <div class="gate-mini-label">Adjudicated</div>
-        </div>
+      <div class="cf-stat">
+        <div class="cf-stat-num cf-stat-num--cream" data-stat="caught.fp"></div>
+        <div class="cf-stat-label cf-stat-label--hero">FALSE POSITIVES</div>
       </div>
-
-      <div class="gate-panel-stamp">
-        <span class="cf-m" data-cf-key="window_start">2026-06-04</span> →
-        <span class="cf-m" data-cf-key="window_end">2026-06-21</span><br>
-        §4a content · §4b code quality · auto-refreshed<br>
-        Precision: <span class="cf-m" data-cf-key="precision_display">100%</span> ·
-        FP rate: <span class="cf-m" data-cf-key="false_positive_rate_display">0%</span>
+      <div class="cf-stat">
+        <div class="cf-stat-num cf-stat-num--cream" data-stat="org.days_running"></div>
+        <div class="cf-stat-label cf-stat-label--hero">DAYS RUNNING</div>
       </div>
+    </div>
+    <div class="cf-stat-caption">
+      Catch record from the public gate ledger · window
+      <span data-stat="caught.window_start"></span> &rarr; <span data-stat="caught.window_end"></span>.
+      &nbsp;<a href="/what-we-caught" class="cf-link-gold--deep" style="color:var(--brick-link);border-color:rgba(154,123,62,.5);">Full record &rarr; what we caught</a>
+    </div>
+  </section>
 
-      <a href="what-we-caught/" style="font-family:var(--mono);font-size:0.72rem;color:var(--ice);margin-top:0.25rem;">
-        Full record → what we caught
-      </a>
+</div>
+
+<!-- ============== 01 · WHAT CALIPERFORGE IS =============================== -->
+<section class="cf-band--paper">
+  <div class="cf-shell cf-2col" style="padding-top:80px;padding-bottom:20px;">
+    <div>
+      <div class="cf-eyebrow">01 / WHAT CALIPERFORGE IS</div>
+      <h2 class="cf-h2">An agent org that ships receipts, not claims.</h2>
+    </div>
+    <div class="cf-2col__body">
+      <p class="cf-prose">An AI research studio specializing in security and invariants. The studio runs as an agent org: specialized roles, invariant tooling, and a human operator who reviews every deliverable before it ships.</p>
+      <p class="cf-prose" style="margin-bottom:0;">We build autonomous systems you can check. Stateful invariant testing. Planted-twin CI on every harness. A published record of what our own gates caught, and what they missed. The proof is in the receipts.</p>
     </div>
   </div>
 </section>
 
-<!-- Method band -->
-<div class="method-band">
-  <div class="method-band-inner">
-    <div class="method-step">
-      <div class="method-step-num">01 / express</div>
-      <div class="method-step-title">Machine-checkable invariant</div>
-      <div class="method-step-desc">
-        We express the protocol's safety rule as a property that CI can
-        assert — not a prose spec, not an opinion.
+<!-- ============== 02 · THE METHOD ========================================== -->
+<section class="cf-band--paper">
+  <div class="cf-shell" style="padding-top:54px;padding-bottom:70px;">
+    <div class="cf-eyebrow" style="margin-bottom:38px;">02 / THE METHOD</div>
+    <div class="cf-method">
+      <div class="cf-method__line"></div>
+      <div class="cf-method__dot"></div>
+      <div class="cf-method__step">
+        <div class="cf-method__step-label"><span>01 · EXPRESS</span></div>
+        <h3 class="cf-h3">Express the invariant</h3>
+        <p class="cf-prose--xs">We express a protocol's safety rule as a machine-checkable invariant, one line that captures what must always hold.</p>
       </div>
-    </div>
-    <div class="method-step">
-      <div class="method-step-num">02 / ship twin</div>
-      <div class="method-step-title">Clean + planted-bug CI pair</div>
-      <div class="method-step-desc">
-        Clean reference: invariant holds. Planted-bug twin: invariant fires.
-        Both run on every push. The CI job fails if either side breaks.
+      <div class="cf-method__step">
+        <div class="cf-method__step-label"><span>02 · BUILD TWIN</span></div>
+        <h3 class="cf-h3">Ship a planted-bug twin</h3>
+        <p class="cf-prose--xs">A clean reference where the invariant holds, and a planted-bug twin where it fires. Both run in CI on every push.</p>
       </div>
-    </div>
-    <div class="method-step">
-      <div class="method-step-num">03 / publish</div>
-      <div class="method-step-title">Receipts, not claims</div>
-      <div class="method-step-desc">
-        The gate record is public — what fired, what missed, how often.
-        Self-correction is part of the design. Misses are published too.
+      <div class="cf-method__step">
+        <div class="cf-method__step-label"><span>03 · PUBLISH</span></div>
+        <h3 class="cf-h3">Receipts, not claims</h3>
+        <p class="cf-prose--xs">Every deliverable is verifiable. The CI record is public. The self-correction log is public.</p>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- Page body -->
-<main class="page-body">
-
-  <!-- Chains -->
-  <section class="section" id="chains">
-    <p class="eyebrow">What we work on</p>
-    <h2>Chains we cover</h2>
-    <p class="section-lede">Active language coverage: Cairo, Rust/Anchor, Solidity.</p>
-    <ul class="chains-list">
-      <li class="chain-item">
-        <div>
-          <div class="chain-name">Starknet</div>
-          <span class="chain-meta">Cairo 2.x</span>
-        </div>
-        <div class="chain-scope">Contract work and developer tooling on snforge.</div>
-      </li>
-      <li class="chain-item">
-        <div>
-          <div class="chain-name">Solana</div>
-          <span class="chain-meta">Anchor / SPL</span>
-        </div>
-        <div class="chain-scope">Programs, tooling, Foundation-funded work.</div>
-      </li>
-      <li class="chain-item">
-        <div>
-          <div class="chain-name">HyperEVM</div>
-          <span class="chain-meta">Solidity / Foundry</span>
-        </div>
-        <div class="chain-scope">HyperCore-boundary invariants and CI-runnable property tests for lending protocols.</div>
-      </li>
-      <li class="chain-item">
-        <div>
-          <div class="chain-name">Ethereum / EVM</div>
-          <span class="chain-meta">Invariant forensics</span>
-        </div>
-        <div class="chain-scope">Bridge-conservation invariant references and exploit-to-invariant case reproductions.</div>
-      </li>
-    </ul>
-  </section>
-
-  <!-- Projects -->
-  <section class="section" id="projects">
-    <p class="eyebrow">What we ship</p>
-    <h2>Projects</h2>
-    <p class="section-lede">Open-source tooling we maintain. Curated; full list on GitHub.</p>
-
-    <div class="proj-grid">
-      <!-- Feature card: flagship -->
-      <div class="proj-card feature">
-        <div>
-          <div class="proj-name">Exploit→Invariant Atlas</div>
-          <div class="proj-badges">
-            <span class="badge">Cairo · Move · Solana · EVM</span>
-            <span class="badge badge-ci">CI-asserted</span>
-            <span class="badge badge-license">Apache-2.0</span>
-          </div>
-          <p class="proj-scope">
-            Six real-world hacks across four VMs — zkLend, Cetus, Cashio,
-            Mango Markets, Loopscale, and a Trace2Inv EVM case — each with
-            a runnable invariant that would have caught the bug class on
-            pre-exploit code. Clean twin where the property holds, planted-bug
-            twin where it fires. First defender-side, pre-deploy CI benchmark
-            across Cairo, Move, Solana, and EVM.
-          </p>
-          <div class="proj-links">
-            <a href="https://github.com/caliperforge/invariant-atlas">github.com/caliperforge/invariant-atlas</a>
-            <span>·</span>
-            <a href="/ai-disclosure">AI-disclosed</a>
-          </div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:0.5rem;">
-          <div class="proj-meta" style="color:var(--t-2);font-size:0.68rem;">6 cases · 4 VMs · all CI-asserted</div>
-          <div style="background:var(--bg-3);border:1px solid var(--border-0);border-radius:var(--r-m);padding:0.75rem;font-family:var(--mono);font-size:0.7rem;color:var(--t-1);line-height:1.8;">
-            <div style="color:var(--green);">✓ clean: 0 violations</div>
-            <div style="color:var(--amber);">⚑ planted: ≥1 violation</div>
-            <div style="color:var(--t-2);">on every push · CI matrix</div>
-          </div>
-        </div>
+<!-- ============== 03 · WHAT WE CAUGHT (teaser on navy) ===================== -->
+<section class="cf-band--navy">
+  <div class="cf-shell" style="padding-top:84px;padding-bottom:88px;">
+    <div class="cf-head-row">
+      <div>
+        <div class="cf-eyebrow cf-eyebrow--navy">03 / WHAT WE CAUGHT</div>
+        <h2 class="cf-h2 cf-h2--md" style="max-width:600px;">The adjudicated record.</h2>
       </div>
+      <a href="/what-we-caught" class="cf-link-gold">Full gate record &rarr;</a>
+    </div>
+    <p class="cf-prose cf-prose--navy" style="max-width:680px;margin-bottom:40px;">
+      The Method promises receipts, not claims. Here is the record, 
+      <span data-stat="caught.adjudicated"></span> adjudicated decisions, every one logged.
+    </p>
 
-      <div class="proj-card">
-        <div class="proj-name">cf-invariants</div>
-        <div class="proj-badges">
-          <span class="badge">Starknet · Cairo 2.x</span>
-          <span class="badge badge-ci">CI green</span>
-          <span class="badge badge-license">Apache-2.0</span>
-        </div>
-        <p class="proj-scope">snforge sidecar: stateful invariant testing + AI-suggested invariants. 12 reference contracts, Voyager-verified on Sepolia.</p>
-        <div class="proj-links">
-          <a href="https://github.com/caliperforge/cf-invariants">GitHub</a>
-        </div>
+    <div class="cf-stats4 cf-stats4--navy" style="margin-bottom:50px;">
+      <div class="cf-stat" style="padding-top:32px;padding-bottom:0;">
+        <div class="cf-stat-num cf-stat-num--hero cf-stat-num--gold" data-stat="caught.tp"></div>
+        <div class="cf-stat-label cf-stat-label--navy">DEFECTS CAUGHT<br>across <span data-stat="caught.adjudicated"></span> decisions</div>
       </div>
-
-      <div class="proj-card">
-        <div class="proj-name">cf-invariants-anchor</div>
-        <div class="proj-badges">
-          <span class="badge">Solana · Anchor / Crucible</span>
-          <span class="badge badge-ci">CI green</span>
-          <span class="badge badge-license">Apache-2.0</span>
-        </div>
-        <p class="proj-scope">Invariant-authoring layer on top of Crucible. Stateful invariants, AI-suggested invariants tagged in source; CI: clean passes, planted fires.</p>
-        <div class="proj-links">
-          <a href="https://github.com/caliperforge/cf-invariants-anchor">GitHub</a>
-        </div>
+      <div class="cf-stat" style="padding-top:32px;padding-bottom:0;">
+        <div class="cf-stat-num cf-stat-num--hero cf-stat-num--cream" data-stat="caught.catch_rate"></div>
+        <div class="cf-stat-label cf-stat-label--navy">CATCH RATE<br>of defects present</div>
       </div>
-
-      <div class="proj-card">
-        <div class="proj-name">hyperevm-safety</div>
-        <div class="proj-badges">
-          <span class="badge">HyperEVM · Solidity + Foundry</span>
-          <span class="badge badge-ci">CI green</span>
-          <span class="badge badge-license">Apache-2.0</span>
-        </div>
-        <p class="proj-scope">6 HyperCore-boundary invariants for lending protocols — oracle staleness, mark/oracle deviation, szDecimals, and more. CI-runnable property tests.</p>
-        <div class="proj-links">
-          <a href="https://github.com/caliperforge/hyperevm-safety">GitHub</a>
-        </div>
+      <div class="cf-stat" style="padding-top:32px;padding-bottom:0;">
+        <div class="cf-stat-num cf-stat-num--hero cf-stat-num--cream" data-stat="caught.fp"></div>
+        <div class="cf-stat-label cf-stat-label--navy">FALSE POSITIVES<br>zero, to date</div>
+      </div>
+      <div class="cf-stat" style="padding-top:32px;padding-bottom:0;">
+        <div class="cf-stat-num cf-stat-num--hero cf-stat-num--brick" data-stat="caught.fn"></div>
+        <div class="cf-stat-label cf-stat-label--navy">DOCUMENTED MISSES<br>published in full</div>
       </div>
     </div>
 
-    <a href="https://github.com/caliperforge" class="view-all-link">
-      View all projects on GitHub →
-    </a>
-
-    <div class="coverage-note">
-      <strong><span class="cf-m" data-cf-key="tp">15</span> defects caught at the gate</strong>
-      · <span class="cf-m" data-cf-key="fp">0</span> false positives
-      · <span class="cf-m" data-cf-key="fn">3</span> <a href="what-we-caught/">documented misses</a>
-      · <strong><span class="cf-m" data-cf-key="catch_rate_display">83%</span> catch rate</strong>
-      across <span class="cf-m" data-cf-key="adjudicated">46</span> adjudicated gate decisions.
-      <a href="what-we-caught/" style="color:var(--ice);margin-left:0.5rem;">Full record →</a>
+    <div class="cf-eyebrow cf-eyebrow--navy" style="font-size:11px;letter-spacing:.16em;color:var(--cream-mute-3);margin-bottom:16px;">THE FULL-WINDOW LEDGER</div>
+    <div class="cf-ledger" data-ledger aria-label="decision ledger (live)"></div>
+    <div class="cf-ledger-legend">
+      <span><i class="cf-ledger-cell--caught"></i><span data-stat="caught.tp"></span> caught</span>
+      <span><i class="cf-ledger-cell--missed"></i><span data-stat="caught.fn"></span> missed</span>
+      <span><i class="cf-ledger-cell--clean"></i><span data-stat="caught.tn"></span> clean, <span data-stat="caught.fp"></span> false positives</span>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Studio teaser with REAL screenshot -->
-  <section class="section" id="studio-teaser">
-    <p class="eyebrow">The studio</p>
-    <h2>Specialized agents. Human principal. Running live.</h2>
-    <div class="studio-teaser">
-      <div class="studio-teaser-text">
-        <h3>The Atelier cockpit</h3>
-        <p>
-          The organization runs on a live internal cockpit — the Atelier —
-          where every agent's gate decisions, catch record, and workstream
-          state are visible in real time. Structured, accountable, auditable.
-          The site you're reading is one of the outputs it produces.
+<!-- ============== 04 · WHAT WE SHIP ======================================= -->
+<section class="cf-band--paper-deep">
+  <div class="cf-shell" style="padding-top:72px;padding-bottom:80px;">
+    <div class="cf-head-row cf-head-row--md">
+      <div>
+        <div class="cf-eyebrow">04 / WHAT WE SHIP</div>
+        <h2 class="cf-h2" style="max-width:620px;">Open-source tooling we maintain.</h2>
+      </div>
+      <div style="font-size:14px;color:var(--ink-mute);max-width:300px;line-height:1.6;text-align:right;">Source on GitHub, license on the card. AI involvement disclosed at point of use.</div>
+    </div>
+
+    <div class="cf-ship3">
+      <article class="cf-card">
+        <div class="cf-card__head">
+          <div class="cf-card__title">Exploit&rarr;Invariant Atlas</div>
+          <span class="cf-badge cf-badge--ci">CI ✓</span>
+        </div>
+        <p class="cf-card__body">Seven real-world hacks across four VMs, each with a runnable invariant that would have caught the bug class on the pre-exploit code. First defender-side, pre-deploy CI benchmark across Cairo, Move, Solana, and EVM.</p>
+        <div class="cf-card__foot"><span>Cairo · Move · Solana · EVM</span><span class="cf-card__foot-right">Apache-2.0</span></div>
+      </article>
+      <article class="cf-card">
+        <div class="cf-card__head">
+          <div class="cf-card__title">cf-invariants</div>
+          <span class="cf-badge cf-badge--ci">CI ✓</span>
+        </div>
+        <p class="cf-card__body">Open-source snforge sidecar that adds stateful invariant testing and AI-suggested invariants to Cairo 2.x. Twelve reference contracts, Voyager-verified on Starknet Sepolia.</p>
+        <div class="cf-card__foot"><span>Starknet · Cairo 2.x</span><span class="cf-card__foot-right">Apache-2.0</span></div>
+      </article>
+      <article class="cf-card">
+        <div class="cf-card__head">
+          <div class="cf-card__title">cf-invariants-anchor</div>
+          <span class="cf-badge cf-badge--ci">CI ✓</span>
+        </div>
+        <p class="cf-card__body">Invariant-authoring layer on Crucible (Asymmetric Research's Solana fuzzer). CI runs the harness against a clean vault and a planted-bug twin every push, with scorecards committed.</p>
+        <div class="cf-card__foot"><span>Solana · Anchor / Crucible</span><span class="cf-card__foot-right">Apache-2.0</span></div>
+      </article>
+      <article class="cf-card">
+        <div class="cf-card__head">
+          <div class="cf-card__title">cf-invariants-jito</div>
+          <span class="cf-badge cf-badge--ci">CI ✓</span>
+        </div>
+        <p class="cf-card__body">Invariant-fuzzing harness for the Jito Foundation tip-distribution program. Four invariant classes run against a clean reference and a planted-bug twin per class on every push.</p>
+        <div class="cf-card__foot"><span>Solana · Jito tip-distribution</span><span class="cf-card__foot-right">Apache-2.0</span></div>
+      </article>
+      <article class="cf-card">
+        <div class="cf-card__head">
+          <div class="cf-card__title">hyperevm-safety</div>
+          <span class="cf-badge cf-badge--ci">CI ✓</span>
+        </div>
+        <p class="cf-card__body">Invariants and CI-runnable property tests for HyperEVM lending protocols that consume HyperCore oracle reads. Six HyperCore-boundary invariants in v0.1; planted/incident twin fires on the same run.</p>
+        <div class="cf-card__foot"><span>HyperEVM · Solidity / Foundry</span><span class="cf-card__foot-right">Apache-2.0</span></div>
+      </article>
+      <article class="cf-card">
+        <div class="cf-card__head">
+          <div class="cf-card__title">cf-modeleval</div>
+          <span class="cf-badge cf-badge--ci">CI ✓</span>
+        </div>
+        <p class="cf-card__body">Planted-twin discrimination-power harness for AI safety properties, prompt-injection and sycophancy resistance, run across Anthropic, OpenAI, and Groq. Every CLEAN claim paired to a PLANTED control.</p>
+        <div class="cf-card__foot"><span>Anthropic · OpenAI · Groq</span><span class="cf-card__foot-right">Apache-2.0</span></div>
+      </article>
+    </div>
+    <div style="font-family:var(--font-mono);font-size:12px;color:var(--ink-mute-2);margin-top:26px;display:flex;gap:8px;align-items:center;">
+      <span style="color:var(--gold-deep);">&rarr;</span>
+      <a href="https://github.com/caliperforge" rel="me">github.com/caliperforge</a>
+      &nbsp;·&nbsp; 13 tools shipped &nbsp;·&nbsp; AI-disclosed at point of use
+    </div>
+  </div>
+</section>
+
+<!-- ============== 05 · CHAINS WE COVER ===================================== -->
+<section class="cf-band--paper">
+  <div class="cf-shell" style="padding-top:74px;padding-bottom:70px;">
+    <div class="cf-eyebrow">05 / CHAINS WE COVER</div>
+    <h2 class="cf-h2 cf-h2--xs" style="margin-bottom:36px;max-width:680px;">We work where contracts are shipping.</h2>
+    <div class="cf-chains4">
+      <div>
+        <div class="cf-chain-label">STARKNET · CAIRO</div>
+        <div class="cf-chain-name">Cairo 2.x</div>
+        <div class="cf-chain-prose">Contract work and developer tooling on snforge.</div>
+      </div>
+      <div>
+        <div class="cf-chain-label">SOLANA · ANCHOR</div>
+        <div class="cf-chain-name">Anchor / SPL</div>
+        <div class="cf-chain-prose">Programs, tooling, Foundation-funded work.</div>
+      </div>
+      <div>
+        <div class="cf-chain-label">HYPEREVM · FOUNDRY</div>
+        <div class="cf-chain-name">Solidity</div>
+        <div class="cf-chain-prose">HyperCore-boundary invariants and property tests for lending.</div>
+      </div>
+      <div>
+        <div class="cf-chain-label">ETHEREUM · EVM</div>
+        <div class="cf-chain-name">Invariant forensics</div>
+        <div class="cf-chain-prose">Bridge-conservation references and exploit-to-invariant reproductions.</div>
+      </div>
+    </div>
+    <div style="font-size:13.5px;color:var(--ink-mute);margin-top:22px;line-height:1.6;max-width:760px;">
+      Base and the Optimism Superchain come online as ecosystem work lands; Move (Sui, Aptos) and Go (Cosmos, Celestia) when contract volume warrants.
+    </div>
+  </div>
+</section>
+
+<!-- ============== 06 · ON-CHAIN & VERIFIABLE =============================== -->
+<section class="cf-band--paper">
+  <div class="cf-shell" style="padding-top:78px;padding-bottom:72px;">
+    <div class="cf-eyebrow">06 / ON-CHAIN &amp; VERIFIABLE</div>
+    <h2 class="cf-h2 cf-h2--sm" style="margin-bottom:16px;max-width:780px;">Deployed on-chain, not just described.</h2>
+    <p class="cf-prose cf-prose--sm" style="max-width:720px;margin-bottom:42px;">
+      We publish reference contracts on-chain so anyone can run our invariants against a live target, each shipped as a clean reference and a planted-bug twin, every deployment independently verified. Coverage expands chain by chain as the work lands.
+    </p>
+
+    <div class="cf-stats3" style="margin-bottom:44px;">
+      <div class="cf-stat">
+        <div class="cf-stat-num cf-stat-num--md cf-stat-num--deep-gold">12</div>
+        <div class="cf-stat-label">REFERENCE CONTRACTS LIVE</div>
+      </div>
+      <div class="cf-stat">
+        <div class="cf-stat-num cf-stat-num--md cf-stat-num--ink">100%</div>
+        <div class="cf-stat-label">INDEPENDENTLY VERIFIED</div>
+      </div>
+      <div class="cf-stat">
+        <div class="cf-stat-num cf-stat-num--md cf-stat-num--ink">2</div>
+        <div class="cf-stat-label">LEGS EACH · CLEAN + PLANTED TWIN</div>
+      </div>
+    </div>
+
+    <div class="cf-eyebrow" style="font-size:11px;letter-spacing:.12em;">INVARIANT CLASSES COVERED</div>
+    <div class="cf-chip-row" style="margin-bottom:30px;">
+      <span class="cf-chip">Supply accounting</span>
+      <span class="cf-chip">Governance state</span>
+      <span class="cf-chip">AMM constant-product</span>
+      <span class="cf-chip">Vault share / asset</span>
+      <span class="cf-chip">Lending solvency</span>
+      <span class="cf-chip">Oracle monotonicity</span>
+      <span class="cf-chip">Staking conservation</span>
+      <span class="cf-chip">Timelock delay</span>
+      <span class="cf-chip">Multisig threshold</span>
+      <span class="cf-chip">Vesting cap</span>
+    </div>
+    <div style="font-family:var(--font-mono);font-size:12px;color:var(--ink-mute-2);border-top:1px solid var(--paper-rule);padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+      <span>Live today on Starknet Sepolia · Cairo 2.x, more chains as coverage lands.</span>
+      <a href="/what-we-caught" style="color:var(--gold-deep);">Read the findings report &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== 07 · HOW WE'RE ORGANIZED ================================ -->
+<section class="cf-band--paper-deep">
+  <div class="cf-shell" style="padding-top:78px;padding-bottom:80px;">
+    <div class="cf-eyebrow">07 / HOW WE'RE ORGANIZED</div>
+    <h2 class="cf-h2" style="margin-bottom:14px;max-width:640px;">Why the receipts are trustworthy.</h2>
+    <p class="cf-prose" style="max-width:660px;margin-bottom:44px;color:var(--ink-soft-2);">
+      Independent checks at every load-bearing step, and every one of them logs to the published catch record.
+    </p>
+
+    <div class="cf-checks">
+      <article class="cf-card">
+        <div class="cf-card__eyebrow">INDEPENDENT REVIEWERS</div>
+        <p class="cf-card__body" style="font-size:14px;line-height:1.65;">§4a content and §4b code. The author never reviews their own work, every public claim and every code change passes a reviewer who didn't write it.</p>
+        <div class="cf-card__foot--miss">The <span data-stat="caught.tp"></span> defects on record were caught here.</div>
+      </article>
+      <article class="cf-card">
+        <div class="cf-card__eyebrow">AI OPS INTEGRITY SWEEPS</div>
+        <p class="cf-card__body" style="font-size:14px;line-height:1.65;">A nightly pass over the task queue, role files, decision log, and gate verdicts, looking for process drift, missed handoffs, and stale state.</p>
+        <div class="cf-card__foot--miss" style="color:var(--ink-mute-2);">Operational hygiene, it keeps the records honest.</div>
+      </article>
+      <article class="cf-card">
+        <div class="cf-card__eyebrow">AI HR ROLE AUDITS</div>
+        <p class="cf-card__body" style="font-size:14px;line-height:1.65;">Every role is audited against its actual behavior. When a role acts outside scope, it surfaces in the audit log, not after a customer notices.</p>
+        <div class="cf-card__foot--miss" style="color:var(--ink-mute-2);">Reviewer stays separate from author.</div>
+      </article>
+      <article class="cf-card cf-card--dashed">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:10px;">
+          <span class="cf-card__eyebrow" style="margin:0;">DREAMING CONSOLIDATION LOOP</span>
+          <span class="cf-badge cf-badge--emerging">EMERGING</span>
+        </div>
+        <p class="cf-card__body" style="font-size:14px;line-height:1.65;color:var(--ink-mute);">A daily pass consolidating yesterday's gate outcomes and reviewer feedback into the standing playbook. Just coming online.</p>
+        <div class="cf-card__foot--miss" style="color:var(--ink-mute-2);border-top:1px solid var(--paper-rule-5);">Reported as it matures, not load-bearing yet.</div>
+      </article>
+      <article class="cf-card">
+        <div class="cf-card__eyebrow">QA REVIEWERS</div>
+        <p class="cf-card__body" style="font-size:14px;line-height:1.65;">The review discipline applied to code, applied to public copy. Anything on this site, in a grant, or customer-facing passes a content QA reviewer first.</p>
+        <div class="cf-card__foot--miss" style="color:var(--ink-mute-2);">Every verdict is logged.</div>
+      </article>
+      <div style="display:flex;flex-direction:column;justify-content:center;padding:8px 26px;">
+        <p style="font-family:var(--font-serif);font-size:19px;line-height:1.4;color:var(--ink);margin:0 0 16px;">Every check above logs to the published gate record.</p>
+        <a href="/what-we-caught" class="cf-link-gold--deep" style="align-self:flex-start;">Read what we caught &rarr;</a>
+      </div>
+    </div>
+
+    <div class="cf-eyebrow" style="font-size:11px;letter-spacing:.16em;color:var(--ink-mute-2);margin:52px 0 16px;">HOW THE ORG OPERATES AT SCALE</div>
+    <div class="cf-stats3">
+      <div class="cf-stat">
+        <div class="cf-stat-num cf-stat-num--sm cf-stat-num--ink" data-stat="org.specialized_agents"></div>
+        <div class="cf-stat-label">SPECIALIZED AGENTS</div>
+      </div>
+      <div class="cf-stat">
+        <div class="cf-stat-num cf-stat-num--sm cf-stat-num--ink" data-stat="org.logged_agent_decisions"></div>
+        <div class="cf-stat-label">LOGGED AGENT DECISIONS</div>
+      </div>
+      <div class="cf-stat">
+        <div class="cf-stat-num cf-stat-num--sm cf-stat-num--ink" data-stat="org.agent_dispatches"></div>
+        <div class="cf-stat-label">AGENT DISPATCHES</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== 08 · CONTACT / FOOTER ==================================== -->
+<section class="cf-band--navy">
+  <div class="cf-shell" style="padding-top:84px;padding-bottom:0;">
+    <div class="cf-contact2">
+      <div>
+        <div class="cf-eyebrow cf-eyebrow--navy" style="margin-bottom:20px;">08 / CONTACT</div>
+        <h2 class="cf-h2 cf-h2--lg" style="margin-bottom:22px;">Operated by Michael&nbsp;Moffett.</h2>
+        <p class="cf-prose cf-prose--navy" style="max-width:480px;margin-bottom:28px;">
+          Accountable for every commit, PR, grant application, and bounty claim made under this org. For grant collaboration, engagement inquiries, or security-tooling questions:
         </p>
-        <a href="studio/" class="btn-primary" style="display:inline-flex;margin-top:1.25rem;">
-          Inside the studio →
-        </a>
+        <a class="cf-cta-gold cf-cta-gold--lg" href="mailto:team@caliperforge.com?subject=Start%20an%20engagement">Start an engagement &rarr;</a>
       </div>
-      <div class="cockpit-shot-wrap">
-        <img src="assets/floor.png"
-             alt="Atelier Floor view — live dispatches, ACTIVE NOW, RECENT RUNS, TOP 3 KPIs, WAITING ON YOU, WORKSTREAMS pills"
-             class="cockpit-shot">
-        <div class="cockpit-shot-caption">Atelier cockpit · Floor view · live operating state</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- How it's organized -->
-  <section class="section" id="how">
-    <p class="eyebrow">How we are organized</p>
-    <h2>Specialized agents, scoped and cross-checked.</h2>
-    <p class="prose-p">
-      The organization is a team of specialized AI agents — an audit engineer,
-      a Cairo specialist, a Rust/Anchor specialist, a grant writer, a content
-      reviewer, and others as the work calls for them. Each is scoped, each has
-      a defined output discipline, and each cross-checks the others before
-      anything leaves the workspace. The operator reviews every load-bearing
-      decision and ships under his own name.
-    </p>
-    <p class="prose-p">
-      AI involvement is disclosed at point of use.
-      Full policy: <a href="/ai-disclosure">caliperforge.com/ai-disclosure</a>.
-    </p>
-  </section>
-
-  <!-- Contact -->
-  <section class="section" id="contact">
-    <p class="eyebrow">Contact</p>
-    <h2>Reachable, KYC-able, accountable.</h2>
-    <div class="contact-strip">
-      <div class="contact-item">
-        <div class="contact-label">Operator</div>
-        <div class="contact-value">Michael Moffett</div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-label">Direct</div>
-        <div class="contact-value"><a href="mailto:michael@caliperforge.com">michael@caliperforge.com</a></div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-label">Team</div>
-        <div class="contact-value"><a href="mailto:team@caliperforge.com">team@caliperforge.com</a></div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-label">GitHub</div>
-        <div class="contact-value"><a href="https://github.com/caliperforge">github.com/caliperforge</a></div>
+      <div class="cf-contact-list">
+        <div class="cf-contact-list__row"><span>DIRECT</span><span><a href="mailto:michael@caliperforge.com">michael@caliperforge.com</a></span></div>
+        <div class="cf-contact-list__row"><span>TEAM</span><span><a href="mailto:team@caliperforge.com">team@caliperforge.com</a></span></div>
+        <div class="cf-contact-list__row cf-contact-list__row--gold"><span>GITHUB</span><span><a href="https://github.com/caliperforge" rel="me">github.com/caliperforge</a></span></div>
+        <div class="cf-contact-list__row cf-contact-list__row--gold"><span>X · FARCASTER</span><span>@caliperforge</span></div>
+        <div class="cf-contact-list__row cf-contact-list__row--gold"><span>ENS</span><span>caliperforge.eth</span></div>
       </div>
     </div>
-  </section>
-
-</main>
-
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div>
-      <div class="footer-brand">CaliperForge</div>
-      <div class="footer-tagline">AI research studio · verifiable, auditable, correctable.</div>
-      <div class="footer-tagline" style="margin-top:0.3rem;">Operator of record: Michael Moffett · <a href="/ai-disclosure" style="color:var(--t-2);">AI policy</a></div>
-    </div>
-    <ul class="footer-links">
-      <li><a href="./">Home</a></li>
-      <li><a href="studio/">Studio</a></li>
-      <li><a href="what-we-caught/">What we caught</a></li>
-      <li><a href="roadmap/">Roadmap</a></li>
-      <li><a href="/engagements/">Engagements</a></li>
-      <li><a href="/blog/">Blog</a></li>
-      <li><a href="https://github.com/caliperforge">GitHub</a></li>
-      <li><a href="https://x.com/caliperforge">X</a></li>
-    </ul>
+    <footer class="cf-footer">
+      <div class="cf-footer__brand"><span class="cf-mark cf-mark--sm" aria-hidden="true"></span>CaliperForge, precision contributions, every time.</div>
+      <div class="cf-footer__meta">Operator of record: Michael Moffett · <a href="/ai-disclosure">AI policy</a></div>
+    </footer>
   </div>
-</footer>
+</section>
 
-<!-- caught-metrics.js — fetches /data/caught_public.json; fills data-cf-key spans;
-     updates gate bar chart + hero bar; silent fail on fetch error. -->
-<script>
-(function () {
-  var FEED = '/data/caught_public.json';
-
-  function pctNum(n, d) {
-    if (!d) return 0;
-    return Math.round((n / d) * 10000) / 100;
-  }
-
-  function fill(data) {
-    var m = data.metrics || {};
-    var map = {
-      tp: m.tp, fp: m.fp, fn: m.fn, tn: m.tn,
-      adjudicated: m.adjudicated,
-      catch_rate_display: m.catch_rate_display,
-      precision_display: m.precision_display,
-      false_positive_rate_display: m.false_positive_rate_display,
-      window_start: data.window_start,
-      window_end: data.window_end,
-      last_updated: data.last_updated
-    };
-    document.querySelectorAll('[data-cf-key]').forEach(function (el) {
-      var v = map[el.getAttribute('data-cf-key')];
-      if (v !== undefined && v !== null) el.textContent = v;
-    });
-    /* hero bar fill */
-    var heroBar = document.querySelector('[data-cf-bar-pct="catch_rate"]');
-    if (heroBar && m.catch_rate) {
-      heroBar.style.width = (m.catch_rate * 100).toFixed(1) + '%';
-    }
-  }
-
-  function go() {
-    fetch(FEED, { cache: 'no-store' })
-      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
-      .then(fill)
-      .catch(function () { /* silent — baked-in fallback values stay */ });
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    go();
-    setInterval(go, 90000);
-  });
-}());
-</script>
-
+<script src="/preview/caliper-data.js" defer></script>
+<script src="/preview/caliper-motion.js" defer></script>
 </body>
 </html>

@@ -50,18 +50,18 @@
       Self-correction record · §4a / §4b gate decisions · auto-refreshed
     </div>
     <div class="cockpit-rate-display">
-      <span class="cf-m" data-cf-key="catch_rate_display">83%</span>
+      <span class="cf-m" data-cf-key="catch_rate_display">74%</span>
     </div>
     <div class="cockpit-rate-sub">
       Overall catch rate ·
-      <span class="cf-m" data-cf-key="tp">15</span> true positives ·
-      <span class="cf-m" data-cf-key="fn">3</span> documented misses ·
-      <span class="cf-m" data-cf-key="adjudicated">46</span> adjudicated decisions
+      <span class="cf-m" data-cf-key="tp">20</span> true positives ·
+      <span class="cf-m" data-cf-key="fn">7</span> documented misses ·
+      <span class="cf-m" data-cf-key="adjudicated">74</span> adjudicated decisions
     </div>
     <div class="cockpit-stamp">
       Window: <span class="cf-m" data-cf-key="window_start">2026-06-04</span> →
-      <span class="cf-m" data-cf-key="window_end">2026-06-21</span> ·
-      refreshed: <span class="cf-m" data-cf-key="last_updated">2026-06-21T15:02:09Z</span><br>
+      <span class="cf-m" data-cf-key="window_end">2026-07-01</span> ·
+      refreshed: <span class="cf-m" data-cf-key="last_updated">2026-07-01T14:08:24Z</span><br>
       Source: <code>/data/caught_public.json</code> · our own adjudicated record · not an external audit
     </div>
 
@@ -69,21 +69,21 @@
     <div class="stat-row">
       <div class="stat-card">
         <div class="stat-card-tag">Catch rate</div>
-        <div class="stat-card-num"><span class="cf-m" data-cf-key="catch_rate_display">83%</span></div>
+        <div class="stat-card-num"><span class="cf-m" data-cf-key="catch_rate_display">74%</span></div>
         <div class="stat-card-desc">
-          <span class="cf-m" data-cf-key="tp">15</span> of 18 real defects caught at the gate
+          <span class="cf-m" data-cf-key="tp">20</span> of 18 real defects caught at the gate
         </div>
       </div>
       <div class="stat-card green">
         <div class="stat-card-tag">True positives</div>
-        <div class="stat-card-num"><span class="cf-m" data-cf-key="tp">15</span></div>
+        <div class="stat-card-num"><span class="cf-m" data-cf-key="tp">20</span></div>
         <div class="stat-card-desc">
           Gate fired · defect confirmed · fix landed before publish
         </div>
       </div>
       <div class="stat-card amber">
         <div class="stat-card-tag">False negatives</div>
-        <div class="stat-card-num"><span class="cf-m" data-cf-key="fn">3</span></div>
+        <div class="stat-card-num"><span class="cf-m" data-cf-key="fn">7</span></div>
         <div class="stat-card-desc">
           Gate passed · defect caught downstream · published below
         </div>
@@ -135,7 +135,7 @@
           <div class="gate-bar-fill" id="bar-fill-4a" style="width:91.7%;"></div>
         </div>
         <div class="gate-bar-breakdown">
-          <span class="gate-chip tp">TP <span class="cf-m" data-cf-key="gate_4a_tp">11</span></span>
+          <span class="gate-chip tp">TP <span class="cf-m" data-cf-key="gate_4a_tp">15</span></span>
           <span class="gate-chip fn">FN <span class="cf-m" data-cf-key="gate_4a_fn">1</span></span>
           <span class="gate-chip tn">TN <span class="cf-m" data-cf-key="gate_4a_tn">19</span></span>
           <span class="gate-chip fp">FP <span class="cf-m" data-cf-key="gate_4a_fp">0</span></span>
@@ -189,7 +189,7 @@
               <span id="tbl-rate-4a">91.7%</span>
             </div>
           </td>
-          <td class="num" style="color:var(--green);"><span class="cf-m" data-cf-key="gate_4a_tp">11</span></td>
+          <td class="num" style="color:var(--green);"><span class="cf-m" data-cf-key="gate_4a_tp">15</span></td>
           <td class="num" style="color:var(--amber);"><span class="cf-m" data-cf-key="gate_4a_fn">1</span></td>
           <td class="num"><span class="cf-m" data-cf-key="gate_4a_tn">19</span></td>
           <td class="num"><span class="cf-m" data-cf-key="gate_4a_fp">0</span></td>
@@ -213,12 +213,12 @@
         </tr>
         <tr style="background:rgba(255,255,255,0.02);">
           <td class="name" style="color:var(--t-2);">Combined</td>
-          <td class="rate-green"><strong><span class="cf-m" data-cf-key="catch_rate_display">83%</span></strong></td>
-          <td class="num" style="color:var(--green);"><strong><span class="cf-m" data-cf-key="tp">15</span></strong></td>
-          <td class="num" style="color:var(--amber);"><strong><span class="cf-m" data-cf-key="fn">3</span></strong></td>
+          <td class="rate-green"><strong><span class="cf-m" data-cf-key="catch_rate_display">74%</span></strong></td>
+          <td class="num" style="color:var(--green);"><strong><span class="cf-m" data-cf-key="tp">20</span></strong></td>
+          <td class="num" style="color:var(--amber);"><strong><span class="cf-m" data-cf-key="fn">7</span></strong></td>
           <td class="num"><strong><span class="cf-m" data-cf-key="tn">28</span></strong></td>
           <td class="num"><strong><span class="cf-m" data-cf-key="fp">0</span></strong></td>
-          <td class="num"><strong><span class="cf-m" data-cf-key="adjudicated">46</span></strong></td>
+          <td class="num"><strong><span class="cf-m" data-cf-key="adjudicated">74</span></strong></td>
         </tr>
       </tbody>
     </table>
@@ -297,7 +297,7 @@
   <section class="cockpit-section" id="misses">
     <div class="cockpit-section-label">The honest column — documented misses</div>
     <p style="font-family:var(--mono);font-size:0.78rem;color:var(--t-1);margin-bottom:1.5rem;max-width:72ch;line-height:1.65;">
-      <span class="cf-m" data-cf-key="fn">3</span> gate PASSes later contradicted by a downstream catch.
+      <span class="cf-m" data-cf-key="fn">7</span> gate PASSes later contradicted by a downstream catch.
       Each is published below: which gate missed, what it carried, which downstream gate caught it.
       A self-correction record that only shows wins is worthless.
     </p>

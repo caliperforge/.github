@@ -1,23 +1,23 @@
 {
   "schema": "caught_public.v2",
-  "last_updated": "2026-06-28T20:03:26Z",
+  "last_updated": "2026-07-01T14:08:24Z",
   "window_start": "2026-06-04",
-  "window_end": "2026-06-28",
+  "window_end": "2026-07-01",
   "metrics": {
-    "tp": 15,
+    "tp": 20,
     "fp": 0,
-    "fn": 3,
+    "fn": 7,
     "tn": 28,
-    "adjudicated": 46,
-    "catch_rate": 0.8333,
-    "catch_rate_display": "83%",
+    "adjudicated": 74,
+    "catch_rate": 0.7407,
+    "catch_rate_display": "74%",
     "precision": 1.0,
     "precision_display": "100%",
     "false_positive_rate": 0.0,
     "false_positive_rate_display": "0%",
     "by_public_gate": {
       "content_qa_4a": {
-        "tp": 11,
+        "tp": 15,
         "fp": 0,
         "tn": 19,
         "fn": 1
@@ -33,6 +33,30 @@
         "fp": 0,
         "tn": 0,
         "fn": 0
+      },
+      "build_miss": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 0,
+        "fn": 1
+      },
+      "reliability_miss": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 0,
+        "fn": 1
+      },
+      "process_miss": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 0,
+        "fn": 1
+      },
+      "gate_miss": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 0,
+        "fn": 1
       }
     }
   },
