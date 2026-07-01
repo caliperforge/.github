@@ -1,6 +1,9 @@
 {
   "schema": "caught_public.v2",
-  "last_updated": "2026-07-01T14:08:24Z",
+  "_generated": true,
+  "_source": "ops/qa_verdicts/control_effectiveness.jsonl + ops/catch_corpus/",
+  "_do_not_edit": "regenerate via scripts/ops/caught_public_projection.py",
+  "last_updated": "2026-07-01T16:34:52Z",
   "window_start": "2026-06-04",
   "window_end": "2026-07-01",
   "metrics": {
@@ -75,52 +78,10 @@
       "stops": 11
     },
     {
-      "agent": "engineering_lead",
-      "pct": "100%",
-      "n": 8,
-      "stops": 9
-    },
-    {
-      "agent": "ai_ops",
-      "pct": "100%",
-      "n": 4,
-      "stops": 4
-    },
-    {
       "agent": "code_quality_reviewer",
       "pct": "67%",
       "n": 15,
       "stops": 4
-    },
-    {
-      "agent": "grant_writer",
-      "pct": "100%",
-      "n": 4,
-      "stops": 4
-    },
-    {
-      "agent": "research_lead",
-      "pct": "100%",
-      "n": 4,
-      "stops": 4
-    },
-    {
-      "agent": "bounty_hunter",
-      "pct": "n/a",
-      "n": 2,
-      "stops": 2
-    },
-    {
-      "agent": "cairo_specialist",
-      "pct": "n/a",
-      "n": 2,
-      "stops": 2
-    },
-    {
-      "agent": "finance",
-      "pct": "100%",
-      "n": 2,
-      "stops": 2
     }
   ],
   "receipts": [

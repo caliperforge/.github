@@ -1,12 +1,12 @@
 {
   "schema": "org_stats.v1",
-  "last_updated": "2026-07-01T14:09:24Z",
+  "last_updated": "2026-07-01T16:35:40Z",
   "as_of": "2026-07-01",
   "launch_date": "2026-05-27",
   "specialized_agents": 34,
   "logged_agent_decisions": 2291,
   "gate_reviews": 2291,
-  "agent_dispatches": 1075,
+  "agent_dispatches": 1080,
   "days_running": 36,
   "catch": {
     "tp": 20,
@@ -25,7 +25,7 @@
     "gate_reviews": "legacy mirror of logged_agent_decisions (T-completeness-enforcement-2026-06-30: rename in progress)",
     "agent_dispatches": "ops/runs/ledger.md (count of '^## ' headers)",
     "days_running": "(today - 2026-05-27) + 1 (inclusive; launch day = day 1)",
-    "catch": "site/data/caught_public.json (mirror; single source; adjudicated pinned to outcome.v1 row count per T-completeness-enforcement-2026-06-30)"
+    "catch": "site/data/caught_public.json (mirror of the generated projection; SoT is ops/qa_verdicts/control_effectiveness.jsonl + ops/catch_corpus/; adjudicated pinned to outcome.v1 row count per T-completeness-enforcement-2026-06-30)"
   },
   "errors": []
 }

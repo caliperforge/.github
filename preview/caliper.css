@@ -700,7 +700,101 @@ a { text-decoration: none; color: inherit; }
 .cf-gates > div:first-child { padding-left: 0; padding-right: 24px; }
 .cf-gates > div:last-child  { padding-left: 24px; padding-right: 0; border-right: none; }
 
-/* ----- MOTION LAYER (added 2026-06-30) ------------------------------------
+/* ----- SCALE-LEAD STAT ROW (hero, added 2026-07-01) -----------------------
+   The lead stats block reads as the org's operational scale. Slightly
+   deeper padding and an underline rule under each big number so the row
+   feels like a precision instrument's readout, not a KPI dashboard. The
+   underline is the animation target for caliper-motion.js (draw-in from 0).
+   --------------------------------------------------------------------------- */
+.cf-scale-lead { position: relative; }
+.cf-stats4--lead { border-top: 1px solid rgba(200, 168, 107, .32); }
+.cf-stat--lead {
+  position: relative;
+  padding-top: 34px;
+  padding-bottom: 4px;
+}
+.cf-stat--lead .cf-stat-num--hero { font-size: 62px; line-height: .95; letter-spacing: -.02em; }
+.cf-stat-underline {
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold) 0%, rgba(200, 168, 107, .12) 100%);
+  margin: 16px 0 14px;
+  width: 100%;
+  transform-origin: left center;
+}
+
+/* ----- MEASUREMENT-GRID BACKDROP (navy bands, added 2026-07-01) -----------
+   A finely-etched caliper measurement grid painted onto each .cf-band--navy
+   that opts in with the .cf-band--measured modifier. The grid is a stack of
+   two orthogonal repeating-linear-gradients that produce major/minor ticks
+   at 40px / 8px. It stays a fixed backdrop so it reads as ruled paper — the
+   precision cue is the editorial hook, not motion. A slow sweep is layered
+   on top with reduced-motion gating (see below); the ticks themselves are
+   never animated.
+   --------------------------------------------------------------------------- */
+.cf-band--measured { position: relative; overflow: hidden; }
+.cf-band--measured > .cf-shell,
+.cf-band--measured > .cf-opstrip,
+.cf-band--measured > .cf-nav,
+.cf-band--measured > .cf-hero,
+.cf-band--measured > section,
+.cf-band--measured > footer { position: relative; z-index: 2; }
+.cf-measure-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image:
+    /* vertical minor ticks every 8px */
+    repeating-linear-gradient(
+      to right,
+      transparent 0,
+      transparent 7px,
+      rgba(200, 168, 107, .04) 7px,
+      rgba(200, 168, 107, .04) 8px
+    ),
+    /* vertical major ticks every 40px */
+    repeating-linear-gradient(
+      to right,
+      transparent 0,
+      transparent 39px,
+      rgba(200, 168, 107, .09) 39px,
+      rgba(200, 168, 107, .09) 40px
+    ),
+    /* horizontal minor ticks every 40px */
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 39px,
+      rgba(255, 255, 255, .025) 39px,
+      rgba(255, 255, 255, .025) 40px
+    );
+  /* radial mask fades the grid into black at the edges so it reads as a
+     draftsman's sheet under the content, not wallpaper. */
+  -webkit-mask-image: radial-gradient(ellipse at 50% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,.85) 45%, rgba(0,0,0,.35) 78%, rgba(0,0,0,0) 100%);
+          mask-image: radial-gradient(ellipse at 50% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,.85) 45%, rgba(0,0,0,.35) 78%, rgba(0,0,0,0) 100%);
+}
+/* Deeper navy band gets a slightly cooler tint on the horizontal ticks. */
+.cf-band--navy-2 .cf-measure-grid {
+  background-image:
+    repeating-linear-gradient(to right, transparent 0, transparent 7px, rgba(200, 168, 107, .05) 7px, rgba(200, 168, 107, .05) 8px),
+    repeating-linear-gradient(to right, transparent 0, transparent 39px, rgba(200, 168, 107, .10) 39px, rgba(200, 168, 107, .10) 40px),
+    repeating-linear-gradient(to bottom, transparent 0, transparent 39px, rgba(174, 184, 204, .04) 39px, rgba(174, 184, 204, .04) 40px);
+}
+
+/* ----- HEADLINE-ENTRANCE STAGGER (added 2026-07-01) ----------------------
+   The .cf-h1--entrance headline splits into logical lines wrapped in
+   .cf-hline spans. Each line rises + fades in independently with a small
+   stagger for the first-impression cadence CEO steered toward. Reduced
+   motion suppresses the entrance and shows the final, static headline.
+   --------------------------------------------------------------------------- */
+.cf-h1--entrance { display: block; }
+.cf-h1--entrance .cf-hline {
+  display: inline-block;
+  will-change: opacity, transform;
+}
+
+/* ----- MOTION LAYER -------------------------------------------------------
    All motion is gated behind prefers-reduced-motion: no-preference so users
    who prefer reduced motion get the final, readable state with zero animation.
    Classes are added by caliper-motion.js after page load.
@@ -728,12 +822,334 @@ a { text-decoration: none; color: inherit; }
     opacity: 1;
     transform: none;
   }
+  /* live-ledger pulse — the "caught" cells continue a slow, low-amplitude
+     glow after they've faded in, to signal the ledger is live rather than
+     static. Only the gold cells pulse; brick and clean stay steady. */
+  .cf-ledger.cf-ledger-anim.cf-ledger-played .cf-ledger-cell--caught {
+    animation: cf-ledger-pulse 4.8s ease-in-out infinite;
+  }
+  /* Spread the pulse across cells so it reads as a slow rolling scan, not
+     a synchronized blink. Six phases repeat every six cells via :nth-child. */
+  .cf-ledger.cf-ledger-played .cf-ledger-cell--caught:nth-child(6n+1) { animation-delay:   0s; }
+  .cf-ledger.cf-ledger-played .cf-ledger-cell--caught:nth-child(6n+2) { animation-delay: .8s; }
+  .cf-ledger.cf-ledger-played .cf-ledger-cell--caught:nth-child(6n+3) { animation-delay: 1.6s; }
+  .cf-ledger.cf-ledger-played .cf-ledger-cell--caught:nth-child(6n+4) { animation-delay: 2.4s; }
+  .cf-ledger.cf-ledger-played .cf-ledger-cell--caught:nth-child(6n+5) { animation-delay: 3.2s; }
+  .cf-ledger.cf-ledger-played .cf-ledger-cell--caught:nth-child(6n+6) { animation-delay: 4.0s; }
+  @keyframes cf-ledger-pulse {
+    0%, 100% { box-shadow: 0 0 0 rgba(200, 168, 107, 0); filter: brightness(1); }
+    50%      { box-shadow: 0 0 10px rgba(200, 168, 107, .55); filter: brightness(1.12); }
+  }
   /* catch-rate bar — flex-grow from 0 to its loaded ratio */
   .cf-bar.cf-bar-anim .cf-bar__caught,
   .cf-bar.cf-bar-anim .cf-bar__missed {
     transition: flex-grow .9s ease-out;
   }
+  /* headline entrance — each .cf-hline line rises and fades in with a
+     50ms stagger set inline by caliper-motion.js (transition-delay). */
+  .cf-h1--entrance .cf-hline {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity .6s cubic-bezier(.2, .8, .2, 1), transform .6s cubic-bezier(.2, .8, .2, 1);
+  }
+  .cf-h1--entrance.cf-hline-in .cf-hline {
+    opacity: 1;
+    transform: none;
+  }
+  /* lead-stat underline draw-in — scaleX from 0 -> 1 when the stat's
+     count-up animation fires. Coupled to .cf-stat-num being visible. */
+  .cf-stat-underline {
+    transform: scaleX(0);
+    transition: transform 1.1s cubic-bezier(.2, .8, .2, 1) .1s;
+  }
+  .cf-stat--lead.cf-underline-in .cf-stat-underline { transform: scaleX(1); }
+  /* measurement-grid slow sweep — a single gold hairline drifts across the
+     navy backdrop every 22s. Extremely low-amplitude, reads as a
+     caliper's live scan. Fully suppressed under reduced-motion. */
+  .cf-band--measured .cf-measure-grid::after {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(200, 168, 107, 0) 0%, rgba(200, 168, 107, .32) 50%, rgba(200, 168, 107, 0) 100%);
+    animation: cf-measure-scan 22s linear infinite;
+    opacity: .55;
+  }
+  @keyframes cf-measure-scan {
+    0%   { left: -4%; }
+    100% { left: 104%; }
+  }
 }
+
+/* ----- RESPONSIVE for scale-lead stats + entrance ------------------------- */
+@media (max-width: 860px) {
+  .cf-stat--lead .cf-stat-num--hero { font-size: 46px; }
+  .cf-stats4--lead { grid-template-columns: 1fr 1fr; }
+}
+
+/* ----- ARTICLE / LONG-FORM PROSE ------------------------------------------
+   Shared body styles for the blog posts, papers, engagements, and
+   ai-disclosure pages. Serif body, mono inline code, cream pre blocks,
+   gold in-body links. Same tokens as the rest of the system, no forks.
+   --------------------------------------------------------------------------- */
+.cf-article-shell {
+  max-width: var(--shell-max);
+  margin: 0 auto;
+  padding: 68px var(--shell-pad) 84px;
+}
+.cf-article {
+  max-width: 720px;
+  margin: 0;
+  color: var(--ink-soft-2);
+}
+.cf-article__section { margin-bottom: 44px; }
+.cf-article__section:last-child { margin-bottom: 0; }
+.cf-article__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .2em;
+  color: var(--gold-deep);
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+.cf-article h2 {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  color: var(--ink);
+  margin: 8px 0 20px;
+}
+.cf-article h3 {
+  font-family: var(--font-serif);
+  font-size: 21px;
+  font-weight: 500;
+  color: var(--ink);
+  margin: 26px 0 10px;
+}
+.cf-article p {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--ink-soft-2);
+  margin: 0 0 18px;
+}
+.cf-article ul, .cf-article ol {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--ink-soft-2);
+  margin: 0 0 20px;
+  padding-left: 22px;
+}
+.cf-article li { margin: 0 0 10px; }
+.cf-article a {
+  color: var(--gold-deep);
+  border-bottom: 1px solid rgba(154, 123, 62, .35);
+  transition: border-color .2s, color .2s;
+}
+.cf-article a:hover { color: var(--gold); border-color: var(--gold); }
+.cf-article code {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  background: rgba(200, 168, 107, .12);
+  color: var(--ink);
+  padding: 1px 6px;
+  border-radius: 3px;
+  border: 1px solid rgba(200, 168, 107, .22);
+}
+.cf-article pre {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper-card);
+  border: 1px solid var(--paper-rule-2);
+  border-radius: 4px;
+  padding: 18px 20px;
+  overflow-x: auto;
+  margin: 0 0 24px;
+}
+.cf-article pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+}
+.cf-article blockquote {
+  border-left: 3px solid var(--gold-deep);
+  margin: 0 0 22px;
+  padding: 4px 0 4px 22px;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.cf-article__rule {
+  border: none;
+  border-top: 1px solid var(--paper-rule);
+  margin: 40px 0;
+}
+.cf-article__meta {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--ink-mute-2);
+  letter-spacing: .04em;
+  margin: 40px 0 0;
+  padding-top: 22px;
+  border-top: 1px solid var(--paper-rule-2);
+}
+
+/* ----- ARTICLE HERO (compact hero on the navy band) ----------------------- */
+.cf-hero--article {
+  padding: 62px var(--shell-pad) 58px;
+  max-width: var(--shell-max);
+  margin: 0 auto;
+}
+.cf-hero--article .cf-h1 {
+  font-size: 56px;
+  line-height: 1.06;
+  letter-spacing: -.018em;
+  max-width: 880px;
+  margin: 0 0 22px;
+}
+.cf-hero-lede {
+  font-family: var(--font-serif);
+  font-size: 18.5px;
+  line-height: 1.65;
+  color: var(--cream-mute);
+  max-width: 640px;
+  margin: 0;
+}
+.cf-hero-meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .04em;
+  color: var(--cream-mute-4);
+  margin-top: 22px;
+}
+
+/* ----- BLOG CARD GRID ----------------------------------------------------- */
+.cf-blog-cards { display: grid; grid-template-columns: 1fr; gap: 18px; }
+.cf-blog-card {
+  background: var(--paper-card);
+  border: 1px solid var(--paper-rule-2);
+  border-radius: 5px;
+  padding: 24px 28px;
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.cf-blog-card:hover {
+  transform: translateY(-2px);
+  border-color: #cbbf9f;
+  box-shadow: 0 12px 26px rgba(40, 33, 20, .07);
+}
+.cf-blog-card__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 12px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.cf-blog-card__title {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.28;
+  flex: 1 1 auto;
+  transition: color .2s;
+}
+.cf-blog-card a.cf-blog-card__title:hover { color: var(--gold-deep); }
+.cf-blog-card__date {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-mute-2);
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+.cf-blog-card__desc {
+  font-family: var(--font-serif);
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* ----- ENGAGEMENTS PROJECT-LIST ------------------------------------------ */
+.cf-eng-list { display: grid; gap: 18px; }
+.cf-eng-item {
+  background: var(--paper-card);
+  border: 1px solid var(--paper-rule-2);
+  border-left: 3px solid var(--gold-deep);
+  border-radius: 5px;
+  padding: 24px 26px;
+}
+.cf-eng-item__name {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 12px;
+}
+.cf-eng-item__badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.cf-eng-item__scope {
+  font-family: var(--font-serif);
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin: 0 0 14px;
+}
+.cf-eng-item__proof {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-mute-2);
+  line-height: 1.7;
+  border-top: 1px solid var(--paper-rule-3);
+  padding-top: 12px;
+}
+.cf-eng-item__proof a {
+  color: var(--gold-deep);
+  border-bottom: 1px solid rgba(154, 123, 62, .35);
+}
+.cf-eng-item__proof a:hover { color: var(--gold); border-color: var(--gold); }
+
+/* ----- SPEC / LABELED-ROW LIST (contact, scope) --------------------------- */
+.cf-speclist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 22px;
+  border-top: 1px solid var(--paper-rule-2);
+}
+.cf-speclist li {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--paper-rule-2);
+  font-family: var(--font-serif);
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+.cf-speclist__label {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: .12em;
+  color: var(--gold-deep);
+  text-transform: uppercase;
+  align-self: start;
+  padding-top: 2px;
+}
+.cf-speclist a {
+  color: var(--gold-deep);
+  border-bottom: 1px solid rgba(154, 123, 62, .35);
+}
+.cf-speclist a:hover { color: var(--gold); border-color: var(--gold); }
+
+/* ----- INLINE CHIP-BADGE (reused for engagements) ------------------------ */
+.cf-chip--ci { color: var(--green); border-color: rgba(63, 125, 82, .4); }
+.cf-chip--muted { color: var(--ink-mute-2); border-color: var(--paper-rule-2); background: var(--paper); }
 
 /* ----- RESPONSIVE --------------------------------------------------------- */
 @media (max-width: 860px) {
@@ -770,4 +1186,16 @@ a { text-decoration: none; color: inherit; }
   .cf-chains4 { grid-template-columns: 1fr; }
   .cf-chains4 > div { border-right: none; padding-left: 0; padding-right: 0; border-top: 1px solid var(--paper-rule); }
   .cf-chains4 > div:first-child { border-top: none; }
+}
+
+/* ----- RESPONSIVE — article/blog/engagements ----------------------------- */
+@media (max-width: 860px) {
+  .cf-hero--article { padding: 44px var(--shell-pad-sm) 44px; }
+  .cf-hero--article .cf-h1 { font-size: 38px; }
+  .cf-article-shell { padding: 48px var(--shell-pad-sm) 60px; }
+  .cf-article h2 { font-size: 25px; }
+  .cf-article h3 { font-size: 19px; }
+  .cf-speclist li { grid-template-columns: 1fr; gap: 4px; padding: 14px 0; }
+  .cf-blog-card__head { flex-direction: column; gap: 6px; align-items: flex-start; }
+  .cf-blog-card { padding: 22px 22px; }
 }

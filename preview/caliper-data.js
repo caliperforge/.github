@@ -1,10 +1,34 @@
 /* =============================================================================
    caliper-data.js
-   Live-data loader for CaliperForge home + what-we-caught.
-   Replaces the design-tool runtime (`support.js`) — pure vanilla JS.
-   Reads /data/org_stats.json + /data/caught_public.json on every page load
-   and fills [data-stat] slots, the decision ledger, the catch-rate bar, and
-   the misses list. Number text is NEVER hardcoded in the HTML.
+   Live-data loader for CaliperForge home + what-we-caught (reskin preview).
+   Runtime feeds: /data/org_stats.json + /data/caught_public.json (generated
+   projections of the ops/qa_verdicts + ops/catch_corpus SoT; do NOT hand-edit).
+
+   Binding contract: every published number on the reskin lives inside a span
+   carrying a `data-cf-key="<KEY>"` attribute (see STATS map below for the
+   authoritative key list). The span's inner text is the static fallback that
+   ships in the HTML, kept in sync by
+     - scripts/ops/regen_caught_static_fallbacks.py  (catch record keys)
+     - scripts/ops/homepage_stats_refresh.py          (org-stats keys, live root)
+   and enforced by scripts/qa/caught_public_drift_check.py at deploy time.
+
+   Runtime fills every data-cf-key span from the live JSON so the page shows
+   the current numbers on the first paint after JS runs; if JS is disabled,
+   the static fallback (rewritten daily by the ops scripts above) is what the
+   visitor / crawler sees. Either way, no hand-typed numbers on the page.
+
+   Legacy support: the older `data-stat="src.key"` binding pattern is still
+   filled from the same feeds for any preview file that has not yet migrated,
+   but new work should use `data-cf-key` exclusively.
+
+   Also renders:
+     - the decision ledger (data-ledger)
+     - the catch-rate bar (data-bar="catch")
+     - the misses list (data-misses-list)
+
+   Coupling: motion layer subscribes to the `caliper:data-ready` CustomEvent
+   fired after all binding has completed, so count-up / stagger / bar-fill
+   can prime themselves against the freshly-loaded numbers.
    ========================================================================== */
 (function () {
   'use strict';
@@ -24,10 +48,46 @@
     return String(v);
   }
 
-  // --- resolver: data-stat key -> [source, path, formatter] --------------
-  // source is 'org' or 'caught', path is a dotted accessor on that feed.
+  // --- unified key registry ----------------------------------------------
+  // data-cf-key -> [source, dotted-path, formatter]. Keys mirror the
+  // canonical maps in scripts/qa/caught_public_drift_check.py and
+  // scripts/ops/homepage_stats_refresh.py so the runtime fill and the
+  // static fallback stay in lockstep with the same key namespace.
   var STATS = {
-    // caught_public.json -> metrics
+    // ---------- catch record (caught_public.json) ----------
+    'tp':                          ['caught', 'metrics.tp',                          formatInt],
+    'fp':                          ['caught', 'metrics.fp',                          formatInt],
+    'fn':                          ['caught', 'metrics.fn',                          formatInt],
+    'tn':                          ['caught', 'metrics.tn',                          formatInt],
+    'adjudicated':                 ['caught', 'metrics.adjudicated',                 formatInt],
+    'catch_rate_display':          ['caught', 'metrics.catch_rate_display',          passthrough],
+    'precision_display':           ['caught', 'metrics.precision_display',           passthrough],
+    'false_positive_rate_display': ['caught', 'metrics.false_positive_rate_display', passthrough],
+    'window_start':                ['caught', 'window_start',                        passthrough],
+    'window_end':                  ['caught', 'window_end',                          passthrough],
+    'last_updated':                ['caught', 'last_updated',                        passthrough],
+    'gate_4a_tp':                  ['caught', 'metrics.by_public_gate.content_qa_4a.tp',   formatInt],
+    'gate_4a_fp':                  ['caught', 'metrics.by_public_gate.content_qa_4a.fp',   formatInt],
+    'gate_4a_tn':                  ['caught', 'metrics.by_public_gate.content_qa_4a.tn',   formatInt],
+    'gate_4a_fn':                  ['caught', 'metrics.by_public_gate.content_qa_4a.fn',   formatInt],
+    'gate_4b_tp':                  ['caught', 'metrics.by_public_gate.code_quality_4b.tp', formatInt],
+    'gate_4b_fp':                  ['caught', 'metrics.by_public_gate.code_quality_4b.fp', formatInt],
+    'gate_4b_tn':                  ['caught', 'metrics.by_public_gate.code_quality_4b.tn', formatInt],
+    'gate_4b_fn':                  ['caught', 'metrics.by_public_gate.code_quality_4b.fn', formatInt],
+
+    // ---------- org scale (org_stats.json) ----------
+    'specialized_agents':          ['org', 'specialized_agents',        formatInt],
+    'logged_agent_decisions':      ['org', 'logged_agent_decisions',    formatInt],
+    'gate_reviews':                ['org', 'gate_reviews',              formatInt],
+    'agent_dispatches':            ['org', 'agent_dispatches',          formatInt],
+    'days_running':                ['org', 'days_running',              formatInt],
+    'as_of':                       ['org', 'as_of',                     passthrough]
+  };
+
+  // --- legacy `data-stat="src.key"` map for un-migrated markup -----------
+  // Same feeds, older key syntax (e.g. "caught.tp", "org.days_running").
+  // Retained so files not yet moved to data-cf-key still resolve.
+  var LEGACY_STATS = {
     'caught.tp':           ['caught', 'metrics.tp',                       formatInt],
     'caught.fn':           ['caught', 'metrics.fn',                       formatInt],
     'caught.fp':           ['caught', 'metrics.fp',                       formatInt],
@@ -38,15 +98,8 @@
     'caught.fp_rate':      ['caught', 'metrics.false_positive_rate_display', passthrough],
     'caught.window_start': ['caught', 'window_start',                     passthrough],
     'caught.window_end':   ['caught', 'window_end',                       passthrough],
-
-    // org_stats.json -> top-level
     'org.days_running':            ['org', 'days_running',            formatInt],
     'org.specialized_agents':      ['org', 'specialized_agents',      formatInt],
-    // T-completeness-enforcement-2026-06-30 CEO steer: honest relabel.
-    // The number stays the same (control_effectiveness.jsonl line count)
-    // but the KEY is now `logged_agent_decisions` — 2,181 of those rows
-    // are decision.v1 telemetry, not gate reviews. `org.gate_reviews`
-    // retained as a legacy alias (falls back to logged_agent_decisions).
     'org.logged_agent_decisions':  ['org', 'logged_agent_decisions',  formatInt],
     'org.gate_reviews':            ['org', 'gate_reviews',            formatInt],
     'org.agent_dispatches':        ['org', 'agent_dispatches',        formatInt]
@@ -59,16 +112,24 @@
     }, obj);
   }
 
+  function fillOne(el, spec, feeds) {
+    var src = feeds[spec[0]];
+    if (!src) return;
+    var raw = dottedGet(src, spec[1]);
+    var out = spec[2](raw);
+    if (out !== '' && out !== undefined && out !== null) el.textContent = out;
+  }
+
   function fillStats(feeds) {
+    // Primary: data-cf-key (single-SoT covered by drift check).
+    Array.prototype.forEach.call(document.querySelectorAll('[data-cf-key]'), function (el) {
+      var spec = STATS[el.getAttribute('data-cf-key')];
+      if (spec) fillOne(el, spec, feeds);
+    });
+    // Legacy: data-stat, for any preview file not yet migrated.
     Array.prototype.forEach.call(document.querySelectorAll('[data-stat]'), function (el) {
-      var key = el.getAttribute('data-stat');
-      var spec = STATS[key];
-      if (!spec) return;
-      var src = feeds[spec[0]];
-      if (!src) return;
-      var raw = dottedGet(src, spec[1]);
-      var out = spec[2](raw);
-      if (out !== '' && out !== undefined && out !== null) el.textContent = out;
+      var spec = LEGACY_STATS[el.getAttribute('data-stat')];
+      if (spec) fillOne(el, spec, feeds);
     });
   }
 
@@ -121,7 +182,6 @@
       if (m.fix_ref)    meta.push(esc(m.fix_ref));
       var metaLine = meta.length ? meta.join(' · ') : 'Logged, reproduced, and corrected.';
       var headline = esc(m.headline || 'Logged, reproduced, and corrected.');
-      // body: first sentence of the frame, capped, plain text only.
       var bodyText = '';
       if (m.frame) {
         var raw = String(m.frame).replace(/<[^>]+>/g, ''); // strip any inline HTML
@@ -161,9 +221,6 @@
       fillLedgers(feeds.caught);
       fillBars(feeds.caught);
       fillMisses(feeds.caught);
-      // Notify the motion layer (caliper-motion.js) synchronously, so it can
-      // reset count-up targets to "0" in the same task — no flash of final
-      // value before paint. No-op if motion layer isn't loaded.
       try {
         document.dispatchEvent(new CustomEvent('caliper:data-ready', { detail: feeds }));
       } catch (_) { /* CustomEvent unsupported — motion just stays static */ }

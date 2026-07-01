@@ -17,7 +17,8 @@
 <body>
 
 <!-- ============== NAVY MASTHEAD =========================================== -->
-<div class="cf-band--navy">
+<div class="cf-band--navy cf-band--measured">
+  <div class="cf-measure-grid" aria-hidden="true"></div>
 
   <div class="cf-opstrip">
     <div class="cf-opstrip__row">
@@ -43,7 +44,7 @@
   <!-- hero -->
   <header class="cf-hero cf-hero--whatwecaught">
     <div class="cf-eyebrow cf-eyebrow--hero">THE RECORD · RECEIPTS, NOT CLAIMS</div>
-    <h1 class="cf-h1" style="font-size:76px;line-height:1.02;letter-spacing:-.02em;margin-bottom:26px;max-width:900px;">What we caught.</h1>
+    <h1 class="cf-h1 cf-h1--entrance" style="font-size:76px;line-height:1.02;letter-spacing:-.02em;margin-bottom:26px;max-width:900px;"><span class="cf-hline">What we caught.</span></h1>
     <p class="cf-prose cf-prose--navy" style="font-size:17.5px;line-height:1.7;max-width:640px;margin:0;">
       A published record of what our gates caught, and what they missed. Every adjudicated decision is logged. The proof is in the receipts, not in a claim about the receipts.
     </p>
@@ -51,51 +52,52 @@
     <!-- hero stats -->
     <div class="cf-stats4 cf-stats4--navy" style="margin-top:54px;">
       <div class="cf-stat" style="padding-top:32px;padding-bottom:4px;">
-        <div class="cf-stat-num cf-stat-num--hero cf-stat-num--gold" data-stat="caught.tp"></div>
-        <div class="cf-stat-label cf-stat-label--navy">DEFECTS CAUGHT<br>across <span data-stat="caught.adjudicated"></span> decisions</div>
+        <div class="cf-stat-num cf-stat-num--hero cf-stat-num--gold"><span data-cf-key="tp">20</span></div>
+        <div class="cf-stat-label cf-stat-label--navy">DEFECTS CAUGHT<br>across <span data-cf-key="adjudicated">74</span> decisions</div>
       </div>
       <div class="cf-stat" style="padding-top:32px;padding-bottom:4px;">
-        <div class="cf-stat-num cf-stat-num--hero cf-stat-num--cream" data-stat="caught.catch_rate"></div>
+        <div class="cf-stat-num cf-stat-num--hero cf-stat-num--cream"><span data-cf-key="catch_rate_display">74%</span></div>
         <div class="cf-stat-label cf-stat-label--navy">CATCH RATE<br>of defects present</div>
       </div>
       <div class="cf-stat" style="padding-top:32px;padding-bottom:4px;">
-        <div class="cf-stat-num cf-stat-num--hero cf-stat-num--cream" data-stat="caught.fp"></div>
+        <div class="cf-stat-num cf-stat-num--hero cf-stat-num--cream"><span data-cf-key="fp">0</span></div>
         <div class="cf-stat-label cf-stat-label--navy">FALSE POSITIVES<br>zero, to date</div>
       </div>
       <div class="cf-stat" style="padding-top:32px;padding-bottom:4px;">
-        <div class="cf-stat-num cf-stat-num--hero cf-stat-num--brick" data-stat="caught.fn"></div>
+        <div class="cf-stat-num cf-stat-num--hero cf-stat-num--brick"><span data-cf-key="fn">7</span></div>
         <div class="cf-stat-label cf-stat-label--navy">DOCUMENTED MISSES<br>published in full</div>
       </div>
     </div>
     <div class="cf-stat-caption" style="margin:18px 0 64px;">
-      Adjudicated decisions through <span data-stat="caught.window_end"></span> ·
-      <span data-stat="org.logged_agent_decisions"></span> logged agent decisions across all gates + telemetry.
+      Adjudicated decisions through <span data-cf-key="window_end">2026-07-01</span> ·
+      <span data-cf-key="logged_agent_decisions">2,291</span> logged agent decisions across all gates + telemetry.
     </div>
   </header>
 </div>
 
 <!-- ============== THE LEDGER (deeper navy) ================================ -->
-<section class="cf-band--navy-2">
+<section class="cf-band--navy-2 cf-band--measured">
+  <div class="cf-measure-grid" aria-hidden="true"></div>
   <div class="cf-shell" style="padding-top:72px;padding-bottom:78px;">
     <div class="cf-eyebrow cf-eyebrow--navy">THE DECISION LEDGER</div>
     <h2 class="cf-h2 cf-h2--sm" style="margin-bottom:12px;max-width:740px;">Every adjudicated decision, every one accounted for.</h2>
     <p class="cf-prose cf-prose--navy" style="font-size:15px;line-height:1.7;max-width:680px;margin-bottom:40px;">
-      Of <span data-stat="caught.adjudicated"></span> §4a/§4b decisions,
-      <span data-stat="caught.tp"></span> defects were caught and <span data-stat="caught.fn"></span> were missed.
-      The remaining <span data-stat="caught.tn"></span> were clean, and none were falsely flagged.
+      Of <span data-cf-key="adjudicated">74</span> §4a/§4b decisions,
+      <span data-cf-key="tp">20</span> defects were caught and <span data-cf-key="fn">7</span> were missed.
+      The remaining <span data-cf-key="tn">28</span> were clean, and none were falsely flagged.
     </p>
 
     <div class="cf-ledger" data-ledger aria-label="decision ledger (live)" style="margin-bottom:30px;"></div>
     <div class="cf-ledger-legend">
-      <span><i class="cf-ledger-cell--caught"></i><span data-stat="caught.tp"></span> caught</span>
-      <span><i class="cf-ledger-cell--missed"></i><span data-stat="caught.fn"></span> missed</span>
-      <span><i class="cf-ledger-cell--clean"></i><span data-stat="caught.tn"></span> clean, <span data-stat="caught.fp"></span> false positives</span>
+      <span><i class="cf-ledger-cell--caught"></i><span data-cf-key="tp">20</span> caught</span>
+      <span><i class="cf-ledger-cell--missed"></i><span data-cf-key="fn">7</span> missed</span>
+      <span><i class="cf-ledger-cell--clean"></i><span data-cf-key="tn">28</span> clean, <span data-cf-key="fp">0</span> false positives</span>
     </div>
 
     <div class="cf-bar-frame">
       <div class="cf-bar-frame__label">
         <span>OF DEFECTS PRESENT</span>
-        <span><span data-stat="caught.catch_rate"></span> CAUGHT</span>
+        <span><span data-cf-key="catch_rate_display">74%</span> CAUGHT</span>
       </div>
       <div class="cf-bar" data-bar="catch">
         <div class="cf-bar__caught"></div>
@@ -154,7 +156,8 @@
 </section>
 
 <!-- ============== CTA + FOOTER (navy) ===================================== -->
-<section class="cf-band--navy">
+<section class="cf-band--navy cf-band--measured">
+  <div class="cf-measure-grid" aria-hidden="true"></div>
   <div class="cf-shell" style="padding-top:80px;padding-bottom:0;">
     <div class="cf-contact2" style="align-items:center;">
       <div>
@@ -168,11 +171,11 @@
         </div>
       </div>
       <div class="cf-contact-list">
-        <div class="cf-contact-list__row"><span>ADJUDICATED</span><span><span data-stat="caught.adjudicated"></span> decisions</span></div>
-        <div class="cf-contact-list__row cf-contact-list__row--gold"><span>CAUGHT</span><span><span data-stat="caught.tp"></span> · <span data-stat="caught.catch_rate"></span></span></div>
-        <div class="cf-contact-list__row"><span>FALSE POSITIVES</span><span data-stat="caught.fp"></span></div>
-        <div class="cf-contact-list__row cf-contact-list__row--brick"><span>MISSED</span><span><span data-stat="caught.fn"></span> · published</span></div>
-        <div class="cf-contact-list__row"><span>TOTAL GATE REVIEWS</span><span data-stat="org.gate_reviews"></span></div>
+        <div class="cf-contact-list__row"><span>ADJUDICATED</span><span><span data-cf-key="adjudicated">74</span> decisions</span></div>
+        <div class="cf-contact-list__row cf-contact-list__row--gold"><span>CAUGHT</span><span><span data-cf-key="tp">20</span> · <span data-cf-key="catch_rate_display">74%</span></span></div>
+        <div class="cf-contact-list__row"><span>FALSE POSITIVES</span><span data-cf-key="fp">0</span></div>
+        <div class="cf-contact-list__row cf-contact-list__row--brick"><span>MISSED</span><span><span data-cf-key="fn">7</span> · published</span></div>
+        <div class="cf-contact-list__row"><span>LOGGED DECISIONS</span><span data-cf-key="logged_agent_decisions">2,291</span></div>
       </div>
     </div>
     <footer class="cf-footer">

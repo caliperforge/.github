@@ -1,38 +1,47 @@
 /* =============================================================================
    caliper-motion.js
-   Motion layer for the CaliperForge home + what-we-caught pages.
+   Motion layer for the CaliperForge home + what-we-caught (reskin preview).
 
-   Adds, in vanilla JS, four tasteful motion effects on top of the LOCKED design:
+   Six effects, all gated behind prefers-reduced-motion:
      1. Scroll-reveal — section blocks fade in and rise ~16px on viewport entry
         (IntersectionObserver, ~450ms ease-out, fires once, threshold 0.15).
-     2. Count-up — every .cf-stat-num animates from 0 to its final value when
-        the stat scrolls into view (rAF, ~900ms ease-out cubic). For data-loaded
-        stats the final value is read AFTER caliper-data.js has filled it
-        (single number source preserved). Numeric prefix is animated; a suffix
+     2. Headline entrance — .cf-h1--entrance headlines animate their .cf-hline
+        lines up + in with a 90ms stagger on first paint. Draws the eye
+        top-to-bottom on the hero rather than presenting a solid wall of type.
+     3. Count-up — every .cf-stat-num animates from 0 to its final value when
+        the stat scrolls into view (rAF, ~900ms ease-out cubic; 1400ms for
+        the .cf-stat--lead hero row so the big scale numbers get room to
+        settle). For data-loaded stats the final value is read AFTER
+        caliper-data.js has filled it. Numeric prefix is animated; a suffix
         like "%" is kept verbatim.
-     3. Decision-ledger stagger — each grid cell (gold / brick / navy) fades in
-        with an 8ms cascade once the ledger scrolls into view.
-     4. Catch-rate bar — the gold-caught / brick-missed grow widths animate
+     4. Lead-stat underline draw — each .cf-stat--lead's ruled underline
+        scales from 0 -> 100% width alongside the count-up, so the row reads
+        as a caliper drawing a line under the number.
+     5. Decision-ledger stagger + live pulse — each grid cell (gold / brick /
+        navy) fades in with an 8ms cascade once the ledger scrolls into view;
+        gold "caught" cells then continue a slow CSS pulse to signal the
+        ledger is live rather than static.
+     6. Catch-rate bar — the gold-caught / brick-missed grow widths animate
         from 0 to the loaded ratio.
 
    Accessibility:
      - All motion is gated behind @media (prefers-reduced-motion: no-preference)
-       in CSS, and the JS short-circuits the count-up reset / ledger reset /
-       bar reset / reveal classing when the user prefers reduced motion. The
-       final, readable state is rendered with zero animation.
-     - Content is not gated behind animation — reveal is a CSS opacity layer
-       on already-rendered DOM, never display:none.
+       in CSS, and the JS short-circuits every entrance / reset when
+       matchMedia reports reduced motion. The final, readable state is
+       rendered with zero animation, and content is never gated behind an
+       effect (reveals sit on already-rendered DOM, never display:none).
 
-   Coupling: depends on caliper-data.js firing a "caliper:data-ready"
-   CustomEvent after it has filled [data-stat], [data-ledger], and [data-bar].
+   Coupling: depends on caliper-data.js firing a `caliper:data-ready`
+   CustomEvent after it has filled data-cf-key / data-stat spans, the
+   ledger, and the bar. This event replaces the old paint-based timing so
+   count-up can prime "0" placeholders synchronously with the data fill.
    ========================================================================== */
 (function () {
   'use strict';
 
   // --- capability + preference checks ------------------------------------
   if (!('IntersectionObserver' in window) || !window.requestAnimationFrame) {
-    // No supported scroll API — leave the page in its final, static state.
-    return;
+    return; // no supported scroll API — leave the page in its final state
   }
   var REDUCE = (typeof window.matchMedia === 'function')
     && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -56,13 +65,9 @@
   // ============================================================
   function setupReveal() {
     if (REDUCE) return;
-    // Reveal every direct child of every <section>'s .cf-shell. The hero
-    // masthead is a <div class="cf-band--navy">, not a <section>, so it is
-    // naturally excluded — the hero stays visible on first paint.
     var candidates = document.querySelectorAll('section .cf-shell > *');
     for (var i = 0; i < candidates.length; i++) {
       var el = candidates[i];
-      // Skip the ledger — it has its own per-cell stagger animation.
       if (el.classList.contains('cf-ledger')) continue;
       el.classList.add('cf-reveal');
       onceVisible(el, 0.15, function (t) { t.classList.add('cf-revealed'); });
@@ -70,10 +75,34 @@
   }
 
   // ============================================================
-  // 2. COUNT-UP
+  // 2. HEADLINE ENTRANCE (per-line stagger)
+  // ============================================================
+  function setupHeadlineEntrance() {
+    if (REDUCE) return;
+    var heads = document.querySelectorAll('.cf-h1--entrance');
+    for (var i = 0; i < heads.length; i++) {
+      var head = heads[i];
+      var lines = head.querySelectorAll('.cf-hline');
+      for (var j = 0; j < lines.length; j++) {
+        // 90ms stagger — restrained enough to feel like a single settle,
+        // fast enough that the whole headline is in place before the eye
+        // has time to notice a delay on the last line.
+        lines[j].style.transitionDelay = (j * 90) + 'ms';
+      }
+      // Delay one frame so the initial (opacity:0, translateY) state paints
+      // before we flip the "in" class and the transition can pick it up.
+      (function (h) {
+        window.requestAnimationFrame(function () {
+          window.requestAnimationFrame(function () { h.classList.add('cf-hline-in'); });
+        });
+      })(head);
+    }
+  }
+
+  // ============================================================
+  // 3. COUNT-UP
   // ============================================================
   // Parse a stat text "74%" -> { target:74, suffix:"%", isInt:true }.
-  // Returns null if the leading character isn't a digit.
   function parseStat(text) {
     var m = String(text).match(/^([\d][\d,]*(?:\.\d+)?)(.*)$/);
     if (!m) return null;
@@ -82,14 +111,15 @@
     return { target: num, suffix: m[2] || '', isInt: m[1].indexOf('.') === -1 };
   }
 
-  function animateNum(el, parsed, finalText) {
-    var dur = 900;
+  function animateNum(el, parsed, finalText, durationMs, onDone) {
+    var dur = durationMs || 900;
     var start = null;
     function tick(now) {
       if (start === null) start = now;
       var t = (now - start) / dur;
       if (t >= 1) {
         el.textContent = finalText;
+        if (onDone) onDone();
         return;
       }
       var eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
@@ -103,35 +133,75 @@
     window.requestAnimationFrame(tick);
   }
 
+  // The lead stats block (the hero SCALE row) is the CEO-priority moment —
+  // longer duration + trigger the underline draw when the count-up starts.
+  function findLeadHost(el) {
+    var host = el;
+    while (host && host !== document.body) {
+      if (host.classList && host.classList.contains('cf-stat--lead')) return host;
+      host = host.parentNode;
+    }
+    return null;
+  }
+
   function primeAndObserveCount(el) {
     if (el.dataset.cfCounted === '1') return;
-    var finalText = el.textContent;
-    if (!finalText) return; // empty: data not yet filled, will retry on data-ready
+    var textContainer = el.querySelector('[data-cf-key], [data-stat]') || el;
+    var finalText = textContainer.textContent;
+    if (!finalText || !finalText.trim()) return; // empty: data not yet filled
     var parsed = parseStat(finalText);
     if (!parsed) return; // non-numeric (e.g. a date) — leave it alone
     el.dataset.cfCounted = '1';
-    if (REDUCE) return; // honor reduced motion: final value already on screen
-    el.dataset.cfFinal = finalText;
-    el.textContent = (parsed.isInt ? '0' : '0.0') + parsed.suffix;
-    onceVisible(el, 0.4, function () { animateNum(el, parsed, finalText); });
+    var lead = findLeadHost(el);
+    if (REDUCE) {
+      // Reduced motion: skip the animation, but still trigger the lead
+      // underline reveal so the layout doesn't look half-finished.
+      if (lead) lead.classList.add('cf-underline-in');
+      return;
+    }
+    var dur = lead ? 1400 : 900;
+    // Reset to "0" placeholder synchronously so no flash of final value.
+    textContainer.textContent = (parsed.isInt ? '0' : '0.0') + parsed.suffix;
+    onceVisible(el, 0.4, function () {
+      if (lead) lead.classList.add('cf-underline-in');
+      animateNum(textContainer, parsed, finalText, dur);
+    });
   }
 
   function setupCountUpHardcoded() {
-    // Pass 1: stat numbers hardcoded in the HTML (no data-stat binding).
-    var els = document.querySelectorAll('.cf-stat-num:not([data-stat])');
-    for (var i = 0; i < els.length; i++) primeAndObserveCount(els[i]);
+    // Pass 1: stat numbers hardcoded in the HTML (no binding attribute).
+    var els = document.querySelectorAll('.cf-stat-num');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      // If the stat has a bound child, defer to pass 2 so we see the
+      // filled value.
+      if (el.querySelector('[data-cf-key], [data-stat]')) continue;
+      if (el.hasAttribute('data-cf-key') || el.hasAttribute('data-stat')) continue;
+      primeAndObserveCount(el);
+    }
   }
 
   function setupCountUpDataLoaded() {
-    // Pass 2: stat numbers filled by caliper-data.js. Runs synchronously on
-    // the caliper:data-ready event so the "0" placeholder replaces the final
-    // text in the same task — no flash before paint.
-    var els = document.querySelectorAll('.cf-stat-num[data-stat]');
-    for (var i = 0; i < els.length; i++) primeAndObserveCount(els[i]);
+    // Pass 2: stat numbers filled by caliper-data.js. Fires on data-ready
+    // so the "0" placeholder replaces the final text in the same task.
+    var els = document.querySelectorAll('.cf-stat-num');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (el.querySelector('[data-cf-key], [data-stat]')
+          || el.hasAttribute('data-cf-key')
+          || el.hasAttribute('data-stat')) {
+        primeAndObserveCount(el);
+      }
+    }
   }
 
   // ============================================================
-  // 3. DECISION-LEDGER STAGGER
+  // 4. LEAD-STAT UNDERLINE
+  //    (triggered inside primeAndObserveCount when the count-up starts)
+  // ============================================================
+
+  // ============================================================
+  // 5. DECISION-LEDGER STAGGER (live pulse is pure CSS)
   // ============================================================
   function setupLedger() {
     if (REDUCE) return;
@@ -140,7 +210,7 @@
       var ledger = ledgers[i];
       if (ledger.dataset.cfStaggered === '1') continue;
       var cells = ledger.querySelectorAll('.cf-ledger-cell');
-      if (!cells.length) continue; // caliper-data not yet populated
+      if (!cells.length) continue;
       ledger.dataset.cfStaggered = '1';
       ledger.classList.add('cf-ledger-anim');
       for (var k = 0; k < cells.length; k++) {
@@ -153,7 +223,7 @@
   }
 
   // ============================================================
-  // 4. CATCH-RATE BAR FILL
+  // 6. CATCH-RATE BAR FILL
   // ============================================================
   function setupBar() {
     if (REDUCE) return;
@@ -164,16 +234,14 @@
       var c = bar.querySelector('.cf-bar__caught');
       var m = bar.querySelector('.cf-bar__missed');
       if (!c || !m) continue;
-      // caliper-data has set inline flex on each segment. Capture, reset to 0.
       var cTarget = c.style.flex;
       var mTarget = m.style.flex;
-      if (!cTarget && !mTarget) continue; // data not yet filled
+      if (!cTarget && !mTarget) continue;
       bar.dataset.cfBar = '1';
       c.style.flex = '0';
       m.style.flex = '0';
       bar.classList.add('cf-bar-anim');
-      // force layout so the transition picks up the change from 0 -> target
-      void bar.offsetWidth;
+      void bar.offsetWidth; // force layout so the transition picks up 0->target
       (function (cEl, mEl, cVal, mVal, b) {
         onceVisible(b, 0.3, function () {
           cEl.style.flex = cVal;
@@ -188,6 +256,7 @@
   // ============================================================
   function onReady() {
     setupReveal();
+    setupHeadlineEntrance();
     setupCountUpHardcoded();
   }
 
