@@ -1,559 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="color-scheme" content="light">
-    <title>What our gates caught | CaliperForge</title>
-    <meta name="description" content="The record of what CaliperForge's own review gates caught, and the three things they missed. 18 real defects caught, 0 false positives, 3 documented misses across 50 adjudicated §4a/§4b gate decisions. Our own adjudicated record of our own gates, not an external audit.">
-
-    <meta property="og:title" content="What our gates caught | CaliperForge">
-    <meta property="og:description" content="The record of what CaliperForge's own review gates caught, and the three things they missed. Our own adjudicated record of our own gates, not an external audit.">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://caliperforge.com/what-we-caught">
-    <meta property="og:image" content="https://caliperforge.com/og.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@caliperforge">
-    <meta name="twitter:title" content="What our gates caught | CaliperForge">
-    <meta name="twitter:description" content="The record of what CaliperForge's own review gates caught, and the three things they missed. Our own adjudicated record of our own gates, not an external audit.">
-    <meta name="twitter:image" content="https://caliperforge.com/og.png">
-
-    <meta name="theme-color" content="#0a0e1a">
-
-    <link rel="icon" type="image/png" href="/favicon.png">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
-
-    <link rel="stylesheet" href="style.css">
-    <link rel="canonical" href="https://caliperforge.com/what-we-caught">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What we caught, CaliperForge</title>
+<meta name="description" content="A published record of what CaliperForge's own gates caught, and what they missed. Every adjudicated decision is logged. The proof is in the receipts, not in a claim about the receipts.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0b0f1c">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/caliper.css">
 </head>
 <body>
 
-<!-- ============= SUBHERO (dark, compact) ============================== -->
-<section class="subhero">
-    <div class="subhero-inner">
-        <nav class="subhero-nav" aria-label="Primary">
-            <a href="/" class="brandrow">
-                <img src="/mark.svg" alt="" class="mark-sm" width="28" height="28">
-                <span class="wordmark">CaliperForge</span>
-            </a>
-            <div class="nav-links">
-                <a href="/blog/">Blog</a>
-                <a href="/what-we-caught" aria-current="page">What we caught</a>
-                <a href="/engagements/">Engagements</a>
-                <a href="/roadmap/">Roadmap</a>
-                <a href="/papers">Papers</a>
-                <a href="/ai-disclosure">AI policy</a>
-                <a href="https://github.com/caliperforge" rel="me">GitHub</a>
-                <a href="mailto:team@caliperforge.com">Contact</a>
-            </div>
-        </nav>
-        <p class="kicker">Self-correction record</p>
-        <h1>What our gates caught.</h1>
-        <p class="lede">
-            The record of what our own review gates caught, and
-            the three things they missed. This is our own record.
-            Not an external audit.
-        </p>
-        <!-- policy-date: figures auto-filled by caught-metrics.js; static
-             values are the honest fallback if the fetch fails. -->
-        <p class="policy-date">
-            Window:
-            <span class="cf-m" data-cf-key="window_start">2026-06-04</span>
-            &rarr;
-            <span class="cf-m" data-cf-key="window_end">2026-07-01</span>
-            &middot;
-            <span class="cf-m" data-cf-key="adjudicated">74</span>
-            adjudicated &sect;4a / &sect;4b gate decisions &middot;
-            auto-refreshed
-            <span class="cf-m" data-cf-key="last_updated">2026-07-01T16:34:52Z</span>
-        </p>
+<!-- ============== NAVY MASTHEAD =========================================== -->
+<div class="cf-band--navy cf-band--measured">
+  <div class="cf-measure-grid" aria-hidden="true"></div>
+
+  <div class="cf-opstrip">
+    <div class="cf-opstrip__row">
+      <span class="cf-opstrip__operator">● OPERATOR OF RECORD · MICHAEL MOFFETT · accountable on every commit</span>
+      <span class="cf-opstrip__meta"><a href="mailto:team@caliperforge.com">team@caliperforge.com</a></span>
     </div>
+  </div>
+
+  <nav class="cf-nav" aria-label="Primary">
+    <a class="cf-nav-brand" href="/"><span class="cf-mark" aria-hidden="true"></span>CaliperForge</a>
+    <div class="cf-nav-right">
+      <div class="cf-nav-links">
+        <a href="/">Home</a>
+        <a href="/blog/">Blog</a>
+        <a href="/what-we-caught" class="is-current">What we caught</a>
+        <a href="/engagements/">Engagements</a>
+        <a href="https://github.com/caliperforge" rel="me">GitHub</a>
+      </div>
+      <a class="cf-cta-gold" href="mailto:team@caliperforge.com?subject=Start%20an%20engagement">Start an engagement</a>
+    </div>
+  </nav>
+
+  <!-- hero -->
+  <header class="cf-hero cf-hero--whatwecaught">
+    <div class="cf-eyebrow cf-eyebrow--hero">THE RECORD · RECEIPTS, NOT CLAIMS</div>
+    <h1 class="cf-h1 cf-h1--entrance" style="font-size:76px;line-height:1.02;letter-spacing:-.02em;margin-bottom:26px;max-width:900px;"><span class="cf-hline">What we caught.</span></h1>
+    <p class="cf-prose cf-prose--navy" style="font-size:17.5px;line-height:1.7;max-width:640px;margin:0;">
+      A published record of what our gates caught, and what they missed. Every adjudicated decision is logged. The proof is in the receipts, not in a claim about the receipts.
+    </p>
+
+    <!-- hero stats -->
+    <div class="cf-stats4 cf-stats4--navy" style="margin-top:54px;">
+      <div class="cf-stat" style="padding-top:32px;padding-bottom:4px;">
+        <div class="cf-stat-num cf-stat-num--hero cf-stat-num--gold"><span data-cf-key="tp">20</span></div>
+        <div class="cf-stat-label cf-stat-label--navy">DEFECTS CAUGHT<br>across <span data-cf-key="adjudicated">74</span> decisions</div>
+      </div>
+      <div class="cf-stat" style="padding-top:32px;padding-bottom:4px;">
+        <div class="cf-stat-num cf-stat-num--hero cf-stat-num--cream"><span data-cf-key="catch_rate_display">74%</span></div>
+        <div class="cf-stat-label cf-stat-label--navy">CATCH RATE<br>of defects present</div>
+      </div>
+      <div class="cf-stat" style="padding-top:32px;padding-bottom:4px;">
+        <div class="cf-stat-num cf-stat-num--hero cf-stat-num--cream"><span data-cf-key="fp">0</span></div>
+        <div class="cf-stat-label cf-stat-label--navy">FALSE POSITIVES<br>zero, to date</div>
+      </div>
+      <div class="cf-stat" style="padding-top:32px;padding-bottom:4px;">
+        <div class="cf-stat-num cf-stat-num--hero cf-stat-num--brick"><span data-cf-key="fn">7</span></div>
+        <div class="cf-stat-label cf-stat-label--navy">DOCUMENTED MISSES<br>published in full</div>
+      </div>
+    </div>
+    <div class="cf-stat-caption" style="margin:18px 0 64px;">
+      Adjudicated decisions through <span data-cf-key="window_end">2026-07-01</span> ·
+      <span data-cf-key="logged_agent_decisions">2,291</span> logged agent decisions across all gates + telemetry.
+    </div>
+  </header>
+</div>
+
+<!-- ============== THE LEDGER (deeper navy) ================================ -->
+<section class="cf-band--navy-2 cf-band--measured">
+  <div class="cf-measure-grid" aria-hidden="true"></div>
+  <div class="cf-shell" style="padding-top:72px;padding-bottom:78px;">
+    <div class="cf-eyebrow cf-eyebrow--navy">THE DECISION LEDGER</div>
+    <h2 class="cf-h2 cf-h2--sm" style="margin-bottom:12px;max-width:740px;">Every adjudicated decision, every one accounted for.</h2>
+    <p class="cf-prose cf-prose--navy" style="font-size:15px;line-height:1.7;max-width:680px;margin-bottom:40px;">
+      Of <span data-cf-key="adjudicated">74</span> §4a/§4b decisions,
+      <span data-cf-key="tp">20</span> defects were caught and <span data-cf-key="fn">7</span> were missed.
+      The remaining <span data-cf-key="tn">28</span> were clean, and none were falsely flagged.
+    </p>
+
+    <div class="cf-ledger" data-ledger aria-label="decision ledger (live)" style="margin-bottom:30px;"></div>
+    <div class="cf-ledger-legend">
+      <span><i class="cf-ledger-cell--caught"></i><span data-cf-key="tp">20</span> caught</span>
+      <span><i class="cf-ledger-cell--missed"></i><span data-cf-key="fn">7</span> missed</span>
+      <span><i class="cf-ledger-cell--clean"></i><span data-cf-key="tn">28</span> clean, <span data-cf-key="fp">0</span> false positives</span>
+    </div>
+
+    <div class="cf-bar-frame">
+      <div class="cf-bar-frame__label">
+        <span>OF DEFECTS PRESENT</span>
+        <span><span data-cf-key="catch_rate_display">74%</span> CAUGHT</span>
+      </div>
+      <div class="cf-bar" data-bar="catch">
+        <div class="cf-bar__caught"></div>
+        <div class="cf-bar__missed"></div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ============= LIGHT BODY ============================================ -->
-<main class="page">
-
-    <!-- ============= 01 / FRAMING ============================ -->
-    <section class="section prose">
-        <p class="eyebrow">What this page is</p>
-        <h2>Our gates, on the record.</h2>
-        <p>
-            CaliperForge's contribution workflow runs every artifact
-            through two independent review gates before anything ships:
-            <strong>&sect;4a</strong> for content, factual claims,
-            and source quality; <strong>&sect;4b</strong> for code and
-            CI-runnable property tests. Reviewer is never the drafter.
-        </p>
-        <p>
-            This page publishes the adjudicated record: what those gates
-            caught, what they missed, and where the misses were caught
-            downstream. The numbers update as new adjudications land. The misses
-            column is part of the design. A self-correction record
-            that only shows wins is worthless.
-        </p>
-        <p>
-            A note on scope: the figures below cover &sect;4a and &sect;4b gate
-            decisions. The CEO Hold mechanism is a separate escalation track and
-            is counted separately at the top of the gate breakdown.
-        </p>
-    </section>
-
-    <!-- ============= 02 / THE NUMBERS (cockpit layout) ========= -->
-    <section class="section" id="metrics">
-        <p class="eyebrow">The numbers</p>
-        <!-- h2 figure filled by caught-metrics.js; static value is honest fallback -->
-        <h2><span class="cf-m" data-cf-key="adjudicated">74</span> adjudicated decisions, on the record.</h2>
-        <p class="section-lede">
-            These figures cover the &sect;4a and &sect;4b gate decisions in the window.
-            A gate PASS counts as confirmed clean only if no later round caught
-            something the gate should have caught. Nothing is rounded; nothing
-            is aggregated up.
-        </p>
-
-        <!-- Stat card strip: 4 cells, populated by caught-metrics.js -->
-        <div class="cf-kpi-strip">
-            <div class="cf-kpi-cell">
-                <div class="cf-kpi-value kpi-good cf-m" data-cf-key="catch_rate_display">74%</div>
-                <div class="cf-kpi-label">Catch rate</div>
-            </div>
-            <div class="cf-kpi-cell">
-                <div class="cf-kpi-value kpi-good cf-m" data-cf-key="tp">20</div>
-                <div class="cf-kpi-label">Defects caught</div>
-            </div>
-            <div class="cf-kpi-cell">
-                <div class="cf-kpi-value kpi-warn cf-m" data-cf-key="fn">7</div>
-                <div class="cf-kpi-label">Documented misses</div>
-            </div>
-            <div class="cf-kpi-cell">
-                <div class="cf-kpi-value kpi-zero cf-m" data-cf-key="fp">0</div>
-                <div class="cf-kpi-label">False positives</div>
-            </div>
-        </div>
-
-        <!-- Two-panel grid: by-gate bars (left) + by-agent table (right) -->
-        <div class="cf-dash-grid">
-            <!-- Left panel: by gate -->
-            <div class="cf-panel">
-                <div class="cf-bar-section-title">By gate</div>
-                <div id="by-gate-feed">
-                    <!-- populated by caught-metrics.js from by_gate; honest-empty fallback: -->
-                    <p class="coverage-note">Gate breakdown loading -- check
-                    <code>site/data/caught_public.json</code>.</p>
-                </div>
-            </div>
-            <!-- Right panel: by agent (reviewer) -->
-            <div class="cf-panel">
-                <div class="cf-bar-section-title">By agent (reviewer)</div>
-                <div id="by-agent-feed">
-                    <!-- populated by caught-metrics.js from by_agent; honest-empty fallback: -->
-                    <p class="coverage-note">Agent breakdown loading -- check
-                    <code>site/data/caught_public.json</code>.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- live summary bar, figures filled by caught-metrics.js -->
-        <p class="coverage-note" id="caught-metrics-bar">
-            <strong class="cf-m" data-cf-key="tp">20</strong> defects caught
-            &middot; <strong class="cf-m" data-cf-key="fp">0</strong> false positives
-            &middot; <strong class="cf-m" data-cf-key="fn">7</strong> documented misses
-            &middot; <strong class="cf-m" data-cf-key="catch_rate_display">74%</strong>
-            catch rate &middot;
-            <strong class="cf-m" data-cf-key="precision_display">100%</strong>
-            precision &middot;
-            <strong class="cf-m" data-cf-key="false_positive_rate_display">0%</strong>
-            false-positive rate. Across
-            <strong class="cf-m" data-cf-key="adjudicated">74</strong>
-            &sect;4a / &sect;4b decisions in the window. The
-            denominators are the published record -- nothing rounded,
-            nothing aggregated up.
-            <span class="data-stamp">Window:
-                <span class="cf-m" data-cf-key="window_start">2026-06-04</span> &rarr;
-                <span class="cf-m" data-cf-key="window_end">2026-07-01</span>
-                &middot; auto-refreshed
-                <span class="cf-m" data-cf-key="last_updated">2026-07-01T16:34:52Z</span>.
-            </span>
-        </p>
-    </section>
-
-    <!-- ============= 03 / THE MECHANISM ====================== -->
-    <section class="section prose" id="mechanism">
-        <p class="eyebrow">Why these numbers mean something</p>
-        <h2>Planted twins on CI, independent reviewer on every gate.</h2>
-        <p>
-            Every CaliperForge harness ships with two CI legs, a
-            clean reference where the invariant holds (0 violations
-            required) and a planted-bug twin where it must fire
-            (&ge;1 violation required). The CI job fails if either side
-            doesn't behave. That's the structural floor: the catches and
-            the misses live above a build that already gates itself.
-            On top of that, two independent review gates fire before
-            publish, <strong>&sect;4a</strong> on content
-            (factual claims, source quality, register), <strong>&sect;4b</strong>
-            on code (correctness, anti-bloat, CI integrity). The reviewer
-            for each gate is never the drafter, by policy. The figures
-            above are what that two-leg-CI plus independent-review system
-            caught and what it missed.
-        </p>
-    </section>
-
-    <!-- ============= 03b / RECENT CATCHES, FRAMED ============ -->
-    <!-- receipts-feed rendered by caught-metrics.js from caught_public.json.
-         Static fallback: a single honest-empty card that reads clearly
-         if the fetch fails or data is not yet promoted. -->
-    <section class="section" id="receipts">
-        <p class="eyebrow">Recent catches, framed</p>
-        <h2>The last few stops, in their own words.</h2>
-        <p class="section-lede">
-            Each row is one gate stop -- what was caught, which gate, when.
-            Curated; not a raw verdict dump. A new entry appears only after
-            passing its own §4a review.
-        </p>
-        <ul class="chains projects" id="receipts-feed">
-            <!-- honest-empty fallback: replaced by JS when data loads -->
-            <li>
-                <span class="name">Live receipts loading</span>
-                <span class="meta">auto-refreshed</span>
-                <span class="scope">
-                    Gate receipts are published after passing §4a curation
-                    review. If this message persists, check that
-                    <code>site/data/caught_public.json</code> is deployed
-                    and the server is reachable.
-                </span>
-            </li>
-        </ul>
-    </section>
-
-    <!-- ============= 04 / THE THREE MISSES =================== -->
-    <section class="section" id="misses">
-        <p class="eyebrow">The honest column</p>
-        <h2>The three misses, published.</h2>
-        <p class="section-lede">
-            Three gate PASSes in the window were later contradicted by a
-            downstream catch. Each is cited below: which gate missed it,
-            what the artifact carried, which downstream gate caught it,
-            and where the fix landed. Caught by our own gates, fixed
-            same-day or next-day in every case, not hidden, not
-            softened.
-        </p>
-        <!-- misses-feed: rendered by caught-metrics.js from caught_public.json misses[].
-             Existing FN-1/2/3 items below are the static fallback; JS replaces them
-             with the same content from the JSON (plus any new entries) when data loads. -->
-        <ul class="chains projects" id="misses-feed">
-            <li>
-                <span class="name">FN-1, Governance-pack email policy</span>
-                <span class="badges">
-                    <span class="badge">&sect;4b miss</span>
-                    <span class="badge">PASS 2026-06-10</span>
-                    <span class="badge badge-ci">Caught 2026-06-12</span>
-                </span>
-                <span class="scope">
-                    The &sect;4b reviewer audited the cf-invariants
-                    community-health pack (CODE_OF_CONDUCT,
-                    CONTRIBUTING, GOVERNANCE, SECURITY, 455 lines
-                    across 4 files) for canonical-string consistency,
-                    including email, and passed it. Two days later, the
-                    &sect;4a community-health gate caught
-                    <code>security@caliperforge.com</code> at 4 sites in
-                    violation of the
-                    <code>feedback_email_caliperforge_only</code> policy
-                    and contradicting the live README's published
-                    security contact, <code>michael@caliperforge.com</code>.
-                    Email-string consistency was declared in &sect;4b's
-                    scope; the policy mismatch was a &sect;4b miss. Fix
-                    landed at commit <code>0bff2c4</code> via the &sect;4a community-health regate.
-                </span>
-                <span class="project-links">
-                    Caught downstream by &sect;4a community-health (TP).
-                    Both gate verdicts and the regate are in the public
-                    record.
-                </span>
-            </li>
-            <li>
-                <span class="name">FN-2, hyperevm-safety README over-claim</span>
-                <span class="badges">
-                    <span class="badge">&sect;4b miss</span>
-                    <span class="badge">PASS 2026-06-11</span>
-                    <span class="badge badge-ci">Caught same-day</span>
-                </span>
-                <span class="scope">
-                    The &sect;4b preflip-regate passed the
-                    hyperevm-safety README with the note "20 referenced
-                    paths exist." The README was then pushed to the
-                    public repo at the flip carrying a factual
-                    over-claim, "each invariant paired with a
-                    planted-bug twin that fires on CI", that was
-                    not tree-true (two of the six invariants ship with
-                    deterministic broken-reference tests, not planted
-                    twins; two more landed only at the M2 milestone).
-                    <strong>The over-claim text was live on the public
-                    GitHub README for roughly three hours</strong>
-                    before our own &sect;4a cascade caught it
-                    (FAIL-WITH-FIXES, same day at 17:42). Root-cause fix
-                    pushed public 18:01 at commit <code>e46fe9c</code>.
-                    Caught by our own gates, fixed same-day, but
-                    the public repo carried the over-claim for those
-                    three hours. That's the honest framing.
-                </span>
-                <span class="project-links">
-                    Caught downstream by &sect;4a cascade (TP).
-                    Window of public exposure: ~3 hours. Root-cause fix
-                    at <code>e46fe9c</code>.
-                </span>
-            </li>
-            <li>
-                <span class="name">FN-3, verus-bridge source-quality issues</span>
-                <span class="badges">
-                    <span class="badge">&sect;4a miss</span>
-                    <span class="badge">PASS 2026-06-11</span>
-                    <span class="badge badge-ci">Caught 2026-06-12</span>
-                </span>
-                <span class="scope">
-                    The &sect;4a preflip-regate on the verus-bridge
-                    writeup confirmed that 10 prior fix-loop items had
-                    landed (API-arity mismatches, broken twins, etc.)
-                    and passed. The same writeup still carried sourcing
-                    issues, an ExVul citation that did not
-                    resolve (sweep returned zero hits), Blockaid /
-                    PeckShield wording that over-stated firm advisories
-                    as post-mortems, and an imprecise count framing.
-                    Caught next day by a follow-on &sect;4a
-                    sources-regate. Fix landed at commit
-                    <code>cfb0677</code>: ExVul dropped, the firm
-                    advisories downgraded with pinned URLs + dates, the
-                    count framing removed. Factual-accuracy and
-                    source-verification were declared in &sect;4a's
-                    scope; this was a &sect;4a-scope miss.
-                </span>
-                <span class="project-links">
-                    Caught downstream by &sect;4a sources-regate (TP).
-                    CEO Option-C rewrite directed 2026-06-12.
-                </span>
-            </li>
-        </ul>
-    </section>
-
-    <!-- ============= 05 / SCOPE NOTE ========================= -->
-    <section class="section prose" id="scope">
-        <p class="eyebrow">Scope</p>
-        <h2>What this record covers.</h2>
-        <p>
-            This is our own record. Not an external audit. Every figure traces
-            to a documented decision with a cited verdict, fix landing, and
-            downstream outcome. The window grows as new adjudications land.
-            The misses column grows with it, by design.
-        </p>
-        <p>
-            The <code>needs_ceo</code> HOLD mechanism is a separate escalation
-            track, deliberately not folded into the catch-rate. It gets its own
-            count in the gate breakdown above. The denominators are the published
-            record -- nothing rounded, nothing aggregated up.
-        </p>
-        <p>
-            Methodology behind the gate record:
-            <a href="/blog/">writeups on caliperforge.com/blog</a>
-            and
-            <a href="https://medium.com/@caliperforge" rel="noopener">medium.com/@caliperforge</a>.
-        </p>
-    </section>
-
-    <!-- ============= §4a / WHERE THIS DISCIPLINE LANDS ======= -->
-    <section class="section prose" id="services-cta">
-        <p class="eyebrow">Where this discipline lands</p>
-        <h2>The gate record applied to your work.</h2>
-        <p>
-            This is the gate record. The same discipline applied to your
-            contracts, your CI, your audit-readiness:
-            <a href="mailto:team@caliperforge.com"
-               data-pending-services="true">team@caliperforge.com</a>.
-        </p>
-    </section>
-
-</main>
-
-<!-- ============= FOOTER (dark, mirrors hero) ============================ -->
-<footer class="site-footer">
-    <div class="site-footer-inner">
-        <div>
-            <a href="/" class="brandrow">
-                <img src="/mark.svg" alt="" class="mark-sm" width="28" height="28">
-                <span class="wordmark">CaliperForge</span>
-            </a>
-            <p class="tagline">Precision contributions, every time.</p>
-            <p class="meta">
-                Operator of record: Michael Moffett &middot;
-                <a href="/">Back to CaliperForge</a>
-            </p>
-        </div>
-        <nav class="site-footer-links" aria-label="Footer">
-            <a href="/blog/">Blog</a>
-            <a href="https://github.com/caliperforge" rel="me">GitHub</a>
-            <a href="/engagements/">Engagements</a>
-            <a href="/roadmap/">Roadmap</a>
-            <a href="https://x.com/caliperforge" rel="me">X</a>
-            <a href="https://farcaster.xyz/caliperforge" rel="me">Farcaster</a>
-            <a href="https://t.me/caliperforge" rel="me">Telegram</a>
-            <a href="mailto:team@caliperforge.com">Email</a>
-        </nav>
+<!-- ============== HOW THE RECORD WORKS (cream) ============================ -->
+<section class="cf-band--paper">
+  <div class="cf-shell cf-2col" style="padding-top:80px;padding-bottom:24px;">
+    <div>
+      <div class="cf-eyebrow">HOW THE RECORD WORKS</div>
+      <h2 class="cf-h2 cf-h2--sm">Every gate is a row. The catch record is a subset.</h2>
     </div>
-</footer>
+    <div class="cf-2col__body">
+      <p class="cf-prose" style="font-size:16px;line-height:1.78;margin-bottom:18px;">Logged agent decisions count every classifier and gate-check row across the org — §4a content, §4b code, CEO Hold, task hygiene, and per-role decision telemetry. The adjudicated catch record is the subset that reached a verdict; every adjudicated decision writes exactly one outcome row.</p>
+      <p class="cf-prose" style="font-size:16px;line-height:1.78;margin-bottom:0;">That distinction matters: it's why we report a catch rate against defects present, not against total reviews, and why a miss is logged as a miss, never quietly folded into the denominator.</p>
+    </div>
+  </div>
 
-<!-- caught-metrics.js: fetch live gate stats from caught_public.json.
-     Fills [data-cf-key] spans, renders receipts + misses + by-gate + by-agent feeds.
-     Swallows all errors silently -- static fallback stays visible. -->
-<script>
-(function () {
-  var FEED = '/data/caught_public.json';
-  var RETRY_MS = 90000;
-  /* Max bar width in px, matching spec §4.2 */
-  var MAX_BAR_PX = 240;
+  <!-- gate types -->
+  <div class="cf-shell" style="padding-top:30px;padding-bottom:78px;">
+    <div class="cf-gates">
+      <div>
+        <div class="cf-chain-label">§4A · CONTENT</div>
+        <div class="cf-chain-prose">Every written deliverable, claims, blog posts, grant copy, gated before it ships.</div>
+      </div>
+      <div>
+        <div class="cf-chain-label">§4B · CODE</div>
+        <div class="cf-chain-prose">Every code change, invariants, harnesses, twins, reviewed and reproduced cold.</div>
+      </div>
+      <div>
+        <div class="cf-chain-label">CEO HOLD</div>
+        <div class="cf-chain-prose">The operator's stop, any decision pulled for human judgment before release.</div>
+      </div>
+      <div>
+        <div class="cf-chain-label">TASK HYGIENE</div>
+        <div class="cf-chain-prose">Process integrity, scope, provenance, and disclosure checks on every task.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  /* ---- fill simple data-cf-key spans ---- */
-  function fillSpans(data) {
-    var m = data.metrics || {};
-    var map = {
-      tp: m.tp,
-      fp: m.fp,
-      fn: m.fn,
-      tn: m.tn,
-      adjudicated: m.adjudicated,
-      adjudicated_defects: (m.tp || 0) + (m.fn || 0),
-      catch_rate_display: m.catch_rate_display,
-      precision_display: m.precision_display,
-      false_positive_rate_display: m.false_positive_rate_display,
-      window_start: data.window_start,
-      window_end: data.window_end,
-      last_updated: data.last_updated
-    };
-    document.querySelectorAll('[data-cf-key]').forEach(function (el) {
-      var v = map[el.getAttribute('data-cf-key')];
-      if (v !== undefined && v !== null) el.textContent = v;
-    });
-  }
+<!-- ============== THE MISSES (cream deeper) =============================== -->
+<section class="cf-band--paper-deep">
+  <div class="cf-shell" style="padding-top:74px;padding-bottom:80px;">
+    <div class="cf-eyebrow cf-eyebrow--brick">THE ONES WE MISSED</div>
+    <h2 class="cf-h2 cf-h2--sm" style="margin-bottom:14px;max-width:720px;">We publish the misses too.</h2>
+    <p class="cf-prose cf-prose--sm" style="max-width:700px;margin-bottom:40px;">
+      A record that only shows wins isn't a record. Each miss is written up in full: what slipped, why the gate didn't fire, and the correction that followed.
+    </p>
+    <div class="cf-misses" data-misses-list></div>
+  </div>
+</section>
 
-  /* ---- render by-gate horizontal bars ---- */
-  function renderByGate(byGate) {
-    var feed = document.getElementById('by-gate-feed');
-    if (!feed || !byGate) return;
-    var gateLabels = {
-      content_qa: '§4a Content QA',
-      code_quality: '§4b Code Quality',
-      ceo_hold: 'CEO Hold',
-      task_hygiene: 'Task Hygiene'
-    };
-    var keys = ['content_qa', 'code_quality', 'ceo_hold', 'task_hygiene'];
-    var vals = keys.map(function(k) { return byGate[k] || 0; });
-    var maxVal = Math.max.apply(null, vals.concat([1]));
-    feed.innerHTML = keys.map(function(k, i) {
-      var n = vals[i];
-      var barW = Math.round(n / maxVal * MAX_BAR_PX);
-      return '<div class="cf-bar-row">' +
-        '<span class="cf-bar-label">' + esc(gateLabels[k] || k) + '</span>' +
-        '<span class="cf-bar-fill" style="width:' + barW + 'px"></span>' +
-        '<span class="cf-bar-count">n=' + n + '</span>' +
-        '</div>';
-    }).join('');
-  }
+<!-- ============== CTA + FOOTER (navy) ===================================== -->
+<section class="cf-band--navy cf-band--measured">
+  <div class="cf-measure-grid" aria-hidden="true"></div>
+  <div class="cf-shell" style="padding-top:80px;padding-bottom:0;">
+    <div class="cf-contact2" style="align-items:center;">
+      <div>
+        <h2 class="cf-h2 cf-h2--md" style="margin-bottom:18px;">The full gate record is public.</h2>
+        <p class="cf-prose cf-prose--navy" style="max-width:460px;margin-bottom:26px;">
+          Every adjudicated decision, every catch, and every documented miss, logged with receipts. Read it, audit it, or bring us a protocol to harden.
+        </p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+          <a class="cf-cta-gold cf-cta-gold--lg" href="#top">Read the full record &rarr;</a>
+          <a class="cf-link-cream-underline" href="/">Start an engagement</a>
+        </div>
+      </div>
+      <div class="cf-contact-list">
+        <div class="cf-contact-list__row"><span>ADJUDICATED</span><span><span data-cf-key="adjudicated">74</span> decisions</span></div>
+        <div class="cf-contact-list__row cf-contact-list__row--gold"><span>CAUGHT</span><span><span data-cf-key="tp">20</span> · <span data-cf-key="catch_rate_display">74%</span></span></div>
+        <div class="cf-contact-list__row"><span>FALSE POSITIVES</span><span data-cf-key="fp">0</span></div>
+        <div class="cf-contact-list__row cf-contact-list__row--brick"><span>MISSED</span><span><span data-cf-key="fn">7</span> · published</span></div>
+        <div class="cf-contact-list__row"><span>LOGGED DECISIONS</span><span data-cf-key="logged_agent_decisions">2,291</span></div>
+      </div>
+    </div>
+    <footer class="cf-footer">
+      <div class="cf-footer__brand"><span class="cf-mark cf-mark--sm" aria-hidden="true"></span>CaliperForge, precision contributions, every time.</div>
+      <div class="cf-footer__meta">Operator of record: Michael Moffett · <a href="/ai-disclosure">AI policy</a></div>
+    </footer>
+  </div>
+</section>
 
-  /* ---- render by-agent table ---- */
-  function renderByAgent(byAgent) {
-    var feed = document.getElementById('by-agent-feed');
-    if (!feed || !byAgent || !byAgent.length) return;
-    var rows = byAgent.slice().sort(function(a, b) {
-      return (b.stops || 0) - (a.stops || 0);
-    });
-    feed.innerHTML = '<table class="cf-agent-table">' +
-      '<thead><tr>' +
-        '<th>Agent</th>' +
-        '<th>Catch %</th>' +
-        '<th>n</th>' +
-        '<th>Stops</th>' +
-      '</tr></thead>' +
-      '<tbody>' +
-      rows.map(function(r) {
-        return '<tr>' +
-          '<td>' + esc(r.agent) + '</td>' +
-          '<td>' + esc(r.pct) + '</td>' +
-          '<td>' + esc(String(r.n)) + '</td>' +
-          '<td>' + esc(String(r.stops)) + '</td>' +
-          '</tr>';
-      }).join('') +
-      '</tbody></table>';
-  }
-
-  /* ---- render receipts feed ---- */
-  function renderReceipts(receipts) {
-    var ul = document.getElementById('receipts-feed');
-    if (!ul || !receipts || !receipts.length) return;
-    ul.innerHTML = receipts.slice(0, 5).map(function (r) {
-      return '<li>' +
-        '<span class="name">' + esc(r.headline) + '</span>' +
-        '<span class="badges">' +
-          '<span class="badge">' + esc(r.gate) + ' stop</span>' +
-          '<span class="badge">caught ' + esc(r.verdict_iso) + '</span>' +
-          (r.fix_ref ? '<span class="badge">fix: ' + esc(r.fix_ref) + '</span>' : '') +
-        '</span>' +
-        '<span class="scope">' + (r.frame || '') + '</span>' +
-        (r.writeup_url
-          ? '<span class="project-links"><a href="' + esc(r.writeup_url) + '" rel="noopener">Writeup</a></span>'
-          : '') +
-      '</li>';
-    }).join('');
-  }
-
-  /* ---- render misses feed ---- */
-  function renderMisses(misses) {
-    var ul = document.getElementById('misses-feed');
-    if (!ul || !misses || !misses.length) return;
-    ul.innerHTML = misses.map(function (m) {
-      return '<li>' +
-        '<span class="name">' + esc(m.headline) + '</span>' +
-        '<span class="badges">' +
-          '<span class="badge">' + esc(m.gate_missed) + ' miss</span>' +
-          '<span class="badge">PASS ' + esc(m.gate_pass_iso) + '</span>' +
-          '<span class="badge badge-ci">Caught ' + esc(m.caught_iso) + '</span>' +
-        '</span>' +
-        '<span class="scope">' + (m.frame || '') + '</span>' +
-        '<span class="project-links">Caught downstream by ' +
-          esc(m.caught_by) + ' (TP). Fix: ' + esc(m.fix_ref) + '.' +
-        '</span>' +
-      '</li>';
-    }).join('');
-  }
-
-  /* minimal HTML escaping */
-  function esc(s) {
-    return String(s || '')
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
-  }
-
-  function go() {
-    fetch(FEED, { cache: 'no-store' })
-      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
-      .then(function (data) {
-        fillSpans(data);
-        renderByGate(data.by_gate);
-        renderByAgent(data.by_agent);
-        renderReceipts(data.receipts);
-        renderMisses(data.misses);
-      })
-      .catch(function () { /* silent: static fallback remains */ });
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    go();
-    setInterval(go, RETRY_MS);
-  });
-}());
-</script>
+<script src="/caliper-data.js" defer></script>
+<script src="/caliper-motion.js" defer></script>
 </body>
 </html>

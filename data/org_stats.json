@@ -1,12 +1,12 @@
 {
   "schema": "org_stats.v1",
-  "last_updated": "2026-07-01T16:35:40Z",
+  "last_updated": "2026-07-01T18:14:11Z",
   "as_of": "2026-07-01",
   "launch_date": "2026-05-27",
   "specialized_agents": 34,
   "logged_agent_decisions": 2291,
   "gate_reviews": 2291,
-  "agent_dispatches": 1080,
+  "agent_dispatches": 1084,
   "days_running": 36,
   "catch": {
     "tp": 20,
