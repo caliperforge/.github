@@ -12,6 +12,136 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/caliper.css">
+<style>
+/* Page-scoped portfolio primitives (Section 04) — spotlight card + full-portfolio
+   compact list. Uses reskin palette tokens defined in caliper.css. Follows the
+   roadmap precedent for page-scoped primitives that would clutter caliper.css. */
+.cf-spotlight {
+  border: 1px solid var(--paper-rule-2);
+  border-left: 3px solid var(--gold-deep);
+  background: var(--paper-card);
+  padding: 24px 26px 22px;
+  margin-bottom: 26px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 26px;
+  align-items: start;
+}
+@media (max-width: 900px) { .cf-spotlight { grid-template-columns: 1fr; gap: 14px; } }
+.cf-spotlight__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-bottom: 10px;
+}
+.cf-spotlight__title {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 8px;
+  line-height: 1.25;
+}
+.cf-spotlight__title code {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--ink);
+  background: transparent;
+}
+.cf-spotlight__body {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.cf-spotlight__meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .06em;
+  color: var(--ink-mute-2);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-left: 1px solid var(--paper-rule);
+  padding-left: 20px;
+}
+@media (max-width: 900px) { .cf-spotlight__meta { border-left: none; padding-left: 0; border-top: 1px solid var(--paper-rule); padding-top: 12px; } }
+.cf-spotlight__meta a { color: var(--gold-deep); text-decoration: none; border-bottom: 1px solid rgba(154,123,62,.35); }
+.cf-spotlight__badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .1em;
+  padding: 3px 8px;
+  border: 1px solid var(--gold-deep);
+  color: var(--gold-deep);
+  background: rgba(154,123,62,.06);
+  text-transform: uppercase;
+  align-self: flex-start;
+}
+
+.cf-portfolio-head {
+  margin-top: 44px;
+  margin-bottom: 18px;
+  padding-top: 24px;
+  border-top: 1px solid var(--paper-rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.cf-portfolio-head h3 {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+}
+.cf-portfolio-head .cf-portfolio-note {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--ink-mute-2);
+}
+.cf-portfolio-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--paper-rule);
+}
+.cf-portfolio-row {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(0, 2.4fr) auto;
+  gap: 18px;
+  padding: 14px 4px;
+  border-bottom: 1px solid var(--paper-rule);
+  align-items: baseline;
+}
+@media (max-width: 900px) {
+  .cf-portfolio-row { grid-template-columns: 1fr; gap: 6px; padding: 14px 0; }
+}
+.cf-portfolio-name {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  color: var(--ink);
+}
+.cf-portfolio-name a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--paper-rule-2); }
+.cf-portfolio-name a:hover { border-color: var(--gold-deep); color: var(--gold-deep); }
+.cf-portfolio-desc {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink-soft-2);
+}
+.cf-portfolio-tag {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: .06em;
+  color: var(--ink-mute-2);
+  white-space: nowrap;
+}
+</style>
 </head>
 <body>
 
@@ -199,6 +329,21 @@
       <div style="font-size:14px;color:var(--ink-mute);max-width:300px;line-height:1.6;text-align:right;">Source on GitHub, license on the card. AI involvement disclosed at point of use.</div>
     </div>
 
+    <!-- Spotlight: uniswap-v4-invariants — flipped public 2026-07-02 (newest). -->
+    <article class="cf-spotlight" aria-label="Latest public repo">
+      <div>
+        <div class="cf-spotlight__eyebrow">Latest public repo &middot; 2026-07-02</div>
+        <h3 class="cf-spotlight__title"><code>uniswap-v4-invariants</code></h3>
+        <p class="cf-spotlight__body">Defender-side invariant harness for Uniswap v4 hooks. Recurring bug classes are expressed as stateful invariants on real v4-core, each shipped as a clean and planted-bug twin pair that both run in CI on every push.</p>
+      </div>
+      <div class="cf-spotlight__meta">
+        <span class="cf-spotlight__badge">New &middot; flagship</span>
+        <span>EVM &middot; Uniswap v4 &middot; Foundry</span>
+        <span>Apache-2.0</span>
+        <span><a href="https://github.com/caliperforge/uniswap-v4-invariants" rel="me">github.com/caliperforge/uniswap-v4-invariants &rarr;</a></span>
+      </div>
+    </article>
+
     <div class="cf-ship3">
       <article class="cf-card">
         <div class="cf-card__head">
@@ -206,7 +351,7 @@
           <span class="cf-badge cf-badge--ci">CI ✓</span>
         </div>
         <p class="cf-card__body">Seven real-world hacks across four VMs, each with a runnable invariant that would have caught the bug class on the pre-exploit code. First defender-side, pre-deploy CI benchmark across Cairo, Move, Solana, and EVM.</p>
-        <div class="cf-card__foot"><span>Cairo · Move · Solana · EVM</span><span class="cf-card__foot-right">Apache-2.0</span></div>
+        <div class="cf-card__foot"><span><a href="https://github.com/caliperforge/invariant-atlas" rel="me" style="color:var(--gold-deep);text-decoration:none;">caliperforge/invariant-atlas &rarr;</a></span><span class="cf-card__foot-right">Apache-2.0</span></div>
       </article>
       <article class="cf-card">
         <div class="cf-card__head">
@@ -214,7 +359,7 @@
           <span class="cf-badge cf-badge--ci">CI ✓</span>
         </div>
         <p class="cf-card__body">Open-source snforge sidecar that adds stateful invariant testing and AI-suggested invariants to Cairo 2.x. Twelve reference contracts, Voyager-verified on Starknet Sepolia.</p>
-        <div class="cf-card__foot"><span>Starknet · Cairo 2.x</span><span class="cf-card__foot-right">Apache-2.0</span></div>
+        <div class="cf-card__foot"><span><a href="https://github.com/caliperforge/cf-invariants" rel="me" style="color:var(--gold-deep);text-decoration:none;">caliperforge/cf-invariants &rarr;</a></span><span class="cf-card__foot-right">Apache-2.0</span></div>
       </article>
       <article class="cf-card">
         <div class="cf-card__head">
@@ -222,7 +367,7 @@
           <span class="cf-badge cf-badge--ci">CI ✓</span>
         </div>
         <p class="cf-card__body">Invariant-authoring layer on Crucible (Asymmetric Research's Solana fuzzer). CI runs the harness against a clean vault and a planted-bug twin every push, with scorecards committed.</p>
-        <div class="cf-card__foot"><span>Solana · Anchor / Crucible</span><span class="cf-card__foot-right">Apache-2.0</span></div>
+        <div class="cf-card__foot"><span><a href="https://github.com/caliperforge/cf-invariants-anchor" rel="me" style="color:var(--gold-deep);text-decoration:none;">caliperforge/cf-invariants-anchor &rarr;</a></span><span class="cf-card__foot-right">Apache-2.0</span></div>
       </article>
       <article class="cf-card">
         <div class="cf-card__head">
@@ -230,7 +375,7 @@
           <span class="cf-badge cf-badge--ci">CI ✓</span>
         </div>
         <p class="cf-card__body">Invariant-fuzzing harness for the Jito Foundation tip-distribution program. Four invariant classes run against a clean reference and a planted-bug twin per class on every push.</p>
-        <div class="cf-card__foot"><span>Solana · Jito tip-distribution</span><span class="cf-card__foot-right">Apache-2.0</span></div>
+        <div class="cf-card__foot"><span><a href="https://github.com/caliperforge/cf-invariants-jito" rel="me" style="color:var(--gold-deep);text-decoration:none;">caliperforge/cf-invariants-jito &rarr;</a></span><span class="cf-card__foot-right">Apache-2.0</span></div>
       </article>
       <article class="cf-card">
         <div class="cf-card__head">
@@ -238,7 +383,7 @@
           <span class="cf-badge cf-badge--ci">CI ✓</span>
         </div>
         <p class="cf-card__body">Invariants and CI-runnable property tests for HyperEVM lending protocols that consume HyperCore oracle reads. Six HyperCore-boundary invariants in v0.1; planted/incident twin fires on the same run.</p>
-        <div class="cf-card__foot"><span>HyperEVM · Solidity / Foundry</span><span class="cf-card__foot-right">Apache-2.0</span></div>
+        <div class="cf-card__foot"><span><a href="https://github.com/caliperforge/hyperevm-safety" rel="me" style="color:var(--gold-deep);text-decoration:none;">caliperforge/hyperevm-safety &rarr;</a></span><span class="cf-card__foot-right">Apache-2.0</span></div>
       </article>
       <article class="cf-card">
         <div class="cf-card__head">
@@ -246,13 +391,59 @@
           <span class="cf-badge cf-badge--ci">CI ✓</span>
         </div>
         <p class="cf-card__body">Planted-twin discrimination-power harness for AI safety properties, prompt-injection and sycophancy resistance, run across Anthropic, OpenAI, and Groq. Every CLEAN claim paired to a PLANTED control.</p>
-        <div class="cf-card__foot"><span>Anthropic · OpenAI · Groq</span><span class="cf-card__foot-right">Apache-2.0</span></div>
+        <div class="cf-card__foot"><span><a href="https://github.com/caliperforge/cf-modeleval" rel="me" style="color:var(--gold-deep);text-decoration:none;">caliperforge/cf-modeleval &rarr;</a></span><span class="cf-card__foot-right">Apache-2.0</span></div>
       </article>
     </div>
-    <div style="font-family:var(--font-mono);font-size:12px;color:var(--ink-mute-2);margin-top:26px;display:flex;gap:8px;align-items:center;">
+    <!-- Full public portfolio — every non-archived, non-fork repo under
+         caliperforge, so the org's public surface matches the org README.
+         Sourced from `gh repo list caliperforge --visibility public`, not
+         hand-typed; last synced 2026-07-02. -->
+    <div class="cf-portfolio-head">
+      <h3>Also in the public portfolio</h3>
+      <span class="cf-portfolio-note">Complete public listing &middot; synced 2026-07-02</span>
+    </div>
+    <div class="cf-portfolio-list" role="list">
+      <div class="cf-portfolio-row" role="listitem">
+        <div class="cf-portfolio-name"><a href="https://github.com/caliperforge/chimera-template-pack" rel="me">caliperforge/chimera-template-pack</a></div>
+        <div class="cf-portfolio-desc">Reusable Foundry and Recon Chimera scaffold for EVM build-to-win contest entries. CI-verified.</div>
+        <div class="cf-portfolio-tag">EVM &middot; MIT carveout</div>
+      </div>
+      <div class="cf-portfolio-row" role="listitem">
+        <div class="cf-portfolio-name"><a href="https://github.com/caliperforge/cf-invariants-verus-bridge-conservation" rel="me">caliperforge/cf-invariants-verus-bridge-conservation</a></div>
+        <div class="cf-portfolio-desc">CI-verified cross-side conservation invariant reference for lock/mint bridges, anchored on the Verus-Ethereum 2026 case. Clean and planted-bug twin on every push.</div>
+        <div class="cf-portfolio-tag">EVM &middot; Apache-2.0</div>
+      </div>
+      <div class="cf-portfolio-row" role="listitem">
+        <div class="cf-portfolio-name"><a href="https://github.com/caliperforge/cf-invariants-pyth" rel="me">caliperforge/cf-invariants-pyth</a></div>
+        <div class="cf-portfolio-desc">Invariant-fuzzing harness for the Pyth Solana Receiver, run on Crucible. Two invariant classes against a clean reference and planted-bug twins, asserted on every push.</div>
+        <div class="cf-portfolio-tag">Solana &middot; Apache-2.0</div>
+      </div>
+      <div class="cf-portfolio-row" role="listitem">
+        <div class="cf-portfolio-name"><a href="https://github.com/caliperforge/cf-invariants-jito-priorityfee" rel="me">caliperforge/cf-invariants-jito-priorityfee</a></div>
+        <div class="cf-portfolio-desc">Invariant-fuzzing harness for the Jito priority-fee-distribution program on Crucible. Third Jito program under the same anchor-lang 1.0.1 / Crucible v0.2.0 rails as cf-invariants-jito and cf-invariants-jito-tippayment.</div>
+        <div class="cf-portfolio-tag">Solana &middot; Apache-2.0</div>
+      </div>
+      <div class="cf-portfolio-row" role="listitem">
+        <div class="cf-portfolio-name"><a href="https://github.com/caliperforge/cf-invariants-jito-tippayment" rel="me">caliperforge/cf-invariants-jito-tippayment</a></div>
+        <div class="cf-portfolio-desc">Invariant harness for the Jito tip-payment program on Crucible v0.2.0. Sibling artifact to cf-invariants-jito.</div>
+        <div class="cf-portfolio-tag">Solana &middot; Apache-2.0</div>
+      </div>
+      <div class="cf-portfolio-row" role="listitem">
+        <div class="cf-portfolio-name"><a href="https://github.com/caliperforge/bsc-invariants" rel="me">caliperforge/bsc-invariants</a></div>
+        <div class="cf-portfolio-desc">Invariant testing and planted-twin CI for BSC DeFi protocols. PancakeSwap v3 harness live; Venus and Stargate planned. Foundry.</div>
+        <div class="cf-portfolio-tag">BSC &middot; Apache-2.0</div>
+      </div>
+      <div class="cf-portfolio-row" role="listitem">
+        <div class="cf-portfolio-name"><a href="https://github.com/caliperforge/apart-global-south-lost-in-translation" rel="me">caliperforge/apart-global-south-lost-in-translation</a></div>
+        <div class="cf-portfolio-desc">Language-conditioned detection-rate eval harness for AI code auditors. EN/ES/PT/CS variant corpus built on Atlas planted-bug twins. Apart Global South AI Safety Hackathon 2026.</div>
+        <div class="cf-portfolio-tag">Eval &middot; Apache-2.0</div>
+      </div>
+    </div>
+
+    <div style="font-family:var(--font-mono);font-size:12px;color:var(--ink-mute-2);margin-top:26px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
       <span style="color:var(--gold-deep);">&rarr;</span>
       <a href="https://github.com/caliperforge" rel="me">github.com/caliperforge</a>
-      &nbsp;·&nbsp; 13 tools shipped &nbsp;·&nbsp; AI-disclosed at point of use
+      &nbsp;&middot;&nbsp; 14 public repos, all listed above &nbsp;&middot;&nbsp; AI-disclosed at point of use
     </div>
   </div>
 </section>
