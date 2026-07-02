@@ -32,6 +32,13 @@ portfolio is protocol and smart-contract security.
 
 ## What we ship now
 
+- **`uniswap-v4-invariants`** — defender-side invariant harness for
+  Uniswap v4 hooks. Recurring bug classes expressed as stateful
+  invariants on real v4-core, each shipped as a clean and planted-bug
+  twin pair that both run in CI on every push. Latest addition, went
+  public 2026-07-02. Apache-2.0. See
+  [caliperforge/uniswap-v4-invariants](https://github.com/caliperforge/uniswap-v4-invariants).
+
 - **`invariant-atlas`** — the Exploit→Invariant Atlas: six historical
   DeFi exploits across four VMs (Cairo, Move/Sui, Solana, EVM), each
   reconstructed as a same-source clean / planted twin where an
