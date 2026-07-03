@@ -3,7 +3,7 @@
   "_generated": true,
   "_source": "ops/qa_verdicts/control_effectiveness.jsonl + ops/catch_corpus/",
   "_do_not_edit": "regenerate via scripts/ops/caught_public_projection.py",
-  "last_updated": "2026-07-03T05:44:42Z",
+  "last_updated": "2026-07-03T06:55:54Z",
   "window_start": "2026-06-04",
   "window_end": "2026-07-03",
   "metrics": {
@@ -64,9 +64,9 @@
     }
   },
   "by_gate": {
-    "content_qa": 17,
+    "content_qa": 18,
     "code_quality": 4,
-    "ceo_hold": 48,
+    "ceo_hold": 52,
     "task_hygiene": 0,
     "audit_cycle": 1
   },
