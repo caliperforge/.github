@@ -57,6 +57,26 @@
 
       <article class="cf-blog-card">
         <div class="cf-blog-card__head">
+          <a class="cf-blog-card__title" href="/blog/12_liquidity-penalty-conservation-uniswap-v4-hook">The reference hook had it too: Uniswap v4 liquidity-penalty conservation as a runnable twin</a>
+          <span class="cf-blog-card__date">2026-07-06</span>
+        </div>
+        <p class="cf-blog-card__desc">
+          The Uniswap Foundation ships a reference
+          <code>LiquidityPenaltyHook</code> through OpenZeppelin.
+          Zealynx surfaced the donation-griefing class (their
+          Pattern 3); OpenZeppelin&rsquo;s v1.1.0 audit surfaced it
+          independently; v1.2.0 already ships the add-time
+          fee-state guard. This post walks the conservation
+          invariant that names the class and the clean/planted
+          twin in <code>caliperforge/uniswap-v4-invariants</code>
+          that fires on it: 256&thinsp;&times;&thinsp;50 fuzz
+          against the real <code>PoolManager</code>, deterministic
+          regression, and a 3-call shrunk counterexample.
+        </p>
+      </article>
+
+      <article class="cf-blog-card">
+        <div class="cf-blog-card__head">
           <a class="cf-blog-card__title" href="/blog/11_syscoin-conservation-mint-without-burn">5 billion SYS, one missing burn: Syscoin, SPV proofs, and the conservation invariant</a>
           <span class="cf-blog-card__date">2026-06-22</span>
         </div>
