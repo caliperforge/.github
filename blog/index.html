@@ -57,6 +57,50 @@
 
       <article class="cf-blog-card">
         <div class="cf-blog-card__head">
+          <a class="cf-blog-card__title" href="/blog/14_share-accounting-solvency-euler-earn-m01">The audit already had it: Euler Earn share-accounting solvency as a runnable twin</a>
+          <span class="cf-blog-card__date">2026-07-10</span>
+        </div>
+        <p class="cf-blog-card__desc">
+          Pashov Audit Group surfaced M-01 in their public Euler
+          Earn security review (2025-07-25): a share-accounting
+          drift in <code>PublicAllocator</code> when a strategy&rsquo;s
+          share delta reaches the vault outside
+          <code>EulerEarn.deposit</code>. Euler Labs shipped the
+          fix at commit <code>f07f6b1c5e1e</code>
+          (2025-08-11), merged in PR #22. This post walks the
+          invariants that name the class and the clean/planted
+          twin in <code>caliperforge/euler-earn-invariants</code>
+          that fires on it: 256&thinsp;&times;&thinsp;50 fuzz
+          against the real Euler Earn contracts through
+          <code>IntegrationTest</code>, deterministic regression
+          mirroring the auditor&rsquo;s 4-call sequence, and a
+          short shrunk counterexample on the planted twin.
+        </p>
+      </article>
+
+      <article class="cf-blog-card">
+        <div class="cf-blog-card__head">
+          <a class="cf-blog-card__title" href="/blog/13_fee-direction-integrity-uniswap-v4-hook">The audited base had it too: Uniswap v4 fee-direction integrity as a runnable twin</a>
+          <span class="cf-blog-card__date">2026-07-10</span>
+        </div>
+        <p class="cf-blog-card__desc">
+          OpenZeppelin&rsquo;s v1.1.0 RC-2 audit surfaced M-01 on
+          their own <code>BaseDynamicAfterFee</code>:
+          direction-blind fee arithmetic that computed against the
+          wrong leg on exactOutput swaps. Commit
+          <code>2678eb9</code> shipped the fix in tag
+          <code>v1.1.0</code>; Zealynx&rsquo;s Pattern 4 names the
+          taxonomy. This post walks the direction-integrity
+          invariant that names the class and the clean/planted
+          twin in <code>caliperforge/uniswap-v4-invariants</code>
+          that fires on it: 256&thinsp;&times;&thinsp;50 fuzz
+          against the real <code>PoolManager</code>, deterministic
+          regression, and a 1-call shrunk counterexample.
+        </p>
+      </article>
+
+      <article class="cf-blog-card">
+        <div class="cf-blog-card__head">
           <a class="cf-blog-card__title" href="/blog/12_liquidity-penalty-conservation-uniswap-v4-hook">The reference hook had it too: Uniswap v4 liquidity-penalty conservation as a runnable twin</a>
           <span class="cf-blog-card__date">2026-07-06</span>
         </div>
