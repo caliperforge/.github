@@ -81,7 +81,8 @@
     'gate_reviews':                ['org', 'gate_reviews',              formatInt],
     'agent_dispatches':            ['org', 'agent_dispatches',          formatInt],
     'days_running':                ['org', 'days_running',              formatInt],
-    'as_of':                       ['org', 'as_of',                     passthrough]
+    'as_of':                       ['org', 'as_of',                     passthrough],
+    'launch_date':                 ['org', 'launch_date',               passthrough]
   };
 
   // --- legacy `data-stat="src.key"` map for un-migrated markup -----------
