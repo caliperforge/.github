@@ -69,11 +69,6 @@ portfolio is protocol and smart-contract security.
   Cairo 2.x on top of snforge. **Twelve** reference contracts deployed
   and Voyager-verified on Starknet Sepolia. Apache-2.0. See
   [caliperforge/cf-invariants](https://github.com/caliperforge/cf-invariants).
-- **`cf-invariants-anchor`** — invariant-authoring layer on top of
-  Crucible (Asymmetric Research's coverage-guided Solana fuzzer) for
-  Solana / Anchor programs. Stateful invariants and AI-suggested
-  invariants tagged in source; CI runs a clean / planted-bug twin
-  every push.
 - **`chimera-template-pack`** — reusable Foundry + Recon Chimera
   scaffold for EVM build-to-win contest entries.
 - **`hyperevm-safety`** — open-source library of invariants and
@@ -119,15 +114,6 @@ portfolio is protocol and smart-contract security.
   Echidna), tracking the CaliperForge `chimera-template-pack` pinning.
   Apache-2.0. See
   [caliperforge/cf-invariants-verus-bridge-conservation](https://github.com/caliperforge/cf-invariants-verus-bridge-conservation).
-- **`cf-invariants-jito`**, **`cf-invariants-jito-tippayment`**, and
-  **`cf-invariants-jito-priorityfee`** — invariant harnesses for
-  Jito tip-distribution, tip-payment, and priority-fee-distribution
-  programs on Crucible. Sibling artifacts.
-- **`cf-invariants-pyth`** — invariant-fuzzing harness for the Pyth
-  Solana Receiver, run on Crucible. Ports the upstream program from
-  `anchor-lang` 0.32.1 to 1.0.1; two invariant classes against a clean
-  reference and planted-bug twins, asserted on every push. Apache-2.0.
-  See [caliperforge/cf-invariants-pyth](https://github.com/caliperforge/cf-invariants-pyth).
 - **`apart-global-south-lost-in-translation`** — Apart Global South
   hackathon eval harness: a language-conditioned detection-rate eval
   measuring whether AI code auditors catch planted bugs across EN, ES,
@@ -145,10 +131,19 @@ portfolio is protocol and smart-contract security.
   eval falsifiable by pairing every CLEAN claim to a PLANTED control. Not a
   model ranking; not a jailbreak discovery. Apache-2.0. See
   [caliperforge/cf-modeleval](https://github.com/caliperforge/cf-modeleval).
-- **`solana-invariant-atlas`** — defender-side invariant atlas for Solana
-  programs: recurring bug classes as clean / planted twin pairs on real
-  targets, running in CI on every push. Apache-2.0. See
+- **`solana-invariant-atlas`** is the flagship Solana catalog: recurring
+  bug classes as clean and planted twin pairs on real Solana programs,
+  running in CI on every push. Apache-2.0. See
   [caliperforge/solana-invariant-atlas](https://github.com/caliperforge/solana-invariant-atlas).
+  The atlas cites its member ports (each a defender-side regression
+  fixture on the atlas's pinned rails, anchor-lang 1.0.1 and Crucible
+  v0.2.0) and consumes the anchor invariant-authoring crate as a pinned
+  git dependency. Ports live on their own repos, each with its own CI:
+    - [`cf-invariants-jito`](https://github.com/caliperforge/cf-invariants-jito): Jito tip-distribution port; four class-shaped invariants against a clean reference and four single-hunk planted twins.
+    - [`cf-invariants-jito-tippayment`](https://github.com/caliperforge/cf-invariants-jito-tippayment): Jito tip-payment port; three class-shaped invariants against a clean reference and three planted twins.
+    - [`cf-invariants-jito-priorityfee`](https://github.com/caliperforge/cf-invariants-jito-priorityfee): Jito priority-fee-distribution port; one monotonic-accounting invariant against a clean reference and one planted twin.
+    - [`cf-invariants-pyth`](https://github.com/caliperforge/cf-invariants-pyth): Pyth Solana Receiver port; two class-shaped invariants against a clean reference and two planted twins.
+    - [`cf-invariants-anchor`](https://github.com/caliperforge/cf-invariants-anchor): pinned Anchor invariant-authoring crate the atlas driver consumes (core, suggest, emit, report).
 - **`taiko-equivalence`** — differential equivalence tests for Taiko's
   Type-1 Ethereum-equivalence guarantee, encoded as clean / planted twin
   Foundry projects. AI-augmented, hard-disclosed. Apache-2.0. See
