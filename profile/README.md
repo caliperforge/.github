@@ -32,6 +32,23 @@ portfolio is protocol and smart-contract security.
 
 ## What we ship now
 
+- **`euler-earn-invariants`** — defender-side stateful invariant harness
+  for Euler Earn allocator and vault share accounting, running against
+  real Euler Earn contracts (pinned submodule, no protocol mock). One
+  case ships in the initial cut, encoded as a same-source clean /
+  planted twin pair against Pashov Audit Group's M-01 finding on the
+  `PublicAllocator` <-> `EulerEarn` share-tracking boundary
+  (EulerEarn security review, 2025-07-25) and Euler Labs' fix commit
+  `f07f6b1c5e1e`. Both twins run in CI on every push: the clean twin
+  holds the encoded invariants under a stateful campaign; the planted
+  twin single-hunk-reverts the fix and fires
+  `INVARIANT VIOLATED m01_reallocation_movement_matches_request` plus
+  `INVARIANT VIOLATED m01_reallocation_flowcap_matches_movement`.
+  Regression fixture, not an audit or a discovery engine.
+  GPL-2.0-or-later (own code); vendored Euler Earn consumed under its
+  GPL branch. See
+  [caliperforge/euler-earn-invariants](https://github.com/caliperforge/euler-earn-invariants).
+
 - **`uniswap-v4-invariants`** — defender-side invariant harness for
   Uniswap v4 hooks. Recurring bug classes expressed as stateful
   invariants on real v4-core, each shipped as a clean and planted-bug
@@ -128,6 +145,18 @@ portfolio is protocol and smart-contract security.
   eval falsifiable by pairing every CLEAN claim to a PLANTED control. Not a
   model ranking; not a jailbreak discovery. Apache-2.0. See
   [caliperforge/cf-modeleval](https://github.com/caliperforge/cf-modeleval).
+- **`solana-invariant-atlas`** — defender-side invariant atlas for Solana
+  programs: recurring bug classes as clean / planted twin pairs on real
+  targets, running in CI on every push. Apache-2.0. See
+  [caliperforge/solana-invariant-atlas](https://github.com/caliperforge/solana-invariant-atlas).
+- **`taiko-equivalence`** — differential equivalence tests for Taiko's
+  Type-1 Ethereum-equivalence guarantee, encoded as clean / planted twin
+  Foundry projects. AI-augmented, hard-disclosed. Apache-2.0. See
+  [caliperforge/taiko-equivalence](https://github.com/caliperforge/taiko-equivalence).
+- **`soroban-invariant-atlas`** — Soroban (Stellar) stateful invariant
+  atlas: clean / planted twin fixtures over already-public Soroban
+  findings. AI-augmented, hard-disclosed. Apache-2.0 OR MIT. See
+  [caliperforge/soroban-invariant-atlas](https://github.com/caliperforge/soroban-invariant-atlas).
 
 ## Receipts
 
