@@ -113,6 +113,24 @@
     }, obj);
   }
 
+  // Live-compute days_running from launch_date. Runs on every page load so
+  // the counter is always current regardless of when org_stats.json was
+  // last regenerated. Convention: launch_date IS day 1 (inclusive), so
+  //   days = floor((now - launch)/86400000) + 1
+  // Source-of-truth for the +1 rule: site/data/org_stats.json.sources.days_running.
+  // Falls back to the JSON value only when launch_date is missing/unparseable.
+  // Ticket: T-site-staleness-durable-fix-2026-07-14.
+  function computeDaysRunning(orgFeed) {
+    if (!orgFeed) return undefined;
+    var launch = orgFeed.launch_date;
+    if (!launch) return orgFeed.days_running;
+    var launchMs = Date.parse(launch);
+    if (isNaN(launchMs)) return orgFeed.days_running;
+    var diff = Date.now() - launchMs;
+    if (diff < 0) return orgFeed.days_running;
+    return Math.floor(diff / 86400000) + 1;
+  }
+
   function fillOne(el, spec, feeds) {
     var src = feeds[spec[0]];
     if (!src) return;
@@ -122,6 +140,16 @@
   }
 
   function fillStats(feeds) {
+    // days_running is live-computed client-side (see computeDaysRunning above)
+    // so the counter is always current even when org_stats.json is stale.
+    // Overlay the computed value onto the org feed BEFORE binding runs — every
+    // key that resolves days_running (cf-key + legacy data-stat) picks it up.
+    if (feeds.org) {
+      var computed = computeDaysRunning(feeds.org);
+      if (computed !== undefined && computed !== null) {
+        feeds.org.days_running = computed;
+      }
+    }
     // Primary: data-cf-key (single-SoT covered by drift check).
     Array.prototype.forEach.call(document.querySelectorAll('[data-cf-key]'), function (el) {
       var spec = STATS[el.getAttribute('data-cf-key')];
@@ -212,7 +240,33 @@
     });
   }
 
+  // Read launch_date from the static fallback span in the DOM. Used as a
+  // last-resort source for the client-side days_running compute when the
+  // org_stats.json fetch fails (page offline, CDN glitch, etc.). Keeps the
+  // date counter self-healing.
+  function domLaunchDate() {
+    var el = document.querySelector('[data-cf-key="launch_date"]');
+    return el ? el.textContent.trim() : '';
+  }
+
+  function fillDaysRunningFromDom() {
+    var launch = domLaunchDate();
+    if (!launch) return;
+    var launchMs = Date.parse(launch);
+    if (isNaN(launchMs)) return;
+    var diff = Date.now() - launchMs;
+    if (diff < 0) return;
+    var days = Math.floor(diff / 86400000) + 1;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-cf-key="days_running"], [data-stat="org.days_running"]'), function (el) {
+      el.textContent = formatInt(days);
+    });
+  }
+
   function run() {
+    // Live-compute the day counter immediately from the DOM launch_date so
+    // the number is right on first paint even before the fetch resolves —
+    // and stays right even if the fetch fails outright.
+    fillDaysRunningFromDom();
     Promise.all([
       fetchJSON(FEEDS.org).catch(function (e) { console.warn('[caliper-data]', e); return null; }),
       fetchJSON(FEEDS.caught).catch(function (e) { console.warn('[caliper-data]', e); return null; })
