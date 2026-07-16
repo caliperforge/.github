@@ -3,7 +3,7 @@
 
   <url>
     <loc>https://caliperforge.com/</loc>
-    <lastmod>2026-06-22</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -38,7 +38,7 @@
 
   <url>
     <loc>https://caliperforge.com/blog/</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -93,6 +93,13 @@
   </url>
 
   <url>
+    <loc>https://caliperforge.com/blog/08_planted-twin-methodology</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
     <loc>https://caliperforge.com/blog/09_authentication-is-not-authorization</loc>
     <lastmod>2026-06-19</lastmod>
     <changefreq>never</changefreq>
@@ -109,6 +116,41 @@
   <url>
     <loc>https://caliperforge.com/blog/11_syscoin-conservation-mint-without-burn</loc>
     <lastmod>2026-06-22</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://caliperforge.com/blog/12_liquidity-penalty-conservation-uniswap-v4-hook</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://caliperforge.com/blog/13_fee-direction-integrity-uniswap-v4-hook</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://caliperforge.com/blog/14_share-accounting-solvency-euler-earn-m01</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://caliperforge.com/blog/16_the-gate-that-caught-the-secret-scan-gap</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://caliperforge.com/blog/17_multi-seed-reachability-hardening</loc>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>never</changefreq>
     <priority>0.6</priority>
   </url>
