@@ -3,17 +3,17 @@
   "_generated": true,
   "_source": "ops/qa_verdicts/control_effectiveness.jsonl + ops/catch_corpus/",
   "_do_not_edit": "regenerate via scripts/ops/caught_public_projection.py",
-  "last_updated": "2026-08-10T12:40:01Z",
+  "last_updated": "2026-08-11T12:40:01Z",
   "window_start": "2026-06-04",
-  "window_end": "2026-08-10",
+  "window_end": "2026-08-11",
   "metrics": {
-    "tp": 46,
+    "tp": 48,
     "fp": 0,
     "fn": 23,
     "tn": 0,
-    "adjudicated": 0,
-    "catch_rate": 0.6667,
-    "catch_rate_display": "67%",
+    "adjudicated": 2,
+    "catch_rate": 0.6761,
+    "catch_rate_display": "68%",
     "precision": 1.0,
     "precision_display": "100%",
     "false_positive_rate": null,
@@ -21,7 +21,7 @@
     "catch_rate_caveat": "66% is not a decline from 83%. The two are computed over different records: the 83% never counted the CEO-caught class at all, so it was a rate over a record that excluded most of our misses.",
     "by_public_gate": {
       "content_qa_4a": {
-        "tp": 26,
+        "tp": 28,
         "fp": 0,
         "tn": 0,
         "fn": 1
@@ -148,7 +148,9 @@
       "tp-content-qa-design-notes-ecf1985c500e-20260702",
       "tp-content-qa-draft-2026-06-12-bb7cd2e61738-20260701",
       "tp-content-qa-external-funder-email-final--4209cdbf0022-20260702",
+      "tp-content-qa-full-bba6e4414a91-20260811",
       "tp-content-qa-handoff-4a-2026-06-13-c2e1f4047640-20260701",
+      "tp-content-qa-p032-c9g-4a-e87c8e4a928c-20260811",
       "tp-content-qa-preflip-2026-06-11-93579fd6b416-20260701",
       "tp-content-qa-r-3-substack-note-blog15-sor-501889285d87-20260714",
       "tp-content-qa-reachability-comms-package-7-7304bdc43820-20260714",
@@ -162,13 +164,20 @@
     ]
   },
   "by_gate": {
-    "content_qa": 0,
-    "code_quality": 0,
-    "ceo_hold": 0,
+    "content_qa": 4,
+    "code_quality": 7,
+    "ceo_hold": 96,
     "task_hygiene": 0,
     "audit_cycle": 1
   },
-  "by_agent": [],
+  "by_agent": [
+    {
+      "agent": "content_qa_reviewer",
+      "pct": "100%",
+      "n": 2,
+      "stops": 4
+    }
+  ],
   "receipts": [
     {
       "id": "a-loopscale-presend-oracle-framing-2026-06-26",
