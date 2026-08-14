@@ -1,13 +1,13 @@
 {
   "schema": "org_stats.v1",
-  "last_updated": "2026-08-13T12:40:00Z",
-  "as_of": "2026-08-13",
+  "last_updated": "2026-08-14T12:40:00Z",
+  "as_of": "2026-08-14",
   "launch_date": "2026-05-27",
   "specialized_agents": 40,
-  "logged_agent_decisions": 4534,
-  "gate_reviews": 4534,
-  "agent_dispatches": 2681,
-  "days_running": 79,
+  "logged_agent_decisions": 4556,
+  "gate_reviews": 4556,
+  "agent_dispatches": 2725,
+  "days_running": 80,
   "catch": {
     "tp": 51,
     "fp": 0,
@@ -17,15 +17,15 @@
     "precision_display": "100%",
     "false_positive_rate_display": "n/a",
     "window_start": "2026-06-04",
-    "window_end": "2026-08-13"
+    "window_end": "2026-08-14"
   },
   "stat_as_of": {
-    "specialized_agents": "2026-08-13",
-    "logged_agent_decisions": "2026-08-13",
-    "gate_reviews": "2026-08-13",
-    "agent_dispatches": "2026-08-13",
-    "days_running": "2026-08-13",
-    "catch": "2026-08-13"
+    "specialized_agents": "2026-08-14",
+    "logged_agent_decisions": "2026-08-14",
+    "gate_reviews": "2026-08-14",
+    "agent_dispatches": "2026-08-14",
+    "days_running": "2026-08-14",
+    "catch": "2026-08-14"
   },
   "sources": {
     "specialized_agents": "agents/_roster.json (len(roles))",
