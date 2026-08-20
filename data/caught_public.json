@@ -3,17 +3,17 @@
   "_generated": true,
   "_source": "ops/qa_verdicts/control_effectiveness.jsonl + ops/catch_corpus/",
   "_do_not_edit": "regenerate via scripts/ops/caught_public_projection.py",
-  "last_updated": "2026-08-18T12:40:01Z",
+  "last_updated": "2026-08-20T12:40:00Z",
   "window_start": "2026-06-04",
-  "window_end": "2026-08-18",
+  "window_end": "2026-08-20",
   "metrics": {
-    "tp": 120,
+    "tp": 143,
     "fp": 0,
     "fn": 27,
     "tn": 0,
     "adjudicated": 9,
-    "catch_rate": 0.8163,
-    "catch_rate_display": "82%",
+    "catch_rate": 0.8412,
+    "catch_rate_display": "84%",
     "precision": 1.0,
     "precision_display": "100%",
     "false_positive_rate": null,
@@ -21,13 +21,13 @@
     "catch_rate_caveat": "66% is not a decline from 83%. The two are computed over different records: the 83% never counted the CEO-caught class at all, so it was a rate over a record that excluded most of our misses.",
     "by_public_gate": {
       "content_qa_4a": {
-        "tp": 31,
+        "tp": 32,
         "fp": 0,
         "tn": 0,
         "fn": 3
       },
       "code_quality_4b": {
-        "tp": 7,
+        "tp": 8,
         "fp": 0,
         "tn": 0,
         "fn": 4
@@ -39,7 +39,7 @@
         "fn": 0
       },
       "structural_architectural": {
-        "tp": 77,
+        "tp": 98,
         "fp": 0,
         "tn": 0,
         "fn": 16
@@ -167,13 +167,30 @@
       "completion-audit-code_quality_reviewer-T-taiko-equivalence-4b-gate-2026-07-03-2026-07-03",
       "completion-audit-content_qa_reviewer-T-4C-5-4a-on-nine-gates-site-page-2026-07-29-2026-07-29",
       "completion-audit-content_qa_reviewer-T-4a-blog17-creditline-spot-2026-07-14-2026-07-14",
+      "completion-audit-content_qa_reviewer-T-DIR-P035-755-MSG-4A-GATE-2026-08-19-2026-08-19",
+      "completion-audit-content_qa_reviewer-T-DIR-P035-755-MSG-4A-REGATE-2026-08-19-2026-08-19",
       "completion-audit-content_qa_reviewer-T-P035-A6FIX-A2-4A-RERUN-2026-08-17-2026-08-17",
       "completion-audit-content_qa_reviewer-T-P035-D-4A-GATE-A6-MESSAGE-2026-08-16-2026-08-17",
+      "completion-audit-director-T-COO-755-BUILD-LOCAL-2026-08-19-2026-08-20",
+      "completion-audit-director-T-COO-755-BUILD-THE-REDUCTION-2026-08-19-2026-08-20",
+      "completion-audit-director-T-COO-755-FORK-CI-2026-08-19-2026-08-20",
+      "completion-audit-director-T-COO-755-REDUCTION-PLAN-2026-08-19-2026-08-19",
+      "completion-audit-director-T-COO-755-RUNPLAN-EXECUTE-2026-08-19-2026-08-19",
+      "completion-audit-director-T-COO-LANE-MAP-DRAFT-FIRST-2026-08-19-2026-08-19",
+      "completion-audit-director-T-COO-MECHGREEN-SIBLING-SURFACE-SWEEP-2026-08-19-2026-08-19",
       "completion-audit-director-T-COO-WEB-ACCESS-COLLAPSE-TO-TWO-2026-08-15-2026-08-16",
       "completion-audit-director-T-COO-WEB-ACCESS-ROSTER-DRIVEN-2026-08-15-2026-08-15",
+      "completion-audit-engineering_lead-T-DIR-P035-757-PR-REVERIFY-2026-08-18-2026-08-18",
       "completion-audit-engineering_lead-T-crm-v2-datamodel-migration-2026-07-09-2026-07-10",
       "completion-audit-engineering_lead-T-next-planted-twin-scope-2026-07-06-2026-07-06",
       "completion-audit-external_claims_reviewer-T-4C-2-probe-tier1-public-2026-07-29-2026-07-29",
+      "completion-audit-external_claims_reviewer-T-DIR-P035-755-MSG-4C-GATE-2026-08-19-2026-08-19",
+      "completion-audit-external_claims_reviewer-T-DIR-P035-755-MSG-4C-REGATE-2026-08-19-2026-08-19",
+      "completion-audit-external_claims_reviewer-T-DIR-P035-757-ASK-TEXT-GATE-2026-08-18-2026-08-18",
+      "completion-audit-external_claims_reviewer-T-DIR-P035-757-ASK-TEXT-REGATE-2026-08-18-2026-08-18",
+      "completion-audit-external_claims_reviewer-T-DIR-P035-757-BODY-CUT-REGATE-2026-08-18-2026-08-18",
+      "completion-audit-external_claims_reviewer-T-DIR-P035-757-PR-TEXT-GATE-2026-08-18-2026-08-18",
+      "completion-audit-external_claims_reviewer-T-DIR-P035-766-P1-TEXT-GATE-2026-08-18-2026-08-18",
       "completion-audit-market_radar-T-COO-solana-lane-factfix-2026-07-25-2026-07-25",
       "completion-audit-market_radar-T-COO-solana-lane-scan-2026-07-25-2026-07-25",
       "completion-audit-research_lab_lead-T-COO-lane-scan-compile-2026-07-25-2026-07-25",
@@ -183,11 +200,15 @@
       "completion-audit-research_lead-T-uniswap-hookdev-discovery-2026-07-14-2026-07-14",
       "completion-audit-rust_anchor_specialist-T-COO-RUST-INSTALL-SURFPOOL-AND-PATCH-2026-08-15-2026-08-16",
       "completion-audit-rust_anchor_specialist-T-COO-RUST-TOOLCHAIN-SELF-AUDIT-2026-08-15-2026-08-16",
+      "completion-audit-rust_anchor_specialist-T-DIR-P035-766-P1-BUILD-2026-08-18-2026-08-18",
       "completion-audit-rust_anchor_specialist-T-P035-RUST-BLIND-755-2026-08-16-2026-08-17",
       "completion-audit-rust_anchor_specialist-T-P035-RUST-DRYRUN-755-2026-08-16-2026-08-16",
       "completion-audit-solana_lane_driver-T-COO-SOLANA-LANE-MONITORING-PROPOSAL-2026-08-15-2026-08-16",
       "completion-audit-solidity_specialist-T-caliper-multifile-adopter-scaffold-2026-07-15-2026-07-15",
       "completion-audit-solidity_specialist-T-pag1-euler-earn-m01-twin-2026-07-09-2026-07-09",
+      "completion-audit-test_submit_engineer-T-DIR-P035-757-ASK-DRAFT-2026-08-18-2026-08-18",
+      "completion-audit-test_submit_engineer-T-DIR-P035-757-ASK-DRAFT-FIX-2026-08-18-2026-08-18",
+      "completion-audit-test_submit_engineer-T-DIR-P035-757-ASK-R2-1-STALE-OUTPUT-2026-08-18-2026-08-18",
       "completion-audit-test_submit_engineer-T-DIR-P036-282-BRANCH-STATE-AND-COMMENT-2026-08-16-2026-08-16",
       "fn-char-limit-build-miss-2026-06-28",
       "fn-code-quality-governance-pack-b92a5fd2e1f8-20260701",
@@ -203,12 +224,14 @@
       "gate-coo-ignored-standing-register-instruction-2026-08-01",
       "gate-coo-roadmap-4a-fail-2026-08-01",
       "tp-code-quality-0-1-1-regate-2026-06-12-0fb3601ea7bd-20260701",
+      "tp-code-quality-4b-f3-dependency-claim-7bd00f50c38f-20260819",
       "tp-code-quality-default-b9a3db87388d-20260714",
       "tp-code-quality-posthoc-2026-06-11-d53efa4b0212-20260701",
       "tp-code-quality-preflip-2026-06-10-751b0656dccb-20260701",
       "tp-code-quality-preflip-2026-06-11-0331919ab0e3-20260701",
       "tp-code-quality-s3r-scoped-re-gate-check-vii-7774836399ea-20260813",
       "tp-code-quality-t-p038-surfpool-567-4b-fixal-1d40420a5887-20260817",
+      "tp-content-qa-4a-a6-message-body-1d9a53b438f1-20260819",
       "tp-content-qa-application-regate-2026-06-1-692ba4b6f42f-20260701",
       "tp-content-qa-bundle-17930faa3565-20260714",
       "tp-content-qa-cascade-2026-06-11-703c44d8cc45-20260701",
@@ -240,9 +263,9 @@
     ]
   },
   "by_gate": {
-    "content_qa": 10,
-    "code_quality": 10,
-    "ceo_hold": 34,
+    "content_qa": 8,
+    "code_quality": 8,
+    "ceo_hold": 29,
     "task_hygiene": 0,
     "audit_cycle": 1
   },
@@ -251,13 +274,13 @@
       "agent": "code_quality_reviewer",
       "pct": "50%",
       "n": 4,
-      "stops": 10
+      "stops": 8
     },
     {
       "agent": "content_qa_reviewer",
       "pct": "60%",
       "n": 5,
-      "stops": 10
+      "stops": 8
     }
   ],
   "receipts": [
