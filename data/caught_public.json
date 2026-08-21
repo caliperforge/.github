@@ -3,16 +3,16 @@
   "_generated": true,
   "_source": "ops/qa_verdicts/control_effectiveness.jsonl + ops/catch_corpus/",
   "_do_not_edit": "regenerate via scripts/ops/caught_public_projection.py",
-  "last_updated": "2026-08-20T12:40:00Z",
+  "last_updated": "2026-08-21T01:31:00Z",
   "window_start": "2026-06-04",
-  "window_end": "2026-08-20",
+  "window_end": "2026-08-21",
   "metrics": {
-    "tp": 143,
+    "tp": 158,
     "fp": 0,
-    "fn": 27,
+    "fn": 31,
     "tn": 0,
     "adjudicated": 9,
-    "catch_rate": 0.8412,
+    "catch_rate": 0.836,
     "catch_rate_display": "84%",
     "precision": 1.0,
     "precision_display": "100%",
@@ -21,16 +21,16 @@
     "catch_rate_caveat": "66% is not a decline from 83%. The two are computed over different records: the 83% never counted the CEO-caught class at all, so it was a rate over a record that excluded most of our misses.",
     "by_public_gate": {
       "content_qa_4a": {
-        "tp": 32,
+        "tp": 34,
         "fp": 0,
         "tn": 0,
-        "fn": 3
+        "fn": 5
       },
       "code_quality_4b": {
-        "tp": 8,
+        "tp": 9,
         "fp": 0,
         "tn": 0,
-        "fn": 4
+        "fn": 6
       },
       "audit_cycle": {
         "tp": 1,
@@ -39,7 +39,7 @@
         "fn": 0
       },
       "structural_architectural": {
-        "tp": 98,
+        "tp": 110,
         "fp": 0,
         "tn": 0,
         "fn": 16
@@ -124,18 +124,25 @@
       "ceo-coo-violated-published-boundary-2026-08-03",
       "completion-audit-ai_hr_lead-T-COO-RUST-CARD-TOOLING-AND-GATE-SCOPE-2026-08-15-2026-08-16",
       "completion-audit-ai_hr_lead-T-COO-WEB-ACCESS-A2-ROSTER-VALUES-2026-08-15-2026-08-15",
+      "completion-audit-ai_hr_lead-T-DIR-DIRECTOR-CARD-COMPLETION-LINE-2026-08-20-2026-08-20",
+      "completion-audit-ai_hr_lead-T-DIR-P035-PROCESS-REVIEW-EVIDENCE-2026-08-20-2026-08-20",
       "completion-audit-ai_hr_lead-T-DIR-P035-WIRE-SEATS-A1-SHAPE-2026-08-15-2026-08-16",
+      "completion-audit-ai_hr_lead-T-DIR-SIX-RECS-SPEC-S1-2026-08-20-2026-08-20",
       "completion-audit-ai_hr_lead-T-P035-NB-WORKLIST-F1-F2-CARD-STATUS-2026-08-15-2026-08-15",
       "completion-audit-ai_hr_lead-T-P035-RUSTCARD-TWO-CORRECTIONS-2026-08-16-2026-08-16",
       "completion-audit-ai_hr_lead-T-P035-WEB-ACCESS-COLLAPSE-A2-A3-2026-08-15-2026-08-16",
+      "completion-audit-ai_ops-T-DIR-P035-PROCESS-REVIEW-REVIEW-2026-08-20-2026-08-20",
       "completion-audit-ai_ops-T-DIR-P036-282-REDO-COMPARISON-2026-08-16-2026-08-16",
       "completion-audit-ai_ops-T-P035-A6FIX-B-WORTH-TEST-2026-08-17-2026-08-17",
       "completion-audit-ai_ops-T-automation-inventory-usage-risk-audit-2026-07-10-2026-07-10",
       "completion-audit-ai_ops-T-review-layer2-engineering_lead-2026-07-05-2026-07-05",
       "completion-audit-backend_devops_eng-T-COO-ASK-TRACKER-UNHALT-2026-08-15-2026-08-16",
       "completion-audit-backend_devops_eng-T-COO-COMMIT-GATE-REARM-2026-08-15-2026-08-16",
+      "completion-audit-backend_devops_eng-T-DIR-DISPATCH-TEMPLATE-2026-08-20-2026-08-20",
       "completion-audit-backend_devops_eng-T-DIR-P035-WIRE-SEATS-A2-HARNESS-2026-08-15-2026-08-16",
+      "completion-audit-backend_devops_eng-T-DIR-SIX-RECS-BUILD-S2-2026-08-20-2026-08-20",
       "completion-audit-backend_devops_eng-T-ORG-W4-B5-three-paused-crons-attended-2026-08-04-2026-08-04",
+      "completion-audit-backend_devops_eng-T-P035-HONEST-EXITS-2026-08-20-2026-08-20",
       "completion-audit-backend_devops_eng-T-P035-NB-C1-RED-PREMISE-CHECKER-2026-08-15-2026-08-15",
       "completion-audit-backend_devops_eng-T-P035-NB-C2-RED-COLD-READER-2026-08-15-2026-08-15",
       "completion-audit-backend_devops_eng-T-P035-NB-C3-RED-GATE-STOPS-CHAIN-2026-08-15-2026-08-15",
@@ -173,9 +180,12 @@
       "completion-audit-content_qa_reviewer-T-P035-D-4A-GATE-A6-MESSAGE-2026-08-16-2026-08-17",
       "completion-audit-director-T-COO-755-BUILD-LOCAL-2026-08-19-2026-08-20",
       "completion-audit-director-T-COO-755-BUILD-THE-REDUCTION-2026-08-19-2026-08-20",
+      "completion-audit-director-T-COO-755-CUT-THE-NOTE-2026-08-20-2026-08-20",
       "completion-audit-director-T-COO-755-FORK-CI-2026-08-19-2026-08-20",
       "completion-audit-director-T-COO-755-REDUCTION-PLAN-2026-08-19-2026-08-19",
       "completion-audit-director-T-COO-755-RUNPLAN-EXECUTE-2026-08-19-2026-08-19",
+      "completion-audit-director-T-COO-755-SHIP-SHEET-FIRE-2026-08-20-2026-08-20",
+      "completion-audit-director-T-COO-FIX-THE-DISPATCH-FLAG-2026-08-20-2026-08-20",
       "completion-audit-director-T-COO-LANE-MAP-DRAFT-FIRST-2026-08-19-2026-08-19",
       "completion-audit-director-T-COO-MECHGREEN-SIBLING-SURFACE-SWEEP-2026-08-19-2026-08-19",
       "completion-audit-director-T-COO-WEB-ACCESS-COLLAPSE-TO-TWO-2026-08-15-2026-08-16",
@@ -204,8 +214,10 @@
       "completion-audit-rust_anchor_specialist-T-P035-RUST-BLIND-755-2026-08-16-2026-08-17",
       "completion-audit-rust_anchor_specialist-T-P035-RUST-DRYRUN-755-2026-08-16-2026-08-16",
       "completion-audit-solana_lane_driver-T-COO-SOLANA-LANE-MONITORING-PROPOSAL-2026-08-15-2026-08-16",
+      "completion-audit-solana_lane_driver-T-P032-SLD-TARGET-SCAN-SURFPOOL-PAYKIT-2026-08-20-2026-08-20",
       "completion-audit-solidity_specialist-T-caliper-multifile-adopter-scaffold-2026-07-15-2026-07-15",
       "completion-audit-solidity_specialist-T-pag1-euler-earn-m01-twin-2026-07-09-2026-07-09",
+      "completion-audit-swift_specialist-T-P035-FLOOR-STEP-READABILITY-2026-08-20-2026-08-20",
       "completion-audit-test_submit_engineer-T-DIR-P035-757-ASK-DRAFT-2026-08-18-2026-08-18",
       "completion-audit-test_submit_engineer-T-DIR-P035-757-ASK-DRAFT-FIX-2026-08-18-2026-08-18",
       "completion-audit-test_submit_engineer-T-DIR-P035-757-ASK-R2-1-STALE-OUTPUT-2026-08-18-2026-08-18",
@@ -272,15 +284,15 @@
   "by_agent": [
     {
       "agent": "code_quality_reviewer",
-      "pct": "50%",
-      "n": 4,
-      "stops": 8
+      "pct": "100%",
+      "n": 1,
+      "stops": 6
     },
     {
       "agent": "content_qa_reviewer",
-      "pct": "60%",
-      "n": 5,
-      "stops": 8
+      "pct": "100%",
+      "n": 1,
+      "stops": 4
     }
   ],
   "receipts": [
