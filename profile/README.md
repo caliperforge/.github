@@ -162,8 +162,9 @@ smart-contract security.
   16-seed reachability certification). Apache-2.0. See
   [caliperforge/agentic-payments-regression](https://github.com/caliperforge/agentic-payments-regression).
 - **`x402-regression-base`** — CI-native planted-twin regression harness
-  for the x402 agentic-payments settlement threat model. Live on Base
-  mainnet and Sepolia. Apache-2.0. See
+  for the x402 agentic-payments settlement threat model. Reference
+  facilitator deployed and exercised on Base mainnet and Sepolia;
+  receipts in `docs/basescan/`. Apache-2.0. See
   [caliperforge/x402-regression-base](https://github.com/caliperforge/x402-regression-base).
 - **`solana-property-benchmark`** — pre-registered benchmark measuring
   how well automatically generated security invariants cover known
