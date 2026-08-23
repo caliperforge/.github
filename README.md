@@ -155,7 +155,7 @@ KYC-able. Accountable to a named human.
 
 - Operator: Michael Moffett
 - Direct: michael@caliperforge.com
-- Team: team@caliperforge.com
+- Team: michael@caliperforge.com
 - Web: [caliperforge.com](https://caliperforge.com)
 - X: [@caliperforge](https://x.com/caliperforge)
 - Farcaster: [@caliperforge](https://farcaster.xyz/caliperforge)
@@ -165,4 +165,4 @@ KYC-able. Accountable to a named human.
 ## Contact
 
 For grant collaboration, hired-gun engagements, security tooling
-inquiries, or contribution questions: **team@caliperforge.com**.
+inquiries, or contribution questions: **michael@caliperforge.com**.
