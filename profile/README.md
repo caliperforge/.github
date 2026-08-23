@@ -152,6 +152,24 @@ portfolio is protocol and smart-contract security.
   atlas: clean / planted twin fixtures over already-public Soroban
   findings. AI-augmented, hard-disclosed. Apache-2.0 OR MIT. See
   [caliperforge/soroban-invariant-atlas](https://github.com/caliperforge/soroban-invariant-atlas).
+- **`agentic-payments-regression`** — open-source library of CI-runnable
+  planted-twin reproductions for the x402 agentic-payments threat model
+  (clean / planted pairs, `INVARIANT VIOLATED` marker convention,
+  16-seed reachability certification). Apache-2.0. See
+  [caliperforge/agentic-payments-regression](https://github.com/caliperforge/agentic-payments-regression).
+- **`x402-regression-base`** — CI-native planted-twin regression harness
+  for the x402 agentic-payments settlement threat model. Live on Base
+  mainnet and Sepolia. Apache-2.0. See
+  [caliperforge/x402-regression-base](https://github.com/caliperforge/x402-regression-base).
+- **`solana-property-benchmark`** — pre-registered benchmark measuring
+  how well automatically generated security invariants cover known
+  vulnerability classes in Solana Anchor programs; the full evaluation
+  protocol was published here before any result existed. Apache-2.0. See
+  [caliperforge/solana-property-benchmark](https://github.com/caliperforge/solana-property-benchmark).
+- **`taler-auditor-fault-injection`** — mutation-based fault-injection
+  coverage for the GNU Taler exchange auditor (#9828 recoup-of-refresh,
+  post-#9900 refresh paths). Apache-2.0. See
+  [caliperforge/taler-auditor-fault-injection](https://github.com/caliperforge/taler-auditor-fault-injection).
 
 ## Receipts
 
