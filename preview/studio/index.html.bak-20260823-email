@@ -38,7 +38,7 @@
     <a href="/engagements/" class="nav-link dim">Engagements</a>
     <a href="/ai-disclosure" class="nav-link dim">AI policy</a>
     <a href="https://github.com/caliperforge" class="nav-link">GitHub</a>
-    <a href="mailto:michael@caliperforge.com" class="nav-cta">Contact</a>
+    <a href="mailto:team@caliperforge.com" class="nav-cta">Contact</a>
   </div>
 </nav>
 
@@ -144,7 +144,7 @@
         </div>
         <div class="org-role">
           <a href="../what-we-caught/" style="color:var(--ice);">Gate record →</a>
-          <span class="org-role-desc"><span class="cf-m" data-cf-key="catch_rate_display">88%</span> catch rate, published</span>
+          <span class="org-role-desc"><span class="cf-m" data-cf-key="catch_rate_display">87%</span> catch rate, published</span>
         </div>
       </div>
     </div>
@@ -218,7 +218,7 @@
     <div class="contact-strip">
       <div class="contact-item"><div class="contact-label">Operator</div><div class="contact-value">Michael Moffett</div></div>
       <div class="contact-item"><div class="contact-label">Direct</div><div class="contact-value"><a href="mailto:michael@caliperforge.com">michael@caliperforge.com</a></div></div>
-      <div class="contact-item"><div class="contact-label">Team</div><div class="contact-value"><a href="mailto:michael@caliperforge.com">michael@caliperforge.com</a></div></div>
+      <div class="contact-item"><div class="contact-label">Team</div><div class="contact-value"><a href="mailto:team@caliperforge.com">team@caliperforge.com</a></div></div>
       <div class="contact-item"><div class="contact-label">GitHub</div><div class="contact-value"><a href="https://github.com/caliperforge">caliperforge</a></div></div>
       <div class="contact-item"><div class="contact-label">X</div><div class="contact-value"><a href="https://x.com/caliperforge">@caliperforge</a></div></div>
       <div class="contact-item"><div class="contact-label">ENS</div><div class="contact-value"><a href="https://app.ens.domains/caliperforge.eth">caliperforge.eth</a></div></div>

@@ -3,17 +3,17 @@
   "_generated": true,
   "_source": "ops/qa_verdicts/control_effectiveness.jsonl + ops/catch_corpus/",
   "_do_not_edit": "regenerate via scripts/ops/caught_public_projection.py",
-  "last_updated": "2026-08-23T14:06:00Z",
+  "last_updated": "2026-08-23T14:01:00Z",
   "window_start": "2026-06-04",
   "window_end": "2026-08-23",
   "metrics": {
-    "tp": 189,
+    "tp": 188,
     "fp": 0,
     "fn": 27,
     "tn": 0,
     "adjudicated": 9,
-    "catch_rate": 0.875,
-    "catch_rate_display": "88%",
+    "catch_rate": 0.8744,
+    "catch_rate_display": "87%",
     "precision": 1.0,
     "precision_display": "100%",
     "false_positive_rate": null,
@@ -39,7 +39,7 @@
         "fn": 0
       },
       "structural_architectural": {
-        "tp": 144,
+        "tp": 143,
         "fp": 0,
         "tn": 0,
         "fn": 16
@@ -234,7 +234,6 @@
       "completion-audit-research_lab_lead-T-COO-lane-scan-compile-2026-07-25-2026-07-25",
       "completion-audit-research_lab_lead-T-DIR-APART-V3-S3-REBUILD-2026-08-22-2026-08-23",
       "completion-audit-research_lead-T-DIR-APART-V3-S1-CITATION-ANCHOR-PACK-2026-08-22-2026-08-22",
-      "completion-audit-research_lead-T-DIR-APART-W18-CITATION-PACK-R14-CORRECTION-2026-08-23-2026-08-23",
       "completion-audit-research_lead-T-P032-COMMS-2606-30587-DEEP-READ-2026-08-22-2026-08-22",
       "completion-audit-research_lead-T-P032-COMMS-PRIOR-WORK-2026-08-22-2026-08-22",
       "completion-audit-research_lead-T-grant-pipeline-cadence-plan-2026-07-13-2026-07-14",
@@ -358,7 +357,7 @@
       "caught_by": "§4a community-health regate",
       "caught_iso": "2026-06-12",
       "fix_ref": "commit 0bff2c4",
-      "frame": "The §4b reviewer audited the cf-invariants community-health pack (CODE_OF_CONDUCT, CONTRIBUTING, GOVERNANCE, SECURITY -- 455 lines across 4 files) for canonical-string consistency, including email, and passed it. Two days later, the §4a community-health gate caught <code>michael@caliperforge.com</code> at 4 sites in violation of the feedback-email-only policy and contradicting the live README's published security contact, <code>michael@caliperforge.com</code>. Email-string consistency was declared in §4b's scope; the policy mismatch was a §4b miss. Fix landed at commit <code>0bff2c4</code> via the §4a community-health regate."
+      "frame": "The §4b reviewer audited the cf-invariants community-health pack (CODE_OF_CONDUCT, CONTRIBUTING, GOVERNANCE, SECURITY -- 455 lines across 4 files) for canonical-string consistency, including email, and passed it. Two days later, the §4a community-health gate caught <code>security@caliperforge.com</code> at 4 sites in violation of the feedback-email-only policy and contradicting the live README's published security contact, <code>michael@caliperforge.com</code>. Email-string consistency was declared in §4b's scope; the policy mismatch was a §4b miss. Fix landed at commit <code>0bff2c4</code> via the §4a community-health regate."
     },
     {
       "id": "FN-2",
