@@ -26,9 +26,13 @@ reproductions, and ships under his own name as operator-of-record.
 
 Specialization velocity is the working pattern: a new chain, a new VM, a
 new specialist and a CI-verified tool with it, in days rather than months.
-Cairo (snforge) → Solana / Anchor (on Asymmetric Research's Crucible) was
-roughly one working session. The engine is domain-general; the current
-portfolio is protocol and smart-contract security.
+Solana / Anchor on Asymmetric Research's Crucible is the current lane.
+Four third-party programs — Jito tip-distribution, tip-payment,
+priority-fee-distribution, and the Pyth Solana Receiver — are ported onto
+shared rails (anchor-lang 1.0.1, Crucible v0.2.0), each on its own repo
+with its own CI, the fourth CI-green within 48 hours of the first. The
+engine is domain-general; the current portfolio is protocol and
+smart-contract security.
 
 ## What we ship now
 
@@ -65,7 +69,7 @@ portfolio is protocol and smart-contract security.
   Apache-2.0. See
   [caliperforge/invariant-atlas](https://github.com/caliperforge/invariant-atlas).
 
-- **`cf-invariants`** — AI-suggested stateful invariant testing for
+- **`cf-invariants-starknet`** — AI-suggested stateful invariant testing for
   Cairo 2.x on top of snforge. **Twelve** reference contracts deployed
   and Voyager-verified on Starknet Sepolia. Apache-2.0. See
   [caliperforge/cf-invariants-starknet](https://github.com/caliperforge/cf-invariants-starknet).
@@ -143,7 +147,7 @@ portfolio is protocol and smart-contract security.
     - [`cf-invariants-jito-tippayment`](https://github.com/caliperforge/cf-invariants-jito-tippayment): Jito tip-payment port; three class-shaped invariants against a clean reference and three planted twins.
     - [`cf-invariants-jito-priorityfee`](https://github.com/caliperforge/cf-invariants-jito-priorityfee): Jito priority-fee-distribution port; one monotonic-accounting invariant against a clean reference and one planted twin.
     - [`cf-invariants-pyth`](https://github.com/caliperforge/cf-invariants-pyth): Pyth Solana Receiver port; two class-shaped invariants against a clean reference and two planted twins.
-    - [`cf-invariants-anchor`](https://github.com/caliperforge/cf-invariants-anchor): pinned Anchor invariant-authoring crate the atlas driver consumes (core, suggest, emit, report).
+    - [`cf-invariants`](https://github.com/caliperforge/cf-invariants): pinned Anchor invariant-authoring crate the atlas driver consumes (core, suggest, emit, report).
 - **`taiko-equivalence`** — differential equivalence tests for Taiko's
   Type-1 Ethereum-equivalence guarantee, encoded as clean / planted twin
   Foundry projects. AI-augmented, hard-disclosed. Apache-2.0. See
