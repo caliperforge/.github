@@ -4,219 +4,51 @@
 
 AI research studio specializing in security & invariants.  ·  [**caliperforge.com**](https://caliperforge.com)
 
-CaliperForge researches autonomous systems you can verify, audit, and correct.
-Every shipped harness carries a clean reference where the invariant holds, a
-planted-bug twin where it fires, and a CI-asserted record of what our own
-gates caught. The receipts are the proof, not a claim — see
-[**what we caught**](https://caliperforge.com/what-we-caught).
+CaliperForge researches autonomous systems you can verify, audit, and correct. Every shipped harness carries a clean reference where the invariant holds, a planted-bug twin where it fires, and a CI-asserted record of what our own gates caught. The receipts are the proof. See [**what we caught**](https://caliperforge.com/what-we-caught).
 
-AI involvement is disclosed at point of use; full policy at
-[caliperforge.com/ai-disclosure](https://caliperforge.com/ai-disclosure)
-and in [./AI_DISCLOSURE.md](./AI_DISCLOSURE.md).
+AI involvement is disclosed at point of use; full policy at [caliperforge.com/ai-disclosure](https://caliperforge.com/ai-disclosure).
 
 ## How we work
 
-One operator (Michael Moffett, named below) orchestrates a small team of
-specialized AI agents — an audit engineer, a Cairo specialist, a Rust /
-Anchor specialist, a grant writer, a content reviewer, and others as the
-work calls for them. Each agent is scoped, has a defined output discipline,
-and cross-checks the others before anything leaves the workspace. The
-operator reviews every load-bearing decision, runs cold-environment
-reproductions, and ships under his own name as operator-of-record.
+One operator (Michael Moffett, named below) orchestrates a small team of specialized AI agents: a Rust / Anchor specialist, an audit engineer, a content reviewer, and others as the work calls for them. Each agent is scoped, has a defined output discipline, and cross-checks the others before anything leaves the workspace. The operator reviews every load-bearing decision, runs cold-environment reproductions, and ships under his own name as operator-of-record.
 
-Specialization velocity is the working pattern: a new chain, a new VM, a
-new specialist and a CI-verified tool with it, in days rather than months.
-Solana / Anchor on Asymmetric Research's Crucible is the current lane.
-Four third-party programs — Jito tip-distribution, tip-payment,
-priority-fee-distribution, and the Pyth Solana Receiver — are ported onto
-shared rails (anchor-lang 1.0.1, Crucible v0.2.0), each on its own repo
-with its own CI, the fourth CI-green within 48 hours of the first. The
-engine is domain-general; the current portfolio is protocol and
-smart-contract security.
+Specialization velocity is the working pattern: a new chain, a new VM, a new specialist and a CI-verified tool with it, in days rather than months. Solana / Anchor on Asymmetric Research's Crucible is the current lane: four third-party programs ported onto shared rails, each on its own repo with its own CI, the fourth CI-green within 48 hours of the first. The current portfolio is protocol and smart-contract security.
 
-## What we ship now
+## What we ship
 
-- **`euler-earn-invariants`** — defender-side stateful invariant harness
-  for Euler Earn allocator and vault share accounting, running against
-  real Euler Earn contracts (pinned submodule, no protocol mock). One
-  case ships in the initial cut, encoded as a same-source clean /
-  planted twin pair against Pashov Audit Group's M-01 finding on the
-  `PublicAllocator` <-> `EulerEarn` share-tracking boundary
-  (EulerEarn security review, 2025-07-25) and Euler Labs' fix commit
-  `f07f6b1c5e1e`. Both twins run in CI on every push: the clean twin
-  holds the encoded invariants under a stateful campaign; the planted
-  twin single-hunk-reverts the fix and fires
-  `INVARIANT VIOLATED m01_reallocation_movement_matches_request` plus
-  `INVARIANT VIOLATED m01_reallocation_flowcap_matches_movement`.
-  Regression fixture, not an audit or a discovery engine.
-  GPL-2.0-or-later (own code); vendored Euler Earn consumed under its
-  GPL branch. See
-  [caliperforge/euler-earn-invariants](https://github.com/caliperforge/euler-earn-invariants).
+Pinned below, Solana first. Everything else is on the [repository list](https://github.com/orgs/caliperforge/repositories).
 
-- **`uniswap-v4-invariants`** — defender-side invariant harness for
-  Uniswap v4 hooks. Recurring bug classes expressed as stateful
-  invariants on real v4-core, each shipped as a clean and planted-bug
-  twin pair that both run in CI on every push. Latest addition, went
-  public 2026-07-02. Apache-2.0. See
-  [caliperforge/uniswap-v4-invariants](https://github.com/caliperforge/uniswap-v4-invariants).
-
-- **`invariant-atlas`** — the Exploit→Invariant Atlas: six historical
-  DeFi exploits across four VMs (Cairo, Move/Sui, Solana, EVM), each
-  reconstructed as a same-source clean / planted twin where an
-  invariant property *would have* caught the bug class in pre-deploy
-  CI. First cross-VM, defender-side, pre-deploy CI benchmark of this
-  shape; clean passes / planted fires, both asserted on every push.
-  Apache-2.0. See
-  [caliperforge/invariant-atlas](https://github.com/caliperforge/invariant-atlas).
-
-- **`cf-invariants-starknet`** — AI-suggested stateful invariant testing for
-  Cairo 2.x on top of snforge. **Twelve** reference contracts deployed
-  and Voyager-verified on Starknet Sepolia. Apache-2.0. See
-  [caliperforge/cf-invariants-starknet](https://github.com/caliperforge/cf-invariants-starknet).
-- **`chimera-template-pack`** — reusable Foundry + Recon Chimera
-  scaffold for EVM build-to-win contest entries.
-- **`hyperevm-safety`** — open-source library of invariants and
-  CI-runnable property tests for HyperEVM lending protocols that
-  consume HyperCore oracle reads. Six HyperCore-boundary invariants
-  in v0.1 (oracle staleness, mark / oracle deviation, szDecimals
-  round-trip, precompile gas DoS, CoreWriter solvency window,
-  Chainlink-compat invariant catching adapters that defeat
-  staleness). All six run as CI-runnable property tests against a
-  clean reference under fuzz. Three fire `INVARIANT VIOLATED` on the
-  same CI run — the szDecimals round-trip (D-3) and Chainlink-compat
-  (D-6) planted twins, and the JELLY (Mar 2025) mark-price
-  manipulation reproduction (covering oracle staleness and mark /
-  oracle deviation, D-1/D-2) against a minimal lending-market
-  reference. Precompile gas DoS (D-4) and CoreWriter solvency window
-  (D-5) carry inline broken-reference tests demonstrating the bug
-  class deterministically. Built on `hyper-evm-lib` and the
-  CaliperForge `chimera-template-pack`. Apache-2.0. See
-  [caliperforge/hyperevm-safety](https://github.com/caliperforge/hyperevm-safety).
-- **`bsc-invariants`** — open-source library of invariants and
-  CI-runnable property tests for BNB Smart Chain DeFi protocols,
-  starting with PancakeSwap v3 (the canonical BSC DEX). Five
-  PancakeSwap v3 invariants ship in v0.0.2: P-1
-  FeeGrowthGlobalMonotonicity, P-2 TickInBounds, P-3
-  SqrtPriceX96InBounds, P-4 LiquidityEventConsistency, and P-5
-  FeeGrowthOutsideConsistency. P-1 ships with a planted-twin CI
-  pair: clean passes, planted leg fires
-  `INVARIANT VIOLATED feeGrowth_neverDecreases` and exits non-zero
-  on the same CI run. Venus (M2) and Stargate (M3) harnesses are
-  planned, not started. Not an audit; not a runtime monitor.
-  Apache-2.0. See
-  [caliperforge/bsc-invariants](https://github.com/caliperforge/bsc-invariants).
-- **`cf-invariants-verus-bridge-conservation`** — CI-verified reference
-  for the cross-side conservation invariant class in lock/mint bridges,
-  anchored on the Verus–Ethereum bridge exploit of 2026-05-18 (reported
-  losses USD 11.58M, per Halborn). The conservation rule existed in
-  prose; this repo lifts it to a one-line property:
-  `sum_locked_eth − sum_released_eth == sum_minted_verus − sum_burned_verus`.
-  Clean reference holds (0 violations); planted-bug twin breaks it
-  (counterexample emitted; `invariants_violated: 1` on the scorecard).
-  CI matrix asserts both outcomes on every push. Not an audit; not a
-  forensic report. Chimera-pattern harness (Recon Chimera + Foundry,
-  Echidna), tracking the CaliperForge `chimera-template-pack` pinning.
-  Apache-2.0. See
-  [caliperforge/cf-invariants-verus-bridge-conservation](https://github.com/caliperforge/cf-invariants-verus-bridge-conservation).
-- **`apart-global-south-lost-in-translation`** — Apart Global South
-  hackathon eval harness: a language-conditioned detection-rate eval
-  measuring whether AI code auditors catch planted bugs across EN, ES,
-  PT, and CS surface code. Uses Atlas planted-bug twins as the ground
-  truth; measures per-language detection rates to surface where auditor
-  accuracy degrades under language shift. Research artifact and eval
-  harness submitted for the Apart Global South track. Apache-2.0. See
-  [caliperforge/apart-global-south-lost-in-translation](https://github.com/caliperforge/apart-global-south-lost-in-translation).
-- **`cf-modeleval`**: planted-twin discrimination-power harness for AI safety
-  properties. Measures whether an evaluation check has falsifiable discrimination
-  power against a stated failure mode (prompt-injection resistance, sycophancy
-  resistance) across three providers (Anthropic, OpenAI, Groq). Paired CLEAN /
-  PLANTED legs with a fixed scorer and committed receipts; CI matrix re-asserts
-  every cell on every push. Methodology contribution: how to make an AI safety
-  eval falsifiable by pairing every CLEAN claim to a PLANTED control. Not a
-  model ranking; not a jailbreak discovery. Apache-2.0. See
-  [caliperforge/cf-modeleval](https://github.com/caliperforge/cf-modeleval).
-- **`solana-invariant-atlas`** is the flagship Solana catalog: recurring
-  bug classes as clean and planted twin pairs on real Solana programs,
-  running in CI on every push. Apache-2.0. See
-  [caliperforge/solana-invariant-atlas](https://github.com/caliperforge/solana-invariant-atlas).
-  The atlas cites its member ports (each a defender-side regression
-  fixture on the atlas's pinned rails, anchor-lang 1.0.1 and Crucible
-  v0.2.0) and consumes the anchor invariant-authoring crate as a pinned
-  git dependency. Ports live on their own repos, each with its own CI:
-    - [`cf-invariants-jito`](https://github.com/caliperforge/cf-invariants-jito): Jito tip-distribution port; four class-shaped invariants against a clean reference and four single-hunk planted twins.
-    - [`cf-invariants-jito-tippayment`](https://github.com/caliperforge/cf-invariants-jito-tippayment): Jito tip-payment port; three class-shaped invariants against a clean reference and three planted twins.
-    - [`cf-invariants-jito-priorityfee`](https://github.com/caliperforge/cf-invariants-jito-priorityfee): Jito priority-fee-distribution port; one monotonic-accounting invariant against a clean reference and one planted twin.
-    - [`cf-invariants-pyth`](https://github.com/caliperforge/cf-invariants-pyth): Pyth Solana Receiver port; two class-shaped invariants against a clean reference and two planted twins.
-    - [`cf-invariants`](https://github.com/caliperforge/cf-invariants): pinned Anchor invariant-authoring crate the atlas driver consumes (core, suggest, emit, report).
-- **`taiko-equivalence`** — differential equivalence tests for Taiko's
-  Type-1 Ethereum-equivalence guarantee, encoded as clean / planted twin
-  Foundry projects. AI-augmented, hard-disclosed. Apache-2.0. See
-  [caliperforge/taiko-equivalence](https://github.com/caliperforge/taiko-equivalence).
-- **`soroban-invariant-atlas`** — Soroban (Stellar) stateful invariant
-  atlas: clean / planted twin fixtures over already-public Soroban
-  findings. AI-augmented, hard-disclosed. Apache-2.0 OR MIT. See
-  [caliperforge/soroban-invariant-atlas](https://github.com/caliperforge/soroban-invariant-atlas).
-- **`agentic-payments-regression`** — open-source library of CI-runnable
-  planted-twin reproductions for the x402 agentic-payments threat model
-  (clean / planted pairs, `INVARIANT VIOLATED` marker convention,
-  16-seed reachability certification). Apache-2.0. See
-  [caliperforge/agentic-payments-regression](https://github.com/caliperforge/agentic-payments-regression).
-- **`x402-regression-base`** — CI-native planted-twin regression harness
-  for the x402 agentic-payments settlement threat model. Reference
-  facilitator deployed and exercised on Base mainnet and Sepolia;
-  receipts in `docs/basescan/`. Apache-2.0. See
-  [caliperforge/x402-regression-base](https://github.com/caliperforge/x402-regression-base).
-- **`solana-property-benchmark`** — pre-registered benchmark measuring
-  how well automatically generated security invariants cover known
-  vulnerability classes in Solana Anchor programs; the full evaluation
-  protocol was published here before any result existed. Apache-2.0. See
-  [caliperforge/solana-property-benchmark](https://github.com/caliperforge/solana-property-benchmark).
-- **`taler-auditor-fault-injection`** — mutation-based fault-injection
-  coverage for the GNU Taler exchange auditor (#9828 recoup-of-refresh,
-  post-#9900 refresh paths). Apache-2.0. See
-  [caliperforge/taler-auditor-fault-injection](https://github.com/caliperforge/taler-auditor-fault-injection).
+- **`cf-invariants`** — the AI invariant-author for Crucible and Trident on Solana / Anchor. A sidecar to the ecosystem's fuzzers, not a new one.
+- **`solana-invariant-atlas`** — recurring Solana bug classes as clean / planted twin pairs on real programs, multi-seed reachability certified in CI.
+- **`x402-regression-base`** — planted-twin regression harness for the x402 agentic-payments settlement threat model. Reference facilitator deployed and exercised on Base mainnet and Sepolia; receipts in `docs/basescan/`.
+- **`uniswap-v4-invariants`** — defender-side invariant harness for Uniswap v4 hooks, on real v4-core.
+- **`invariant-atlas`** — six historical DeFi exploits across four VMs, each reconstructed as a same-source clean / planted twin. Defender-side, pre-deploy.
+- **`cf-modeleval`** — planted-twin discrimination-power harness for AI safety properties, across three providers.
 
 ## Receipts
 
-- **12** Cairo contracts Voyager-verified
-- **5** Solana programs CI-green (Jito tip-distribution; Jito
-  tip-payment; Jito priority-fee-distribution; Pyth Solana Receiver;
-  Anchor reference)
+- **5** Solana programs CI-green: Jito tip-distribution, tip-payment, priority-fee-distribution, the Pyth Solana Receiver, and an Anchor reference
+- **4** VMs covered by the cross-VM exploit atlas
 - **1** operator of record
 
-What our own gates caught — published with provenance — at
-[caliperforge.com/what-we-caught](https://caliperforge.com/what-we-caught).
+What our own gates caught, published with provenance, at [caliperforge.com/what-we-caught](https://caliperforge.com/what-we-caught).
 
 ## Capabilities
 
-- **Active language coverage:** Cairo, Rust / Anchor, Solidity.
-- **Active chains:** Starknet, Solana, HyperEVM, Ethereum / EVM.
-  Base and the Optimism Superchain come online as ecosystem work
-  lands; Move (Sui, Aptos) and Go (Cosmos, Celestia) when contract
-  volume warrants.
-- **What we author:** stateful-invariant suites, AI-suggested
-  invariants tagged in source, CI-verified clean / planted-bug
-  reference examples, contest-ready scaffolds, security tooling on
-  top of incumbent fuzzers (snforge, Crucible).
-- **What we don't claim:** coverage parity or superiority with the
-  underlying fuzzing engines. We author the layer above them.
+- **Active chains:** Solana, Ethereum / EVM, Base.
+- **Languages:** Rust / Anchor, Solidity, Cairo.
+- **What we author:** stateful-invariant suites, AI-suggested invariants tagged in source, CI-verified clean / planted-bug reference examples, security tooling on top of incumbent fuzzers (Crucible, Trident, snforge).
+- **What we don't claim:** coverage parity or superiority with the underlying fuzzing engines. We author the layer above them.
 
 ## Operator of record
 
-Operated by **Michael Moffett**, accountable for every commit, PR,
-grant application, and bounty claim made under this org. Reachable.
-KYC-able. Accountable to a named human.
+Operated by **Michael Moffett**, accountable for every commit, PR, grant application, and bounty claim made under this org.
 
-- Operator: Michael Moffett
 - Direct: michael@caliperforge.com
-- Team: michael@caliperforge.com
 - Web: [caliperforge.com](https://caliperforge.com)
-- X: [@caliperforge](https://x.com/caliperforge)
-- Farcaster: [@caliperforge](https://farcaster.xyz/caliperforge)
-- Telegram: [@caliperforge](https://t.me/caliperforge)
+- X: [@caliperforge](https://x.com/caliperforge) · Farcaster: [@caliperforge](https://farcaster.xyz/caliperforge) · Telegram: [@caliperforge](https://t.me/caliperforge)
 - ENS: caliperforge.eth
 
 ## Contact
 
-For grant collaboration, hired-gun engagements, security tooling
-inquiries, or contribution questions: **michael@caliperforge.com**.
+For grant collaboration, hired-gun engagements, security tooling inquiries, or contribution questions: **michael@caliperforge.com**.
