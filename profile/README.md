@@ -68,7 +68,7 @@ portfolio is protocol and smart-contract security.
 - **`cf-invariants`** — AI-suggested stateful invariant testing for
   Cairo 2.x on top of snforge. **Twelve** reference contracts deployed
   and Voyager-verified on Starknet Sepolia. Apache-2.0. See
-  [caliperforge/cf-invariants](https://github.com/caliperforge/cf-invariants).
+  [caliperforge/cf-invariants-starknet](https://github.com/caliperforge/cf-invariants-starknet).
 - **`chimera-template-pack`** — reusable Foundry + Recon Chimera
   scaffold for EVM build-to-win contest entries.
 - **`hyperevm-safety`** — open-source library of invariants and
