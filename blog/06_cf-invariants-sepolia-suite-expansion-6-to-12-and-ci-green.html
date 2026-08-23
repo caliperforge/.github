@@ -70,7 +70,7 @@
           The
           <a href="/blog/01_caliperforge-origins">Day-1 launch post</a>
           stood up
-          <a href="https://github.com/caliperforge/cf-invariants" rel="noopener">cf-invariants</a>
+          <a href="https://github.com/caliperforge/cf-invariants-starknet" rel="noopener">cf-invariants</a>
           as a Rust sidecar that adds stateful invariant testing on
           top of <a href="https://github.com/foundry-rs/starknet-foundry" rel="noopener">snforge</a>
           for Cairo 2.x, with three Voyager-verified references on
@@ -100,7 +100,7 @@
           All twelve are on-chain on Starknet Sepolia and
           Voyager source-verified, with addresses + verification
           links in
-          <a href="https://github.com/caliperforge/cf-invariants/blob/main/STARKNET_SEPOLIA_DEPLOYMENTS.md" rel="noopener"><code>STARKNET_SEPOLIA_DEPLOYMENTS.md</code></a>.
+          <a href="https://github.com/caliperforge/cf-invariants-starknet/blob/main/STARKNET_SEPOLIA_DEPLOYMENTS.md" rel="noopener"><code>STARKNET_SEPOLIA_DEPLOYMENTS.md</code></a>.
         </p>
       </section>
 
@@ -127,7 +127,7 @@
             withdraw collateral to zero while still holding the
             quote. The invariant
             <code>invariant_per_user_solvency</code> fires.
-            (<a href="https://github.com/caliperforge/cf-invariants/blob/main/references/lending_ref/README.md" rel="noopener">README</a>.)
+            (<a href="https://github.com/caliperforge/cf-invariants-starknet/blob/main/references/lending_ref/README.md" rel="noopener">README</a>.)
           </li>
           <li>
             <strong><code>staking_ref</code></strong> ,
@@ -138,7 +138,7 @@
             <code>slashed_pool</code>; the slashed funds vanish
             from accounting. The conservation invariant catches
             the LHS/RHS drift.
-            (<a href="https://github.com/caliperforge/cf-invariants/blob/main/references/staking_ref/README.md" rel="noopener">README</a>.)
+            (<a href="https://github.com/caliperforge/cf-invariants-starknet/blob/main/references/staking_ref/README.md" rel="noopener">README</a>.)
           </li>
           <li>
             <strong><code>vesting_ref</code></strong> ,
@@ -150,7 +150,7 @@
             schedule. The first claim before <code>end_ts</code>
             drives <code>claimed &gt; vested_at(now)</code> and
             breaks the supply cap.
-            (<a href="https://github.com/caliperforge/cf-invariants/blob/main/references/vesting_ref/README.md" rel="noopener">README</a>.)
+            (<a href="https://github.com/caliperforge/cf-invariants-starknet/blob/main/references/vesting_ref/README.md" rel="noopener">README</a>.)
           </li>
           <li>
             <strong><code>timelock_ref</code></strong> ,
@@ -161,7 +161,7 @@
             tx-existence but drops the delay gate; the admin can
             queue and execute in the same block.
             <code>invariant_delay_respected</code> fires.
-            (<a href="https://github.com/caliperforge/cf-invariants/blob/main/references/timelock_ref/README.md" rel="noopener">README</a>.)
+            (<a href="https://github.com/caliperforge/cf-invariants-starknet/blob/main/references/timelock_ref/README.md" rel="noopener">README</a>.)
           </li>
           <li>
             <strong><code>payment_splitter_ref</code></strong>
@@ -173,7 +173,7 @@
             calls first, ignoring share weights.
             <code>invariant_proportional_release</code> catches
             the over-payment.
-            (<a href="https://github.com/caliperforge/cf-invariants/blob/main/references/payment_splitter_ref/README.md" rel="noopener">README</a>.)
+            (<a href="https://github.com/caliperforge/cf-invariants-starknet/blob/main/references/payment_splitter_ref/README.md" rel="noopener">README</a>.)
           </li>
           <li>
             <strong><code>oracle_ref</code></strong> ,
@@ -184,7 +184,7 @@
             but skips the freshness check, so a stale push
             rewinds the freshness clock backward.
             <code>invariant_last_update_ts_monotone</code> fires.
-            (<a href="https://github.com/caliperforge/cf-invariants/blob/main/references/oracle_ref/README.md" rel="noopener">README</a>.)
+            (<a href="https://github.com/caliperforge/cf-invariants-starknet/blob/main/references/oracle_ref/README.md" rel="noopener">README</a>.)
           </li>
         </ul>
         <p>
@@ -207,7 +207,7 @@
           local <code>snforge test</code> output plus the Voyager
           verification links. The first end-to-end CI workflow
           landed on 2026-06-04 and went green on run
-          <a href="https://github.com/caliperforge/cf-invariants/actions/runs/26971094124" rel="noopener">26971094124</a>
+          <a href="https://github.com/caliperforge/cf-invariants-starknet/actions/runs/26971094124" rel="noopener">26971094124</a>
           at commit <code>5ac98a9</code>, 13/13 jobs. That first
           shape asserted the planted leg only: every reference's
           snforge test was expected to exit non-zero with the
@@ -216,7 +216,7 @@
         </p>
         <p>
           That gap closed on 2026-06-07 when
-          <a href="https://github.com/caliperforge/cf-invariants/pull/2" rel="noopener">PR #2</a>
+          <a href="https://github.com/caliperforge/cf-invariants-starknet/pull/2" rel="noopener">PR #2</a>
           squash-merged. The PR adds a <code>clean</code> scarb
           feature to every reference's <code>Scarb.toml</code> and a
           <code>CLEAN_TWIN: bool</code> const gated on
@@ -245,13 +245,13 @@
         </ul>
         <p>
           Run
-          <a href="https://github.com/caliperforge/cf-invariants/actions/runs/27075213962" rel="noopener">27075213962</a>
+          <a href="https://github.com/caliperforge/cf-invariants-starknet/actions/runs/27075213962" rel="noopener">27075213962</a>
           at commit
-          <a href="https://github.com/caliperforge/cf-invariants/commit/003e33c" rel="noopener"><code>003e33c</code></a>
+          <a href="https://github.com/caliperforge/cf-invariants-starknet/commit/003e33c" rel="noopener"><code>003e33c</code></a>
           is 26 of 26 green: the workspace job, the Caracal
           advisory job, and the 24 reference legs. The workflow
           file is
-          <a href="https://github.com/caliperforge/cf-invariants/blob/main/.github/workflows/ci.yml" rel="noopener"><code>.github/workflows/ci.yml</code></a>
+          <a href="https://github.com/caliperforge/cf-invariants-starknet/blob/main/.github/workflows/ci.yml" rel="noopener"><code>.github/workflows/ci.yml</code></a>
           and is the substantive reference an external Cairo dev
           can lift. The clean-variant convention, one
           <code>clean</code> scarb feature gating one
@@ -344,9 +344,9 @@
         </ul>
         <p>
           Repo:
-          <a href="https://github.com/caliperforge/cf-invariants" rel="noopener">github.com/caliperforge/cf-invariants</a>.
+          <a href="https://github.com/caliperforge/cf-invariants-starknet" rel="noopener">github.com/caliperforge/cf-invariants-starknet</a>.
           Sepolia deployment + Voyager verification index:
-          <a href="https://github.com/caliperforge/cf-invariants/blob/main/STARKNET_SEPOLIA_DEPLOYMENTS.md" rel="noopener"><code>STARKNET_SEPOLIA_DEPLOYMENTS.md</code></a>.
+          <a href="https://github.com/caliperforge/cf-invariants-starknet/blob/main/STARKNET_SEPOLIA_DEPLOYMENTS.md" rel="noopener"><code>STARKNET_SEPOLIA_DEPLOYMENTS.md</code></a>.
           Apache-2.0. Issues and PRs are open.
         </p>
         <p class="cf-article__meta">

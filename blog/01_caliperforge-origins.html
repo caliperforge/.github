@@ -94,7 +94,7 @@
         <p class="cf-article__eyebrow">What we built</p>
         <h2>A Rust CLI that sits next to snforge, not on top of it.</h2>
         <p>
-          <a href="https://github.com/caliperforge/cf-invariants" rel="noopener">cf-invariants</a>
+          <a href="https://github.com/caliperforge/cf-invariants-starknet" rel="noopener">cf-invariants</a>
           is a Rust CLI that sits next to snforge, not on top of it. It
           reads a Scarb project, generates a per-run harness that fuzzes
           random call sequences against a contract, runs <code>snforge test</code>
@@ -149,12 +149,12 @@ SingleSideAmm    0x05351d&hellip;c81f8    constant-product solvency violated, se
         <p>
           The deployment manifest (class hashes, declare/deploy tx hashes,
           Voyager links per contract) lives at
-          <a href="https://github.com/caliperforge/cf-invariants/blob/main/STARKNET_SEPOLIA_DEPLOYMENTS.md" rel="noopener">STARKNET_SEPOLIA_DEPLOYMENTS.md</a>.
+          <a href="https://github.com/caliperforge/cf-invariants-starknet/blob/main/STARKNET_SEPOLIA_DEPLOYMENTS.md" rel="noopener">STARKNET_SEPOLIA_DEPLOYMENTS.md</a>.
           The full reproducible findings report, failing call
           sequences, relevant Cairo source lines, the cf-invariants
           scorecard for each contract, and a cross-check from a direct
           <code>snforge test</code> invocation, lives at
-          <a href="https://github.com/caliperforge/cf-invariants/blob/main/STARKNET_SEPOLIA_FINDINGS.md" rel="noopener">STARKNET_SEPOLIA_FINDINGS.md</a>.
+          <a href="https://github.com/caliperforge/cf-invariants-starknet/blob/main/STARKNET_SEPOLIA_FINDINGS.md" rel="noopener">STARKNET_SEPOLIA_FINDINGS.md</a>.
           Everything reproduces from a clean clone at the pinned toolchain.
         </p>
         <p>A representative invariant signature, lifted from the AMM suite:</p>
@@ -218,7 +218,7 @@ fn k_does_not_decrease(state: &amp;State) -&gt; bool {
         <p>
           If you are a Cairo developer running into the same gap, the
           repo is at
-          <a href="https://github.com/caliperforge/cf-invariants" rel="noopener">github.com/caliperforge/cf-invariants</a>.
+          <a href="https://github.com/caliperforge/cf-invariants-starknet" rel="noopener">github.com/caliperforge/cf-invariants-starknet</a>.
           The findings report is the fastest way to see what the tool
           does. The issue tracker is the right place to push back on
           anything in the design that does not fit your project.

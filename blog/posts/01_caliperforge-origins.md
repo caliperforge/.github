@@ -15,7 +15,7 @@ The maintainers of starknet-foundry know this. [Issue #2464](https://github.com/
 
 ## What we built
 
-[cf-invariants](https://github.com/caliperforge/cf-invariants) is a Rust CLI that sits next to snforge, not on top of it. It reads a Scarb project, generates a per-run harness that fuzzes random call sequences against a contract, runs `snforge test` as a subprocess, and emits a structured `scorecard.json` plus a human-readable scorecard. The scorecard reports `N/M invariants violated` and the failing call sequence. snforge stays the execution engine. cf-invariants is a sequence-search and reporting layer around it. Apache-2.0. No exclusivity, no fork, no claim on the upstream namespace.
+[cf-invariants](https://github.com/caliperforge/cf-invariants-starknet) is a Rust CLI that sits next to snforge, not on top of it. It reads a Scarb project, generates a per-run harness that fuzzes random call sequences against a contract, runs `snforge test` as a subprocess, and emits a structured `scorecard.json` plus a human-readable scorecard. The scorecard reports `N/M invariants violated` and the failing call sequence. snforge stays the execution engine. cf-invariants is a sequence-search and reporting layer around it. Apache-2.0. No exclusivity, no fork, no claim on the upstream namespace.
 
 The repo carries 42 tests across six Rust crates and a Cairo crate of reference contracts. The Rust crates are a sequence searcher, an snforge subprocess driver, a Cairo metadata reader, a scorecard renderer, an opt-in AI suggestion module, and a CLI front. Pinned toolchain: [snforge 0.61.0](https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.61.0), [scarb 2.18.0](https://github.com/software-mansion/scarb/releases/tag/v2.18.0), Cairo 2.18.0, sierra 1.8.0.
 
@@ -31,7 +31,7 @@ Governance       0x066738…794e6    executed-state monotonicity violated, seed 
 SingleSideAmm    0x05351d…c81f8    constant-product solvency violated, seed 11
 ```
 
-The deployment manifest (class hashes, declare/deploy tx hashes, Voyager links per contract) lives at [STARKNET_SEPOLIA_DEPLOYMENTS.md](https://github.com/caliperforge/cf-invariants/blob/main/STARKNET_SEPOLIA_DEPLOYMENTS.md). The full reproducible findings report — failing call sequences, relevant Cairo source lines, the cf-invariants scorecard for each contract, and a cross-check from a direct `snforge test` invocation — lives at [STARKNET_SEPOLIA_FINDINGS.md](https://github.com/caliperforge/cf-invariants/blob/main/STARKNET_SEPOLIA_FINDINGS.md). Everything reproduces from a clean clone at the pinned toolchain.
+The deployment manifest (class hashes, declare/deploy tx hashes, Voyager links per contract) lives at [STARKNET_SEPOLIA_DEPLOYMENTS.md](https://github.com/caliperforge/cf-invariants-starknet/blob/main/STARKNET_SEPOLIA_DEPLOYMENTS.md). The full reproducible findings report — failing call sequences, relevant Cairo source lines, the cf-invariants scorecard for each contract, and a cross-check from a direct `snforge test` invocation — lives at [STARKNET_SEPOLIA_FINDINGS.md](https://github.com/caliperforge/cf-invariants-starknet/blob/main/STARKNET_SEPOLIA_FINDINGS.md). Everything reproduces from a clean clone at the pinned toolchain.
 
 A representative invariant signature, lifted from the AMM suite:
 
@@ -59,7 +59,7 @@ Past that, there is more depth to add on Cairo before moving sideways. A richer 
 
 The long-game thesis is plain. There is currently no production-grade stateful invariant testing tool for Cairo 2.x. cf-invariants is the only one I am aware of, the field is unoccupied, and the maintainers' own roadmap names the gap. Three commitments make the bet real: keep shipping, keep the integration question open with the snforge team, keep the AI suggestion module honest about which invariants came from where. Inside two to three release cycles, this is the reference Cairo 2.x stateful invariant testing tool.
 
-If you are a Cairo developer running into the same gap, the repo is at [github.com/caliperforge/cf-invariants](https://github.com/caliperforge/cf-invariants). The findings report is the fastest way to see what the tool does. The issue tracker is the right place to push back on anything in the design that does not fit your project.
+If you are a Cairo developer running into the same gap, the repo is at [github.com/caliperforge/cf-invariants-starknet](https://github.com/caliperforge/cf-invariants-starknet). The findings report is the fastest way to see what the tool does. The issue tracker is the right place to push back on anything in the design that does not fit your project.
 
 — Michael Moffett
 
