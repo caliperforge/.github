@@ -1,39 +1,44 @@
 {
   "schema": "org_stats.v1",
-  "last_updated": "2026-08-22T12:40:00Z",
-  "as_of": "2026-08-22",
+  "last_updated": "2026-08-23T12:40:00Z",
+  "as_of": "2026-08-23",
   "launch_date": "2026-05-27",
   "specialized_agents": 42,
-  "logged_agent_decisions": 4615,
-  "gate_reviews": 4615,
-  "agent_dispatches": 3000,
-  "days_running": 88,
+  "logged_agent_decisions": 4626,
+  "gate_reviews": 4626,
+  "agent_dispatches": 3045,
+  "days_running": 89,
   "catch": {
-    "tp": 164,
+    "tp": 187,
     "fp": 0,
     "fn": 27,
     "adjudicated": 9,
-    "catch_rate_display": "86%",
+    "catch_rate_display": "87%",
     "precision_display": "100%",
     "false_positive_rate_display": "n/a",
     "window_start": "2026-06-04",
-    "window_end": "2026-08-22"
+    "window_end": "2026-08-23"
   },
   "stat_as_of": {
-    "specialized_agents": "2026-08-22",
-    "logged_agent_decisions": "2026-08-22",
-    "gate_reviews": "2026-08-22",
-    "agent_dispatches": "2026-08-22",
-    "days_running": "2026-08-22",
-    "catch": "2026-08-22"
+    "specialized_agents": "2026-08-23",
+    "logged_agent_decisions": "2026-08-23",
+    "gate_reviews": "2026-08-23",
+    "agent_dispatches": "2026-08-23",
+    "days_running": "2026-08-23",
+    "catch": "2026-08-23"
   },
   "sources": {
-    "specialized_agents": "agents/_roster.json (len(roles))",
-    "logged_agent_decisions": "ops/qa_verdicts/control_effectiveness.jsonl (line count; all schemas \u2014 decision.v1 + outcome.v1)",
-    "gate_reviews": "legacy mirror of logged_agent_decisions (T-completeness-enforcement-2026-06-30: rename in progress)",
-    "agent_dispatches": "ops/runs/ledger.md (count of '^## ' headers)",
-    "days_running": "(today - 2026-05-27) + 1 (inclusive; launch day = day 1)",
-    "catch": "site/data/caught_public.json (mirror of the generated projection; SoT is ops/qa_verdicts/control_effectiveness.jsonl + ops/catch_corpus/; adjudicated pinned to outcome.v1 row count per T-completeness-enforcement-2026-06-30)"
+    "specialized_agents": "agents/_roster.json \u2014 'roles' (len)",
+    "logged_agent_decisions": "ops/qa_verdicts/control_effectiveness.jsonl + ops/archive/qa_verdicts/control_effectiveness_2026-06.jsonl + ops/archive/qa_verdicts/control_effectiveness_2026-07.jsonl + ops/archive/qa_verdicts/control_effectiveness_2026-08.jsonl \u2014 hot + every rolled monthly archive, de-duplicated on the raw line, excluding rows whose source field is test_fixture (CEO-ruled 2026-08-07, commit 1e5cfb2)",
+    "gate_reviews": "legacy mirror of logged_agent_decisions \u2014 same read-set, same exclusion",
+    "agent_dispatches": "ops/runs/ledger.md \u2014 count of headers matching ^## YYYY-MM-DD, exact, never rounded",
+    "days_running": "(run date \u2212 2026-05-27).days + 1 \u2014 no file source; live-computed here and again client-side on every page load",
+    "catch": "site/data/caught_public.json \u2014 mirror of the generated projection; SoT is the control_effectiveness read-set above plus ops/catch_corpus/"
+  },
+  "source_check": {
+    "rule": "D-LEDGER-TRUTH-2026-08-04 / T-P035-A1, applied to the public stats at T-P032-COMMS-S3: every path named in a stat's source must resolve, or the build fails and nothing is written",
+    "checked_by": "scripts/ops/source_resolution.py::check_fact_sources",
+    "failures": []
   },
   "errors": []
 }
