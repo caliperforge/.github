@@ -3,16 +3,16 @@
   "_generated": true,
   "_source": "ops/qa_verdicts/control_effectiveness.jsonl + ops/catch_corpus/",
   "_do_not_edit": "regenerate via scripts/ops/caught_public_projection.py",
-  "last_updated": "2026-08-26T12:40:00Z",
+  "last_updated": "2026-08-27T12:40:00Z",
   "window_start": "2026-06-04",
-  "window_end": "2026-08-26",
+  "window_end": "2026-08-27",
   "metrics": {
-    "tp": 267,
+    "tp": 270,
     "fp": 0,
     "fn": 27,
     "tn": 0,
-    "adjudicated": 1,
-    "catch_rate": 0.9082,
+    "adjudicated": 4,
+    "catch_rate": 0.9091,
     "catch_rate_display": "91%",
     "precision": 1.0,
     "precision_display": "100%",
@@ -21,7 +21,7 @@
     "catch_rate_caveat": "66% is not a decline from 83%. The two are computed over different records: the 83% never counted the CEO-caught class at all, so it was a rate over a record that excluded most of our misses.",
     "by_public_gate": {
       "content_qa_4a": {
-        "tp": 33,
+        "tp": 36,
         "fp": 0,
         "tn": 0,
         "fn": 3
@@ -356,6 +356,7 @@
       "tp-code-quality-t-p038-surfpool-567-4b-fixal-1d40420a5887-20260817",
       "tp-content-qa-4a-a6-message-body-1d9a53b438f1-20260819",
       "tp-content-qa-application-regate-2026-06-1-692ba4b6f42f-20260701",
+      "tp-content-qa-backend-card-rewrite-4a-gate-97bd886d5599-20260826",
       "tp-content-qa-bundle-17930faa3565-20260714",
       "tp-content-qa-cascade-2026-06-11-703c44d8cc45-20260701",
       "tp-content-qa-community-health-4a-2026-06--e909ac1d0d48-20260701",
@@ -380,7 +381,9 @@
       "tp-content-qa-readme-notice-ai-disclosure--a65c872f9e5b-20260702",
       "tp-content-qa-readme-reachability-verdict--74842f50e323-20260714",
       "tp-content-qa-sources-regate-2026-06-12-96150ded1358-20260701",
+      "tp-content-qa-t-p035-mechgreen-a4a-gate-20-cda8cd3f94db-20260826",
       "tp-content-qa-trim-regate-pr-cover-copy-ti-ea6ee1ccfa38-20260817",
+      "tp-content-qa-trim-stage-s8-2026-08-25-c69669ef7c30-20260826",
       "tp-content-qa-uniswap-adopter-play-cold-ou-437169367c10-20260714",
       "tp-content-qa-v4-regate-2026-06-10-b76ab552216a-20260701",
       "tp-coo-surfpool-target-number-702-vs-706-20260807"
@@ -397,7 +400,7 @@
     {
       "agent": "content_qa_reviewer",
       "pct": "100%",
-      "n": 1,
+      "n": 4,
       "stops": 19
     }
   ],
