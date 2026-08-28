@@ -25,6 +25,19 @@ Pinned below, Solana first. Everything else is on the [repository list](https://
 - **`invariant-atlas`** — six historical DeFi exploits across four VMs, each reconstructed as a same-source clean / planted twin. Defender-side, pre-deploy.
 - **`cf-modeleval`** — planted-twin discrimination-power harness for AI safety properties, across three providers.
 
+## Also in the public portfolio
+
+The rest of the public listing. Same disclosure, same CI discipline.
+
+- **`cf-invariants-starknet`** — snforge sidecar adding stateful invariant testing and AI-suggested invariants to Cairo 2.x. Twelve reference contracts, Voyager-verified on Starknet Sepolia.
+- **`bsc-invariants`** — invariant testing and planted-twin CI for BSC DeFi protocols. PancakeSwap v3 harness live; Venus and Stargate planned.
+- **`taiko-equivalence`** — differential equivalence tests for Taiko's Type-1 Ethereum-equivalence guarantee, encoded as clean / planted twin Foundry projects.
+- **`agentic-payments-regression`** — CI-runnable planted-twin reproductions for the x402 agentic-payments threat model. Clean / planted pairs, `INVARIANT VIOLATED` marker convention, 16-seed reachability certification.
+- **`solana-property-benchmark`** — pre-registered benchmark measuring how well automatically generated security invariants cover known vulnerability classes in Solana Anchor programs. The evaluation protocol was published before any result existed.
+- **`apart-global-south-lost-in-translation`** — language-conditioned detection-rate eval harness for AI code auditors. EN / ES / PT / CS variant corpus built on Atlas planted-bug twins. Apart Global South AI Safety Hackathon 2026.
+- **`taler-auditor-fault-injection`** — mutation-based fault-injection coverage for the GNU Taler exchange auditor (#9828 recoup-of-refresh, post-#9900 refresh paths).
+- **`chimera-template-pack`** — reusable Foundry and Recon Chimera scaffold for EVM build-to-win contest entries, CI-verified.
+
 ## Receipts
 
 - **5** Solana programs CI-green: Jito tip-distribution, tip-payment, priority-fee-distribution, the Pyth Solana Receiver, and an Anchor reference
