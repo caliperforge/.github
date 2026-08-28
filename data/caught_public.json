@@ -3,7 +3,7 @@
   "_generated": true,
   "_source": "ops/qa_verdicts/control_effectiveness.jsonl + ops/catch_corpus/",
   "_do_not_edit": "regenerate via scripts/ops/caught_public_projection.py",
-  "last_updated": "2026-08-28T12:40:01Z",
+  "last_updated": "2026-08-28T21:48:00Z",
   "window_start": "2026-06-04",
   "window_end": "2026-08-28",
   "metrics": {
