@@ -136,6 +136,27 @@
 
       <article class="cf-blog-card">
         <div class="cf-blog-card__head">
+          <a class="cf-blog-card__title" href="/blog/23_flashloan-solvency-blendv2-soroban-invariant-atlas">The audit already had it, in Rust this time: Blend V2 H-01 as a Soroban twin</a>
+          <span class="cf-blog-card__date">2026-07-13</span>
+        </div>
+        <p class="cf-blog-card__desc">
+          Code4rena wardens named H-01 in their published Blend V2
+          review: a flash-loan round-trip that leaves a
+          reserve&rsquo;s <code>d_supply</code> out of step with the
+          sum of every user&rsquo;s liability. The Blend team fixed
+          it in the commit the audit&rsquo;s mitigation review
+          confirms. This post walks the invariant that names the
+          class and the clean/planted twin in
+          <code>caliperforge/soroban-invariant-atlas</code> that
+          fires on it: a stateful proptest-style campaign against a
+          minimal original <code>soroban-sdk</code> pool that
+          isolates the identity, a deterministic regression, and both
+          required legs green on CI.
+        </p>
+      </article>
+
+      <article class="cf-blog-card">
+        <div class="cf-blog-card__head">
           <a class="cf-blog-card__title" href="/blog/14_share-accounting-solvency-euler-earn-m01">The audit already had it: Euler Earn share-accounting solvency as a runnable twin</a>
           <span class="cf-blog-card__date">2026-07-10</span>
         </div>
